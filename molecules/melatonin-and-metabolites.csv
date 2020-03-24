@@ -1,0 +1,21 @@
+SMILES,TITLE
+CC(=O)NCCC1=CNC=2C=CC(F)=CC12,Z1220452176
+COC1=CC2=C(NC=C2CCNC(C)=O)C=C1,Melatonin
+COc1cc2c(CCNC(C)=O)c[nH]c2cc1O,6-Hydroxymelatonin
+CC(=O)NCCC1=CNC2=CC(=C(C=C21)OC)OS(=O)(=O)O,6-Hydroxymelatonin sulfate
+CC(=O)NCCC1(C(C(OC(C1O)(C(=O)O)OC)OC2=CC3=C(C=C2)C=CN3)O)O,6-Hydroxymelatonin glucuronide
+,CC(=O)NCCC1=CNC2=C1C=C(C=C2)O,N-Acetyl-5-hydroxytryptamine
+CC(=O)NCCC1=CNC2=C1C=C(C=C2)OS(=O)(=O)[O-],N-Acetyl-5-hydroxytryptamine sulfate
+CC(=O)NCCC1=CNC2=C1C=C(C=C2)OC3C(C(C(C(O3)C(=O)[O-])O)O)O,N-Acetyl-5-hydroxytryptamine glucuronide
+COC1=CC2=C(C=C1)NC=C2CCN,5-Methoxytryptamine
+COC1=CC2=C(C=C1)NC3=C2CCNC3,Pinolene
+CN(C)CCC1=CNC2=C1C=C(C=C2)O,Bufotenine
+CN(C)CCC1=CNC2=CC=CC=C21,N,N-Dimethyltryptamine
+COC1=CC2=C(NC(=O)C2CCNC(C)=O)C=C1,2-oxomelatonin
+COC1=CC2=C(NCC2(O)CCN=C(C)O)C=C1,3-hydroxymelatonin
+COC1=CC2=C(C=C1)N(C=C2CCNC(C)=O)C1OC(C(O)C(O)C1O)C(O)=O,melatonin glucuronide
+COC1=CC2=C(NC3=C2CCN3C(C)=O)C=C1,cyclic melatonin
+CC(=O)N1CCC2=C1NC1=C2C=C(OC2OC(C(O)C(O)C2O)C(O)=O)C=C1,cyclic N-acetylserotonin glucuronide
+COC1=CC2=C(NC3=C2CCN3C(C)=O)C=C1O,cyclic 6-hydroxymelatonin
+OC1=CC2=C(NC=C2CC=O)C=C1,5-hydroxyindole-3-acetaldehyde
+COC1=C(O)C2=C(NC=C2CCNC(C)=O)C=C1O,di-hydroxymelatonin
