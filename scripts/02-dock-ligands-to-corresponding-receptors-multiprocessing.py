@@ -163,8 +163,6 @@ if __name__ == '__main__':
 
     prefix = 'covid_submissions_03_26_2020'
     molecules = read_csv_molecules(os.path.join('../molecules', prefix + '.csv'))
-    # DEBUG
-    molecules = molecules[:10]
 
     # Write molecules independently
     print('Splitting molecules...')
