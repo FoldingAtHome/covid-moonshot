@@ -36,23 +36,31 @@ def dock_molecule(molecule, ofs, default_receptor='x0387'):
     default_receptor : str, optional, default='0387'
         The default receptor to dock to
     """
+    # Make a copy of the molecule
+    molecule = oechem.OEMol(molecule)
+
     import os
     # Extract list of corresponding receptor(s)
     import oechem
+    print(f'\n{molecule.GetTitle()}')
     if oechem.OEHasSDData(molecule, "fragments"):
         fragments = oechem.OEGetSDData(molecule, "fragments").split(',')
+        print(f'fragments before filter: {fragments}')
         fragments = [ fragment for fragment in fragments if os.path.exists(f'../receptors/Mpro-{fragment}-receptor.oeb.gz') ]
+        print(f'fragments after filter: {fragments}')
         if len(fragments) == 0:
             fragments = [default_receptor]
         for fragment in fragments:
+            molecule_to_dock = oechem.OEMol(molecule)
+
             import os
             receptor_filename = os.path.join(f'../receptors/Mpro-{fragment}-receptor.oeb.gz')
-            oechem.OESetSDData(molecule, "fragments", fragment)
+            oechem.OESetSDData(molecule_to_dock, "fragments", fragment)
 
             # Enumerate reasonable protomers/tautomers
             from openeye import oequacpac
             protomer = oechem.OEMol()
-            protomers = [ oechem.OEMol(protomer) for protomer in oequacpac.OEGetReasonableProtomers(molecule) ]
+            protomers = [ oechem.OEMol(protomer) for protomer in oequacpac.OEGetReasonableProtomers(molecule_to_dock) ]
             dock_molecules_to_receptor(receptor_filename, protomers, ofs)
 
 def dock_molecules_to_receptor(receptor_filename, molecules, ofs):
@@ -104,7 +112,7 @@ def dock_molecules_to_receptor(receptor_filename, molecules, ofs):
         retCode = dock.DockMultiConformerMolecule(dockedMol, mol)
         if (retCode != oedocking.OEDockingReturnCode_Success):
             print("Docking Failed with error code " + oedocking.OEDockingReturnCodeGetName(retCode))
-            return 
+            return
 
         # Store docking data
         sdtag = oedocking.OEDockMethodGetName(dockMethod)
@@ -119,6 +127,7 @@ prefix = 'covid_submissions_03_26_2020'
 import os
 from tqdm import tqdm
 molecules = read_csv_molecules(os.path.join('../molecules', prefix + '.csv'))
+molecules = molecules[:10]
 import oechem
 with oechem.oemolostream(f'{prefix} - docked.sdf') as ofs:
     for molecule in tqdm(molecules):
