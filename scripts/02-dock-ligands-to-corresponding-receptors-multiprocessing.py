@@ -170,10 +170,10 @@ if __name__ == '__main__':
     basedir = 'parallel'
     if not os.path.exists(basedir):
         os.mkdir(basedir)
-        for molecule in molecules:
-            filename = os.path.join(basedir, f'{molecule.GetTitle()}.sdf')
-            with oechem.oemolostream(filename) as ofs:
-                oechem.OEWriteMolecule(ofs, molecule)
+    for molecule in molecules:
+        filename = os.path.join(basedir, f'{molecule.GetTitle()}.sdf')
+        with oechem.oemolostream(filename) as ofs:
+            oechem.OEWriteMolecule(ofs, molecule)
 
     # Dock molecules in parallel
     print('Processing in parallel...')
