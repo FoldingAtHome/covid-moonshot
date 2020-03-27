@@ -5,7 +5,6 @@ Prepare all receptors for OEDocking
 
 import glob, os
 source_pdb_files = glob.glob("../diamond-structures/Mpro_All_PDBs - ver 2020-03-24/*.pdb")
-print(source_pdb_files)
 
 def read_pdb_file(pdb_file):
     print(f'Reading receptor from {pdb_file}...')
@@ -66,6 +65,10 @@ def prepare_receptor(complex_pdb_filename, prefix):
 for complex_pdb_filename in source_pdb_files:
     basepath, filename = os.path.split(complex_pdb_filename)
     prefix, extension = os.path.splitext(filename)
-    print(prefix)
-
-    prepare_receptor(complex_pdb_filename, prefix)
+    import os
+    if not os.path.exists(f'{prefix}-receptor.oeb.gz'):
+        try:
+            print(prefix)
+            prepare_receptor(complex_pdb_filename, prefix)
+        except Exception as e:
+            print(e)
