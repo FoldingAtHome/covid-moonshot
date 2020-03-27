@@ -48,8 +48,12 @@ def dock_molecule(molecule, ofs, default_receptor='x0387'):
             import os
             receptor_filename = os.path.join(f'../receptors/Mpro-{fragment}-receptor.oeb.gz')
             oechem.OESetSDData(molecule, "fragments", fragment)
-            #print(f'Docking {molecule.GetTitle()} to {receptor_filename}...')
-            dock_molecules_to_receptor(receptor_filename, [molecule], ofs)
+
+            # Enumerate reasonable protomers/tautomers
+            from openeye import oequacpac
+            protomer = oechem.OEMol()
+            protomers = [ oechem.OEMol(protomer) for protomer in oequacpac.OEGetReasonableProtomers(molecule) ]
+            dock_molecules_to_receptor(receptor_filename, protomers, ofs)
 
 def dock_molecules_to_receptor(receptor_filename, molecules, ofs):
     """
@@ -99,7 +103,8 @@ def dock_molecules_to_receptor(receptor_filename, molecules, ofs):
         #print(f'Docking {mol.NumConfs()} conformers...')
         retCode = dock.DockMultiConformerMolecule(dockedMol, mol)
         if (retCode != oedocking.OEDockingReturnCode_Success):
-            oechem.OEThrow.Fatal("Docking Failed with error code " + oedocking.OEDockingReturnCodeGetName(retCode))
+            print("Docking Failed with error code " + oedocking.OEDockingReturnCodeGetName(retCode))
+            return 
 
         # Store docking data
         sdtag = oedocking.OEDockMethodGetName(dockMethod)
