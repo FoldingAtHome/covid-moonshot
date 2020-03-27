@@ -2,7 +2,9 @@
 fragid = '0387'
 
 complex_pdb_filename = f'../diamond-structures/Mpro full XChem screen - pdbs - active site non-covalent - ver-2020-03-20/Mpro-x{fragid}.pdb'
-#complex_pdb_filename = '../diamond-structures/5r7z.pdb'
+
+fragid = '5r7z'
+complex_pdb_filename = '../diamond-structures/5r7z.pdb'
 
 def read_pdb_file(pdb_file):
     print(f'Reading receptor from {pdb_file}...')
