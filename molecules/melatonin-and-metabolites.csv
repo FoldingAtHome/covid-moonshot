@@ -19,3 +19,24 @@ CC(=O)N1CCC2=C1NC1=C2C=C(OC2OC(C(O)C(O)C2O)C(O)=O)C=C1,cyclic N-acetylserotonin 
 COC1=CC2=C(NC3=C2CCN3C(C)=O)C=C1O,cyclic 6-hydroxymelatonin
 OC1=CC2=C(NC=C2CC=O)C=C1,5-hydroxyindole-3-acetaldehyde
 COC1=C(O)C2=C(NC=C2CCNC(C)=O)C=C1O,di-hydroxymelatonin
+c1cc2c(cc1O)c(c[nH]2)CC=O,5-hydroxyindole-3-acetaldehyde
+CC(=O)NCCc1c[nH]c2c1c(c(c(c2)O)OC)O,di-hydroxymelatonin
+CC(NCCc1c2c(O)c(OC)c(O)cc2n(C3OC(C(O)=O)C(O)C(O)C3O)c1)=O,di-hydroxymelatonin glucuronide conjugate
+CC(=O)NCCC1=CNC2=C1C=C(O)C=C2,N-Acetyl-5-hydroxytryptamine
+CC(=O)NCCC1=CNC2=C1C=C(OS(O)(=O)=O)C=C2,N-Acetyl-5-hydroxytryptamine sulfate
+CC(=O)NCCC1=CNC2=C1C=C(OC1O[C@@H]([C@@H](O)[C@H](O)[C@H]1O)C(O)=O)C=C2,N-Acetyl-5-hydroxytryptamine glucuronide
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OS(=O)(=O)O,N-acetylserotonin sulfate
+Oc1ccc2c(c(CCNC(C)=O)cn2C3OC(C(O)=O)C(O)C(O)C3O)c1,N-acetylserotonin glucuronide
+O=C(O)[C@@H](N)Cc2c1cc(O)ccc1[nH]c2,5-hydroxy-L-tryptophan
+NCCC1=CNC2=CC=C(O)C=C12,Serotonin
+CC(=O)NCCc1c[nH]c2c1cc(cc2)O,N-Acetylserotonin
+c1ccc2c(c1)c(c[nH]2)C[C@@H](C(=O)[O-])[NH3+],L-tryptophan
+O=C(NCCC2c1cc(OC)ccc1NC2=O)C,2-oxomelatonin
+COc1ccc2c(c1)c(c[nH]2)CCN,5-Methoxytryptamine
+c1ccc(c(c1)C(=O)CCN)N,KYNURAMINE
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,Acetyl-N-formyl-5-methoxykynurenamine (AFMK)
+CC(=O)NCCC(=O)c1cc(ccc1N)OC,N-acetyl-5-methoxykynuramine (AMK)
+CC(CCC1=NNC2=CC=C(OC)C=C2C1=O)=O,3-acetamidomethyl-6-methoxycinnolinone (AMMC)
+NC1=C([N+]([O-])=O)C=C(OC)C=C1C(CCNC(C)=O)=O,N1-acetyl-5methoxy-3-nitrokynuramine (AMNK)
+CC(=O)N1CCC2(C1NC3=C2C=C(C=C3)OC)O,cyclic 3-hydroxymelatonin
+CC(NCCC(C1=C2)=CNC1=CC=C2[N+]([O-])=O)=O,4-nitromelatonin
