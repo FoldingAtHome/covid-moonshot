@@ -40,14 +40,15 @@ def dock_molecule(molecule, default_receptor='x0387'):
         All docked molecules
     """
     import os
+    import oechem
+
+    # Make a copy of the molecule
+    molecule = oechem.OEMol(molecule)
 
     # Extract list of corresponding receptor(s)
-    import oechem
-    fragments = list()
-
-    if oechem.OEHasSDData(molecule, "fragments"):
-        fragments = oechem.OEGetSDData(molecule, "fragments").split(',')
-        fragments = [ fragment for fragment in fragments if os.path.exists(f'../receptors/Mpro-{fragment}-receptor.oeb.gz') ]
+    fragments = list()    
+    fragments = oechem.OEGetSDData(molecule, "fragments").split(',')
+    fragments = [ fragment for fragment in fragments if os.path.exists(f'../receptors/Mpro-{fragment}-receptor.oeb.gz') ]
 
     if len(fragments) == 0:
         fragments = [default_receptor]
@@ -55,14 +56,16 @@ def dock_molecule(molecule, default_receptor='x0387'):
     # Dock them
     all_docked_molecules = list()
     for fragment in fragments:
+        molecule_to_dock = oechem.OEMol(molecule)
+
         import os
         receptor_filename = os.path.join(f'../receptors/Mpro-{fragment}-receptor.oeb.gz')
-        oechem.OESetSDData(molecule, "fragments", fragment)
+        oechem.OESetSDData(molecule_to_dock, "fragments", fragment)
 
         # Enumerate reasonable protomers/tautomers
         from openeye import oequacpac
         protomer = oechem.OEMol()
-        protomers = [ oechem.OEMol(protomer) for protomer in oequacpac.OEGetReasonableProtomers(molecule) ]
+        protomers = [ oechem.OEMol(protomer) for protomer in oequacpac.OEGetReasonableProtomers(molecule_to_dock) ]
         docked_molecules = dock_molecules_to_receptor(receptor_filename, protomers)
         all_docked_molecules += docked_molecules
 
@@ -137,7 +140,7 @@ def dock_molecule_from_file(name):
     basedir = 'parallel'
 
     # Read input molecule
-    input_filename = os.path.join(basedir, f'{name}.sdf')
+    input_filename = os.path.join(basedir, f'{name}.oeb')
     molecule = oechem.OEMol()
     with oechem.oemolistream(input_filename) as ifs:
         oechem.OEReadMolecule(ifs, molecule)
@@ -151,7 +154,7 @@ def dock_molecule_from_file(name):
 
     # Write molecule
     if len(docked_molecules) > 0:
-        output_filename = os.path.join(basedir, f'{name} - docked.sdf')
+        output_filename = os.path.join(basedir, f'{name} - docked.oeb')
         with oechem.oemolostream(output_filename) as ofs:
             for docked_molecule in docked_molecules:
                 oechem.OEWriteMolecule(ofs, docked_molecule)
@@ -171,7 +174,7 @@ if __name__ == '__main__':
     if not os.path.exists(basedir):
         os.mkdir(basedir)
     for molecule in molecules:
-        filename = os.path.join(basedir, f'{molecule.GetTitle()}.sdf')
+        filename = os.path.join(basedir, f'{molecule.GetTitle()}.oeb')
         with oechem.oemolostream(filename) as ofs:
             oechem.OEWriteMolecule(ofs, molecule)
 
@@ -190,7 +193,7 @@ if __name__ == '__main__':
     print('Joining files...')
     with oechem.oemolostream(f'{prefix} - docked.sdf') as ofs:
         for molecule in molecules:
-            filename = os.path.join(basedir, f'{molecule.GetTitle()} - docked.sdf')
+            filename = os.path.join(basedir, f'{molecule.GetTitle()} - docked.oeb')
             if os.path.exists(filename):
                 with oechem.oemolistream(filename) as ifs:
                     mol = oechem.OEMol()
