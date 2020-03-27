@@ -1,7 +1,8 @@
 # Molecule sets for the COVID Moonshot
 
 ## Manifest
-* `covid_submissions_03_26_2020.csv` - submissions to https://covid.postera.ai/covid downloaded from https://discuss.postera.ai/t/updated-list-of-all-submissions/17 as of 2:34 PST March 27, 2020
+* `covid_submissions_03_26_2020.csv` - submissions to https://covid.postera.ai/covid downloaded from https://discuss.postera.ai/t/updated-list-of-all-submissions/17 as of 2:34 PST March 27, 2020, retaining only SMILES, CID, and list of fragments used as inspiration
+* `covid_submissions_03_26_2020.sdf` - conversion of the above to SDF with `fragments` SD tag
 * `melatonin-and-metabolites.csv` - melatonin and its metabolites
 * `clinical-meleatonin-receptor-agonists.sdf` -
 * `enamine-melatonin-realspace-analogues.sdf` -
