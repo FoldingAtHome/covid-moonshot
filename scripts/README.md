@@ -8,6 +8,7 @@ This script uses the [OpenEye OEDocking toolkit](https://docs.eyesopen.com/toolk
 * `02-dock-ligands-to-corresponding-receptors.py` - dock small molecule ligands to their corresponding receptor structures
 * `02-dock-ligands-to-corresponding-receptors-multiprocessing.py` - dock small molecule ligands to their corresponding receptor structures
 * `03-dock-ligands-to-one-receptor.py` - dock small molecule ligands to a pre-specified receptor (optional utility)
+* `04-parameterize-ligands.py` - pre-generate JSON parameter caches for [`openmmforcefields.generators.SystemGenerator`](https://github.com/openmm/openmmforcefields#automating-force-field-management-with-systemgenerator) in `json-files/`
 
 ## Docking protocol
 
