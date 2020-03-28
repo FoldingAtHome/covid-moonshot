@@ -2,11 +2,13 @@
 Generate JSON cache of parameters for all ligands
 """
 
+cache_filename = 'covid_submissions_03_26_2020-openff-1.1.0.json'
+small_molecule_forcefield = 'openff-1.1.0'
+
 def generate_parameters(molecule):
     # Create generator
-    small_molecule_forcefield = 'openff-1.1.0'
     from openmmforcefields.generators import SystemGenerator
-    system_generator = SystemGenerator(molecules=[molecule], cache='covid_submissions_03_26_2020-openff-1.1.0.json')
+    system_generator = SystemGenerator(molecules=[molecule], cache=cache_filename)
     try:
         system_generator.create_system(molecule.to_topology().to_openmm())
     except Exception as e:
@@ -30,3 +32,14 @@ if __name__ == '__main__':
         with tqdm(total=max_) as pbar:
             for i, _ in enumerate(pool.imap_unordered(generate_parameters, molecules)):
                 pbar.update()
+
+
+    # Check JSON file
+    print('Checking JSON file integrity...')
+    from openmmforcefields.generators import SystemGenerator
+    system_generator = SystemGenerator(molecules=[molecule], cache=cache_filename)
+    for molecule in molecules:
+        try:
+            system_generator.create_system(molecule.to_topology().to_openmm())
+        except Exception as e:
+            print(e)
