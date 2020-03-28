@@ -34,9 +34,6 @@ if __name__ == '__main__':
             unique_molecules.append(molecule)
     molecules = unique_molecules
 
-    # DEBUG
-    molecules = molecules[:10]
-
     # Parameterize
     from multiprocessing import Pool
     from tqdm import tqdm
