@@ -7,7 +7,11 @@ def generate_parameters(molecule):
     small_molecule_forcefield = 'openff-1.1.0'
     from openmmforcefields.generators import SystemGenerator
     system_generator = SystemGenerator(molecules=[molecule], cache='covid_submissions_03_26_2020-openff-1.1.0.json')
-    system_generator.create_system(molecule.to_topology().to_openmm())
+    try:
+        system_generator.create_system(molecule.to_topology().to_openmm())
+    except Exception as e:
+        with open('failures.smi','a') as outfile:
+            outfile.write(molecule.to_smiles() + '\n')
 
 if __name__ == '__main__':
 
