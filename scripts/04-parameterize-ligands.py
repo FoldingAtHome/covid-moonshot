@@ -3,6 +3,7 @@ Generate JSON caches of parameters for all ligands
 """
 
 small_molecule_forcefield = 'openff-1.1.0'
+basepath = 'json-files'
 
 def generate_parameters(molecule, basepath='json-files', small_molecule_forcefield='openff-1.1.0'):
     """
@@ -40,6 +41,9 @@ if __name__ == '__main__':
     # Extract unique molecules
     molecules = list(set(molecules))
     print(f'There are {len(molecules)} unique molecules...')
+
+    import os
+    os.mkdir(basepath)
 
     # Parameterize in parallel
     from multiprocessing import Pool
