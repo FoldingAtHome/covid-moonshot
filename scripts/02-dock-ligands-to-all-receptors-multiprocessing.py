@@ -1,5 +1,3 @@
-
-
 # Read ligands
 def read_csv_molecules(filename):
     """Read molecules from the specified path
@@ -23,55 +21,13 @@ def read_csv_molecules(filename):
             molecules.append(oechem.OEMol(mol))
     return molecules
 
-def dock_molecule(molecule, default_receptor='x0387'):
-    """
-    Dock the specified molecules, writing out to specified file
+# Read molecules to dock
+import os
+prefix = 'covid_submissions_03_26_2020'
+#prefix = 'mpro_fragments_03_25_2020'
+molecules = read_csv_molecules(os.path.join('../molecules', prefix + '.csv'))
 
-    Parameters
-    ----------
-    molecule : OEMol
-        The molecule to dock
-    default_receptor : str, optional, default='0387'
-        The default receptor to dock to
-
-    Returns
-    -------
-    all_docked_molecules : list of OEMol
-        All docked molecules
-    """
-    import os
-    import oechem
-
-    # Make a copy of the molecule
-    molecule = oechem.OEMol(molecule)
-
-    # Extract list of corresponding receptor(s)
-    fragments = list()
-    fragments = oechem.OEGetSDData(molecule, "fragments").split(',')
-    fragments = [ fragment for fragment in fragments if os.path.exists(f'../receptors/Mpro-{fragment}-receptor.oeb.gz') ]
-
-    if len(fragments) == 0:
-        fragments = [default_receptor]
-
-    # Dock them
-    all_docked_molecules = list()
-    for fragment in fragments:
-        molecule_to_dock = oechem.OEMol(molecule)
-
-        import os
-        receptor_filename = os.path.join(f'../receptors/Mpro-{fragment}-receptor.oeb.gz')
-        oechem.OESetSDData(molecule_to_dock, "fragments", fragment)
-
-        # Enumerate reasonable protomers/tautomers
-        from openeye import oequacpac
-        protomer = oechem.OEMol()
-        protomers = [ oechem.OEMol(protomer) for protomer in oequacpac.OEGetReasonableProtomers(molecule_to_dock) ]
-        docked_molecules = dock_molecules_to_receptor(receptor_filename, protomers)
-        all_docked_molecules += docked_molecules
-
-    return all_docked_molecules
-
-def dock_molecules_to_receptor(receptor_filename, molecules):
+def dock_molecules_to_receptor(receptor_filename):
     """
     Dock the specified molecules, writing out to specified file
 
@@ -79,15 +35,12 @@ def dock_molecules_to_receptor(receptor_filename, molecules):
     ----------
     receptor_filename : str
         Receptor .oeb.gz filename
-    molecules : list of openeye.oechem.OEMol
-        The read molecules to dock
-
-    Returns
-    -------
-    docked_molecules : list of OEMol
-        All docked molecules
+    fragment : str
+        The fragment name to dock to
 
     """
+    import os
+
     # Read the receptor
     from openeye import oechem, oedocking
     receptor = oechem.OEGraphMol()
@@ -99,7 +52,7 @@ def dock_molecules_to_receptor(receptor_filename, molecules):
 
     #print('Initializing receptor...')
     dockMethod = oedocking.OEDockMethod_Hybrid2
-    dockResolution = oedocking.OESearchResolution_High
+    dockResolution = oedocking.OESearchResolution_Default
     dock = oedocking.OEDock(dockMethod, dockResolution)
     success = dock.Initialize(receptor)
 
@@ -135,28 +88,26 @@ def dock_molecules_to_receptor(receptor_filename, molecules):
 
     return docked_molecules
 
-def dock_molecule_from_file(name):
+def dock_molecules_to_file(fragment):
     import oechem
     basedir = 'parallel'
 
-    # Read input molecule
-    input_filename = os.path.join(basedir, f'{name}.oeb')
-    molecule = oechem.OEMol()
-    with oechem.oemolistream(input_filename) as ifs:
-        oechem.OEReadMolecule(ifs, molecule)
+    # Determine reecptor filename
+    receptor_filename = os.path.join(f'../receptors/Mpro-{fragment}-receptor.oeb.gz')
 
-    # Dock it
+    # Dock molecules
     try:
-        docked_molecules = dock_molecule(molecule)
+        docked_molecules = dock_molecules_to_receptor(receptor_filename)
     except Exception as e:
         print(e)
         return
 
-    # Write molecule
+    # Write molecules
     if len(docked_molecules) > 0:
-        output_filename = os.path.join(basedir, f'{name} - docked.oeb')
+        output_filename = os.path.join(basedir, f'{fragment} - docked.oeb')
         with oechem.oemolostream(output_filename) as ofs:
             for docked_molecule in docked_molecules:
+                oechem.OESetSDData(docked_molecule, "fragments", fragment)
                 oechem.OEWriteMolecule(ofs, docked_molecule)
 
 if __name__ == '__main__':
@@ -164,39 +115,18 @@ if __name__ == '__main__':
     import os
     from openeye import oechem
 
-    # Read molecules to dock
-    prefix = 'covid_submissions_03_26_2020'
-    #prefix = 'mpro_fragments_03_25_2020'
-    molecules = read_csv_molecules(os.path.join('../molecules', prefix + '.csv'))
-
     # Generate list of all X-ray fragments
     fragment_molecules = read_csv_molecules(os.path.join('../molecules', 'mpro_fragments_03_25_2020.csv'))
     all_fragments = [ oechem.OEGetSDData(molecule, "fragments") for molecule in fragment_molecules ]
-
-    # Update fragments list for all molecules
-    for molecule in molecules:
-        oechem.OESetSDData(molecule, "fragments", ','.join(all_fragments))
-
-    # Write molecules independently
-    print('Splitting molecules...')
-    import os
-    basedir = 'parallel'
-    if not os.path.exists(basedir):
-        os.mkdir(basedir)
-    for molecule in molecules:
-        filename = os.path.join(basedir, f'{molecule.GetTitle()}.oeb')
-        with oechem.oemolostream(filename) as ofs:
-            oechem.OEWriteMolecule(ofs, molecule)
 
     # Dock molecules in parallel
     print('Processing in parallel...')
     from multiprocessing import Pool
     from tqdm import tqdm
     with Pool() as pool:
-        max_ = len(molecules)
+        max_ = len(all_fragments)
         with tqdm(total=max_) as pbar:
-            molecule_names = [ molecule.GetTitle() for molecule in molecules ]
-            for i, _ in enumerate(pool.imap_unordered(dock_molecule_from_file, molecule_names)):
+            for i, _ in enumerate(pool.imap_unordered(dock_molecules_to_file, all_fragments)):
                 pbar.update()
 
     # Join
