@@ -6,7 +6,7 @@
 * `melatonin-and-metabolites.csv` - melatonin and its metabolites
 * `clinical-meleatonin-receptor-agonists.sdf` -
 * `enamine-melatonin-realspace-analogues.sdf` -
-
+* `Mpro-fragments.csv` - fragment SMILES and crystal names (`Mpro-x####`) extracted from `../diamond-structures/Mpro full XChem screen - experiment summary - ver-2020-03-25-annotated.xlsx`
 
 ## Notes
 * Made a copy of [COVID Moonshot submissions sheet](https://discuss.postera.ai/t/updated-list-of-all-submissions/17), deleted all but first two columns (SMILES and TITLE), and exported to CSV
