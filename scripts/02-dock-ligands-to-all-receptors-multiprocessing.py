@@ -27,6 +27,7 @@ prefix = 'covid_submissions_03_26_2020'
 #prefix = 'mpro_fragments_03_25_2020'
 molecules = read_csv_molecules(os.path.join('../molecules', prefix + '.csv'))
 
+
 def dock_molecules_to_receptor(receptor_filename):
     """
     Dock the specified molecules, writing out to specified file
@@ -118,6 +119,9 @@ if __name__ == '__main__':
     # Generate list of all X-ray fragments
     fragment_molecules = read_csv_molecules(os.path.join('../molecules', 'mpro_fragments_03_25_2020.csv'))
     all_fragments = [ oechem.OEGetSDData(molecule, "fragments") for molecule in fragment_molecules ]
+
+    # filter fragments
+    all_fragments = [ fragment for fragment in all_fragments if os.path.exists(os.path.join(f'../receptors/Mpro-{fragment}-receptor.oeb.gz')) ]
 
     # Dock molecules in parallel
     print('Processing in parallel...')
