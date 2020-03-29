@@ -164,9 +164,18 @@ if __name__ == '__main__':
     import os
     from openeye import oechem
 
-    #prefix = 'covid_submissions_03_26_2020'
-    prefix = 'mpro_fragments_03_25_2020'
+    # Read molecules to dock
+    prefix = 'covid_submissions_03_26_2020'
+    #prefix = 'mpro_fragments_03_25_2020'
     molecules = read_csv_molecules(os.path.join('../molecules', prefix + '.csv'))
+
+    # Generate list of all X-ray fragments
+    fragment_molecules = read_csv_molecules(os.path.join('../molecules', 'mpro_fragments_03_25_2020.csv'))
+    all_fragments = [ oechem.OEGetSDData(molecule, "fragments") for molecule in fragment_molecules ]
+
+    # Update fragments list for all molecules
+    for molecule in molecules:
+        oechem.OESetSDData(molecule, "fragments", ','.join(all_fragments))
 
     # Write molecules independently
     print('Splitting molecules...')
@@ -194,7 +203,7 @@ if __name__ == '__main__':
     print('Joining files...')
     with oechem.oemolostream(f'{prefix} - docked.sdf') as ofs:
         for molecule in molecules:
-            filename = os.path.join(basedir, f'{molecule.GetTitle()} - docked.oeb')
+            filename = os.path.join(basedir, f'{molecule.GetTitle()} - all-docked.oeb')
             if os.path.exists(filename):
                 with oechem.oemolistream(filename) as ifs:
                     mol = oechem.OEMol()
