@@ -105,7 +105,7 @@ def dock_molecules_to_file(fragment):
 
     # Write molecules
     if len(docked_molecules) > 0:
-        output_filename = os.path.join(basedir, f'{fragment} - docked.oeb')
+        output_filename = os.path.join(basedir, f'{fragment} - docked.oedb')
         with oechem.oemolostream(output_filename) as ofs:
             for docked_molecule in docked_molecules:
                 oechem.OESetSDData(docked_molecule, "fragments", fragment)

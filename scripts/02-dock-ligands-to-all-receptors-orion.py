@@ -22,6 +22,9 @@ def read_csv_molecules(filename):
     return molecules
 
 def upload_receptors(all_fragments, project=2509):
+    from orionclient.session import APISession
+    from orionclient.types import Dataset
+
     receptor_datasets = dict()
     for fragment in all_fragments:
         dataset_name = f'Mpro-{fragment}-receptor'
@@ -45,7 +48,19 @@ def upload_receptors(all_fragments, project=2509):
         pickle.dump(receptor_datasets, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 def dock_to_receptors(all_fragments, conformers_fileid=16535, project=2509):
+    from orionclient.session import APISession
+    from orionclient.types import Dataset
+
     for fragment in all_fragments:
+        print(fragment)
+
+        # Check output exists
+        filters = {"name": f"covid_submissions_03_26_2020 - docked to {fragment}", "project": project}
+        existing_datasets = [dataset for dataset in APISession.list_resources(Dataset, filters=filters)]
+        if len(existing_datasets) > 0:
+            print('  Already exists, skipping')
+            continue
+
         filters = {"name": f"Mpro-{fragment}-receptor", "project": project}
         receptor_datasets = [dataset for dataset in APISession.list_resources(Dataset, filters=filters)]
         receptor_fileid = receptor_datasets[0].id
@@ -55,6 +70,24 @@ def dock_to_receptors(all_fragments, conformers_fileid=16535, project=2509):
         import subprocess
         returned_output = subprocess.check_output(cmd, shell=True)
         print(returned_output)
+
+def download_docked_datasets(all_fragments, project=2509):
+    from orionclient.session import APISession
+    from orionclient.types import Dataset
+
+    receptor_datasets = dict()
+    for fragment in all_fragments:
+        print(fragment)
+
+        # Check output exists
+        dataset_name = f"covid_submissions_03_26_2020 - docked to {fragment}"
+        filters = {"name": dataset_name, "project": project}
+        existing_datasets = [dataset for dataset in APISession.list_resources(Dataset, filters=filters)]
+        if len(existing_datasets) > 0:
+            filename = dataset_name + '.sdf'
+            import os
+            if not os.path.exists(filename):
+                existing_datasets[0].download_to_file(filename)
 
 if __name__ == '__main__':
     # Dock the ligands
@@ -72,7 +105,11 @@ if __name__ == '__main__':
     from orionclient.types import Dataset
 
     # Upload receptor datasets
-    upload_receptors(all_fragments)
+    #upload_receptors(all_fragments)
 
     # Get all receptor datasets
-    dock_to_receptors(all_fragments)
+    #dock_to_receptors(all_fragments)
+
+    # Get data
+    all_fragments = all_fragments[0:2]
+    download_docked_datasets(all_fragments)
