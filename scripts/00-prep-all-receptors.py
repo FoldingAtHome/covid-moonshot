@@ -16,15 +16,11 @@ def read_pdb_file(pdb_file):
     if not ifs.open(pdb_file):
         oechem.OEThrow.Fatal("Unable to open %s for reading." % pdb_file)
 
-    temp_mol = oechem.OEGraphMol()
-    if not oechem.OEReadMolecule(ifs, temp_mol):
+    mol = oechem.OEGraphMol()
+    if not oechem.OEReadMolecule(ifs, mol):
         oechem.OEThrow.Fatal("Unable to read molecule from %s." % pdb_file)
     ifs.close()
 
-    fact = oechem.OEAltLocationFactory(temp_mol)
-    mol = oechem.OEGraphMol()
-    mol.Clear()
-    fact.MakePrimaryAltMol(mol)
     return (mol)
 
 def prepare_receptor(complex_pdb_filename, prefix):
