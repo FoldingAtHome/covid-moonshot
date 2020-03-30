@@ -46,7 +46,7 @@ def dock_molecule(molecule, default_receptor='x0387'):
     molecule = oechem.OEMol(molecule)
 
     # Extract list of corresponding receptor(s)
-    fragments = list()    
+    fragments = list()
     fragments = oechem.OEGetSDData(molecule, "fragments").split(',')
     fragments = [ fragment for fragment in fragments if os.path.exists(f'../receptors/Mpro-{fragment}-receptor.oeb.gz') ]
 
@@ -164,7 +164,8 @@ if __name__ == '__main__':
     import os
     from openeye import oechem
 
-    prefix = 'covid_submissions_03_26_2020'
+    #prefix = 'covid_submissions_03_26_2020'
+    prefix = 'mpro_fragments_03_25_2020'
     molecules = read_csv_molecules(os.path.join('../molecules', prefix + '.csv'))
 
     # Write molecules independently
