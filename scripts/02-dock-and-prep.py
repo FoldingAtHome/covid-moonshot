@@ -166,7 +166,7 @@ if __name__ == '__main__':
     'x1478', 'x1493']
     dimer_interface_fragments = ['x0887', 'x1187']
     fragments_to_dock_to = active_site_fragments + covalent_active_site_fragments + dimer_interface_fragments
-    fragments_to_dock_to = fragments_to_dock_to[0:2]
+
     # Extract molecule
     molecules = read_csv_molecules(args.molecules_filename)
     print(f'{len(molecules)} molecules read')
