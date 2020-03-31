@@ -1,4 +1,7 @@
-# Docked molecules
+# Docked COVID Moonshot molecules and reference fragment sets
+
+This directory contains docked COVID Moonshot user submissions and screened fragments for comparison.
+For ensemble docking methodology, see the [scripts directory](../scripts).
 
 ![ensemble of docked molecules](https://github.com/foldingathome/covid-moonshot/raw/master/docking/docked-molecules.png "Ensemble of docked molecules")
 
@@ -9,7 +12,7 @@
   * `Chemgauss4 Score`: docking score (lower is better)
   * `fragments`: fragment ID for corresponding fragment X-ray structure for best docked pose; corresponding structures are in `../receptors/Mpro-{fragment}-protein.pdb`
 * `covid_submissions_03_26_2020 - docked.sdf` - COVID Moonshot molecules as of 2:34 PST March 27, 2020 docked into inspiration fragment structures
-   * Each molecule was docked into every fragment structure listed as inspirati; the corresponding fragment is listed in the `<fragments>` tag;
+   * Each molecule was docked into every fragment structure listed as inspiration; the corresponding fragment is listed in the `<fragments>` tag;
      docked structures are found in `f'../receptors/Mpro-{fragment}-protein.pdb'`
    * Some Moonshot molecules failed to dock and were omitted
    * See `../scripts/README.md` for more information on methodology
