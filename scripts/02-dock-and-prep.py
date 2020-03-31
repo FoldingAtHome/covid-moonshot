@@ -151,8 +151,8 @@ if __name__ == '__main__':
                         help='index of molecule to dock (0 indexed)')
     parser.add_argument('--receptors', dest='receptor_basedir', type=str, default='../receptors',
                         help='directory of receptor conformations (default: ../receptors)')
-    parser.add_argument('--output', dest='output_basedir', type=str, default='.',
-                        help='base directory for produced output (default: .)')
+    parser.add_argument('--output', dest='output_basedir', type=str, default='docked',
+                        help='base directory for produced output (default: docked/)')
     parser.add_argument('--simulate', dest='simulate', action='store_true', default=False,
                         help='prepare for simulation in OpenMM and gromacs (default: False)')
 
@@ -181,7 +181,13 @@ if __name__ == '__main__':
         prefix, ext = os.path.splitext(tail)
         molecule.SetTitle(f'{prefix}-{args.molecule_index}')
 
-    # Dock molecules in parallel
+    # Check that molecule hasn't already been docked
+    output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - docked.csv')
+    if os.path.exists(output_filename):
+        print('Molecule has already been docked! Terminating.')
+        exit(0)
+
+    # Dock molecule to all receptors
     print(f'Docking {molecule.GetTitle()} to {len(fragments_to_dock_to)} fragment structures...')
     from tqdm import tqdm
     docked_molecules = list()
@@ -204,6 +210,15 @@ if __name__ == '__main__':
         fragment = oechem.OEGetSDData(score_molecule, 'fragments')
         oechem.OESetSDData(docked_molecule, f'Mpro-{fragment}_dock', str(score(score_molecule)))
 
+    # Populate site info
+    fragment = oechem.OEGetSDData(docked_molecule, 'fragments')    
+    if fragment in active_site_fragments:
+        oechem.OESetSDData(docked_molecule, 'site', 'active-noncovalent')
+    elif fragment in covalent_active_site_fragments:
+        oechem.OESetSDData(docked_molecule, 'site', 'active-covalent')
+    elif fragment in dimer_interface_fragments:
+        oechem.OESetSDData(docked_molecule, 'site', 'dimer-interface')
+
     # Write out top pose
     print('Writing out best pose...')
     import os
@@ -212,7 +227,7 @@ if __name__ == '__main__':
     # Write molecule as CSV with cleared SD tags
     docked_molecule_clean = docked_molecule.CreateCopy()
     for sdpair in oechem.OEGetSDDataPairs(docked_molecule_clean):
-        if sdpair.GetTag() not in ['Hybrid2', 'fragments']:
+        if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site']:
             oechem.OEDeleteSDData(docked_molecule_clean, sdpair.GetTag())
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - docked.csv')
     with oechem.oemolostream(output_filename) as ofs:
