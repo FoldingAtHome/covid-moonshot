@@ -1,4 +1,4 @@
-# COVID Moonshot molecules and reference fragment sets
+# Docked COVID Moonshot molecules and reference fragment sets
 
 This directory contains docked COVID Moonshot user submissions and screened fragments for comparison.
 For ensemble docking methodology, see the [scripts directory](../scripts).

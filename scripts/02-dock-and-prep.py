@@ -177,18 +177,18 @@ def prepare_simulation(molecule, output_directory):
     barostat = openmm.MonteCarloBarostat(pressure, temperature)
     cache = os.path.join(output_directory, f'{molecule.GetTitle()}.json')
     common_kwargs = {'removeCMMotion': False, 'ewaldErrorTolerance': 5e-04,
-                     'nonbondedMethod': app.PME, 'hydrogenMass': 3.0*unit.amu}    
+                     'nonbondedMethod': app.PME, 'hydrogenMass': 3.0*unit.amu}
     unconstrained_kwargs = {'constraints': None, 'rigidWater': False}
     constrained_kwargs = {'constraints': app.HBonds, 'rigidWater': True}
     forcefields = [protein_forcefield, solvation_forcefield]
     from openmmforcefields.generators import SystemGenerator
-    parmed_system_generator = SystemGenerator(forcefields=forcefields, 
+    parmed_system_generator = SystemGenerator(forcefields=forcefields,
                                               molecules=[off_molecule], small_molecule_forcefield=small_molecule_forcefield, cache=cache,
-                                              barostat=barostat, 
+                                              barostat=barostat,
                                               forcefield_kwargs={**common_kwargs, **unconstrained_kwargs})
-    openmm_system_generator = SystemGenerator(forcefields=forcefields, 
+    openmm_system_generator = SystemGenerator(forcefields=forcefields,
                                               molecules=[off_molecule], small_molecule_forcefield=small_molecule_forcefield, cache=cache,
-                                              barostat=barostat, 
+                                              barostat=barostat,
                                               forcefield_kwargs={**common_kwargs, **constrained_kwargs})
 
     # Prepare phases
@@ -201,7 +201,7 @@ def prepare_simulation(molecule, output_directory):
 
         if os.path.exists(phase_name+'.gro') and os.path.exists(phase_name+'.top'):
             continue
-        
+
         # Read the unsolvated system into an OpenMM Topology
         pdbfile = app.PDBFile(phase_prefix+'.pdb')
 
@@ -216,7 +216,7 @@ def prepare_simulation(molecule, output_directory):
 
         # Create an OpenMM system
         system = openmm_system_generator.create_system(modeller.topology)
-        
+
         # Create OpenM Context
         platform = openmm.Platform.getPlatformByName('CUDA')
         platform.setPropertyDefaultValue('Precision', 'mixed')
@@ -246,7 +246,7 @@ def prepare_simulation(molecule, output_directory):
             f.write(openmm.XmlSerializer.serialize(state))
         with gzip.open(phase_prefix+'.system.xml.gz','wt') as f:
             f.write(openmm.XmlSerializer.serialize(system))
-        
+
         # Convert to gromacs via ParmEd
         print('Saving as gromacs...')
         import parmed
@@ -258,7 +258,7 @@ def prepare_simulation(molecule, output_directory):
 
 def ensemble_dock(molecule, fragments_to_dock_to):
     """Perform ensemble docking on all fragment X-ray structures
-    
+
     Parameters
     ----------
     molecule : openeye.oechem.OEMol
@@ -296,7 +296,7 @@ def ensemble_dock(molecule, fragments_to_dock_to):
         oechem.OESetSDData(docked_molecule, f'Mpro-{fragment}_dock', str(score(score_molecule)))
 
     # Populate site info
-    fragment = oechem.OEGetSDData(docked_molecule, 'fragments')    
+    fragment = oechem.OEGetSDData(docked_molecule, 'fragments')
     if fragment in active_site_fragments:
         oechem.OESetSDData(docked_molecule, 'site', 'active-noncovalent')
     elif fragment in covalent_active_site_fragments:
@@ -309,7 +309,7 @@ def ensemble_dock(molecule, fragments_to_dock_to):
 def set_serial(molecule, chainid, first_serial):
     if not oechem.OEHasResidues(molecule):
         oechem.OEPerceiveResidues(molecule, oechem.OEPreserveResInfo_All)
-    serial_number = first_serial 
+    serial_number = first_serial
     for atom in molecule.GetAtoms():
         residue = oechem.OEAtomGetResidue(atom)
         residue.SetExtChainID(chainid)
@@ -321,8 +321,8 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Dock a molecule and (optionally) prepare it for alchemical free energy calculations.')
-    parser.add_argument('--molecules', dest='molecules_filename', type=str, default='../molecules/covid_submissions_03_26_2020.csv',
-                        help='molecules CSV file to pull from (default: ../molecules/covid_submissions_03_26_2020.csv)')
+    parser.add_argument('--molecules', dest='molecules_filename', type=str, default='covid_submissions_03_26_2020.csv',
+                        help='molecules CSV file to pull from (default: covid_submissions_03_26_2020.csv)')
     parser.add_argument('--index', dest='molecule_index', type=int, required=True,
                         help='index of molecule to dock (0 indexed)')
     parser.add_argument('--receptors', dest='receptor_basedir', type=str, default='../receptors',
@@ -369,13 +369,13 @@ if __name__ == '__main__':
         docked_molecule = ensemble_dock(molecule, fragments_to_dock_to)
     else:
         # Read the molecule
-        with oechem.oemolistream(sdf_filename) as ifs:            
+        with oechem.oemolistream(sdf_filename) as ifs:
             docked_molecule = oechem.OEGraphMol()
             oechem.OEReadMolecule(ifs, docked_molecule)
 
     import os
     from openeye import oechem, oedocking
-        
+
     # Write molecule as CSV with cleared SD tags
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - docked.csv')
     if not os.path.exists(output_filename):
