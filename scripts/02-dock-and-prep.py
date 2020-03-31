@@ -41,7 +41,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename):
     molecule : oechem.OEMol
         The molecule to dock
     receptor_filename : str
-        Receptor .oeb.gz filename
+        Receptor to dock to
 
     Returns
     -------
@@ -140,28 +140,6 @@ def extract_fragment_from_filename(filename):
     fragment = match.group('fragment')
     return fragment
 
-def dock_molecules_to_file(fragment):
-    import oechem
-    basedir = 'parallel'
-
-    # Determine reecptor filename
-    receptor_filename = os.path.join(f'../receptors/Mpro-{fragment}-receptor.oeb.gz')
-
-    # Dock molecules
-    try:
-        docked_molecules = dock_molecules_to_receptor(receptor_filename)
-    except Exception as e:
-        print(e)
-        return
-
-    # Write molecules
-    if len(docked_molecules) > 0:
-        output_filename = os.path.join(basedir, f'{fragment} - docked.oedb')
-        with oechem.oemolostream(output_filename) as ofs:
-            for docked_molecule in docked_molecules:
-                oechem.OESetSDData(docked_molecule, "fragments", fragment)
-                oechem.OEWriteMolecule(ofs, docked_molecule)
-
 if __name__ == '__main__':
     # Parse arguments
     import argparse
@@ -180,6 +158,15 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    active_site_fragments = ['x0072', 'x0104', 'x0107', 'x0161', 'x0195', 'x0305', 'x0354', 'x0387', 'x0395', 'x0397', 'x0426', 'x0434', 'x0540',
+        'x0678', 'x0874', 'x0946', 'x0967', 'x0991', 'x0995', 'x1077', 'x1093', 'x1249']
+    covalent_active_site_fragments = ['x0689', 'x0691', 'x0692', 'x0705','x0708', 'x0731', 'x0734', 'x0736', 'x0749', 'x0752', 'x0755', 'x0759',
+    'x0769', 'x0770', 'x0771', 'x0774', 'x0786', 'x0820', 'x0830', 'x0831', 'x0978', 'x0981', 'x1308', 'x1311', 'x1334', 'x1336', 'x1348',
+    'x1351', 'x1358', 'x1374', 'x1375', 'x1380', 'x1382', 'x1384', 'x1385', 'x1386', 'x1392', 'x1402', 'x1412', 'x1418', 'x1425', 'x1458',
+    'x1478', 'x1493']
+    dimer_interface_fragments = ['x0887', 'x1187']
+    fragments_to_dock_to = active_site_fragments + covalent_active_site_fragments + dimer_interface_fragments
+    fragments_to_dock_to = fragments_to_dock_to[0:2]
     # Extract molecule
     molecules = read_csv_molecules(args.molecules_filename)
     print(f'{len(molecules)} molecules read')
@@ -188,39 +175,48 @@ if __name__ == '__main__':
     molecule = molecules[args.molecule_index]
 
     # Replace title if there is none
+    import os
     if molecule.GetTitle() == '':
-        import os
         head, tail = os.path.split(args.molecules_filename)
         prefix, ext = os.path.splitext(tail)
         molecule.SetTitle(f'{prefix}-{args.molecule_index}')
 
-    # Generate list of all X-ray fragments with prepared receptor structures
-    from glob import glob
-    import os
-    receptor_filenames = glob(os.path.join(args.receptor_basedir, 'Mpro-*-receptor.oeb.gz'))
-
     # Dock molecules in parallel
-    print(f'Docking {molecule.GetTitle()} to all receptors...')
+    print(f'Docking {molecule.GetTitle()} to {len(fragments_to_dock_to)} fragment structures...')
     from tqdm import tqdm
     docked_molecules = list()
-    for receptor_filename in tqdm(receptor_filenames):
+    for fragment in tqdm(fragments_to_dock_to):
+        receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
+        if not os.path.exists(receptor_filename):
+            # Skip receptors that are not set up
+            continue
         docked_molecule = dock_molecule_to_receptor(molecule, receptor_filename)
         if docked_molecule is not None:
             docked_molecules.append(docked_molecule)
 
     # Extract top pose
     docked_molecules.sort(key=score)
-    docked_molecule = docked_molecules[0]
+    docked_molecule = docked_molecules[0].CreateCopy()
+
+    # Populate scores for all complexes
+    from openeye import oechem
+    for score_molecule in docked_molecules:
+        fragment = oechem.OEGetSDData(score_molecule, 'fragments')
+        oechem.OESetSDData(docked_molecule, f'Mpro-{fragment}_dock', str(score(score_molecule)))
 
     # Write out top pose
     print('Writing out best pose...')
     import os
     from openeye import oechem, oedocking
     os.makedirs(args.output_basedir, exist_ok=True)
-    # Write molecule as CSV
+    # Write molecule as CSV with cleared SD tags
+    docked_molecule_clean = docked_molecule.CreateCopy()
+    for sdpair in oechem.OEGetSDDataPairs(docked_molecule_clean):
+        if sdpair.GetTag() not in ['Hybrid2', 'fragments']:
+            oechem.OEDeleteSDData(docked_molecule_clean, sdpair.GetTag())
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - docked.csv')
     with oechem.oemolostream(output_filename) as ofs:
-        oechem.OEWriteMolecule(ofs, docked_molecule)
+        oechem.OEWriteMolecule(ofs, docked_molecule_clean)
     # Write molecule as SDF
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - ligand.sdf')
     with oechem.oemolostream(output_filename) as ofs:
