@@ -200,15 +200,16 @@ def prepare_simulation(molecule, output_directory):
         phase_prefix = os.path.join(output_directory, phase_name)
         print(phase_name)
 
-        if os.path.exists(phase_name+'.gro') and os.path.exists(phase_name+'.top'):
+        if os.path.exists(phase_prefix+'.gro') and os.path.exists(phase_prefix+'.top'):
             continue
         
         # Read the unsolvated system into an OpenMM Topology
         pdbfile = app.PDBFile(phase_prefix+'.pdb')
+        topology, positions = pdbfile.topology, pdbfile.positions
 
         # Add solvent
         print('Adding solvent...')
-        modeller = app.Modeller(pdbfile.topology, pdbfile.positions)
+        modeller = app.Modeller(topology, positions)
         if phase == 'ligand':
             kwargs = {'boxSize' : box_size}
         else:
@@ -315,14 +316,20 @@ def ensemble_dock(molecule, fragments_to_dock_to):
     return docked_molecule
 
 def set_serial(molecule, chainid, first_serial):
+    import oechem
     if not oechem.OEHasResidues(molecule):
         oechem.OEPerceiveResidues(molecule, oechem.OEPreserveResInfo_All)
-    serial_number = first_serial 
     for atom in molecule.GetAtoms():
         residue = oechem.OEAtomGetResidue(atom)
         residue.SetExtChainID(chainid)
-        residue.SetSerialNumber(serial_number)
-        serial_number += 1
+        serial_number = residue.GetSerialNumber()
+        residue.SetSerialNumber(serial_number + first_serial)
+
+def transfer_data(molecule, source_directory):
+    cmd = f'rsync -avz --include="*/" --include="{molecule.GetTitle()}*" --exclude="*" {source_directory} tug27224@owlsnest.hpc.temple.edu:work'
+    import subprocess
+    output = subprocess.getoutput(cmd)
+    print(output)
 
 if __name__ == '__main__':
     # Parse arguments
@@ -339,6 +346,8 @@ if __name__ == '__main__':
                         help='base directory for produced output (default: docked/)')
     parser.add_argument('--simulate', dest='simulate', action='store_true', default=False,
                         help='prepare for simulation in OpenMM and gromacs (default: False)')
+    parser.add_argument('--transfer', dest='transfer', action='store_true', default=False,
+                        help='transfer simulation data (default: False)')
 
     args = parser.parse_args()
 
@@ -409,14 +418,14 @@ if __name__ == '__main__':
     # Read receptor
     fragment = oechem.OEGetSDData(docked_molecule, 'fragments')
     receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
+    print(f'Reading receptor from {receptor_filename}')
     from openeye import oechem, oedocking
     receptor = oechem.OEGraphMol()
     if not oedocking.OEReadReceptorFile(receptor, receptor_filename):
         oechem.OEThrow.Fatal("Unable to read receptor")
 
     # Set chains
-    set_serial(docked_molecule, 'A', 0)
-    set_serial(receptor, 'B', docked_molecule.NumAtoms()+1)
+    #set_serial(docked_molecule, 'A', 0)
 
     # Write receptor
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - protein.pdb')
@@ -428,15 +437,32 @@ if __name__ == '__main__':
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - complex.pdb')
     if not os.path.exists(output_filename):
         with oechem.oemolostream(output_filename) as ofs:
-            oechem.OEWriteMolecule(ofs, docked_molecule)
+            oechem.OEClearResidues(docked_molecule)
+            
+            #oechem.OEWriteMolecule(ofs, docked_molecule)
+
+            oechem.OETriposAtomNames(docked_molecule)
+            oechem.OEWritePDBFile(ofs, docked_molecule, oechem.OEOFlavor_PDB_Default | oechem.OEOFlavor_PDB_BONDS)
+
+            set_serial(receptor, 'X', docked_molecule.NumAtoms()+1)
+            #oechem.OEWritePDBFile(ofs, receptor, oechem.OEOFlavor_PDB_Default | oechem.OEOFlavor_PDB_BONDS)
+            
             oechem.OEWriteMolecule(ofs, receptor)
 
     # Write PDB of just ligand
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - ligand.pdb')
     if not os.path.exists(output_filename):
         with oechem.oemolostream(output_filename) as ofs:
-            oechem.OEWriteMolecule(ofs, docked_molecule)
+            oechem.OEClearResidues(docked_molecule)
+            
+            #oechem.OEWriteMolecule(ofs, docked_molecule)
+
+            oechem.OETriposAtomNames(docked_molecule)
+            oechem.OEWritePDBFile(ofs, docked_molecule, oechem.OEOFlavor_PDB_Default | oechem.OEOFlavor_PDB_BONDS)
 
     # Prepare simulation
     if args.simulate:
         prepare_simulation(docked_molecule, args.output_basedir)
+        
+    if args.transfer:
+        transfer_data(docked_molecule, args.output_basedir)
