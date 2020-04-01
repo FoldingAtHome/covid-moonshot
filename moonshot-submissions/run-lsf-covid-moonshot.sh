@@ -12,6 +12,7 @@
 ##BSUB -q cpuqueue
 #BSUB -o %J.moonshot.out
 #BSUB -J "moonshot[1-1913]"
+##BSUB -J "moonshot[1-2]"
 
 echo "Job $JOBID/$NJOBS"
 
@@ -22,4 +23,4 @@ source ~/.bashrc
 source activate perses
 
 let JOBID=$LSB_JOBINDEX-1
-python ../scripts/02-dock-and-prep.py --molecules ../molecules/covid_submissions_03_26_2020.csv --index $JOBID --output docked
+python ../scripts/02-dock-and-prep.py --molecules ../molecules/covid_submissions_03_26_2020.csv --index $JOBID --output moonshot-docked --simulate
