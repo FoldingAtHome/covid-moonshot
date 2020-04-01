@@ -333,9 +333,12 @@ def set_serial(molecule, chainid, first_serial):
 
 def transfer_data(molecule, source_directory):
     cmd = f'rsync -avz --include="*/" --include="{molecule.GetTitle()}*" --exclude="*" {source_directory} tug27224@owlsnest.hpc.temple.edu:work'
-    import subprocess
-    output = subprocess.getoutput(cmd)
-    print(output)
+    try:
+        import subprocess
+        output = subprocess.getoutput(cmd)
+        print(output)
+    except Exception as e:
+        print(e)
 
 if __name__ == '__main__':
     # Parse arguments
