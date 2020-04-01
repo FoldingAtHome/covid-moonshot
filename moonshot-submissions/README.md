@@ -3,7 +3,7 @@
 This directory contains docked COVID Moonshot user submissions and screened fragments for comparison.
 For ensemble docking methodology, see the [scripts directory](../scripts).
 
-![ensemble of docked molecules](https://github.com/foldingathome/covid-moonshot/raw/master/docking/docked-molecules.png "Ensemble of docked molecules")
+![ensemble of docked molecules](https://github.com/foldingathome/covid-moonshot/raw/master/moonshot-submissions/docked-molecules.png "Ensemble of docked molecules")
 
 ## Manifest
 * `covid_submissions_03_26_2020 - top docked.{csv,sdf}` - COVID Moonshot molecules as of 2:34 PST March 27, 2020 docked into all structures, with only the best scores (over all fragment structures) preserved
