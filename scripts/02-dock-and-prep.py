@@ -332,8 +332,14 @@ def set_serial(molecule, chainid, first_serial):
         residue.SetSerialNumber(serial_number + first_serial)
 
 def transfer_data(molecule, source_directory):
-    cmd = f'rsync -avz --include="*/" --include="{molecule.GetTitle()}*" --exclude="*" {source_directory} tug27224@owlsnest.hpc.temple.edu:work'
     try:
+        # Wait a random interval between 0 and 10 seconds
+        import time, random
+        time_delay = random.uniform(0, 10)
+        time.sleep(time_delay)
+
+        # Copy to remote system
+        cmd = f'rsync -avz --include="*/" --include="{molecule.GetTitle()}*" --exclude="*" {source_directory} tug27224@owlsnest.hpc.temple.edu:work'
         import subprocess
         output = subprocess.getoutput(cmd)
         print(output)
@@ -441,6 +447,11 @@ if __name__ == '__main__':
     if not os.path.exists(output_filename):
         with oechem.oemolostream(output_filename) as ofs:
             oechem.OEWriteMolecule(ofs, receptor)
+
+    # Filter out receptor atoms with atom names of UNK
+    for atom in receptor.GetAtoms():
+        if atom.GetName() == 'UNK':
+            receptor.DeleteAtom(atom)
 
     # Write joined PDB with ligand and receptor
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - complex.pdb')
