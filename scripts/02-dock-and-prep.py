@@ -203,8 +203,14 @@ def prepare_simulation(molecule, output_directory):
         if os.path.exists(phase_prefix+'.gro') and os.path.exists(phase_prefix+'.top'):
             continue
         
+        # Filter out UNK atoms by spruce
+        with open(phase_prefix+'.pdb', 'r') as infile:
+            lines = [ line for line in infile if 'UNK' not in line ]
+        from io import StringIO
+        pdbfile_stringio = StringIO(''.join(lines))
+
         # Read the unsolvated system into an OpenMM Topology
-        pdbfile = app.PDBFile(phase_prefix+'.pdb')
+        pdbfile = app.PDBFile(pdbfile_stringio)
         topology, positions = pdbfile.topology, pdbfile.positions
 
         # Add solvent
