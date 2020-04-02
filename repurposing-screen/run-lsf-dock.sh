@@ -8,7 +8,6 @@
 #BSUB -R "span[ptile=1]"
 #BSUB -q cpuqueue
 #BSUB -o %J.repurposing-dock.out
-##BSUB -J "repurposing-dock[1-10147]"
 ##BSUB -J "repurposing-dock[1-5000]"
 #BSUB -J "repurposing-dock[5001-11335]"
 
