@@ -2,7 +2,7 @@
 
 # Dock COVID Moonshot compounds in parallel
 
-#BSUB -W 1:00
+#BSUB -W 5:00
 #BSUB -R "rusage[mem=2]"
 #BSUB -n 1
 #BSUB -R "span[ptile=1]"
