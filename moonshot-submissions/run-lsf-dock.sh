@@ -19,4 +19,4 @@ source ~/.bashrc
 source activate perses
 
 let JOBID=$LSB_JOBINDEX-1
-python ../scripts/02-dock-and-prep.py --molecules covid_submissions_03_31_2020.csv --index $JOBID --output covid_submissions_03_31_2020 --simulate
+python ../scripts/02-dock-and-prep.py --molecules covid_submissions_03_31_2020.csv --index $JOBID --output covid_submissions_03_31_2020 --userfrags
