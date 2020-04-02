@@ -35,11 +35,11 @@ if __name__ == '__main__':
     # Parse arguments
     import argparse
 
-    parser = argparse.ArgumentParser(description='Dock a molecule and (optionally) prepare it for alchemical free energy calculations.')
-    parser.add_argument('--docked', dest='docked_basedir', type=str, default='docked',
-                        help='base directory for docked molecules (default: docked/)')
-    parser.add_argument('--output', dest='output_filename', type=str, default='docked-aggregated.csv',
-                        help='output aggregated CSV file (default: docked-aggregated.csv)')
+    parser = argparse.ArgumentParser(description='Aggregate results and coalesce Folding@Home RUNs.')
+    parser.add_argument('--docked', dest='docked_basedir', type=str, default='covid_submissions_03_31_2020',
+                        help='base directory for docked molecules (default: covid_submissions_03_31_2020/)')
+    parser.add_argument('--output', dest='output_filename', type=str, default='covid_submissions_03_31_2020-docked.csv',
+                        help='output aggregated CSV file (default: covid_submissions_03_31_2020-docked.csv)')
     parser.add_argument('--clean', dest='clean', action='store_true', default=False,
                         help='if specified, will only store minimal information for each molecule (default: False)')
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     from glob import glob
 
     # Read the docked molecules as CSV
-    docked_filenames = glob(f'{args.docked_basedir}/*ligand.sdf')
+    docked_filenames = glob(f'{args.docked_basedir}/docking/*ligand.sdf')
     docked_molecules = list()
     molecule = oechem.OEGraphMol()
     for filename in tqdm(docked_filenames):
