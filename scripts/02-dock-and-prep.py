@@ -83,10 +83,11 @@ def dock_molecule_to_receptor(molecule, receptor_filename):
     # Set up Omega
     #print('Expanding conformers...')
     from openeye import oeomega
-    #omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
-    omegaOpts = oeomega.OEOmegaOptions()
+    omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
+    #omegaOpts = oeomega.OEOmegaOptions()
+    omegaOpts.SetMaxSearchTime(60.0) # time out after 60 seconds
     omega = oeomega.OEOmega(omegaOpts)
-    omega.SetStrictStereo(False)
+    omega.SetStrictStereo(False) # enumerate sterochemistry if uncertain
 
     # Dock tautomers
     docked_molecules = list()
@@ -178,18 +179,18 @@ def prepare_simulation(molecule, output_directory):
     barostat = openmm.MonteCarloBarostat(pressure, temperature)
     cache = os.path.join(output_directory, f'{molecule.GetTitle()}.json')
     common_kwargs = {'removeCMMotion': False, 'ewaldErrorTolerance': 5e-04,
-                     'nonbondedMethod': app.PME, 'hydrogenMass': 3.0*unit.amu}    
+                     'nonbondedMethod': app.PME, 'hydrogenMass': 3.0*unit.amu}
     unconstrained_kwargs = {'constraints': None, 'rigidWater': False}
     constrained_kwargs = {'constraints': app.HBonds, 'rigidWater': True}
     forcefields = [protein_forcefield, solvation_forcefield]
     from openmmforcefields.generators import SystemGenerator
-    parmed_system_generator = SystemGenerator(forcefields=forcefields, 
+    parmed_system_generator = SystemGenerator(forcefields=forcefields,
                                               molecules=[off_molecule], small_molecule_forcefield=small_molecule_forcefield, cache=cache,
-                                              barostat=barostat, 
+                                              barostat=barostat,
                                               forcefield_kwargs={**common_kwargs, **unconstrained_kwargs})
-    openmm_system_generator = SystemGenerator(forcefields=forcefields, 
+    openmm_system_generator = SystemGenerator(forcefields=forcefields,
                                               molecules=[off_molecule], small_molecule_forcefield=small_molecule_forcefield, cache=cache,
-                                              barostat=barostat, 
+                                              barostat=barostat,
                                               forcefield_kwargs={**common_kwargs, **constrained_kwargs})
 
     # Prepare phases
@@ -202,7 +203,7 @@ def prepare_simulation(molecule, output_directory):
 
         if os.path.exists(phase_prefix+'.gro') and os.path.exists(phase_prefix+'.top'):
             continue
-        
+
         # Filter out UNK atoms by spruce
         with open(phase_prefix+'.pdb', 'r') as infile:
             lines = [ line for line in infile if 'UNK' not in line ]
@@ -224,7 +225,7 @@ def prepare_simulation(molecule, output_directory):
 
         # Create an OpenMM system
         system = openmm_system_generator.create_system(modeller.topology)
-        
+
         # Create OpenM Context
         platform = openmm.Platform.getPlatformByName('CUDA')
         platform.setPropertyDefaultValue('Precision', 'mixed')
@@ -261,7 +262,7 @@ def prepare_simulation(molecule, output_directory):
             f.write(openmm.XmlSerializer.serialize(state))
         with gzip.open(phase_prefix+'.system.xml.gz','wt') as f:
             f.write(openmm.XmlSerializer.serialize(system))
-        
+
         # Convert to gromacs via ParmEd
         print('Saving as gromacs...')
         import parmed
@@ -273,7 +274,7 @@ def prepare_simulation(molecule, output_directory):
 
 def ensemble_dock(molecule, fragments_to_dock_to):
     """Perform ensemble docking on all fragment X-ray structures
-    
+
     Parameters
     ----------
     molecule : openeye.oechem.OEMol
@@ -311,7 +312,7 @@ def ensemble_dock(molecule, fragments_to_dock_to):
         oechem.OESetSDData(docked_molecule, f'Mpro-{fragment}_dock', str(score(score_molecule)))
 
     # Populate site info
-    fragment = oechem.OEGetSDData(docked_molecule, 'fragments')    
+    fragment = oechem.OEGetSDData(docked_molecule, 'fragments')
     if fragment in active_site_fragments:
         oechem.OESetSDData(docked_molecule, 'site', 'active-noncovalent')
     elif fragment in covalent_active_site_fragments:
@@ -401,13 +402,13 @@ if __name__ == '__main__':
         docked_molecule = ensemble_dock(molecule, fragments_to_dock_to)
     else:
         # Read the molecule
-        with oechem.oemolistream(sdf_filename) as ifs:            
+        with oechem.oemolistream(sdf_filename) as ifs:
             docked_molecule = oechem.OEGraphMol()
             oechem.OEReadMolecule(ifs, docked_molecule)
 
     import os
     from openeye import oechem, oedocking
-        
+
     # Write molecule as CSV with cleared SD tags
     output_filename = os.path.join(args.output_basedir, f'{molecule.GetTitle()} - docked.csv')
     if not os.path.exists(output_filename):
@@ -458,7 +459,7 @@ if __name__ == '__main__':
     if not os.path.exists(output_filename):
         with oechem.oemolostream(output_filename) as ofs:
             oechem.OEClearResidues(docked_molecule)
-            
+
             #oechem.OEWriteMolecule(ofs, docked_molecule)
 
             oechem.OETriposAtomNames(docked_molecule)
@@ -466,7 +467,7 @@ if __name__ == '__main__':
 
             set_serial(receptor, 'X', docked_molecule.NumAtoms()+1)
             #oechem.OEWritePDBFile(ofs, receptor, oechem.OEOFlavor_PDB_Default | oechem.OEOFlavor_PDB_BONDS)
-            
+
             oechem.OEWriteMolecule(ofs, receptor)
 
     # Write PDB of just ligand
@@ -474,7 +475,7 @@ if __name__ == '__main__':
     if not os.path.exists(output_filename):
         with oechem.oemolostream(output_filename) as ofs:
             oechem.OEClearResidues(docked_molecule)
-            
+
             #oechem.OEWriteMolecule(ofs, docked_molecule)
 
             oechem.OETriposAtomNames(docked_molecule)
@@ -483,6 +484,6 @@ if __name__ == '__main__':
     # Prepare simulation
     if args.simulate:
         prepare_simulation(docked_molecule, args.output_basedir)
-        
+
     if args.transfer:
         transfer_data(docked_molecule, args.output_basedir)
