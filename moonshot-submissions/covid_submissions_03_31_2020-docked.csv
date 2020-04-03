@@ -1482,6 +1482,7 @@ c1cnccc1c2cc3c(c(c2)C(F)(F)F)NC(=O)C3=O,NAU-LAT-ec9-2,x1093,-6.037092,active-non
 CC(=O)N(Cc1cnnn1Cc2ccc(cc2)Cl)[C@@H]3CCS(=O)(=O)C3,NIM-UNI-022-1,x0770,-6.034266,active-covalent
 C[NH+]1CCN(CC1)C(=O)Cc2c[nH]c3c2cc(cn3)CNC(=O)c4ccccc4,NIC-UNI-f08-1,x1093,-6.033911,active-noncovalent
 Cc1cc(cc(c1)Cl)NC(=O)Nc2cccnc2,WAR-XCH-eb7-5,x0434,-6.032450,active-noncovalent
+CC(C)N(C)C(=O)c1ccc2c(c1)CN(C[C@@H]2c3cnc[nH]3)C(=O)CCl,SAL-INS-1c7-3,x1392,-6.023854,active-covalent
 CNc1c(cc(cn1)C#N)Oc2ccccc2,LIZ-THE-702-1,x0305,-6.016492,active-noncovalent
 c1ccc(cc1)[C@H](CNC(=O)C2CC2)NC(=O)CCc3cncnc3,BAR-COM-4e0-67,x0434,-6.011689,active-noncovalent
 Cc1ccnc(c1NS(=O)(=O)C/C=N/C(=O)C2CCCC2)F,AGN-NEW-931-4,x0434,-6.009655,active-noncovalent
