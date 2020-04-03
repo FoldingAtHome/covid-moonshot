@@ -9,7 +9,11 @@
 #BSUB -q cpuqueue
 #BSUB -o %J.repurposing-dock.out
 ##BSUB -J "repurposing-dock[1-5000]"
-#BSUB -J "repurposing-dock[5001-11335]"
+##BSUB -J "repurposing-dock[5001-11335]"
+
+#BSUB -o %J.drugbank-dock.out
+##BSUB -J "drugbank-dock[1-5000]"
+#BSUB -J "drugbank-dock[5001-11335]"
 
 echo "Job $JOBID/$NJOBS"
 

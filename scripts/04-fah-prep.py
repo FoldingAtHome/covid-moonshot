@@ -38,7 +38,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Aggregate results and coalesce Folding@Home RUNs.')
     parser.add_argument('--docked', dest='docked_basedir', type=str, default='covid_submissions_03_31_2020',
                         help='base directory for docked molecules (default: covid_submissions_03_31_2020/)')
-    parser.add_argument('--output', dest='output_filename', type=str, default='covid_submissions_03_31_2020-docked.csv',
+    parser.add_argument('--output', dest='output_filename', type=str, default='covid_submissions_03_31_2020-fah.csv',
                         help='output aggregated CSV file (default: covid_submissions_03_31_2020-fah.csv)')
     parser.add_argument('--clean', dest='clean', action='store_true', default=False,
                         help='if specified, will only store minimal information for each molecule (default: False)')
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # Sort molecules
     docked_molecules.sort(key=score)
 
-    gromacs_basedir = os.path.join(args.output_filename, 'gromacs')
+    gromacs_basedir = os.path.join(args.docked_basedir, 'gromacs')
 
     # Write molecules and set up directories in sorted order to CSV
     run_index = 0
@@ -76,7 +76,8 @@ if __name__ == '__main__':
             files_missing = False
             for phase in ['complex', 'ligand']:
                 for ext in ['gro', 'top']:
-                    if not os.path.join(gromacs_basedir, f'{molecule.GetTitle()} - {phase}.{ext}'):
+                    filename = os.path.join(gromacs_basedir, f'{molecule.GetTitle()} - {phase}.{ext}')
+                    if not os.path.exists(filename):
                         files_missing = True
             if files_missing:
                 continue
@@ -95,8 +96,8 @@ if __name__ == '__main__':
             import shutil
             for phase in ['complex', 'ligand']:
                 for ext in ['gro', 'top']:
-                    src = os.path.join(args.docked_basedir, '{molecule.GetTitle()} - {phase}.{ext}')
-                    dst = os.path.join(args.run_dir, '{phase}.{ext}')
+                    src = os.path.join(gromacs_basedir, f'{molecule.GetTitle()} - {phase}.{ext}')
+                    dst = os.path.join(run_dir, f'{phase}.{ext}')
                     shutil.copyfile(src, dst)
 
             oechem.OEWriteMolecule(ofs, molecule)
