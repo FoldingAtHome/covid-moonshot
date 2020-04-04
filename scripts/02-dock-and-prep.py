@@ -59,6 +59,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename):
     receptor = oechem.OEGraphMol()
     if not oedocking.OEReadReceptorFile(receptor, receptor_filename):
         oechem.OEThrow.Fatal("Unable to read receptor")
+    print(f'Receptor has {receptor.NumAtoms()} atoms')
 
     if not oedocking.OEReceptorHasBoundLigand(receptor):
         raise Exception("Receptor does not have bound ligand")
