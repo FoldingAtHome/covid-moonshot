@@ -214,7 +214,7 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
     import os
     print(f'Setting up simulation for {molecule.GetTitle()}...')
     for phase in ['ligand', 'complex']:
-        phase_name = f'{molecule.GetTitle()} - {phase}'    
+        phase_name = f'{molecule.GetTitle()} - {phase}'
         print(phase_name)
 
         pdb_filename = os.path.join(docking_basedir, phase_name + '.pdb')
@@ -377,8 +377,8 @@ if __name__ == '__main__':
                         help='molecules CSV file to pull from (default: ../molecules/covid_submissions_03_26_2020.csv)')
     parser.add_argument('--index', dest='molecule_index', type=int, required=True,
                         help='index of molecule to dock (0 indexed)')
-    parser.add_argument('--receptors', dest='receptor_basedir', type=str, default='../receptors',
-                        help='directory of receptor conformations (default: ../receptors)')
+    parser.add_argument('--receptors', dest='receptor_basedir', type=str, default='../receptors/monomer',
+                        help='directory of receptor conformations (default: ../receptors/monomer)')
     parser.add_argument('--output', dest='output_basedir', type=str, default='docked',
                         help='base directory for produced output (default: docked/)')
     parser.add_argument('--simulate', dest='simulate', action='store_true', default=False,
@@ -425,7 +425,7 @@ if __name__ == '__main__':
     if not os.path.exists(sdf_filename):
         # Dock the molecule
         if args.userfrags:
-            fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')            
+            fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')
             docked_molecule = ensemble_dock(molecule, fragments_to_dock_to)
         else:
             docked_molecule = ensemble_dock(molecule, all_fragments)
