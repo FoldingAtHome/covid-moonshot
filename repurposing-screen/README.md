@@ -4,10 +4,6 @@ This directory contains the results of a quick docking screen to identify potent
 
 Currently, only the Broad repurposing library (below) has been fully docked.
 
-## Methodology
-
-Using the OpenEye
-
 ## Manifest
 
 ### Broad Drug Repurposing Hub library (2020-03-24)
