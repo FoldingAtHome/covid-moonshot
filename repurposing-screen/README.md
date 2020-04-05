@@ -23,6 +23,23 @@ To inspect the top hits, please view `broad-repurposing-docked.csv`.
 
 To view the docked poses, please first load [`../receptors/monomer/Mpro-x0336-protein.pdb`](`broad-repurposing-docked.csv`) (you may need to click the `Raw` button to download the PDB file to your machine) and load the `broad-repurposing-docked.{sdf,pdb,mol2}` file in your favorite format.
 
+#### Fragment overlap
+
+All the fragments were used to define a set of Gaussians "colored" by interaction types using the [OpenEye Shape Toolkit](https://docs.eyesopen.com/toolkits/python/shapetk/index.html).
+For each docked compound in the repurposing set, the shape/color combination overlay between the docked compound and the merged fragments---which corrects for the overlap among fragment atoms to avoid overcounting---was used to measure how well the docked molecule fills the space spanned by the fragments.
+The [Tversky measure](https://docs.eyesopen.com/toolkits/python/shapetk/shape_theory.html#molecular-shape) of the merged fragment query was used to determine how much of the space spanned by the fragments was filled by the docked molecule, and is reported as the `overlap_score`.
+The results are sorted by this overlap score, which goes from ~1 (fills much of the fragment space) to ~0 (fills none of the fragment space).
+For each docked molecule, we also identified all fragments that overlap significantly with the docked molecule using the Tversky measure for the fragment to see what fraction of the fragment overlapped with the docked molecule.
+If this was >0.6, the fragment was added to the overlapping_fragments list.
+
+See the following files:
+
+* `broad-repurposing-docked-overlap/` - directory containing each docked repurposing compound with its highly-overlapping fragments, sorted by the fraction of the fragment space spanned (best to worst)
+* `broad-repurposing-docked-overlap.csv` - docked compounds, sorted from best to worst fragment overlap
+* `broad-repurposing-docked-overlap.sdf` - docked structures with annotations as SD tags, sorted from best to worst overlap score
+* `broad-repurposing-docked-overlap.pdb` - docked structures, sorted from best to worst overlap score
+* `broad-repurposing-docked-overlap.mol2` - docked structures, sorted from best to worst overlap score
+
 ### Drugbank 5.1.5 (2020-01-03)
 
 This docking screen is still in progress.
