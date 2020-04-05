@@ -303,6 +303,10 @@ def ensemble_dock(molecule, fragments_to_dock_to):
     fragments_to_dock_to : list of str
         List of fragments to dock to
 
+    Returns
+    -------
+    docked_molecule : openeye.oechem.OEGraphMol
+        The docked molecule
     """
     import os
     from tqdm import tqdm
@@ -318,6 +322,11 @@ def ensemble_dock(molecule, fragments_to_dock_to):
         docked_molecule = dock_molecule_to_receptor(molecule, receptor_filename)
         if docked_molecule is not None:
             docked_molecules.append(docked_molecule)
+
+    if len(docked_molecules) == 0:
+        # No valid poses
+        print('No valid poses found.')
+        return None
 
     # Extract top pose
     docked_molecules.sort(key=score)
@@ -434,6 +443,9 @@ if __name__ == '__main__':
         with oechem.oemolistream(sdf_filename) as ifs:
             docked_molecule = oechem.OEGraphMol()
             oechem.OEReadMolecule(ifs, docked_molecule)
+
+    if docked_molecule is None:
+        return
 
     import os
     from openeye import oechem, oedocking
