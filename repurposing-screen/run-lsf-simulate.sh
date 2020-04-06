@@ -11,8 +11,8 @@
 #BSUB -gpu "num=1:mode=shared:mps=no:j_exclusive=yes"
 #BSUB -m "lt-gpu ls-gpu lu-gpu lp-gpu ld-gpu"
 #BSUB -o %J.repurposing-simulate.out
-##BSUB -J "repurposing-simulate[1-5000]"
-#BSUB -J "repurposing-simulate[5001-10147]"
+#BSUB -J "repurposing-simulate[1-5000]"
+##BSUB -J "repurposing-simulate[5001-10147]"
 
 echo "Job $JOBID/$NJOBS"
 
