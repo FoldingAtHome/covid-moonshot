@@ -440,12 +440,15 @@ if __name__ == '__main__':
             docked_molecule = ensemble_dock(molecule, all_fragments)
     else:
         # Read the molecule
+        print(f'Docked molecule exists, so reading from {sdf_filename}')
         with oechem.oemolistream(sdf_filename) as ifs:
             docked_molecule = oechem.OEGraphMol()
             oechem.OEReadMolecule(ifs, docked_molecule)
 
     if docked_molecule is None:
-        return
+        print('No docking poses available')
+        import sys
+        sys.exit(0)
 
     import os
     from openeye import oechem, oedocking
