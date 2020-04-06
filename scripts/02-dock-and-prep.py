@@ -181,7 +181,7 @@ def extract_fragment_from_filename(filename):
     fragment = match.group('fragment')
     return fragment
 
-def prepare_simulation(molecule, basedir, save_openmm=False):
+def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
     """
     Prepare simulation systems
 
@@ -193,6 +193,8 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
        The base directory for docking/ and fah/ directories
     save_openmm : bool, optional, default=False
        If True, save gzipped OpenMM System, State, Integrator
+    covalent : bool, optional, default=False
+       If True, will compute CYS145 SG : warhead tagged atom distance distribution
     """
     # Parameters
     from simtk import unit, openmm
@@ -205,7 +207,7 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
     temperature = 300.0 * unit.kelvin
     timestep = 4.0 * unit.femtoseconds
     nsteps_per_iteration = 250
-    iterations = 100
+    iterations = 1000
 
     protein_forcefield = 'amber14/protein.ff14SB.xml'
     small_molecule_forcefield = 'openff-1.1.0'
@@ -252,7 +254,7 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
     # Prepare phases
     import os
     print(f'Setting up simulation for {molecule.GetTitle()}...')
-    for phase in ['ligand', 'complex']:
+    for phase in ['complex', 'ligand']:
         phase_name = f'{molecule.GetTitle()} - {phase}'
         print(phase_name)
 
@@ -285,6 +287,49 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
         # Create an OpenMM system
         system = openmm_system_generator.create_system(modeller.topology)
 
+        # If monitoring covalent distance, add an unused force
+        if covalent and phase=='complex':
+
+            # Set up query
+            warhead_atom_index = None
+            for smarts in covalent_warhead_smarts.keys():
+                qmol = oechem.OEQMol()
+                if not oechem.OEParseSmarts(qmol, smarts):
+                    raise ValueError(f"Error parsing SMARTS '{smarts}'")
+                substructure_search = oechem.OESubSearch(qmol)
+                substructure_search.SetMaxMatches(1)
+                matches = list()
+                for match in substructure_search.Match(molecule):
+                    # Compile list of atom indices that match the pattern tags
+                    atom_indices = dict()
+                    for matched_atom in match.GetAtoms():
+                        if(matched_atom.pattern.GetMapIdx()==1):
+                            warhead_atom_index = matched_atom.target.GetIdx() 
+                            break
+                            
+                if warhead_atom_index is not None:
+                    break
+            if warhead_atom_index is None:
+                raise Exception('Warhead atom cannot be found')
+
+            sulfur_atom_index = None
+            for atom in topology.atoms():
+                if (atom.residue.name == 'CYS') and (atom.residue.id == '145') and (atom.name == 'SG'):
+                    sulfur_atom_index = atom.index
+                    break
+            if sulfur_atom_index is None:
+                raise Exception('CYS145 SG atom cannot be found')
+
+            print('Adding CustomCVForce...')
+            distance_force = openmm.CustomBondForce('r')
+            distance_force.setUsesPeriodicBoundaryConditions(True)
+            distance_force.addBond(sulfur_atom_index, warhead_atom_index, [])
+            custom_cv_force = openmm.CustomCVForce('0*r')
+            custom_cv_force.addCollectiveVariable('r', distance_force)
+            force_index = system.addForce(custom_cv_force)
+
+            print(f'{pdb_filename} [{warhead_atom_index}, {sulfur_atom_index}]')
+
         # Create OpenM Context
         platform = openmm.Platform.getPlatformByName('CUDA')
         platform.setPropertyDefaultValue('Precision', 'mixed')
@@ -303,14 +348,34 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
         # Equilibrate
         print('Equilibrating...')
         from tqdm import tqdm
+        import numpy as np
+        distances = np.zeros([iterations], np.float32)
         for iteration in tqdm(range(iterations)):
             integrator.step(nsteps_per_iteration)
+            if covalent and phase=='complex':
+                # Get distance in Angstroms
+                distances[iteration] = custom_cv_force.getCollectiveVariableValues(context)[0] * 10
 
         # Retrieve state
         state = context.getState(getPositions=True, getVelocities=True, getEnergy=True, getForces=True)
         system.setDefaultPeriodicBoxVectors(*state.getPeriodicBoxVectors())
         modeller.topology.setPeriodicBoxVectors(state.getPeriodicBoxVectors())
         print(f'{molecule.GetTitle()} {phase} : Final potential energy is {state.getPotentialEnergy()/unit.kilocalories_per_mole:.3f} kcal/mol')
+
+        # Remove CustomCVForce
+        if covalent and phase=='complex':
+            print('Removing CustomCVForce...')
+            system.removeForce(force_index)
+            from pymbar.timeseries import detectEquilibration
+            t0, g, Neff = detectEquilibration(distances)
+            distances = distances[t0:]            
+            distance_min = distances.min()
+            distance_mean = distances.mean()
+            distance_stderr = distances.std()/np.sqrt(Neff)
+            oechem.OESetSDData(molecule, 'covalent_distance_min', str(distance_min))
+            oechem.OESetSDData(molecule, 'covalent_distance_mean', str(distance_mean))
+            oechem.OESetSDData(molecule, 'covalent_distance_stderr', str(distance_stderr))
+            print(f'Covalent distance is {distance_mean:.3f} +- {distance_stderr:.3f} A')
 
         # Save as OpenMM
         if save_openmm:
@@ -578,7 +643,13 @@ if __name__ == '__main__':
 
     # Prepare simulation
     if args.simulate:
-        prepare_simulation(docked_molecule, args.output_basedir)
+        prepare_simulation(docked_molecule, args.output_basedir, covalent=args.covalent)
 
     if args.transfer:
         transfer_data(docked_molecule, args.output_basedir)
+
+    # Write molecule as SDF
+    output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - ligand.sdf')
+    with oechem.oemolostream(output_filename) as ofs:
+        oechem.OEWriteMolecule(ofs, docked_molecule)
+

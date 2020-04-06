@@ -71,7 +71,7 @@ if __name__ == '__main__':
         for molecule in tqdm(docked_molecules):
             if args.clean:
                 for sdpair in oechem.OEGetSDDataPairs(molecule):
-                    if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site']:
+                    if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site', 'covalent_distance_min', 'covalent_distance_mean', 'covalent_distance_stderr']:
                         oechem.OEDeleteSDData(molecule, sdpair.GetTag())
             oechem.OEWriteMolecule(ofs, molecule)
     

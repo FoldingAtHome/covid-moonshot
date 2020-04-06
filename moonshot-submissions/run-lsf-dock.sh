@@ -8,6 +8,7 @@
 #BSUB -R "span[ptile=1]"
 #BSUB -q cpuqueue
 #BSUB -o %J.moonshot-dock.out
+##BSUB -J "moonshot-dock[1-2386]"
 #BSUB -J "moonshot-dock[1-461]"
 
 echo "Job $JOBID/$NJOBS"
