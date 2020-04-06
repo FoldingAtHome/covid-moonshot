@@ -3,6 +3,15 @@ Dock specified ligand to all DiamondMX Mpro structures and prepare for alchemica
 
 """
 
+covalent_warhead_smarts = {
+    '[C;H2:1]=[C;H1]C(N)=O' : 'acrylamide',
+    'NC(C[C:1]S)=O' : 'acrylamide_adduct',
+    'Cl[C;H2:1]C(N)=O' : 'chloroacetamide',
+    'S[C:1]C(N)=O' : 'chloroacetamide_adduct',
+    'NS(=O)([C;H1]=[C;H2:1])=O' : 'vinylsulfonamide',
+    'NS(=O)(C[C:1]S)=O' : 'vinylsulfonamide_adduct',
+    }
+
 # Read ligands
 def read_csv_molecules(filename):
     """Read molecules from the specified path
@@ -32,7 +41,7 @@ def score(molecule, field='Hybrid2'):
     value = oechem.OEGetSDData(molecule, field)
     return float(value)
 
-def dock_molecule_to_receptor(molecule, receptor_filename):
+def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     """
     Dock the specified molecules, writing out to specified file
 
@@ -42,6 +51,8 @@ def dock_molecule_to_receptor(molecule, receptor_filename):
         The molecule to dock
     receptor_filename : str
         Receptor to dock to
+    covalent : bool, optional, default=False
+        If True, try to place covalent warhead in proximity to CYS145
 
     Returns
     -------
@@ -69,6 +80,35 @@ def dock_molecule_to_receptor(molecule, receptor_filename):
     dockResolution = oedocking.OESearchResolution_High
     dock = oedocking.OEDock(dockMethod, dockResolution)
     success = dock.Initialize(receptor)
+
+    # Add covalent restraint if specified
+    if covalent:
+        customConstraints = oedocking.OEReceptorGetCustomConstraints(receptor)
+
+        # Find CYS145 SG atom
+        hv = oechem.OEHierView(receptor)
+        hres = hv.GetResidue("A", "CYS", 145)
+        for atom in hres.GetAtoms():
+            res = oechem.OEAtomGetResidue(atom)
+            proteinHeavyAtom = None
+            if atom.GetName() == 'SG':
+                proteinHeavyAtom = atom
+                break
+        if proteinHeavyAtom is None:
+            raise Exception('Could not find CYS145 SG')
+
+        # Add the constraint
+        feature = customConstraints.AddFeature()
+        feature.SetFeatureName("CYS145 proximity")
+        for smarts in covalent_warhead_smarts.keys():
+            feature.AddSmarts(smarts)
+        sphereRadius = 4.0 # Angstroms
+        sphereCenter = oechem.OEFloatArray(3)
+        receptor.GetCoords(proteinHeavyAtom, sphereCenter)
+        sphere = feature.AddSphere()
+        sphere.SetRad(sphereRadius)
+        sphere.SetCenter(sphereCenter[0], sphereCenter[1], sphereCenter[2])
+        oedocking.OEReceptorSetCustomConstraints(receptor, customConstraints)
 
     # Enumerate tautomers
     from openeye import oequacpac
@@ -293,7 +333,7 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
         structure.save(gro_filename, overwrite=True)
         structure.save(top_filename, overwrite=True)
 
-def ensemble_dock(molecule, fragments_to_dock_to):
+def ensemble_dock(molecule, fragments_to_dock_to, covalent=False):
     """Perform ensemble docking on all fragment X-ray structures
 
     Parameters
@@ -302,6 +342,8 @@ def ensemble_dock(molecule, fragments_to_dock_to):
         The molecule to dock
     fragments_to_dock_to : list of str
         List of fragments to dock to
+    covalent : bool, optional, default=False
+        If True, try to place covalent warhead in proximity to CYS145
 
     Returns
     -------
@@ -319,7 +361,7 @@ def ensemble_dock(molecule, fragments_to_dock_to):
         if not os.path.exists(receptor_filename):
             # Skip receptors that are not set up
             continue
-        docked_molecule = dock_molecule_to_receptor(molecule, receptor_filename)
+        docked_molecule = dock_molecule_to_receptor(molecule, receptor_filename, covalent=covalent)
         if docked_molecule is not None:
             docked_molecules.append(docked_molecule)
 
@@ -396,6 +438,8 @@ if __name__ == '__main__':
                         help='transfer simulation data (default: False)')
     parser.add_argument('--userfrags', dest='userfrags', action='store_true', default=False,
                         help='if True, will only dock to user-specified fragment inspirations (default: False)')
+    parser.add_argument('--covalent', dest='covalent', action='store_true', default=False,
+                        help='if True, will attempt to place warhead in vicinity of CYS145 SG (default: False)')
 
     args = parser.parse_args()
 
@@ -435,9 +479,9 @@ if __name__ == '__main__':
         # Dock the molecule
         if args.userfrags:
             fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')
-            docked_molecule = ensemble_dock(molecule, fragments_to_dock_to)
+            docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=covalent)
         else:
-            docked_molecule = ensemble_dock(molecule, all_fragments)
+            docked_molecule = ensemble_dock(molecule, all_fragments, covalent=covalent)
     else:
         # Read the molecule
         with oechem.oemolistream(sdf_filename) as ifs:

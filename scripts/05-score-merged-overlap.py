@@ -35,6 +35,8 @@ if __name__ == '__main__':
                         help='if specified, will only store minimal information for each molecule (default: False)')
     parser.add_argument('--sort', dest='sort', action='store_true', default=False,
                         help='if specified, will sort according to overlap (default: False)')
+    parser.add_argument('--covalent', dest='covalent', action='store_true', default=False,
+                        help='if specified, will only consider those with `covalent_warhead=True` (default: False)')
 
     args = parser.parse_args()
 
@@ -48,6 +50,11 @@ if __name__ == '__main__':
             oechem.OESuppressHydrogens(molecule)
             docked_molecules.append( molecule.CreateCopy() )
     print(f'{len(docked_molecules)} read')
+
+    if args.covalent:
+        print('Only filtering covalent fragments')
+        docked_molecules = [molecule for molecule in docked_molecules if oechem.OEGetSDData(molecule, 'covalent_warhead')=='TRUE']
+        print(f'{len(docked_molecules)} remain after filtering')
 
     print('Loading fragments')
     filenames = glob(os.path.join(args.receptor_basedir, 'Mpro-x*-ligand.mol2'))
@@ -176,11 +183,10 @@ if __name__ == '__main__':
     basedir = f'{args.output_prefix}'
     os.makedirs(basedir, exist_ok=True)
     for index, molecule in tqdm(enumerate(docked_molecules)):
-        if nfragments_score(molecule) != 0:
-            filename = os.path.join(basedir, f'{index:05d}-{molecule.GetTitle()}.pdb')
-            with oechem.oemolostream(filename) as ofs:
-                oechem.OEWriteMolecule(ofs, molecule)
-                overlapping_fragments = oechem.OEGetSDData(molecule, 'overlapping_fragments').split(',')
-                for fragment in overlapping_fragments:
-                    if fragment != '':
-                        oechem.OEWriteMolecule(ofs, fragments[fragment])
+        filename = os.path.join(basedir, f'{index:05d}-{molecule.GetTitle()}.pdb')
+        with oechem.oemolostream(filename) as ofs:
+            oechem.OEWriteMolecule(ofs, molecule)
+            overlapping_fragments = oechem.OEGetSDData(molecule, 'overlapping_fragments').split(',')
+            for fragment in overlapping_fragments:
+                if fragment != '':
+                    oechem.OEWriteMolecule(ofs, fragments[fragment])
