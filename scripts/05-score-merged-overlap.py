@@ -80,45 +80,23 @@ if __name__ == '__main__':
             continue
         fragment = fragments[fragment_name]
         fragment_copy = fragment.CreateCopy()
-
-        # atoms = [ atom for atom in fragment_copy.GetAtoms() ]
-        # for atom in atoms:
-        #     query_atom = query_molecule.NewAtom(atom.GetAtomicNum())
-        #     query_atoms.append(query_atom)
-        # for i, iatom in enumerate(atoms):
-        #     for bond in atom.GetBonds():
-        #         jatom = bond.GetNbr(atom)
-        #         j = jatom.GetIdx()
-        #         query_molecule.NewBond(query_atoms[offset+i], query_atoms[offset+j])
-        # offset += fragment_copy.NumAtoms()
-
         prep.Prep(fragment_copy)
         for atom in fragment_copy.GetAtoms():
             coords = oechem.OEFloatArray(3)
             fragment_copy.GetCoords(atom, coords)
             shape_prefactor = 1.0
-            shape_width = 1.0
+            shape_width = 0.5
             shape_gauss = oegrid.OEGaussian(shape_prefactor, shape_width, coords)
             query.AddShapeGaussian(shape_gauss)
         for atom in oeshape.OEGetColorAtoms(fragment_copy):
             coords = oechem.OEFloatArray(3)
             fragment_copy.GetCoords(atom, coords)
             color_prefactor = 1.0
-            color_width = 1.0
+            color_width = 0.5
             color_gauss = oegrid.OEGaussian(color_prefactor, color_width, coords, oeshape.OEGetColorType(atom))
             query.AddColorGaussian(color_gauss)
 
-    #nshape = len([gauss for gauss in query.GetShapeGaussians()])
-    #ncolor = len([gauss for gauss in query.GetColorGaussians()])
-    #print(f'query has {nshape} shape Gaussians and {ncolor} color gaussians')
-    #query.SetMolecule(fragment_copy)
     oeshape.OEWriteShapeQuery('query.sq', query)
-
-    #atoms = [atom for atom in query_molecule.GetAtoms()]
-    #for i, iatom in enumerate(atoms):
-    #    for j, jatom in enumerate(atoms):
-    #        if i < j:
-    #            query_molecule.NewBond(iatom, jatom)
 
     #merged_func = oeshape.OEOverlapFunc()
     #merged_func = oeshape.OEAnalyticColorFunc()
@@ -135,19 +113,26 @@ if __name__ == '__main__':
         fitmol = molecule.CreateCopy()
         prep.Prep(fitmol)
         merged_func.Overlap(fitmol, result)
+        volume = oeshape.OECalcVolume(molecule)
         score = result.GetFitTverskyCombo()
+        #score = result.GetRefTverskyCombo()
 
         # Compute overlaps
         fragment_func.SetupRef(molecule)
         overlapping_fragments = list()
+        fragment_overlap_scores = dict()
         for fragment_name, fragment in fragments.items():
             #overlap, volume = compute_fragment_overlap(molecule, fragment)
             fragment_func.Overlap(fragment, result)
             # Compute overlap (fraction of the fragment covered)
             fragment_overlap = result.GetRefTverskyCombo()
+            #fragment_overlap = result.GetTanimotoCombo()
             # Store fragment
             if fragment_overlap > OVERLAP_THRESHOLD:
+                fragment_overlap_scores[fragment_name] = fragment_overlap
                 overlapping_fragments.append(fragment_name)
+
+            overlapping_fragments.sort(key=lambda fragment_name : -fragment_overlap_scores[fragment_name])
 
         n_overlapping_fragments = len(overlapping_fragments)
 
@@ -155,6 +140,8 @@ if __name__ == '__main__':
         oechem.OESetSDData(molecule, 'number_of_overlapping_fragments', str(n_overlapping_fragments))
         oechem.OESetSDData(molecule, 'overlapping_fragments', ','.join(overlapping_fragments))
         oechem.OESetSDData(molecule, 'overlap_score', str(score))
+        oechem.OESetSDData(molecule, 'volume', str(volume))
+
 
     def overlap_score(molecule):
         overlap_score = float(oechem.OEGetSDData(molecule, 'overlap_score'))
@@ -180,7 +167,7 @@ if __name__ == '__main__':
             for molecule in tqdm(docked_molecules):
                 if args.clean:
                     for sdpair in oechem.OEGetSDDataPairs(molecule):
-                        if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site', 'number_of_overlapping_fragments', 'overlapping_fragments', 'overlap_score']:
+                        if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site', 'number_of_overlapping_fragments', 'overlapping_fragments', 'overlap_score', 'volume']:
                             oechem.OEDeleteSDData(molecule, sdpair.GetTag())
                 oechem.OEWriteMolecule(ofs, molecule)
 
