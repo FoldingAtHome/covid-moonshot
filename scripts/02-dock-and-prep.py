@@ -70,7 +70,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     receptor = oechem.OEGraphMol()
     if not oedocking.OEReadReceptorFile(receptor, receptor_filename):
         oechem.OEThrow.Fatal("Unable to read receptor")
-    print(f'Receptor has {receptor.NumAtoms()} atoms')
+    #print(f'Receptor has {receptor.NumAtoms()} atoms')
 
     if not oedocking.OEReceptorHasBoundLigand(receptor):
         raise Exception("Receptor does not have bound ligand")
@@ -88,10 +88,9 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
         # Find CYS145 SG atom
         hv = oechem.OEHierView(receptor)
         hres = hv.GetResidue("A", "CYS", 145)
+        proteinHeavyAtom = None
         for atom in hres.GetAtoms():
-            res = oechem.OEAtomGetResidue(atom)
-            proteinHeavyAtom = None
-            if atom.GetName() == 'SG':
+            if atom.GetName().strip() == 'SG':
                 proteinHeavyAtom = atom
                 break
         if proteinHeavyAtom is None:
@@ -458,12 +457,23 @@ if __name__ == '__main__':
     docking_basedir = os.path.join(args.output_basedir, 'docking')
     os.makedirs(docking_basedir, exist_ok=True)
 
-    # Extract molecule
+    # Read all molecules
     molecules = read_csv_molecules(args.molecules_filename)
     print(f'{len(molecules)} molecules read')
     if not ((0 <= args.molecule_index) and (args.molecule_index < len(molecules))):
         raise Exception(f'--index <index> must be between 0 and {len(molecules)} for {args.molecules_filename}')
+
+    # Filter molecules with covalent warheads
+    if args.covalent:
+        from openeye import oechem
+        print('Only filtering covalent fragments')
+        # TODO: Use SMARTS patterns instead of relying on 'covalent_warhead' field
+        molecules = [molecule for molecule in molecules if oechem.OEGetSDData(molecule, 'covalent_warhead')=='TRUE']
+        print(f'{len(molecules)} remain after filtering')
+
+    # Extract molecule
     molecule = molecules[args.molecule_index]
+
 
     # Replace title if there is none
     import os
@@ -479,9 +489,9 @@ if __name__ == '__main__':
         # Dock the molecule
         if args.userfrags:
             fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')
-            docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=covalent)
+            docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=args.covalent)
         else:
-            docked_molecule = ensemble_dock(molecule, all_fragments, covalent=covalent)
+            docked_molecule = ensemble_dock(molecule, all_fragments, covalent=args.covalent)
     else:
         # Read the molecule
         print(f'Docked molecule exists, so reading from {sdf_filename}')
