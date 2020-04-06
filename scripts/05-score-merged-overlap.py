@@ -3,6 +3,17 @@ Score overlap of docked ligands with X-ray fragments
 
 """
 
+# Make a list of all fragment sites to dock to
+noncovalent_active_site_fragments = ['x0072', 'x0104', 'x0107', 'x0161', 'x0195', 'x0305', 'x0354', 'x0387', 'x0395', 'x0397', 'x0426', 'x0434', 'x0540',
+    'x0678', 'x0874', 'x0946', 'x0967', 'x0991', 'x0995', 'x1077', 'x1093', 'x1249']
+covalent_active_site_fragments = ['x0689', 'x0691', 'x0692', 'x0705','x0708', 'x0731', 'x0734', 'x0736', 'x0749', 'x0752', 'x0755', 'x0759',
+'x0769', 'x0770', 'x0771', 'x0774', 'x0786', 'x0820', 'x0830', 'x0831', 'x0978', 'x0981', 'x1308', 'x1311', 'x1334', 'x1336', 'x1348',
+'x1351', 'x1358', 'x1374', 'x1375', 'x1380', 'x1382', 'x1384', 'x1385', 'x1386', 'x1392', 'x1402', 'x1412', 'x1418', 'x1425', 'x1458',
+'x1478', 'x1493']
+active_site_fragments = noncovalent_active_site_fragments + covalent_active_site_fragments
+dimer_interface_fragments = ['x0887', 'x1187']
+all_fragments = noncovalent_active_site_fragments + covalent_active_site_fragments + dimer_interface_fragments
+
 if __name__ == '__main__':
     from openeye import oechem, oeshape
     import csv
@@ -22,6 +33,8 @@ if __name__ == '__main__':
                         help='directory of receptor conformations (default: ../receptors/monomer)')
     parser.add_argument('--clean', dest='clean', action='store_true', default=False,
                         help='if specified, will only store minimal information for each molecule (default: False)')
+    parser.add_argument('--sort', dest='sort', action='store_true', default=False,
+                        help='if specified, will sort according to overlap (default: False)')
 
     args = parser.parse_args()
 
@@ -48,42 +61,81 @@ if __name__ == '__main__':
                 fragment_name = match.group('fragment_name')
                 # Set fragment name as title
                 fragment.SetTitle(fragment_name)
+
+
                 # Store it
                 fragments[fragment_name] = fragment.CreateCopy()
     print(f'{len(fragments)} fragments loaded.')
 
-    # Create merged query from fragments
+    # Create merged query from active site fragments
     from openeye import oegrid, oeshape
     prep = oeshape.OEOverlapPrep()
     query = oeshape.OEShapeQuery()
     query_molecule = oechem.OEGraphMol()
-    for fragment_name, fragment in fragments.items():
+    #for fragment_name, fragment in fragments.items():
+    query_atoms = list()
+    offset = 0
+    for fragment_name in active_site_fragments:
+        if fragment_name not in fragments:
+            continue
+        fragment = fragments[fragment_name]
         fragment_copy = fragment.CreateCopy()
+
+        # atoms = [ atom for atom in fragment_copy.GetAtoms() ]
+        # for atom in atoms:
+        #     query_atom = query_molecule.NewAtom(atom.GetAtomicNum())
+        #     query_atoms.append(query_atom)
+        # for i, iatom in enumerate(atoms):
+        #     for bond in atom.GetBonds():
+        #         jatom = bond.GetNbr(atom)
+        #         j = jatom.GetIdx()
+        #         query_molecule.NewBond(query_atoms[offset+i], query_atoms[offset+j])
+        # offset += fragment_copy.NumAtoms()
+
         prep.Prep(fragment_copy)
+        for atom in fragment_copy.GetAtoms():
+            coords = oechem.OEFloatArray(3)
+            fragment_copy.GetCoords(atom, coords)
+            shape_prefactor = 1.0
+            shape_width = 1.0
+            shape_gauss = oegrid.OEGaussian(shape_prefactor, shape_width, coords)
+            query.AddShapeGaussian(shape_gauss)
         for atom in oeshape.OEGetColorAtoms(fragment_copy):
             coords = oechem.OEFloatArray(3)
             fragment_copy.GetCoords(atom, coords)
-            prefactor = 1.0
-            width = 1.0
-            gauss = oegrid.OEGaussian(prefactor, width, coords, oeshape.OEGetColorType(atom))
-            query.AddColorGaussian(gauss)
-            #query_molecule.NewAtom(atom.GetAtomicNum())
+            color_prefactor = 1.0
+            color_width = 1.0
+            color_gauss = oegrid.OEGaussian(color_prefactor, color_width, coords, oeshape.OEGetColorType(atom))
+            query.AddColorGaussian(color_gauss)
 
-    query.SetMolecule(fragment_copy) # TODO: Can this be any molecule?
-    merged_func = oeshape.OEOverlapFunc()
+    #nshape = len([gauss for gauss in query.GetShapeGaussians()])
+    #ncolor = len([gauss for gauss in query.GetColorGaussians()])
+    #print(f'query has {nshape} shape Gaussians and {ncolor} color gaussians')
+    #query.SetMolecule(fragment_copy)
+    oeshape.OEWriteShapeQuery('query.sq', query)
+
+    #atoms = [atom for atom in query_molecule.GetAtoms()]
+    #for i, iatom in enumerate(atoms):
+    #    for j, jatom in enumerate(atoms):
+    #        if i < j:
+    #            query_molecule.NewBond(iatom, jatom)
+
+    #merged_func = oeshape.OEOverlapFunc()
+    #merged_func = oeshape.OEAnalyticColorFunc()
+    merged_func = oeshape.OEExactColorFunc()
     merged_func.SetupRef(query)
 
     # Get appropriate function to calculate analytic shape
     result = oeshape.OEOverlapResults()
     fragment_func = oeshape.OEOverlapFunc()
     print('Computing overlap scores...')
-    OVERLAP_THRESHOLD = 0.60
+    OVERLAP_THRESHOLD = 0.50
     for molecule in tqdm(docked_molecules):
         # Compute overlap with merged query
         fitmol = molecule.CreateCopy()
         prep.Prep(fitmol)
         merged_func.Overlap(fitmol, result)
-        score = result.GetRefTverskyCombo()
+        score = result.GetFitTverskyCombo()
 
         # Compute overlaps
         fragment_func.SetupRef(molecule)
@@ -92,7 +144,7 @@ if __name__ == '__main__':
             #overlap, volume = compute_fragment_overlap(molecule, fragment)
             fragment_func.Overlap(fragment, result)
             # Compute overlap (fraction of the fragment covered)
-            fragment_overlap = result.GetFitTverskyCombo()
+            fragment_overlap = result.GetRefTverskyCombo()
             # Store fragment
             if fragment_overlap > OVERLAP_THRESHOLD:
                 overlapping_fragments.append(fragment_name)
@@ -104,7 +156,6 @@ if __name__ == '__main__':
         oechem.OESetSDData(molecule, 'overlapping_fragments', ','.join(overlapping_fragments))
         oechem.OESetSDData(molecule, 'overlap_score', str(score))
 
-    print('Sorting...')
     def overlap_score(molecule):
         overlap_score = float(oechem.OEGetSDData(molecule, 'overlap_score'))
         return -overlap_score
@@ -116,7 +167,9 @@ if __name__ == '__main__':
         else:
             return -len(overlapping_fragments.split(','))
 
-    docked_molecules.sort(key=overlap_score)
+    if args.sort:
+        print('Sorting by overlap score...')
+        docked_molecules.sort(key=overlap_score)
 
     # Write molecules
     print('Writing molecules...')
