@@ -11,7 +11,7 @@ if __name__ == '__main__':
 
     print('Loading molecule index...')
     molecule_index = dict()
-    with open('Files/smiles.smi', 'r') as infile:
+    with open('smiles.smi', 'r') as infile:
         csvfile = csv.reader(infile, delimiter='\t')
 
         molecule = oechem.OEGraphMol()
@@ -26,6 +26,10 @@ if __name__ == '__main__':
             oechem.OESetSDData(molecule, 'fragments', fragments)
 
             molecule_index[covalent_id] = molecule.CreateCopy()
+
+    print('Writing covalent docking input...')
+    with oechem.oemolostream('covalent-moonshot-compounds.csv') as ofs:
+        oechem.OEWriteMolecule(molecule)
 
     print('Loading fragments')
     directories = glob('Files/x*')
