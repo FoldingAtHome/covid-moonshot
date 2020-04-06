@@ -10,7 +10,8 @@
 #BSUB -gpu "num=1:mode=shared:mps=no:j_exclusive=yes"
 #BSUB -m "lt-gpu ls-gpu lu-gpu lp-gpu ld-gpu"
 #BSUB -o %J.moonshot-simulate.out
-#BSUB -J "moonshot-simulate[1-2386]"
+##BSUB -J "moonshot-simulate[1-2386]"
+#BSUB -J "moonshot-simulate[1-461]"
 
 echo "Job $JOBID/$NJOBS"
 
@@ -21,4 +22,5 @@ source ~/.bashrc
 source activate perses
 
 let JOBID=$LSB_JOBINDEX-1
-python ../scripts/02-dock-and-prep.py --molecules covid_submissions_03_31_2020.csv --index $JOBID --output covid_submissions_03_31_2020 --userfrags --simulate
+#python ../scripts/02-dock-and-prep.py --molecules covid_submissions_03_31_2020.csv --index $JOBID --output covid_submissions_03_31_2020 --userfrags --simulate
+python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules covid_submissions_with_warhead_info.csv --index $JOBID --output covid_submissions_with_warhead_info-monomer --userfrags --covalent --simulate
