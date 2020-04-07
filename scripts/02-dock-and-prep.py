@@ -4,12 +4,12 @@ Dock specified ligand to all DiamondMX Mpro structures and prepare for alchemica
 """
 
 covalent_warhead_smarts = {
-    '[C;H2:1]=[C;H1]C(N)=O' : 'acrylamide',
-    'NC(C[C:1]S)=O' : 'acrylamide_adduct',
-    'Cl[C;H2:1]C(N)=O' : 'chloroacetamide',
-    'S[C:1]C(N)=O' : 'chloroacetamide_adduct',
-    'NS(=O)([C;H1]=[C;H2:1])=O' : 'vinylsulfonamide',
-    'NS(=O)(C[C:1]S)=O' : 'vinylsulfonamide_adduct',
+    'acrylamide' : '[C;H2:1]=[C;H1]C(N)=O',
+    'acrylamide_adduct' : 'NC(C[C:1]S)=O',
+    'chloroacetamide' : 'Cl[C;H2:1]C(N)=O',
+    'chloroacetamide_adduct' : 'S[C:1]C(N)=O',
+    'vinylsulfonamide' : 'NS(=O)([C;H1]=[C;H2:1])=O',
+    'vinylsulfonamide_adduct' : 'NS(=O)(C[C:1]S)=O',
     }
 
 # Read ligands
@@ -83,8 +83,20 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
 
     # Add covalent restraint if specified
     if covalent:
-        customConstraints = oedocking.OEReceptorGetCustomConstraints(receptor)
+        # Identify which warheads are present in compound
+        print('Finding warhead atoms...')
+        warheads_found = set()
+        for warhead_type in covalent_warhead_smarts.keys():
+            warhead_atom_index = get_covalent_warhead_atom(molecule, warhead_type)
+            if warhead_atom_index is not None:
+                warheads_found.add(warhead_type)
+                print(f'* Covalent warhead atom found: {warhead_type} {warhead_atom_index}')
+        if len(warheads_found) > 1:
+            raise Exception('Multiple covalent warheads found for {molecule.GetTitle()}')
 
+        # Initialize covalent constraints
+        customConstraints = oedocking.OEReceptorGetCustomConstraints(receptor)
+        
         # Find CYS145 SG atom
         hv = oechem.OEHierView(receptor)
         hres = hv.GetResidue("A", "CYS", 145)
@@ -99,9 +111,11 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
         # Add the constraint
         feature = customConstraints.AddFeature()
         feature.SetFeatureName("CYS145 proximity")
-        for smarts in covalent_warhead_smarts.keys():
+        for warhead_type in warheads_found:
+            smarts = covalent_warhead_smarts[warhead_type]
+            print(f'Adding constraint for SMARTS pattern {smarts}')
             feature.AddSmarts(smarts)
-        sphereRadius = 4.0 # Angstroms
+        sphereRadius = 2.0 # Angstroms
         sphereCenter = oechem.OEFloatArray(3)
         receptor.GetCoords(proteinHeavyAtom, sphereCenter)
         sphere = feature.AddSphere()
@@ -125,7 +139,8 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     from openeye import oeomega
     omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
     #omegaOpts = oeomega.OEOmegaOptions()
-    omegaOpts.SetMaxSearchTime(10.0) # time out after 10 seconds
+    omegaOpts.SetMaxConfs(500)
+    omegaOpts.SetMaxSearchTime(60.0) # time out
     omega = oeomega.OEOmega(omegaOpts)
     omega.SetStrictStereo(False) # enumerate sterochemistry if uncertain
 
@@ -147,7 +162,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
         # Store docking data
         sdtag = oedocking.OEDockMethodGetName(dockMethod)
         oedocking.OESetSDScore(dockedMol, dock, sdtag)
-        oechem.OESetSDData(dockedMol, "fragments", fragment)
+        oechem.OESetSDData(dockedMol, "docked_fragment", fragment)
         dock.AnnotatePose(dockedMol)
 
         docked_molecules.append( dockedMol.CreateCopy() )
@@ -180,6 +195,38 @@ def extract_fragment_from_filename(filename):
     match = re.search('Mpro-(?P<fragment>x\d+)-receptor.oeb.gz', filename)
     fragment = match.group('fragment')
     return fragment
+
+def get_covalent_warhead_atom(molecule, covalent_warhead_type):
+    """
+    Get tagged atom index in provided tagged SMARTS string, or None if no match found.
+
+    Parameters
+    ----------
+    molecule : openeye.oechem.OEMol
+        The molecule to search
+    covalent_warhead : str
+        Covalent warhead name
+    
+    Returns
+    -------
+    index : int or None
+        The atom index in molecule of the covalent atom, or None if SMARTS does not match
+
+    """
+    smarts = covalent_warhead_smarts[covalent_warhead_type]
+    qmol = oechem.OEQMol()
+    if not oechem.OEParseSmarts(qmol, smarts):
+        raise ValueError(f"Error parsing SMARTS '{smarts}'")
+    substructure_search = oechem.OESubSearch(qmol)
+    substructure_search.SetMaxMatches(1)
+    matches = list()
+    for match in substructure_search.Match(molecule):
+        # Compile list of atom indices that match the pattern tags
+        for matched_atom in match.GetAtoms():
+            if(matched_atom.pattern.GetMapIdx()==1):
+                return matched_atom.target.GetIdx() 
+
+    return None
 
 def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
     """
@@ -290,27 +337,18 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
         # If monitoring covalent distance, add an unused force
         if covalent and phase=='complex':
 
-            # Set up query
-            warhead_atom_index = None
-            for smarts in covalent_warhead_smarts.keys():
-                qmol = oechem.OEQMol()
-                if not oechem.OEParseSmarts(qmol, smarts):
-                    raise ValueError(f"Error parsing SMARTS '{smarts}'")
-                substructure_search = oechem.OESubSearch(qmol)
-                substructure_search.SetMaxMatches(1)
-                matches = list()
-                for match in substructure_search.Match(molecule):
-                    # Compile list of atom indices that match the pattern tags
-                    atom_indices = dict()
-                    for matched_atom in match.GetAtoms():
-                        if(matched_atom.pattern.GetMapIdx()==1):
-                            warhead_atom_index = matched_atom.target.GetIdx() 
-                            break
-                            
+            # Find warhead atom indices
+            # TODO: Handle case where more than one warhead atom index exists
+            print('Finding warhead atoms...')
+            warhead_atom_indices = list()
+            for warhead_type in covalent_warhead_smarts.keys():
+                warhead_atom_index = get_covalent_warhead_atom(molecule, warhead_type)
                 if warhead_atom_index is not None:
-                    break
-            if warhead_atom_index is None:
-                raise Exception('Warhead atom cannot be found')
+                    print(f'* Covalent warhead atom found: {warhead_type} {warhead_atom_index}')
+                    warhead_atom_indices.append(warhead_atom_index)
+            if len(warhead_atom_indices) == 0:
+                raise Exception('No known warheads can be found')
+            warhead_atom_index = warhead_atom_indices[0]
 
             sulfur_atom_index = None
             for atom in topology.atoms():
@@ -448,7 +486,7 @@ def ensemble_dock(molecule, fragments_to_dock_to, covalent=False):
         oechem.OESetSDData(docked_molecule, f'Mpro-{fragment}_dock', str(score(score_molecule)))
 
     # Populate site info
-    fragment = oechem.OEGetSDData(docked_molecule, 'fragments')
+    fragment = oechem.OEGetSDData(docked_molecule, 'docked_fragment')
     if fragment in active_site_fragments:
         oechem.OESetSDData(docked_molecule, 'site', 'active-noncovalent')
     elif fragment in covalent_active_site_fragments:
@@ -577,7 +615,7 @@ if __name__ == '__main__':
     if not os.path.exists(output_filename):
         docked_molecule_clean = docked_molecule.CreateCopy()
         for sdpair in oechem.OEGetSDDataPairs(docked_molecule_clean):
-            if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site']:
+            if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site', 'docked_fragment']:
                 oechem.OEDeleteSDData(docked_molecule_clean, sdpair.GetTag())
         with oechem.oemolostream(output_filename) as ofs:
             oechem.OEWriteMolecule(ofs, docked_molecule_clean)
@@ -595,7 +633,7 @@ if __name__ == '__main__':
             oechem.OEWriteMolecule(ofs, docked_molecule)
 
     # Read receptor
-    fragment = oechem.OEGetSDData(docked_molecule, 'fragments')
+    fragment = oechem.OEGetSDData(docked_molecule, 'docked_fragment')
     receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
     print(f'Reading receptor from {receptor_filename}')
     from openeye import oechem, oedocking
@@ -648,8 +686,9 @@ if __name__ == '__main__':
     if args.transfer:
         transfer_data(docked_molecule, args.output_basedir)
 
-    # Write molecule as SDF
-    output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - ligand.sdf')
-    with oechem.oemolostream(output_filename) as ofs:
-        oechem.OEWriteMolecule(ofs, docked_molecule)
+    if args.covalent and args.simulate:
+        # Write molecule as SDF with updated distance measurements
+        output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - ligand.sdf')
+        with oechem.oemolostream(output_filename) as ofs:
+            oechem.OEWriteMolecule(ofs, docked_molecule)
 
