@@ -13,7 +13,9 @@
 
 #BSUB -o %J.drugbank-dock.out
 ##BSUB -J "drugbank-dock[1-5000]"
-#BSUB -J "drugbank-dock[5001-11335]"
+##BSUB -J "drugbank-dock[5001-11335]"
+#BSUB -J "drugset-dock[1-7000]"
+##BSUB -J "drugset-dock[7001-14670]"
 
 echo "Job $JOBID/$NJOBS"
 
@@ -23,6 +25,9 @@ source ~/.bashrc
 
 source activate perses
 
+export PREFIX="14288275.moonshot-aggregate.out"
+export PREFIX="drugbank-5.1.5-2020-01-03"
+export PREFIX="drugset"
+
 let JOBID=$LSB_JOBINDEX-1
-#python ../scripts/02-dock-and-prep.py --molecules broad-repurposing-library-20200324.csv --index $JOBID --output broad-repurposing-docked
-python ../scripts/02-dock-and-prep.py --molecules drugbank-5.1.5-2020-01-03.csv --index $JOBID --output drugbank-5.1.5-2020-01-03
+python ../scripts/02-dock-and-prep.py --molecules $PREFIX.csv --index $JOBID --output $PREFIX

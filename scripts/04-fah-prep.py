@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
             if args.clean:
                 for sdpair in oechem.OEGetSDDataPairs(molecule):
-                    if sdpair.GetTag() not in ['Hybrid2', 'fragments', 'site', 'run']:
+                    if sdpair.GetTag() not in ['Hybrid2', 'docked_fragment', 'fragments', 'site', 'run']:
                         oechem.OEDeleteSDData(molecule, sdpair.GetTag())
 
             # Copy files
