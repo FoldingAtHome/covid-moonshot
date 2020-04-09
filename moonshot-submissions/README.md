@@ -6,6 +6,8 @@ For ensemble docking methodology, see the [scripts directory](../scripts).
 ![ensemble of docked molecules](https://github.com/foldingathome/covid-moonshot/raw/master/moonshot-submissions/docked-molecules.png "Ensemble of docked molecules")
 
 ## Latest files
+* `covid_submissions_all_info-2020-04-06.csv` - All COVID Moonshot molecules updated 16:25 PST April 6, 2020 from [main github repo](https://discuss.postera.ai/t/updated-list-of-all-submissions/17/1)
+
 * `covid_submissions_with_warhead_info-docked-justscores.csv` - COVID Moonshot molecules as of Round 2 close on 2 Apr 2020, docked into user-specified design fragment structures, with only the best scores (over all fragment structures) preserved
   * `SMILES`: SMILES for compound
   * `TITLE`: the compound ID (CID)
