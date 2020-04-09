@@ -4,7 +4,7 @@ This repository contains all the scripts and output for docking and free energy 
 
 ## Author
 
-John D. Chodera (MSKCC) `<john.chodera@choderalab.org>`
+John D. Chodera (MSKCC) `<john.chodera@choderalab.org>` and Matt Hurley `<Matt Hurley <tug27224@temple.edu>`
 
 ## Manifest
 * `diamond-structures/` - source structures of SARS-CoV-2 main viral protease from [DiamondMX/XChem](https://www.diamond.ac.uk/covid-19/for-scientists/Main-protease-structure-and-XChem.html)
