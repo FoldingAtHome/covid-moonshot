@@ -15,6 +15,7 @@ to
 ```
 CCCCCCCCCC(C[O-]C(C)C)C1=CC(P)=CC2CCNC12,J-UNK-57a-1,j,x0820,FALSE,FALSE,FALSE,https://covid.postera.ai/covid/submissions/57ae77f4-67f2-42f0-80f2-cf3ab5890fea,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
 ```
+in order to get OpenEye to read the whole file.
 
 * `covid_submissions_with_warhead_info-docked-justscores.csv` - COVID Moonshot molecules as of Round 2 close on 2 Apr 2020, docked into user-specified design fragment structures, with only the best scores (over all fragment structures) preserved
   * `SMILES`: SMILES for compound
