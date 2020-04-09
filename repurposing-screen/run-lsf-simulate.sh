@@ -3,7 +3,7 @@
 # Dock Broad repurposing library
 
 
-#BSUB -W 3:00
+#BSUB -W 6:00
 #BSUB -R "rusage[mem=2]"
 #BSUB -n 1
 #BSUB -R "span[ptile=1]"
@@ -22,5 +22,10 @@ source ~/.bashrc
 
 source activate perses
 
+#export PREFIX="14288275.moonshot-aggregate.out"
+#export PREFIX="drugbank-5.1.5-2020-01-03"
+#export PREFIX="drugset"
+export PREFIX="broad-repurposing-library-20200324"
+
 let JOBID=$LSB_JOBINDEX-1
-python ../scripts/02-dock-and-prep.py --molecules broad-repurposing-library-20200324.csv --index $JOBID --output broad-repurposing-docked --simulate
+python ../scripts/02-dock-and-prep.py --molecules $PREFIX.csv --index $JOBID --output $PREFIX --simulate

@@ -10,6 +10,8 @@ covalent_warhead_smarts = {
     'chloroacetamide_adduct' : 'S[C:1]C(N)=O',
     'vinylsulfonamide' : 'NS(=O)([C;H1]=[C;H2:1])=O',
     'vinylsulfonamide_adduct' : 'NS(=O)(C[C:1]S)=O',
+    'nitrile' : 'N#[C:1]-[*]',
+    'nitrile_adduct' : 'C-S-[C:1](=N)',
     }
 
 # Read ligands
@@ -137,9 +139,9 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     # Set up Omega
     #print('Expanding conformers...')
     from openeye import oeomega
-    omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
-    #omegaOpts = oeomega.OEOmegaOptions()
-    omegaOpts.SetMaxConfs(500)
+    #omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
+    omegaOpts = oeomega.OEOmegaOptions()
+    #omegaOpts.SetMaxConfs(500)
     omegaOpts.SetMaxSearchTime(60.0) # time out
     omega = oeomega.OEOmega(omegaOpts)
     omega.SetStrictStereo(False) # enumerate sterochemistry if uncertain
@@ -487,7 +489,7 @@ def ensemble_dock(molecule, fragments_to_dock_to, covalent=False):
 
     # Populate site info
     fragment = oechem.OEGetSDData(docked_molecule, 'docked_fragment')
-    if fragment in active_site_fragments:
+    if fragment in noncovalent_active_site_fragments:
         oechem.OESetSDData(docked_molecule, 'site', 'active-noncovalent')
     elif fragment in covalent_active_site_fragments:
         oechem.OESetSDData(docked_molecule, 'site', 'active-covalent')
@@ -546,14 +548,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Make a list of all fragment sites to dock to
-    active_site_fragments = ['x0072', 'x0104', 'x0107', 'x0161', 'x0195', 'x0305', 'x0354', 'x0387', 'x0395', 'x0397', 'x0426', 'x0434', 'x0540',
+    noncovalent_active_site_fragments = ['x0072', 'x0104', 'x0107', 'x0161', 'x0195', 'x0305', 'x0354', 'x0387', 'x0395', 'x0397', 'x0426', 'x0434', 'x0540',
         'x0678', 'x0874', 'x0946', 'x0967', 'x0991', 'x0995', 'x1077', 'x1093', 'x1249']
     covalent_active_site_fragments = ['x0689', 'x0691', 'x0692', 'x0705','x0708', 'x0731', 'x0734', 'x0736', 'x0749', 'x0752', 'x0755', 'x0759',
     'x0769', 'x0770', 'x0771', 'x0774', 'x0786', 'x0820', 'x0830', 'x0831', 'x0978', 'x0981', 'x1308', 'x1311', 'x1334', 'x1336', 'x1348',
     'x1351', 'x1358', 'x1374', 'x1375', 'x1380', 'x1382', 'x1384', 'x1385', 'x1386', 'x1392', 'x1402', 'x1412', 'x1418', 'x1425', 'x1458',
     'x1478', 'x1493']
     dimer_interface_fragments = ['x0887', 'x1187']
-    all_fragments = active_site_fragments + covalent_active_site_fragments + dimer_interface_fragments
+    all_fragments = noncovalent_active_site_fragments + covalent_active_site_fragments + dimer_interface_fragments
 
     # Make output directory
     import os
@@ -569,14 +571,15 @@ if __name__ == '__main__':
     # Filter molecules with covalent warheads
     if args.covalent:
         from openeye import oechem
-        print('Only filtering covalent fragments')
-        # TODO: Use SMARTS patterns instead of relying on 'covalent_warhead' field
-        molecules = [molecule for molecule in molecules if oechem.OEGetSDData(molecule, 'covalent_warhead')=='TRUE']
-        print(f'{len(molecules)} remain after filtering')
+        # Only filter if the tag is provided; otherwise assume all data is for covalent inhibitors
+        if oechem.OEHasSDData(molecules[0], 'covalent_warhead'):
+            print('Only filtering covalent fragments')
+            # TODO: Use SMARTS patterns instead of relying on 'covalent_warhead' field
+            molecules = [molecule for molecule in molecules if oechem.OEGetSDData(molecule, 'covalent_warhead')=='TRUE']
+            print(f'{len(molecules)} remain after filtering')
 
     # Extract molecule
     molecule = molecules[args.molecule_index]
-
 
     # Replace title if there is none
     import os
@@ -589,12 +592,17 @@ if __name__ == '__main__':
     from openeye import oechem
     sdf_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - ligand.sdf')
     if not os.path.exists(sdf_filename):
-        # Dock the molecule
-        if args.userfrags:
-            fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')
-            docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=args.covalent)
+        # Determine what fragments to dock to
+        if args.covalent:
+            fragments_to_dock_to = covalent_active_site_fragments
         else:
-            docked_molecule = ensemble_dock(molecule, all_fragments, covalent=args.covalent)
+            fragments_to_dock_to = all_fragments
+
+        if args.userfrags:
+            if oechem.OEHasSDData(molecule, 'fragments'):                
+                fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')
+        # Dock the molecule
+        docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=args.covalent)
     else:
         # Read the molecule
         print(f'Docked molecule exists, so reading from {sdf_filename}')
