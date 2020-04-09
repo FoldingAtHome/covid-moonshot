@@ -7,6 +7,14 @@ For ensemble docking methodology, see the [scripts directory](../scripts).
 
 ## Latest files
 * `covid_submissions_all_info-2020-04-06.csv` - All COVID Moonshot molecules updated 16:25 PST April 6, 2020 from [main github repo](https://discuss.postera.ai/t/updated-list-of-all-submissions/17/1)
+One line had to be fixed:
+```
+CCCCCCCCCC(~C~[O-]C(C)C)C1=CC(P)=CC2CCNC12,J-UNK-57a-1,j,x0820,FALSE,FALSE,FALSE,https://covid.postera.ai/covid/submissions/57ae77f4-67f2-42f0-80f2-cf3ab5890fea,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
+```
+to
+```
+CCCCCCCCCC(C[O-]C(C)C)C1=CC(P)=CC2CCNC12,J-UNK-57a-1,j,x0820,FALSE,FALSE,FALSE,https://covid.postera.ai/covid/submissions/57ae77f4-67f2-42f0-80f2-cf3ab5890fea,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
+```
 
 * `covid_submissions_with_warhead_info-docked-justscores.csv` - COVID Moonshot molecules as of Round 2 close on 2 Apr 2020, docked into user-specified design fragment structures, with only the best scores (over all fragment structures) preserved
   * `SMILES`: SMILES for compound

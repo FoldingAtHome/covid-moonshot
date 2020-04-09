@@ -24,7 +24,7 @@ source activate perses
 #export PREFIX="covid_submissions_all_info"
 #export PREFIX="covalent_warhead_df"
 #export PREFIX="nir-london-2020-03-07"
-export PREFIX="covid_submissions_all_info"
+export PREFIX="covid_submissions_all_info-2020-04-06"
 
 let JOBID=$LSB_JOBINDEX-1
 #python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --userfrags --covalent
