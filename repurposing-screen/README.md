@@ -10,18 +10,18 @@ Currently, only the Broad repurposing library (below) has been fully docked.
 
 Dataset from the [Broad Drug Repurposing Hub Library](https://clue.io/repurposing) as of 2020-03-24
 
-* `broad-repurposing-docked.csv` - docked summary statistics
+* `broad-repurposing-library-20200324-docked.csv` - docked summary statistics
   * `SMILES`: SMILES for compound
   * `TITLE`: the compound ID (CID)
   * `Hybrid2`: docking score (lower is better)
   * `fragments`: fragment ID for corresponding fragment X-ray structure for best docked pose; corresponding structures are in [`../receptors/monomer/Mpro-{fragment}-protein.pdb`](https://github.com/FoldingAtHome/covid-moonshot/tree/master/receptors/monomer)
-* `broad-repurposing-docked.sdf` - SDF file containing docked poses of top hits, with `fragments` SD tag indicating which structure they are docked to
-* `broad-repurposing-docked.{pdb,mol2}` - PDB and Tripos mol2 versions docked poses from `broad-repurposing-docked.sdf` without annotations
+* `broad-repurposing-library-20200324-docked.sdf` - SDF file containing docked poses of top hits, with `fragments` SD tag indicating which structure they are docked to
+* `broad-repurposing-library-20200324-docked.{pdb,mol2}` - PDB and Tripos mol2 versions docked poses from `broad-repurposing-library-20200324-docked.sdf` without annotations
 * `broad-repurposing-library-20200324.{txt,csv}` - undocked Broad Institute repurposing library downloaded from https://clue.io/repurposing#download-data
 
-To inspect the top hits, please view `broad-repurposing-docked.csv`.
+To inspect the top hits, please view `broad-repurposing-library-20200324-docked.csv`.
 
-To view the docked poses, please first load [`../receptors/monomer/Mpro-x0336-protein.pdb`](`broad-repurposing-docked.csv`) (you may need to click the `Raw` button to download the PDB file to your machine) and load the `broad-repurposing-docked.{sdf,pdb,mol2}` file in your favorite format.
+To view the docked poses, please first load [`../receptors/monomer/Mpro-x0336-protein.pdb`](`broad-repurposing-library-20200324-docked.csv`) (you may need to click the `Raw` button to download the PDB file to your machine) and load the `broad-repurposing-library-20200324-docked.{sdf,pdb,mol2}` file in your favorite format.
 
 #### Primary conclusions so far
 
@@ -45,11 +45,11 @@ If this was >0.6, the fragment was added to the overlapping_fragments list.
 
 See the following files:
 
-* `broad-repurposing-docked-overlap/` - directory containing each docked repurposing compound with its highly-overlapping fragments, sorted by the fraction of the fragment space spanned (best to worst)
-* `broad-repurposing-docked-overlap.csv` - docked compounds, sorted from best to worst fragment overlap
-* `broad-repurposing-docked-overlap.sdf` - docked structures with annotations as SD tags, sorted from best to worst overlap score
-* `broad-repurposing-docked-overlap.pdb` - docked structures, sorted from best to worst overlap score
-* `broad-repurposing-docked-overlap.mol2` - docked structures, sorted from best to worst overlap score
+* `broad-repurposing-library-20200324-docked-overlap/` - directory containing each docked repurposing compound with its highly-overlapping fragments, sorted by the fraction of the fragment space spanned (best to worst)
+* `broad-repurposing-library-20200324-docked-overlap.csv` - docked compounds, sorted from best to worst fragment overlap
+* `broad-repurposing-library-20200324-docked-overlap.sdf` - docked structures with annotations as SD tags, sorted from best to worst overlap score
+* `broad-repurposing-library-20200324-docked-overlap.pdb` - docked structures, sorted from best to worst overlap score
+* `broad-repurposing-library-20200324-docked-overlap.mol2` - docked structures, sorted from best to worst overlap score
 
 ### Drugbank 5.1.5 (2020-01-03)
 
@@ -104,13 +104,6 @@ The resulting hit list reports the best (most negative) docking score for each m
 
 ### Commands used
 
-```bash
-# Iterate over all molecules
-for JOBID in {1..10147}
-do
-  python ../scripts/02-dock-and-prep.py --molecules broad-repurposing-library-20200324.csv --receptors ../receptors --output repurposing-screen-docked --index $JOBID
-done
-# Aggregate data
-python ../scripts/03-aggregate-docking-results.py --docked repurposing-screen-docked --output broad-repurposing-docked.csv --clean
-python ../scripts/03-aggregate-docking-results.py --docked repurposing-screen-docked --output broad-repurposing-docked.sdf
-```
+* `run-lsf-dock.sh`
+* `run-lsf-simulate.sh`
+* `run-lsf-aggregate.sh`
