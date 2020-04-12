@@ -23,6 +23,17 @@ To inspect the top hits, please view `broad-repurposing-docked.csv`.
 
 To view the docked poses, please first load [`../receptors/monomer/Mpro-x0336-protein.pdb`](`broad-repurposing-docked.csv`) (you may need to click the `Raw` button to download the PDB file to your machine) and load the `broad-repurposing-docked.{sdf,pdb,mol2}` file in your favorite format.
 
+#### Primary conclusions so far
+
+##### Vonoprozan
+
+The top docking hit in the Broad repurposing screen is the proton pump inhibitor (PPI) [vonoprzzan](https://www.drugbank.ca/drugs/DB11739), developed by Takeda, used in the treatment of acid reflux diseases like GERD.
+While most PPIs are prodrugs that undergo acid-catalyzed activation and then irreversibly inhibit the gastric proton pump enzyme H+,K+-ATPase by covalently attaching to specific cysteine residues, vonoprazan is the first member of a new class of potassium-competitive acid blocker (P-CAB) that instead reversibly competes for K+ ion binding [[DOI](https://doi.org/10.1007/s40265-015-0368-z)].
+
+Recently, an [experimental repurposing screen](https://www.biorxiv.org/content/10.1101/2020.04.03.023846v1) of the [Prestwick Chemical Library of FDA-approved drugs](http://www.prestwickchemical.com/libraries-screening-lib-pcl.html) identified vonoprazan as having more potency in restroing cell viability 3 days following SARS-CoV-2 infection than the arbidol (a broad spectrum antiviral that blocks viral entry of many enveloped viruses) when applied at 10 uM concentration to VeroE6 cell lines[[DOI](https://www.biorxiv.org/content/10.1101/2020.04.03.023846v1)].
+However, since three PPIs (omeprazole, chloroquine diphosphate, and hydroxychloroquine sulfate) were also identified as having antiviral activity, leading to the suggested hypothesis that these compounds may act by increasing the pH of the endosomal/golgian pathway and thereby limit processing of the viral spike protein by endosomal proteases, thereby blocking viral entry, rather than through direct binding of viral targets.
+While vonoprozan does have measurable biodistribution to the lung, it appears to be to a much lesser degree than the target organ (stomach) [[DOI](https://doi.org/10.1038/s41401-019-0353-2)].
+
 #### Fragment overlap
 
 All the fragments were used to define a set of Gaussians "colored" by interaction types using the [OpenEye Shape Toolkit](https://docs.eyesopen.com/toolkits/python/shapetk/index.html).
