@@ -63,7 +63,19 @@ Dataset from [Drugbank](https://www.drugbank.ca/releases/latest#structures) 5.1.
   * `Hybrid2`: docking score (lower is better)
   * `fragments`: fragment ID for corresponding fragment X-ray structure for best docked pose; corresponding structures are in `../receptors/Mpro-{fragment}-protein.pdb`
 * `drugbank-5.1.5-2020-01-03-docked.sdf` - docked structures
-* `drugbank-5.1.5-2020-01-03.csv`
+* `drugbank-5.1.5-2020-01-03.csv` - original compounds prior to docking
+
+### drugset
+
+Another drug repurposing screening set of unknown origin.
+
+* `drugset-docked.csv` - docked summary statistics
+  * `SMILES`: SMILES for compound
+  * `TITLE`: the compound ID (CID)
+  * `Hybrid2`: docking score (lower is better)
+  * `fragments`: fragment ID for corresponding fragment X-ray structure for best docked pose; corresponding structures are in `../receptors/Mpro-{fragment}-protein.pdb`
+* `drugset-docked.sdf` - docked structures
+* `drugset.csv` - original compounds prior to docking
 
 ## Method
 
