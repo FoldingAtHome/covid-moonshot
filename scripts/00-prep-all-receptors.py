@@ -45,7 +45,8 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
 
     # Check if receptor already exists
     receptor_filename = f'{prefix}-receptor.oeb.gz'
-    if os.path.exists(receptor_filename):
+    thiolate_receptor_filename = f'{prefix}-receptor-thiolate.oeb.gz'
+    if os.path.exists(receptor_filename) and os.path.exists(thiolate_receptor_filename):
         return
 
     # Read in PDB file
@@ -81,6 +82,7 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
     design_unit.GetProtein(protein)
     ligand = oechem.OEGraphMol()
     design_unit.GetLigand(ligand)
+
     receptor = oechem.OEGraphMol()
     oedocking.OEMakeReceptor(receptor, protein, ligand)
     oedocking.OEWriteReceptorFile(receptor, receptor_filename)
@@ -99,13 +101,35 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
     with open(f'{prefix}-protein.pdb', 'wt') as outfile:
         outfile.write(''.join(pdbfile_lines))
 
-if __name__ == '__main__':
-    for dimer in [True, False]:
+    # Adjust protonation state of CYS145 to generate thiolate form
+    pred = oechem.OEAtomMatchResidue(["CYS:145: :A"])
+    for atom in protein.GetAtoms(pred):
+        if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_SG:
+            oechem.OESuppressHydrogens(atom)
+            atom.SetFormalCharge(-1)
+            atom.SetImplicitHCount(0)
 
+    # Write thiolate form of receptor
+    receptor = oechem.OEGraphMol()
+    oedocking.OEMakeReceptor(receptor, protein, ligand)
+    oedocking.OEWriteReceptorFile(receptor, thiolate_receptor_filename)
+
+    with oechem.oemolostream(f'{prefix}-protein-thiolate.pdb') as ofs:
+        oechem.OEWriteMolecule(ofs, protein)
+
+    # Filter out UNK from PDB files (which have covalent adducts)
+    pdbfile_lines = [ line for line in open(f'{prefix}-protein-thiolate.pdb', 'r') if 'UNK' not in line ]
+    with open(f'{prefix}-protein-thiolate.pdb', 'wt') as outfile:
+        outfile.write(''.join(pdbfile_lines))
+
+
+if __name__ == '__main__':
+    for dimer in [False, True]:
         if dimer:
             output_basepath = '../receptors/dimer'
         else:
             output_basepath = '../receptors/monomer'
+
         os.makedirs(output_basepath, exist_ok=True)
 
         def prepare_receptor_wrapper(complex_pdb_file):
