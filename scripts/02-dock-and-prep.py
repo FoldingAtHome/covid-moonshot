@@ -194,7 +194,7 @@ def extract_fragment_from_filename(filename):
     """
 
     import re
-    match = re.search('Mpro-(?P<fragment>x\d+)-receptor.oeb.gz', filename)
+    match = re.search('Mpro-(?P<fragment>x\d+)-receptor', filename)
     fragment = match.group('fragment')
     return fragment
 
@@ -461,7 +461,10 @@ def ensemble_dock(molecule, fragments_to_dock_to, covalent=False):
     print(f'Docking {molecule.GetTitle()} to {len(fragments_to_dock_to)} fragment structures...')
     docked_molecules = list()
     for fragment in tqdm(fragments_to_dock_to):
-        receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
+        if covalent:
+            receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor-thiolate.oeb.gz')
+        else:
+            receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
         if not os.path.exists(receptor_filename):
             # Skip receptors that are not set up
             continue
@@ -642,7 +645,10 @@ if __name__ == '__main__':
 
     # Read receptor
     fragment = oechem.OEGetSDData(docked_molecule, 'docked_fragment')
-    receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
+    if args.covalent:
+        receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor-thiolate.oeb.gz')
+    else:
+        receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
     print(f'Reading receptor from {receptor_filename}')
     from openeye import oechem, oedocking
     receptor = oechem.OEGraphMol()
@@ -650,7 +656,10 @@ if __name__ == '__main__':
         oechem.OEThrow.Fatal("Unable to read receptor")
 
     # Write receptor
-    output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - protein.pdb')
+    if args.covalent:
+        output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - protein-thiolate.pdb')
+    else:
+        output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - protein.pdb')
     if not os.path.exists(output_filename):
         with oechem.oemolostream(output_filename) as ofs:
             oechem.OEWriteMolecule(ofs, receptor)
