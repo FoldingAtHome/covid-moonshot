@@ -66,12 +66,23 @@ if __name__ == '__main__':
     docked_molecules.sort(key=score)
 
     # Write molecules in sorted order to CSV
+    # TODO: Translate into final format
     print(f'Writing sorted molecules to {args.output_filename}')
     with oechem.oemolostream(args.output_filename) as ofs:
         for molecule in tqdm(docked_molecules):
             if args.clean:
                 for sdpair in oechem.OEGetSDDataPairs(molecule):
-                    if sdpair.GetTag() not in ['Hybrid2', 'docked_fragment', 'fragments', 'site', 'covalent_distance_min', 'covalent_distance_mean', 'covalent_distance_stderr']:
+                    tag = sdpair.GetTag()
+                    value = sdpair.GetValue()
+                    if tag not in ['Hybrid2', 'docked_fragment', 'fragments', 'site', 'covalent_distance_min', 'covalent_distance_mean', 'covalent_distance_stderr']:
                         oechem.OEDeleteSDData(molecule, sdpair.GetTag())
+                    # Translate into final format
+                    elif tag == 'Hybrid2':
+                        oechem.OESetSDData(molecule, 'Chemgauss4', value)
+                        oechem.OEDeleteSDData(molecule, tag)
+                    elif tag == 'fragments':
+                        oechem.OESetSDData(molecule, 'inspiration frags', value)
+                        oechem.OEDeleteSDData(molecule, tag)
             oechem.OEWriteMolecule(ofs, molecule)
-    
+
+

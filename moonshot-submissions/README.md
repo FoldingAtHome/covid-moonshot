@@ -5,6 +5,17 @@ For ensemble docking methodology, see the [scripts directory](../scripts).
 
 ![ensemble of docked molecules](https://github.com/foldingathome/covid-moonshot/raw/master/moonshot-submissions/docked-molecules.png "Ensemble of docked molecules")
 
+## Final round 2 compounds 
+* `COVID_MS_final_selection_round_2-docked-justscores.csv` - scored/docked compounds from covalent round 2
+  * `SMILES`: SMILES for compound
+  * `TITLE`: the compound ID (CID)
+  * `Chemgauss4`: docking score (lower is better)
+  * `docked_fragment`: fragment ID for corresponding fragment X-ray structure for best docked pose; corresponding structures are in `../receptors/Mpro-{fragment}-protein.pdb`
+  * `covalent_distance_min`, `covalent_distance_mean`, `covalent_distance_stderr`: minimum, mean, and stderr of the mean distance (in A) between covalent warhead atom and CYS145 SG
+* `2020_04_07_Nir_covalent_filtered_and_rejects_Holly_7_April-docked.csv` - same as above, but with all fields preserved (except Rationale, which contains problematic characters)
+* `2020_04_07_Nir_covalent_filtered_and_rejects_Holly_7_April-docked.{sdf,pdb}` - same as above, but with docked poses and all tags (in SDF)
+* `COVID_MS_final_selection_round_2.csv` - initial list
+
 ## Constrained covalent docking of all compounds with covalent warheads as of 2020_04_07 from Holly, using thiolate form of CYS145
 * `2020_04_07_Nir_covalent_filtered_and_rejects_Holly_7_April-docked-justscores.csv` - noncovalent docking with just summary scores
   * `SMILES`: SMILES for compound
