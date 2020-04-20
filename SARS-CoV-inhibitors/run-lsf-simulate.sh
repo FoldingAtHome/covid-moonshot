@@ -9,8 +9,8 @@
 #BSUB -q gpuqueue
 #BSUB -gpu "num=1:mode=shared:mps=no:j_exclusive=yes"
 #BSUB -m "lt-gpu ls-gpu lu-gpu lp-gpu ld-gpu"
-#BSUB -o %J.moonshot-simulate.out
-#BSUB -J "moonshot-simulate[1-3719]"
+#BSUB -o %J.sars-simulate.out
+#BSUB -J "sars-simulate[1-115]"
 
 echo "Job $JOBID/$NJOBS"
 
@@ -20,7 +20,7 @@ source ~/.bashrc
 
 source activate perses
 
-export PREFIX="covid_submissions_all_info-2020-04-06"
+export PREFIX="SARS_2003_inhibitors"
 
 let JOBID=$LSB_JOBINDEX-1
-python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --userfrags --simulate
+python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --simulate

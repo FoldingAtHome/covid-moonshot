@@ -256,7 +256,7 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
     temperature = 300.0 * unit.kelvin
     timestep = 4.0 * unit.femtoseconds
     nsteps_per_iteration = 250
-    iterations = 1000
+    iterations = 10000 # 10 ns
 
     protein_forcefield = 'amber14/protein.ff14SB.xml'
     small_molecule_forcefield = 'openff-1.1.0'
