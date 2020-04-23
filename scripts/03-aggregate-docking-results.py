@@ -74,15 +74,31 @@ if __name__ == '__main__':
                 for sdpair in oechem.OEGetSDDataPairs(molecule):
                     tag = sdpair.GetTag()
                     value = sdpair.GetValue()
-                    if tag not in ['Hybrid2', 'docked_fragment', 'fragments', 'site', 'covalent_distance_min', 'covalent_distance_mean', 'covalent_distance_stderr']:
+                    if tag not in ['Hybrid2', 'docked_fragment', 'fragments', 'covalent_distance_min', 'covalent_distance_mean', 'covalent_distance_stderr']:
                         oechem.OEDeleteSDData(molecule, sdpair.GetTag())
                     # Translate into final format
                     elif tag == 'Hybrid2':
                         oechem.OESetSDData(molecule, 'Chemgauss4', value)
                         oechem.OEDeleteSDData(molecule, tag)
                     elif tag == 'fragments':
-                        oechem.OESetSDData(molecule, 'inspiration frags', value)
+                        oechem.OESetSDData(molecule, 'ref_mols', value + '_0')
                         oechem.OEDeleteSDData(molecule, tag)
+                    elif tag == 'docked_fragment':
+                        oechem.OESetSDData(molecule, 'ref_pdb', value + '_0')
+                        oechem.OEDeleteSDData(molecule, tag)
+                    elif tag == 'covalent_distance_min':
+                        oechem.OESetSDData(molecule, 'CYS145-warhead min dist (A)', value)
+                        oechem.OEDeleteSDData(molecule, tag)
+                    elif tag == 'covalent_distance_mean':
+                        oechem.OESetSDData(molecule, 'CYS145-warhead avg dist (A)', value)
+                        oechem.OEDeleteSDData(molecule, tag)
+                    elif tag == 'covalent_distance_stderr':
+                        oechem.OESetSDData(molecule, 'CYS145-warhead avg dist stderr (A)', value)
+                        oechem.OEDeleteSDData(molecule, tag)
+                # Add SMILES
+                # TODO: Use original SMILES instead
+                smiles = oechem.OEMolToSmiles(molecule)
+                oechem.OESetSDData(molecule, 'original SMILES', smiles)
             oechem.OEWriteMolecule(ofs, molecule)
 
 

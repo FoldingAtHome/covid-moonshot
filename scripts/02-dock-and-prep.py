@@ -87,14 +87,21 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     if covalent:
         # Identify which warheads are present in compound
         print('Finding warhead atoms...')
-        warheads_found = set()
+        warheads_found = dict()
         for warhead_type in covalent_warhead_smarts.keys():
             warhead_atom_index = get_covalent_warhead_atom(molecule, warhead_type)
             if warhead_atom_index is not None:
-                warheads_found.add(warhead_type)
+                warheads_found[warhead_type] = warhead_atom_index
                 print(f'* Covalent warhead atom found: {warhead_type} {warhead_atom_index}')
+        # remove nitriles if there is more than one
+        if (len(warheads_found) > 1) and ('nitrile' in warheads_found):
+            print('Removing nitrile since multiple warheads found.')
+            del warheads_found['nitrile']
+        # Raise an exception if there are still multiple warheads
         if len(warheads_found) > 1:
             raise Exception('Multiple covalent warheads found for {molecule.GetTitle()}')
+        (warhead_type, warhead_atom_index), = warheads_found.items()
+        warheads_found = set(warheads_found.keys())
 
         # Initialize covalent constraints
         customConstraints = oedocking.OEReceptorGetCustomConstraints(receptor)
