@@ -35,6 +35,7 @@ def read_csv_molecules(filename):
     with oechem.oemolistream(filename) as ifs:
         while oechem.OEReadCSVFile(ifs, mol):
             molecules.append(oechem.OEMol(mol))
+    # TODO: Also store original SMILES as "original SMILES"
     return molecules
 
 def score(molecule, field='Hybrid2'):
@@ -42,6 +43,35 @@ def score(molecule, field='Hybrid2'):
     from openeye import oechem
     value = oechem.OEGetSDData(molecule, field)
     return float(value)
+
+def find_warheads(molecule):
+    """Find covalent warheads
+
+    Parameters
+    ----------
+    molecule : OEMol
+      The molecule
+
+    Returns
+    -------
+    warheads_found : dict
+       warheads_found[warhead_type] corresponds to atom index of heavy atom that forms covalent adduct
+
+    """
+    # Identify which warheads are present in compound
+    print('Finding warhead atoms...')
+    warheads_found = dict()
+    for warhead_type in covalent_warhead_smarts.keys():
+        warhead_atom_index = get_covalent_warhead_atom(molecule, warhead_type)
+        if warhead_atom_index is not None:
+            warheads_found[warhead_type] = warhead_atom_index
+            print(f'* Covalent warhead atom found: {warhead_type} {warhead_atom_index}')
+    # remove nitriles if there is more than one
+    if (len(warheads_found) > 1) and ('nitrile' in warheads_found):
+        print('Removing nitrile since multiple warheads found.')
+        del warheads_found['nitrile']
+
+    return warheads_found
 
 def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     """
@@ -85,18 +115,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
 
     # Add covalent restraint if specified
     if covalent:
-        # Identify which warheads are present in compound
-        print('Finding warhead atoms...')
-        warheads_found = dict()
-        for warhead_type in covalent_warhead_smarts.keys():
-            warhead_atom_index = get_covalent_warhead_atom(molecule, warhead_type)
-            if warhead_atom_index is not None:
-                warheads_found[warhead_type] = warhead_atom_index
-                print(f'* Covalent warhead atom found: {warhead_type} {warhead_atom_index}')
-        # remove nitriles if there is more than one
-        if (len(warheads_found) > 1) and ('nitrile' in warheads_found):
-            print('Removing nitrile since multiple warheads found.')
-            del warheads_found['nitrile']
+        warheads_found = find_warheads(molecule)
         # Raise an exception if there are still multiple warheads
         if len(warheads_found) > 1:
             raise Exception('Multiple covalent warheads found for {molecule.GetTitle()}')
@@ -124,7 +143,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
             smarts = covalent_warhead_smarts[warhead_type]
             print(f'Adding constraint for SMARTS pattern {smarts}')
             feature.AddSmarts(smarts)
-        sphereRadius = 2.0 # Angstroms
+        sphereRadius = 4.0 # Angstroms
         sphereCenter = oechem.OEFloatArray(3)
         receptor.GetCoords(proteinHeavyAtom, sphereCenter)
         sphere = feature.AddSphere()
@@ -548,12 +567,12 @@ if __name__ == '__main__':
                         help='base directory for produced output (default: docked/)')
     parser.add_argument('--simulate', dest='simulate', action='store_true', default=False,
                         help='prepare for simulation in OpenMM and gromacs (default: False)')
+    parser.add_argument('--fahprep', dest='fahprep', action='store_true', default=False,
+                        help='prepare for Folding@home (default: False)')
     parser.add_argument('--transfer', dest='transfer', action='store_true', default=False,
                         help='transfer simulation data (default: False)')
     parser.add_argument('--userfrags', dest='userfrags', action='store_true', default=False,
                         help='if True, will only dock to user-specified fragment inspirations (default: False)')
-    parser.add_argument('--covalent', dest='covalent', action='store_true', default=False,
-                        help='if True, will attempt to place warhead in vicinity of CYS145 SG (default: False)')
 
     args = parser.parse_args()
 
@@ -578,18 +597,15 @@ if __name__ == '__main__':
     if not ((0 <= args.molecule_index) and (args.molecule_index < len(molecules))):
         raise Exception(f'--index <index> must be between 0 and {len(molecules)} for {args.molecules_filename}')
 
-    # Filter molecules with covalent warheads
-    if args.covalent:
-        from openeye import oechem
-        # Only filter if the tag is provided; otherwise assume all data is for covalent inhibitors
-        if oechem.OEHasSDData(molecules[0], 'covalent_warhead'):
-            print('Only filtering covalent fragments')
-            # TODO: Use SMARTS patterns instead of relying on 'covalent_warhead' field
-            molecules = [molecule for molecule in molecules if oechem.OEGetSDData(molecule, 'covalent_warhead')=='TRUE']
-            print(f'{len(molecules)} remain after filtering')
-
     # Extract molecule
     molecule = molecules[args.molecule_index]
+
+    # Determine whether molecule is covalent
+    from openeye import oechem
+    is_covalent = False
+    warheads_found = find_warheads(molecule)
+    if len(warheads_found.keys()) > 0:
+        is_covalent = True
 
     # Replace title if there is none
     import os
@@ -603,7 +619,7 @@ if __name__ == '__main__':
     sdf_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - ligand.sdf')
     if not os.path.exists(sdf_filename):
         # Determine what fragments to dock to
-        if args.covalent:
+        if is_covalent:
             fragments_to_dock_to = covalent_active_site_fragments
         else:
             fragments_to_dock_to = all_fragments
@@ -612,7 +628,7 @@ if __name__ == '__main__':
             if oechem.OEHasSDData(molecule, 'fragments'):                
                 fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')
         # Dock the molecule
-        docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=args.covalent)
+        docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=is_covalent)
     else:
         # Read the molecule
         print(f'Docked molecule exists, so reading from {sdf_filename}')
@@ -650,9 +666,12 @@ if __name__ == '__main__':
         with oechem.oemolostream(output_filename) as ofs:
             oechem.OEWriteMolecule(ofs, docked_molecule)
 
+    use_thiolate = True # use thiolate form of CYS145
+
     # Read receptor
     fragment = oechem.OEGetSDData(docked_molecule, 'docked_fragment')
-    if args.covalent:
+    receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor-thiolate.oeb.gz')
+    if use_thiolate:
         receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor-thiolate.oeb.gz')
     else:
         receptor_filename = os.path.join(args.receptor_basedir, f'Mpro-{fragment}-receptor.oeb.gz')
@@ -663,7 +682,7 @@ if __name__ == '__main__':
         oechem.OEThrow.Fatal("Unable to read receptor")
 
     # Write receptor
-    if args.covalent:
+    if use_thiolate:
         output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - protein-thiolate.pdb')
     else:
         output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - protein.pdb')
@@ -704,13 +723,13 @@ if __name__ == '__main__':
             oechem.OEWritePDBFile(ofs, docked_molecule, oechem.OEOFlavor_PDB_Default | oechem.OEOFlavor_PDB_BONDS)
 
     # Prepare simulation
-    if args.simulate:
-        prepare_simulation(docked_molecule, args.output_basedir, covalent=args.covalent)
+    if (args.simulate and is_covalent) or args.fahprep:
+        prepare_simulation(docked_molecule, args.output_basedir, covalent=is_covalent)
 
     if args.transfer:
         transfer_data(docked_molecule, args.output_basedir)
 
-    if args.covalent and args.simulate:
+    if is_covalent and args.simulate:
         # Write molecule as SDF with updated distance measurements
         output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - ligand.sdf')
         with oechem.oemolostream(output_filename) as ofs:
