@@ -5,6 +5,18 @@ For ensemble docking methodology, see the [scripts directory](../scripts).
 
 ![ensemble of docked molecules](https://github.com/foldingathome/covid-moonshot/raw/master/moonshot-submissions/docked-molecules.png "Ensemble of docked molecules")
 
+# All submissions (covalent and noncovalent) as of 2020-04-23
+* `covid_submissions_all_info_ensemble-oedocking.sdf` - formatted for [Fragalysis SDF spec](https://discuss.postera.ai/t/providing-computed-poses-for-others-to-look-at/1155)
+  * `SMILES`: SMILES for compound
+  * `TITLE`: the compound ID (CID)
+  * `Chemgauss4`: docking score (lower is better)
+  * `docked_fragment`: fragment ID for corresponding fragment X-ray structure for best docked pose; corresponding structures are in `../receptors/Mpro-{fragment}-protein.pdb`
+  * `covalent_distance_min`, `covalent_distance_mean`, `covalent_distance_stderr`: minimum, mean, and stderr of the mean distance (in A) between covalent warhead atom and CYS145 SG
+* `covid_submissions_all_info_ensemble-docked.csv` - same as above, but with all fields preserved (except Rationale, which contains problematic characters)
+* `covid_submissions_all_info_ensemble-docked.{sdf,pdb}` - same as above, but with docked poses and all tags (in SDF)
+* `covid_submissions_all_info_ensemble-docking-justscores.csv` - summary, sorted by hits
+* `covid_submissions_all_info-2020-04-23.csv` - initial list from [repo](https://github.com/mc-robinson/COVID_moonshot_submissions/blob/master/covid_submissions_all_info.csv) with Rationale field deleted (since it contains prolematic characters)
+
 ## Final round 2 compounds 
 * `COVID_MS_final_selection_round_2-docked-justscores.csv` - scored/docked compounds from covalent round 2
   * `SMILES`: SMILES for compound
