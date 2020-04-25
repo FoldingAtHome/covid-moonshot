@@ -8,7 +8,7 @@
 #BSUB -R "span[ptile=1]"
 #BSUB -q cpuqueue
 #BSUB -o %J.moonshot-dock.out
-#BSUB -J "moonshot-dock[1-203]"
+#BSUB -J "moonshot-dock[1-4373]"
 
 echo "Job $JOBID/$NJOBS"
 
@@ -23,8 +23,8 @@ source activate perses
 #export PREFIX="nir-london-2020-03-07"
 #export PREFIX="covid_submissions_all_info-2020-04-06"
 #export PREFIX="2020_04_07_Nir_covalent_filtered_and_rejects_Holly_7_April"
-export PREFIX="COVID_MS_final_selection_round_2"
+#export PREFIX="COVID_MS_final_selection_round_2"
+export PREFIX="covid_submissions_all_info-2020-04-23"
 
 let JOBID=$LSB_JOBINDEX-1
-python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --covalent
-#python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --userfrags
+python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --userfrags
