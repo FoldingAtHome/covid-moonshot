@@ -109,6 +109,9 @@ if __name__ == '__main__':
                         oechem.OEDeleteSDData(molecule, sdpair.GetTag())
                     # Translate into fragalysis
                     if args.fragalysis:
+                        # Remove hydrogens
+                        oechem.OESuppressHydrogens(molecule, True)
+                        # Remap SD tags
                         if tag == 'Hybrid2':
                             oechem.OESetSDData(molecule, 'Chemgauss4', value)
                             oechem.OEDeleteSDData(molecule, tag)
