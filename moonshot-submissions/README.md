@@ -3,9 +3,8 @@
 This directory contains docked COVID Moonshot user submissions and screened fragments for comparison.
 For ensemble docking methodology, see the [scripts directory](../scripts).
 
-![ensemble of docked molecules](https://github.com/foldingathome/covid-moonshot/raw/master/moonshot-submissions/docked-molecules.png "Ensemble of docked molecules")
-
 # All submissions (covalent and noncovalent) as of 2020-04-23
+Docked to monomer with thiolate form of CYS145 
 * `covid_submissions_all_info_ensemble-oedocking.sdf` - formatted for [Fragalysis SDF spec](https://discuss.postera.ai/t/providing-computed-poses-for-others-to-look-at/1155)
   * `SMILES`: SMILES for compound
   * `TITLE`: the compound ID (CID)
