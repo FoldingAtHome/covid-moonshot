@@ -102,12 +102,21 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
         outfile.write(''.join(pdbfile_lines))
 
     # Adjust protonation state of CYS145 to generate thiolate form
+    print('Deprotonating CYS145...')
     pred = oechem.OEAtomMatchResidue(["CYS:145: :A"])
     for atom in protein.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_SG:
             oechem.OESuppressHydrogens(atom)
             atom.SetFormalCharge(-1)
             atom.SetImplicitHCount(0)
+    # Adjust protonation states
+    print('Re-optimizing hydrogen positions...')
+    opts = oechem.OEPlaceHydrogensOptions()
+    opts.SetBypassPredicate(pred)
+    describe = oechem.OEPlaceHydrogensDetails()
+    success = oechem.OEPlaceHydrogens(protein, describe, opts)
+    if success:
+        oechem.OEUpdateDesignUnit(design_unit, protein, oechem.OEDesignUnitComponents_Protein)
 
     # Write thiolate form of receptor
     receptor = oechem.OEGraphMol()
