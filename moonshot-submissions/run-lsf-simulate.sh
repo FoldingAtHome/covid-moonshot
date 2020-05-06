@@ -10,7 +10,7 @@
 #BSUB -gpu "num=1:mode=shared:mps=no:j_exclusive=yes"
 #BSUB -m "lt-gpu ls-gpu lu-gpu lp-gpu ld-gpu"
 #BSUB -o %J.moonshot-simulate.out
-#BSUB -J "moonshot-simulate[1-4373]"
+#BSUB -J "moonshot-simulate[1-4685]"
 
 echo "Job $JOBID/$NJOBS"
 
@@ -20,9 +20,7 @@ source ~/.bashrc
 
 conda activate perses
 
-#export PREFIX="covid_submissions_all_info-2020-04-06"
-#export PREFIX="COVID_MS_final_selection_round_2"
-export PREFIX="covid_submissions_all_info-2020-04-23"
+export PREFIX="covid_submissions_all_info"
 
 let JOBID=$LSB_JOBINDEX-1
 python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --simulate
