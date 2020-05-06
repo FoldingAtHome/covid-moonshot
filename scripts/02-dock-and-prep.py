@@ -3,6 +3,10 @@ Dock specified ligand to all DiamondMX Mpro structures and prepare for alchemica
 
 """
 
+covalent_warhead_precedence = [
+    'acrylamide', 'acrylamide_adduct', 'chloroacetamide', 'chloroacetamide_adduct', 'vinylsulfonamide', 'vinylsulfonamide_adduct', 'nitrile', 'nitrile_adduct',
+]
+
 covalent_warhead_smarts = {
     'acrylamide' : '[C;H2:1]=[C;H1]C(N)=O',
     'acrylamide_adduct' : 'NC(C[C:1]S)=O',
@@ -58,7 +62,7 @@ def find_warheads(molecule):
        warheads_found[warhead_type] corresponds to atom index of heavy atom that forms covalent adduct
 
     """
-    # Identify which warheads are present in compound
+    # Identify highest priority warhead found in compound
     print('Finding warhead atoms...')
     warheads_found = dict()
     for warhead_type in covalent_warhead_smarts.keys():
@@ -66,10 +70,6 @@ def find_warheads(molecule):
         if warhead_atom_index is not None:
             warheads_found[warhead_type] = warhead_atom_index
             print(f'* Covalent warhead atom found: {warhead_type} {warhead_atom_index}')
-    # remove nitriles if there is more than one
-    if (len(warheads_found) > 1) and ('nitrile' in warheads_found):
-        print('Removing nitrile since multiple warheads found.')
-        del warheads_found['nitrile']
 
     return warheads_found
 
@@ -84,7 +84,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     receptor_filename : str
         Receptor to dock to
     covalent : bool, optional, default=False
-        If True, try to place covalent warhead in proximity to CYS145
+        If True, try to place covalent warheads in proximity to CYS145
 
     Returns
     -------
@@ -114,12 +114,8 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     success = dock.Initialize(receptor)
 
     # Add covalent restraint if specified
-    if covalent:
-        warheads_found = find_warheads(molecule)
-        # Raise an exception if there are still multiple warheads
-        if len(warheads_found) > 1:
-            raise Exception('Multiple covalent warheads found for {molecule.GetTitle()}')
-        (warhead_type, warhead_atom_index), = warheads_found.items()
+    warheads_found = find_warheads(molecule)
+    if covalent and len(warheads_found) > 0:
         warheads_found = set(warheads_found.keys())
 
         # Initialize covalent constraints
@@ -363,21 +359,10 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
         system = openmm_system_generator.create_system(modeller.topology)
 
         # If monitoring covalent distance, add an unused force
-        if covalent and phase=='complex':
+        warheads_found = find_warheads(molecule)
+        if covalent and phase=='complex' and len(warheads_found) > 0:
 
             # Find warhead atom indices
-            # TODO: Handle case where more than one warhead atom index exists
-            print('Finding warhead atoms...')
-            warhead_atom_indices = list()
-            for warhead_type in covalent_warhead_smarts.keys():
-                warhead_atom_index = get_covalent_warhead_atom(molecule, warhead_type)
-                if warhead_atom_index is not None:
-                    print(f'* Covalent warhead atom found: {warhead_type} {warhead_atom_index}')
-                    warhead_atom_indices.append(warhead_atom_index)
-            if len(warhead_atom_indices) == 0:
-                raise Exception('No known warheads can be found')
-            warhead_atom_index = warhead_atom_indices[0]
-
             sulfur_atom_index = None
             for atom in topology.atoms():
                 if (atom.residue.name == 'CYS') and (atom.residue.id == '145') and (atom.name == 'SG'):
@@ -386,15 +371,14 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
             if sulfur_atom_index is None:
                 raise Exception('CYS145 SG atom cannot be found')
 
-            print('Adding CustomCVForce...')
-            distance_force = openmm.CustomBondForce('r')
-            distance_force.setUsesPeriodicBoundaryConditions(True)
-            distance_force.addBond(sulfur_atom_index, warhead_atom_index, [])
-            custom_cv_force = openmm.CustomCVForce('0*r')
-            custom_cv_force.addCollectiveVariable('r', distance_force)
+            print('Adding CustomCVForces...')
+            custom_cv_force = openmm.CustomCVForce('0')
+            for warhead_type, warhead_atom_index in warheads_found.items():
+                distance_force = openmm.CustomBondForce('r')
+                distance_force.setUsesPeriodicBoundaryConditions(True)
+                distance_force.addBond(sulfur_atom_index, warhead_atom_index, [])
+                custom_cv_force.addCollectiveVariable(warhead_type, distance_force)
             force_index = system.addForce(custom_cv_force)
-
-            print(f'{pdb_filename} [{warhead_atom_index}, {sulfur_atom_index}]')
 
         # Create OpenM Context
         platform = openmm.Platform.getPlatformByName('CUDA')
@@ -420,7 +404,7 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
             integrator.step(nsteps_per_iteration)
             if covalent and phase=='complex':
                 # Get distance in Angstroms
-                distances[iteration] = custom_cv_force.getCollectiveVariableValues(context)[0] * 10
+                distances[iteration] = min(custom_cv_force.getCollectiveVariableValues(context)[:]) * 10
 
         # Retrieve state
         state = context.getState(getPositions=True, getVelocities=True, getEnergy=True, getForces=True)
@@ -437,11 +421,11 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
             distances = distances[t0:]            
             distance_min = distances.min()
             distance_mean = distances.mean()
-            distance_stderr = distances.std()/np.sqrt(Neff)
+            distance_stddev = distances.std()
             oechem.OESetSDData(molecule, 'covalent_distance_min', str(distance_min))
             oechem.OESetSDData(molecule, 'covalent_distance_mean', str(distance_mean))
-            oechem.OESetSDData(molecule, 'covalent_distance_stderr', str(distance_stderr))
-            print(f'Covalent distance is {distance_mean:.3f} +- {distance_stderr:.3f} A')
+            oechem.OESetSDData(molecule, 'covalent_distance_stddev', str(distance_stddev))
+            print(f'Covalent distance: mean {distance_mean:.3f} A : stddev {distance_stddev:.3f} A')
 
         # Save as OpenMM
         if save_openmm:
