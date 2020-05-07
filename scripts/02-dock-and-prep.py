@@ -252,7 +252,7 @@ def get_covalent_warhead_atom(molecule, covalent_warhead_type):
 
     return None
 
-def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
+def prepare_simulation(molecule, basedir, save_openmm=False):
     """
     Prepare simulation systems
 
@@ -264,8 +264,6 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
        The base directory for docking/ and fah/ directories
     save_openmm : bool, optional, default=False
        If True, save gzipped OpenMM System, State, Integrator
-    covalent : bool, optional, default=False
-       If True, will compute CYS145 SG : warhead tagged atom distance distribution
     """
     # Parameters
     from simtk import unit, openmm
@@ -360,7 +358,8 @@ def prepare_simulation(molecule, basedir, save_openmm=False, covalent=False):
 
         # If monitoring covalent distance, add an unused force
         warheads_found = find_warheads(molecule)
-        if covalent and phase=='complex' and len(warheads_found) > 0:
+        covalent = (len(warheads_found) > 0)
+        if covalent and phase=='complex':
 
             # Find warhead atom indices
             sulfur_atom_index = None
@@ -708,7 +707,7 @@ if __name__ == '__main__':
 
     # Prepare simulation
     if (args.simulate and is_covalent) or args.fahprep:
-        prepare_simulation(docked_molecule, args.output_basedir, covalent=is_covalent)
+        prepare_simulation(docked_molecule, args.output_basedir)
 
     if args.transfer:
         transfer_data(docked_molecule, args.output_basedir)

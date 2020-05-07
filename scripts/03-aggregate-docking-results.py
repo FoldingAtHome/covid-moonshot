@@ -63,12 +63,12 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Aggregate docking results')
-    parser.add_argument('--molecules', dest='molecules_filename', type=str, default='covid_submissions_all_info-2020-04-23.csv',
+    parser.add_argument('--molecules', dest='molecules_filename', type=str, default='covid_submissions_all_info.csv',
                         help='molecules CSV file to pull from (default: covid_submissions_all_info-2020-04-23.csv)')
-    parser.add_argument('--docked', dest='docked_basedir', type=str, default='covid_submissions_all_info-2020-04-23-docked',
-                        help='base directory for docked molecules (default: covid_submissions_all_info-2020-04-23-docked/)')
-    parser.add_argument('--output', dest='output_filename', type=str, default='covid_submissions_all_info-2020-04-23-docked.csv',
-                        help='output aggregated CSV file (default: covid_submissions_all_info-2020-04-23.csv)')
+    parser.add_argument('--docked', dest='docked_basedir', type=str, default='covid_submissions_all_info-docked',
+                        help='base directory for docked molecules (default: covid_submissions_all_info-docked/)')
+    parser.add_argument('--output', dest='output_filename', type=str, default='covid_submissions_all_info-docked.csv',
+                        help='output aggregated CSV file (default: covid_submissions_all_info.csv)')
     parser.add_argument('--clean', dest='clean', action='store_true', default=False,
                         help='if specified, will only store minimal information for each molecule (default: False)')
     parser.add_argument('--fragalysis', dest='fragalysis', default=False,
