@@ -7,6 +7,8 @@ This script uses the [OpenEye OEDocking toolkit](https://docs.eyesopen.com/toolk
 * `01-check-receptors.py` - check that `Mpro-*-protein.pdb` files can be assigned AMBER14SB parameters if `UNK` atoms are filtered out
 * `02-dock-and-prep.py` - perform ensemble docking of a single compound and (optionally) prepare it for simulation
 * `03-aggregate-docking-results.py` - compile docking results
+* `04-fah-prep.py` - copy/rename files for preparation for Folding@home simulation
+* `05-score-heavy-atom-overlap.py` - score heavy atom overlap as a means to find designs that merge fragments
 * `attic/` - older scripts
 
 ## Ensemble docking protocol
