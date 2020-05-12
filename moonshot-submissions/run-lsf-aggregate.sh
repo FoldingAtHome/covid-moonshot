@@ -29,8 +29,8 @@ python ../scripts/03-aggregate-docking-results.py --molecules $PREFIX.csv --dock
 # Extract for fragalysis
 python ../scripts/03-aggregate-docking-results.py --molecules $PREFIX.csv --docked $PREFIX-docked --output compound-set_ensemble-hybrid-oedocking.sdf --clean --fragalysis "https://discuss.postera.ai/t/ensemble-oedocking-ensemble-hybrid-docking-to-fragment-bound-mpro-structures/1291"
 
-# Coalesce RUNs for FAH
+# Prepare RUNs for FAH
 #python ../scripts/04-fah-prep.py --molecules $PREFIX.csv --docked $PREFIX-docked --output $PREFIX-fah.csv
 
 # Compute overlap
-#python ../scripts/05-score-inspiration-fragment-overlap.py --docked $PREFIX-docked.sdf --output $PREFIX-docked-overlap --clean
+python ../scripts/05-score-heavy-atom-overlap.py --docked $PREFIX-docked.sdf --output $PREFIX-docked-overlap --clean --sort
