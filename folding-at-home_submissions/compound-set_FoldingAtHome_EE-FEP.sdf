@@ -61,7 +61,7 @@ The [Chemgauss4 docking score](https://docs.eyesopen.com/toolkits/cpp/dockingtk/
 The name of the fragment (and corresponding Mpro fragment structure) with the best scoring hybrid docking pose
 
 > <ref_url>
-https://discuss.postera.ai/t/FoldingAtHome-absolute-FEP-from-structures-docked-to-fragment-bound-mpro-structures/1291
+https://discuss.postera.ai/t/foldingathome-absolute-fep-from-ligands-docked-to-fragment-bound-mpro-structures/1352
 
 > <submitter_name>
 Matthew F.D. Hurley & Vincent A. Voelz
