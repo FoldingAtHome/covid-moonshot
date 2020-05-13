@@ -1,6 +1,13 @@
 #  Folding@Home absolute FEP from ligands docked to fragment-bound Mpro structures
 ## Release of ranked compounds 2020-05-12
 
+### Files found in this release:
+* COVID Moonshot 051220 Release.pdf - The announcement of this submitted batch of results.
+* Plots/ - Contains all images found within the announcement.
+* compound-set_FoldingAtHome_EE-FEP.sdf - SDF file containing all of the ligands submitted with tags for binding_free_energy, SMILES, associated receptor file, etc.
+* master_results_WL0.12.pkl - A pickled dataframe containing more detailed results for each of the submitted ligands
+* receptors.zip - A compressed directory containing all relevant protein structures.
+
 ### Overview
 
 Here we submit a list of 226 compounds ranked using absolute binding free energy perturbation (FEP) simulations performed on the massively parallel Folding@home distributed computing platform.     Two kinds of simulations are needed for the absolute FEP: one in which a docked ligand is decoupled from the receptor, and one in which a ligand is decoupled from pure solvent.  
