@@ -91,7 +91,7 @@ if __name__ == '__main__':
                         oechem.OEDeleteSDData(molecule, sdpair.GetTag())
 
             # Copy files
-            run_dir = os.path.join(args.docked_basedir, 'fah', f'RUN{run_index}')
+            run_dir = os.path.join(args.docked_basedir, 'fah-gromacs', f'RUN{run_index}')
             os.makedirs(run_dir, exist_ok=True)
             import shutil
             for phase in ['complex', 'ligand']:

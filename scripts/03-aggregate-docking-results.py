@@ -153,10 +153,20 @@ if __name__ == '__main__':
                 # Add original SMILES
                 oechem.OESetSDData(molecule, 'original SMILES', original_smiles[molecule.GetTitle()])
 
-        # Add initial blank molecule
+        # Add initial blank molecule (that includes distances)
         import copy
         from datetime import datetime    
+        # Find a molecule that includes distances, if present
+        def has_dist(mol):
+            for sdpair in oechem.OEGetSDDataPairs(mol):
+                tag = sdpair.GetTag()
+                if 'dist' in tag:
+                    return True
+            return False
         molecule = molecules[0].CreateCopy()
+        for molecule in molecules:
+            if has_dist(molecule):
+                molecule = molecule.CreateCopy()
         # Add descriptions
         for sdpair in oechem.OEGetSDDataPairs(molecule):
             tag = sdpair.GetTag()

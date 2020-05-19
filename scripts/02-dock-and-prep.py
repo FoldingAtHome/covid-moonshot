@@ -272,11 +272,11 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
     box_size = openmm.vec3.Vec3(3.4,3.4,3.4)*unit.nanometers
     ionic_strength = 100 * unit.millimolar # 100
     pressure = 1.0 * unit.atmospheres
-    collision_rate = 91.0 / unit.picoseconds
+    collision_rate = 1.0 / unit.picoseconds
     temperature = 300.0 * unit.kelvin
     timestep = 4.0 * unit.femtoseconds
     nsteps_per_iteration = 250
-    iterations = 10000 # 10 ns
+    iterations = 10000 # 10 ns (covalent score)
 
     protein_forcefield = 'amber14/protein.ff14SB.xml'
     small_molecule_forcefield = 'openff-1.1.0'
@@ -331,7 +331,14 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
         gro_filename = os.path.join(gromacs_basedir, phase_name + '.gro')
         top_filename = os.path.join(gromacs_basedir, phase_name + '.top')
 
-        if os.path.exists(gro_filename) and os.path.exists(top_filename):
+        system_xml_filename = os.path.join(openmm_basedir, phase_name+'.system.xml.gz')
+        integrator_xml_filename = os.path.join(openmm_basedir, phase_name+'.integrator.xml.gz')
+        state_xml_filename = os.path.join(openmm_basedir, phase_name+'.state.xml.gz')
+        
+        # Check if we can skip setup
+        gromacs_files_exist = os.path.exists(gro_filename) and os.path.exists(top_filename)
+        openmm_files_exist = os.path.exists(system_xml_filename) and os.path.exists(state_xml_filename) and os.path.exists(integrator_xml_filename)        
+        if gromacs_files_exist and (not save_openmm or openmm_files_exist):
             continue
 
         # Filter out UNK atoms by spruce
@@ -430,12 +437,21 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
         if save_openmm:
             print('Saving as OpenMM...')
             import gzip
-            with gzip.open(os.path.join(openmm_basedir, phase_name+'.integrator.xml.gz'), 'wt') as f:
+            with gzip.open(integrator_xml_filename, 'wt') as f:
                 f.write(openmm.XmlSerializer.serialize(integrator))
-            with gzip.open(os.path.join(openmm_basedir, phase_name+'.state.xml.gz'),'wt') as f:
+            with gzip.open(state_xml_filename,'wt') as f:
                 f.write(openmm.XmlSerializer.serialize(state))
-            with gzip.open(os.path.join(openmm_basedir, phase_name+'.system.xml.gz'),'wt') as f:
+            with gzip.open(system_xml_filename,'wt') as f:
                 f.write(openmm.XmlSerializer.serialize(system))
+            with gzip.open(os.path.join(openmm_basedir, phase_name+'-explicit.pdb.gz'), 'wt') as f:
+                app.PDBFile.writeFile(modeller.topology, state.getPositions(), f)
+            with gzip.open(os.path.join(openmm_basedir, phase_name+'-solute.pdb.gz'), 'wt') as f:
+                import mdtraj
+                mdtraj_topology = mdtraj.Topology.from_openmm(modeller.topology)
+                mdtraj_trajectory = mdtraj.Trajectory([state.getPositions(asNumpy=True) / unit.nanometers], mdtraj_topology)
+                selection = mdtraj_topology.select('not water')
+                mdtraj_trajectory = mdtraj_trajectory.atom_slice(selection)
+                app.PDBFile.writeFile(mdtraj_trajectory.topology.to_openmm(), mdtraj_trajectory.openmm_positions(0), f)
 
         # Convert to gromacs via ParmEd
         print('Saving as gromacs...')
@@ -552,6 +568,8 @@ if __name__ == '__main__':
                         help='prepare for simulation in OpenMM and gromacs (default: False)')
     parser.add_argument('--fahprep', dest='fahprep', action='store_true', default=False,
                         help='prepare for Folding@home (default: False)')
+    parser.add_argument('--core22', dest='core22', action='store_true', default=False,
+                        help='prepare for core22 (default: False)')
     parser.add_argument('--transfer', dest='transfer', action='store_true', default=False,
                         help='transfer simulation data (default: False)')
     parser.add_argument('--userfrags', dest='userfrags', action='store_true', default=False,
@@ -707,7 +725,7 @@ if __name__ == '__main__':
 
     # Prepare simulation
     if (args.simulate and is_covalent) or args.fahprep:
-        prepare_simulation(docked_molecule, args.output_basedir)
+        prepare_simulation(docked_molecule, args.output_basedir, save_openmm=args.core22)
 
     if args.transfer:
         transfer_data(docked_molecule, args.output_basedir)

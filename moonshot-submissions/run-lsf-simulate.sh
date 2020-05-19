@@ -26,4 +26,7 @@ let JOBID=$LSB_JOBINDEX-1
 echo $JOBID
 
 set -x
-python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --simulate
+python ../scripts/02-dock-and-prep.py --receptors ../receptors/monomer --molecules $PREFIX.csv --index $JOBID --output $PREFIX-docked --simulate --fahprep --core22
+
+# To transfer to Temple
+# rsync -avz --include="*/" --include="RUN*/*.gro" --include="RUN*/*.top" --exclude="*" covid_submissions_all_info-docked tug27224@owlsnest.hpc.temple.edu:work

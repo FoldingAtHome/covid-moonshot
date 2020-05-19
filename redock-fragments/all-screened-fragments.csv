@@ -1492,7 +1492,7 @@ O=C(C1CCN(C(CCl)=O)CC1)NC2=CC=C(Cl)C=C2,x2055,x2055,Mpro-x2055,PG-COV-36,OK: No 
 O=C(C1CCN(C(CCl)=O)CC1)NC2=NC=CC=C2C,x2056,x2056,Mpro-x2056,PG-COV-39,OK: No comment:No comment,success,1.34,7 - Analysed & Rejected,None
 [Na+].C[C@@H](O)[C@@H]1[C@H]2SC([C@H]3CCCO3)=C(N2C1=O)C([O-])=O,x2057,x2057,Mpro-x2057,Faropenem,OK: No comment:No comment,success,1.5,7 - Analysed & Rejected,None
 C[C@H]1[C@H](NC(=O)C(=N/OC(C)(C)C(O)=O)\C2=CSC([NH3+])=N2)C(=O)N1S([O-])(=O)=O,x2058,x2058,Mpro-x2058,Aztreonam,OK: No comment:No comment,success,2.44,7 - Analysed & Rejected,None
-"CC(C)(O\N=C(/C(=O)N[C@H]1CON(C1=O)C1(CCC(=O)O1)C(O)=O)C1=CSC(N)=N1)C(O)=O |c:30,t:26",x2059,x2059,Mpro-x2059,LTV-13,OK: No comment:No comment,success,1.51,7 - Analysed & Rejected,None
+CC(C)(O\N=C(/C(=O)N[C@H]1CON(C1=O)C1(CCC(=O)O1)C(O)=O)C1=CSC(N)=N1)C(O)=O,x2059,x2059,Mpro-x2059,LTV-13,OK: No comment:No comment,success,1.51,7 - Analysed & Rejected,None
 O=C1N([Se]C2=CC=CC=C12)C1=CC=CC=C1,x2060,x2060,Mpro-x2060,Ebselen,OK: Crystalline:No comment,Failed - low resolution,5.33,,None
 O=C1C2=CC=CC=C2ON1C3(C(OC(C4=CC=CC=C4)C5=CC=CC=C5)=O)OC(CC3)=O,x2061,x2061,Mpro-x2061,tfs0349,OK: Precipitated:No comment,success,1.74,7 - Analysed & Rejected,None
 O=C1C2=CC=CC=C2SN1C3(C(OC(C4=CC=CC=C4)C5=CC=CC=C5)=O)OC(CC3)=O,x2062,x2062,Mpro-x2062,tfs0350,OK: Precipitated:No comment,success,2.92,7 - Analysed & Rejected,None
@@ -1909,18 +1909,18 @@ CCSCC1CCN(CC1)C=2C=CC(=CC2)S(=O)(=O)N,x2819,x2819,Mpro-x2819,WAR-XCH-b72-39,OK: 
 CC=1C=CN=CC1NC(=O)NC=2C=CC=CC2,x2820,x2820,Mpro-x2820,ALE-HEI-f28-1,OK: Clear:No comment,success,2.22,7 - Analysed & Rejected,None
 CC(NC(=O)NC=1C=CC=C(COC2CCCC(C)C2)C1)C3=CC=NN3,x2821,x2821,Mpro-x2821,BAR-COM-4e0-63,OK: Clear:No comment,success,1.87,7 - Analysed & Rejected,None
 NS(=O)(=O)C=1C=CC(=CC1)N2CCC(CC2)NC=3C=CC(F)=CC3,x2822,x2822,Mpro-x2822,WAR-XCH-b68-26,OK: Clear:No comment,success,2.24,7 - Analysed & Rejected,None
-"CN1CCC(CC1)C(=O)N[C@@H]2CCCC[C@H]2NC(=O)C=3C=CC=CC3 |&1:10,15,r",x2823,x2823,Mpro-x2823,GIA-UNK-d2d-4,OK: Clear:No comment,success,2.26,7 - Analysed & Rejected,None
+CN1CCC(CC1)C(=O)N[C@@H]2CCCC[C@H]2NC(=O)C=3C=CC=CC3,x2823,x2823,Mpro-x2823,GIA-UNK-d2d-4,OK: Clear:No comment,success,2.26,7 - Analysed & Rejected,None
 CCC(NC(=O)NCC=1C=NC=CN1)C=2C=CC=CC2OCC(=O)N3CCCC3,x2824,x2824,Mpro-x2824,BAR-COM-4e0-27,OK: Clear:No comment,success,2.06,7 - Analysed & Rejected,None
 CN1C=C(CNC(=O)N(CCC=2C=CC=CC2)CC=3C=CC=NC3)N=N1,x2825,x2825,Mpro-x2825,BAR-COM-4e0-47,OK: Clear:No comment,success,3.18,7 - Analysed & Rejected,None
 CC=1C=C(Cl)C=C(NC(=O)NC=2C=CC=NC2)C1,x2826,x2826,Mpro-x2826,Z4444622166,OK: Clear:No comment,success,2.03,7 - Analysed & Rejected,None
 O=C(NCC=1C=CC=NN1)NC(CC=2C=CC=CC2)C3=CC=CS3,x2827,x2827,Mpro-x2827,BAR-COM-4e0-29,OK: Clear:No comment,success,1.98,7 - Analysed & Rejected,None
-"C[C@@H]1C[C@H]1N2N=NN=C2C=3C=CC=C(C)C3NC(=O)CCC=4C=CC=NC4 |&1:1,3,r",x2828,x2828,Mpro-x2828,BAR-COM-4e0-8,OK: Clear:No comment,success,2.22,7 - Analysed & Rejected,None
+C[C@@H]1C[C@H]1N2N=NN=C2C=3C=CC=C(C)C3NC(=O)CCC=4C=CC=NC4,x2828,x2828,Mpro-x2828,BAR-COM-4e0-8,OK: Clear:No comment,success,2.22,7 - Analysed & Rejected,None
 CC(C(=O)NC=1C=CC=C(OC2CC(=O)N2)C1)C=3C=NC=CN3,x2829,x2829,Mpro-x2829,BAR-COM-4e0-53,OK: Clear:No comment,success,2.29,7 - Analysed & Rejected,None
 CS(=O)(=O)NCCCN1CCCC=2C=CC(=CC12)S(=O)(=O)N,x2830,x2830,Mpro-x2830,PET-SGC-abc-1,OK: Clear:No comment,success,2.09,7 - Analysed & Rejected,None
 CCC(C)(C)CCN(CC=1C=CSC1)C(=O)CN2N=NC=3C=CC=CC23,x2831,x2831,Mpro-x2831,Z4444622209,OK: Clear:No comment,success,2.17,7 - Analysed & Rejected,None
 BrC=1N=CC=CC1CC(=O)NC=2C=CC=C(OCCN3C=NC=N3)C2,x2832,x2832,Mpro-x2832,BAR-COM-4e0-35,OK: Clear:No comment,success,1.85,7 - Analysed & Rejected,None
 O=C(CC(=O)NC=1C=CN=CC1)NC=2C=CC=CC2,x2833,x2833,Mpro-x2833,Z4444622142,OK: Clear:No comment,success,1.99,7 - Analysed & Rejected,None
-"NC(=O)[C@@H]1CN(CC=2C=CC=NC2)C[C@H]1C=3C=CC=CC3 |&1:3,14,r",x2834,x2834,Mpro-x2834,DUN-NEW-d83-1,OK: Clear:No comment,success,2.42,7 - Analysed & Rejected,None
+NC(=O)[C@@H]1CN(CC=2C=CC=NC2)C[C@H]1C=3C=CC=CC3,x2834,x2834,Mpro-x2834,DUN-NEW-d83-1,OK: Clear:No comment,success,2.42,7 - Analysed & Rejected,None
 OC(C(=O)NC=1C=CC=C(C1)C2=CC=NN2)C=3C=CC=NC3,x2835,x2835,Mpro-x2835,BAR-COM-4e0-68,OK: Clear:No comment,success,1.79,7 - Analysed & Rejected,None
 FC=1C=CC(F)=C(C1)S(=O)(=O)NC=2C=CC=CC2C(=O)NCCNC=3C=CC=NN3,x2836,x2836,Mpro-x2836,BAR-COM-4e0-10,OK: Clear:No comment,success,1.89,7 - Analysed & Rejected,None
 CC(=O)N1CCN(CC=2C=C(O)C=C(Cl)C2)CC1,x2837,x2837,Mpro-x2837,KIM-UNI-2ee-1,OK: Clear:No comment,success,2.06,7 - Analysed & Rejected,None
