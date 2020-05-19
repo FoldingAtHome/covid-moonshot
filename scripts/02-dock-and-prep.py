@@ -163,7 +163,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
     from openeye import oeomega
     #omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
     omegaOpts = oeomega.OEOmegaOptions()
-    #omegaOpts.SetMaxConfs(500)
+    #omegaOpts.SetMaxConfs(5000)
     omegaOpts.SetMaxSearchTime(60.0) # time out
     omega = oeomega.OEOmega(omegaOpts)
     omega.SetStrictStereo(False) # enumerate sterochemistry if uncertain
@@ -499,7 +499,7 @@ def ensemble_dock(molecule, fragments_to_dock_to, covalent=False):
 
     if len(docked_molecules) == 0:
         # No valid poses
-        print('No valid poses found.')
+        print(f'No valid poses found for {molecule.GetTitle()}.')
         return None
 
     # Extract top pose
