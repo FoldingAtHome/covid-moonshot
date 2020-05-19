@@ -1,0 +1,290 @@
+SMILES,TITLE,IC50 (uM),IC50 (uM) - std,Average Inhibition @ 20 uM,Average Inhibition @ 20 uM - std,Average Inhibition @ 50 uM,Average Inhibition @ 50 uM - std,Trypsin IC50 (uM),Relative Solubility @ 20 uM,Relative Solubility @ 100 uM,Hybrid2,docked_fragment,Mpro-_dock,site
+c1ccc(cc1)C2(CCCC2)CC(=O)Nc3cccnc3,CHR-SOS-f7373dd1-4,,,,,,26.9,2.65,,,-11.737092,x0678,0.052361,active-noncovalent
+Cc1ccncc1NC(=O)CCNC(=O)c2ccccc2F,PET-SGC-2e937068-1,,,,,,15.4,1.68,,,-11.340974,x0678,0.577023,active-noncovalent
+c1cc(cnc1)NC(=O)Cc2ccc(s2)Cl,DAR-DIA-842b4336-13,,,,0.922,2.19,11.5,1.87,1.0,1.0,-11.181113,x0678,-1.170343,active-noncovalent
+c1ccc(cc1)[C@@H]2C[N@@H+](C[C@H]2C(=O)N)Cc3cccnc3,DUN-NEW-d8381160-1,,,,,,7.36,0.257,,,-11.157682,x0678,-0.213893,active-noncovalent
+Cc1ccncc1NC(=O)[C@@H](C)c2cccc(c2)Cl,TRY-UNI-714a760b-18,27.2,3.7,> 49.5,58.0,0.177,78.7,0.239,1.0,1.0,-11.149205,x0678,-1.185478,active-noncovalent
+c1ccc(c(c1)CC(=O)OCc2cn[nH]n2)O[C@@H]3CCOC3,BAR-COM-4e090d3a-50,,,,,,9.34,3.4,,,-11.107311,x0678,0.204139,active-noncovalent
+Cc1ccncc1NC(=O)CC(C)(C)NC(=O)c2cccc3c2cc[nH]3,GAB-REV-70cc3ca5-6,,,,,,3.87,0.647,,,-11.083416,x0678,3.966797,active-noncovalent
+c1ccc(cc1)N2CCN(CC2)C(=O)c3cc(=O)[nH]c4c3cccc4,MAT-POS-916a2c5a-4,,,,,,81.8,1.66,,,-10.749320,x0107,2.865086,active-noncovalent
+c1ccc(cc1)OCc2c3c(cccc3sc2C(=O)NCc4cnccn4)F,BAR-COM-4e090d3a-64,,,,-1.73,10.3,6.32,6.99,0.95,0.44,-10.726959,x0678,1.79254,active-noncovalent
+c1cc(cc(c1)Cl)CNC(=O)Cc2c[nH]c3c2cccn3,TRY-UNI-1fd04853-5,,,,7.73,2.86,9.03,0.76,1.0,0.96,-10.682974,x0678,0.908274,active-noncovalent
+Cc1cnc(o1)CC(=O)Nc2cccnc2,DAR-DIA-842b4336-16,,,,,,6.13,0.809,,,-10.643672,x0678,-0.672206,active-noncovalent
+c1ccc2c(c1)C[C@@H](C[N@]2CC(=O)Nc3cnccn3)C(=O)N,BAR-COM-4e090d3a-21,,,,0.0292,5.71,6.19,1.71,1.0,0.93,-10.617538,x0678,1.104097,active-noncovalent
+Cc1nnc(s1)CC(=O)Nc2cccnc2,ALE-HEI-f28a35b5-5,,,,-1.16,0.562,-0.0294,0.492,1.0,0.99,-10.544547,x0678,-0.899589,active-noncovalent
+c1ccc(cc1)NC(=O)Cc2cncc3c2cccc3,DAR-DIA-23aa0b97-20,61.3,6.0,> 99.0,31.6,1.34,57.8,0.318,1.0,0.98,-10.520862,x0678,0.681776,active-noncovalent
+Cc1ccncc1NC(=O)Nc2ccccc2,ALE-HEI-f28a35b5-1,,,,,,5.51,4.97,,,-10.495522,x0678,0.864149,active-noncovalent
+Cc1ccncc1NC(=O)Nc2ccccc2,TRY-UNI-714a760b-4,,,,,,5.51,4.97,,,-10.495522,x0678,0.864149,active-noncovalent
+Cc1ccncc1NC(=O)Cc2ccc(cc2)S(=O)(=O)N,GAB-REV-70cc3ca5-20,,,,4.76,1.42,10.9,0.786,1.0,1.0,-10.478170,x0107,0.904521,active-noncovalent
+Cc1ccncc1NC(=O)Cc2ccccc2,TRY-UNI-714a760b-5,,,,8.19,0.345,19.5,0.723,1.0,1.0,-10.434412,x0678,-0.881286,active-noncovalent
+c1cc(ccc1N2CCC(CC2)c3ccncc3)S(=O)(=O)N,WAR-XCH-b72a1bbc-15,,,,0.875,0.328,1.65,0.621,1.0,0.94,-10.408019,x0195,2.789766,active-noncovalent
+Cc1ccncc1NC(=O)Cc2cccc(c2)Cl,TRY-UNI-714a760b-6,25.4,3.25,> 49.5,61.6,1.62,81.8,0.414,1.0,1.0,-10.387289,x0678,-1.153472,active-noncovalent
+c1ccc(cc1)NC2CCN(CC2)c3ccc(cc3)S(=O)(=O)N,WAR-XCH-b6889685-29,,,,,,-2.59,3.83,,,-10.363422,x0072,2.334424,active-noncovalent
+C[C@@H](c1ccc2c3cc(ccc3[nH]c2c1)Cl)C(=O)[O-],AAR-POS-fca48359-19,,,,-0.548,0.936,3.97,0.598,1.0,0.98,-10.343470,x0749,-0.456877,active-covalent
+C[C@@H](c1ccc2c3cc(ccc3[nH]c2c1)Cl)C(=O)[O-],AAR-POS-fca48359-20,,,,-0.548,0.936,3.97,0.598,1.0,0.98,-10.343470,x0749,-0.456877,active-covalent
+C[C@@H](c1ccc2c3cc(ccc3[nH]c2c1)Cl)C(=O)[O-],GER-UNI-ec786817-1,,,,-0.548,0.936,3.97,0.598,1.0,0.98,-10.343470,x0749,-0.456877,active-covalent
+C[C@@H](c1ccc2c3cc(ccc3[nH]c2c1)Cl)C(=O)[O-],MAK-UNK-0d6072ac-4,,,,-0.548,0.936,3.97,0.598,1.0,0.98,-10.343470,x0749,-0.456877,active-covalent
+c1ccc(c(c1)C(=O)NC[C@@H](Cn2ccnn2)O)OC3CCC3,BAR-COM-4e090d3a-34,,,,-1.11,0.298,2.04,0.416,1.0,1.0,-10.300408,x0678,0.74999,active-noncovalent
+Cc1c(cncn1)NC(=O)Nc2ccccc2,HAN-NEW-5f56c3bc-1,,,,-2.06,0.489,-0.628,0.645,0.99,0.99,-10.278812,x0678,0.416726,active-noncovalent
+c1cc(cc(c1)N2CCC2=O)NC(=O)NCc3cccnn3,BAR-COM-4e090d3a-60,,,,3.61,0.361,6.82,1.29,1.0,1.0,-10.245558,x0397,1.46643,active-noncovalent
+Cn1cc(nn1)CNC(=O)N(CCc2ccccc2)Cc3cccnc3,BAR-COM-4e090d3a-47,,,,,,3.88,1.33,,,-10.219568,x0678,3.48158,active-noncovalent
+c1ccc(cc1)C(c2ccccc2)[NH+]3CCN(CC3)C(=O)CCl,SIM-SYN-f15aaa3a-1,,,,,,102.0,0.34,,,-10.115160,x1392,0.387517,active-covalent
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cc3)Cl,TRY-UNI-1fd04853-7,,,,2.99,2.55,3.45,2.03,1.0,0.95,-10.089762,x0678,-0.169899,active-noncovalent
+C=CC(=O)N1CCC[C@H](C1)c2nc3ccccc3s2,JOO-IND-b13e14cc-1,,,,,,2.57,2.14,,,-10.088066,x0749,0.473663,active-covalent
+Cc1ccncc1NC(=O)CCNc2ccc(cc2)S(=O)(=O)N,GAB-REV-70cc3ca5-3,,,,,,6.53,1.08,,,-10.081774,x0107,2.506008,active-noncovalent
+Cc1nnc(s1)NC(=O)Nc2cccnc2,ALE-HEI-f28a35b5-4,,,,1.19,0.867,7.32,0.613,1.0,0.99,-10.058550,x0678,0.117892,active-noncovalent
+C=CC(=O)N1CC[NH+](CC1)Cc2cc(cc3c2cccc3)Cl,MAT-POS-4e253971-2,,,,,,27.0,1.8,,,-10.049481,x0830,-0.926787,active-covalent
+Cc1ccc(s1)NC(=O)Nc2cccnc2,DAR-DIA-842b4336-3,,,,1.9,0.0997,11.3,0.612,1.0,0.96,-10.044557,x0678,0.931477,active-noncovalent
+c1ccc(cc1)[C@H](C[NH+]2CCOCC2)NC(=O)CCn3ccnn3,BAR-COM-4e090d3a-45,,,,2.31,2.35,5.19,0.0531,1.0,1.0,-10.001107,x0678,2.025949,active-noncovalent
+CS(=O)(=O)Nc1cccc(c1)C(=O)Oc2cccc(c2)N3CCCC3=O,MAK-UNK-9159f8ed-7,,,,,,32.0,1.8,,,-9.903871,x0161,2.378839,active-noncovalent
+c1cc(ccc1NC2CCN(CC2)c3ccc(cc3)S(=O)(=O)N)F,WAR-XCH-b6889685-26,,,,,,2.89,0.411,,,-9.858924,x0072,3.298033,active-noncovalent
+c1cc(cnc1)NC(=O)Nc2cc(cnc2)Cl,DAR-DIA-23aa0b97-15,,,,,,8.99,2.75,,,-9.845115,x0107,1.439826,active-noncovalent
+CS(=O)(=O)Cc1ccc(o1)C(=O)Nc2cccnc2,ANT-DIA-3c79be55-4,,,,0.469,4.68,6.26,0.497,1.0,1.0,-9.845098,x0107,1.335997,active-noncovalent
+c1cc(cc(c1)Cl)NC(=O)Cc2c[nH]c3c2cccn3,DAR-DIA-23aa0b97-12,,,,5.95,0.725,9.34,0.727,0.99,0.97,-9.791058,x0397,0.083451,active-noncovalent
+c1ccc(cc1)CCCc2cccc(c2)NC(=O)Cc3cncnc3,BAR-COM-4e090d3a-11,,,,1.12,2.19,10.1,0.911,0.96,0.94,-9.786640,x0678,1.821448,active-noncovalent
+Cc1coc(n1)NC(=O)Nc2cccnc2,DAR-DIA-842b4336-7,,,,2.91,1.58,8.86,1.0,1.0,1.0,-9.765095,x0678,-1.054899,active-noncovalent
+Cc1ccncc1NC(=O)Nc2cccc(c2)Cl,TRY-UNI-714a760b-12,68.0,7.1,> 99.0,32.1,0.539,58.7,0.386,0.99,0.96,-9.759779,x0678,0.844232,active-noncovalent
+Cc1ccncc1NC(=O)Nc2cccc(c2)Cl,JAG-UCB-cedd89ab-8,68.0,7.1,> 99.0,32.1,0.539,58.7,0.386,0.99,0.96,-9.759779,x0678,0.844232,active-noncovalent
+CS(=O)(=O)NCC[C@H]1CCCC[N@@H+]1CC(=O)Nc2cccnc2,BEN-DND-362d364a-10,,,,,,-4.5,4.45,,,-9.718414,x0678,3.139141,active-noncovalent
+CCC(C)(C)CCN(Cc1ccsc1)C(=O)Cn2c3ccccc3nn2,RUT-UNI-630c5802-20,,,,,,40.2,1.75,,,-9.695564,x0678,3.082506,active-noncovalent
+c1ccc2c(c1)cccc2C[NH+]3CCN(CC3)C(=O)CCl,MED-COV-4280ac29-31,,,,,,105.0,1.63,,,-9.686901,x0830,-0.848441,active-covalent
+c1ccc2c(c1)cccc2C[NH+]3CCN(CC3)C(=O)CCl,AAR-POS-d2a4d1df-40,,,,,,105.0,1.63,,,-9.686901,x0830,-0.848441,active-covalent
+c1cc(cc(c1)Cl)NC(=O)Nc2cc(cnc2)N,DAR-DIA-23aa0b97-13,,,,,,38.7,0.694,,,-9.678142,x0678,1.872844,active-noncovalent
+CC(C)[N@@H+](C)CC1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b72a1bbc-48,,,,,,2.5,1.96,,,-9.625897,x0104,2.55227,active-noncovalent
+c1cc(cc(c1)Cl)C(=O)Nc2cccnc2,CHR-SOS-7098f804-12,,,,5.47,4.83,6.67,1.98,1.0,0.92,-9.620449,x0678,-0.643055,active-noncovalent
+Cc1ccc(cc1)NC2CCN(CC2)c3ccc(cc3)S(=O)(=O)N,WAR-XCH-b6889685-25,,,,2.67,1.97,5.62,1.35,0.92,0.84,-9.584717,x0072,3.504407,active-noncovalent
+c1cc(cnc1)NC(=O)c2cc(ccc2O)Cl,CHR-SOS-7098f804-11,,,,18.3,5.97,22.8,0.315,1.0,0.89,-9.563734,x0678,-1.265068,active-noncovalent
+c1cc(cc(c1)N2CCOCC2)NC(=O)NCc3cncs3,BAR-COM-4e090d3a-58,,,,5.65,0.438,13.6,0.678,1.0,1.01,-9.563450,x0195,1.044545,active-noncovalent
+Cc1ccnc(c1)NC(=O)Cc2ccc3ccccc3c2,ALV-UNI-7ff1a6f9-45,,,,3.57,2.7,8.23,1.36,0.98,0.94,-9.554324,x1093,-7.9e-05,active-noncovalent
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3cc(ccn3)Cl,TRY-UNI-1fd04853-9,,,,2.58,5.3,8.45,0.533,1.0,0.98,-9.539196,x0678,1.212471,active-noncovalent
+c1cc(cnc1)NC(=O)Nc2ccc(s2)Cl,DAR-DIA-842b4336-4,,,,8.85,1.1,23.7,0.259,0.99,0.95,-9.498690,x0678,0.434402,active-noncovalent
+c1cc(cc(c1)NC(=O)NCc2ccns2)CN3CCCC3=O,BAR-COM-4e090d3a-61,,,,-0.28,2.18,-2.05,4.67,1.0,0.97,-9.494002,x0195,1.589024,active-noncovalent
+C[C@@H](c1cnccn1)C(=O)Nc2cccc(c2)NC3CCCC3,BAR-COM-4e090d3a-20,,,,-2.77,1.4,0.913,1.17,1.0,0.98,-9.470178,x0678,2.061615,active-noncovalent
+Cc1ccncc1c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b72a1bbc-4,,,,,,3.16,1.64,,,-9.448851,x0678,1.01328,active-noncovalent
+C[C@@H](c1cnccn1)NC(=O)c2ccccc2OC3CCCCC3,BAR-COM-4e090d3a-26,,,,,,-3.41,4.65,,,-9.447334,x0678,1.952261,active-noncovalent
+Cc1cccc(c1)NC2CCN(CC2)c3ccc(cc3)S(=O)(=O)N,WAR-XCH-b6889685-27,,,,-2.59,1.29,-0.838,0.583,0.96,0.87,-9.421846,x0072,3.046688,active-noncovalent
+CC(=O)N1CC[NH+](CC1)Cc2cc(cc(c2)Cl)O,KIM-UNI-2ee5d8f9-1,,,,,,7.39,2.3,,,-9.378798,x0749,-0.828812,active-covalent
+CNC(=O)OC1CCN(CC1)C(=O)c2ccncc2,GIA-UNK-595fac82-3,,,,,,5.88,1.84,,,-9.361073,x0104,-0.075203,active-noncovalent
+CNC(=O)OC1CCN(CC1)C(=O)c2ccccc2,GIA-UNK-595fac82-2,,,,,,0.862,1.05,,,-9.340299,x0104,-0.294727,active-noncovalent
+CCC(=O)NCC[C@@H]1CCc2c1c3c(cc2)OCC3,JOH-MSK-ec639444-2,,,,0.473,4.55,6.69,0.651,1.0,1.0,-9.332843,x0104,-0.012259,active-noncovalent
+c1ccc(cc1)CCNS(=O)(=O)c2ccoc2,MIH-UNI-6b9ca91a-6,,,,,,-0.468,0.836,,,-9.325847,x0678,-0.676827,active-noncovalent
+COC1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b72a1bbc-9,,,,2.98,0.417,6.82,2.32,1.0,1.0,-9.316606,x0749,1.088976,active-covalent
+c1ccc(cc1)C[C@@H](c2cccs2)NC(=O)NCc3cccnn3,BAR-COM-4e090d3a-29,,,,,,-3.45,2.61,,,-9.271416,x1077,1.003721,active-noncovalent
+CC(=O)N1CCN(CC1)C(=O)Cc2ccccn2,JON-UIO-066ce08b-3,,,,-0.517,1.67,3.52,0.855,1.0,1.0,-9.234826,x0107,-0.430216,active-noncovalent
+c1cc(ccc1N2CCC(CC2)C[NH+]3CCCCCC3)S(=O)(=O)N,WAR-XCH-b72a1bbc-20,,,,-5.53,5.18,-0.987,1.55,0.99,0.91,-9.220327,x0104,4.040286,active-noncovalent
+C[C@@H]1CS[C@@H]([N@H+]1C)/N=N/C(=O)C(=O)[C@@H](C2CCOCC2)NC(=O)C3CCCCCC3,AAR-POS-dddeddbf-5,,,,,,16.8,3.67,,,-9.213070,x0749,2.918438,active-covalent
+Cn1cncc1CNC(=O)Nc2cccc(n2)OCC(F)F,BAR-COM-4e090d3a-52,,,,,,27.6,5.57,,,-9.207413,x1093,1.514276,active-noncovalent
+COc1cc(c2ccccc2n1)CNC(=O)Cc3[nH]ccn3,BAR-COM-4e090d3a-22,,,,,,-23.6,6.33,,,-9.205212,x0104,0.739302,active-noncovalent
+CC(=O)NCCc1cn(c2c1cccc2)CC(=O)N3CCOCC3,DUN-NEW-f8ce3686-13,,,,,,3.44,2.95,,,-9.162056,x0104,0.718361,active-noncovalent
+CC[C@H](c1ccccc1OCC(=O)N2CCCC2)NC(=O)NCc3cnccn3,BAR-COM-4e090d3a-27,,,,,,1.22,0.554,,,-9.135799,x0072,4.382787,active-noncovalent
+C1CCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,AAR-POS-0daf6b7e-9,,,,18.5,3.55,31.4,0.724,1.0,1.0,-9.132237,x0749,-0.456349,active-covalent
+C1CCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,VIR-GIT-7b3d3065-2,,,,18.5,3.55,31.4,0.724,1.0,1.0,-9.132237,x0749,-0.456349,active-covalent
+c1cc(ccc1N2CCC(CC2)CO)S(=O)(=O)N,WAR-XCH-b72a1bbc-14,,,,3.95,0.594,7.03,0.975,1.0,1.0,-9.132140,x0749,0.321987,active-covalent
+Cc1ccncc1NC(=O)c2cccc(c2)NC(=O)Nc3cccnc3,MAK-UNK-129dcd6f-9,,,,,,10.6,0.2,,,-9.129883,x0678,5.986294,active-noncovalent
+Cc1ccncc1NC(=O)c2cccc(c2)NC(=O)Nc3cccnc3,MAK-UNK-129dcd6f-11,,,,,,10.6,0.2,,,-9.129883,x0678,5.986294,active-noncovalent
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cn3)Cl,TRY-UNI-1fd04853-11,,,,1.55,1.25,4.16,1.46,1.0,1.0,-9.105130,x0749,-0.033133,active-covalent
+C[C@H]([C@@H](Cc1ccccc1)C(=O)OC)NC(=O)[C@H](C)n2ccnc2,BAR-COM-4e090d3a-36,,,,,,-2.6,2.81,,,-9.083750,x0678,0.680563,active-noncovalent
+Cc1cccc(c1OCC(=O)NCCc2ccccc2)C,ALE-UNK-fca05062-3,,,,1.78,1.98,7.25,1.1,1.0,0.98,-9.082601,x0104,1.012458,active-noncovalent
+CC(=O)N1CCN(CC1)S(=O)(=O)c2cccs2,MAK-UNK-6435e6c2-1,,,,2.33,3.2,4.21,4.43,1.0,1.0,-9.079074,x0072,-0.360562,active-noncovalent
+CC(=O)Nc1cccc(c1)N2CCCC2=O,MAK-UNK-6435e6c2-4,,,,27.1,0.0478,51.4,0.201,,,-9.072135,x0749,-0.622703,active-covalent
+CC(=O)N1CCN(CC1)S(=O)(=O)c2cccc(c2)F,MAK-UNK-6435e6c2-5,,,,6.2,7.06,1.43,0.641,1.0,1.0,-9.055698,x0072,-0.272488,active-noncovalent
+c1ccc(cc1)CCOc2cccc(c2)NC(=O)Cc3cccnc3Cl,BAR-COM-4e090d3a-15,,,,1.54,1.06,6.9,0.335,0.81,0.27,-9.012136,x0195,4.464138,active-noncovalent
+CC(=O)N1CCN(CC1)S(=O)(=O)c2c(cccc2F)F,MAK-UNK-6435e6c2-6,,,,-1.42,5.78,4.18,0.576,1.0,1.0,-9.008776,x0072,-0.472361,active-noncovalent
+Cc1ccncc1NC(=O)[C@@H](C)c2cccc(c2)C#N,TRY-UNI-714a760b-22,55.2,3.65,> 99.0,35.4,1.38,61.4,0.439,1.0,1.0,-8.995143,x0831,-0.611714,active-covalent
+c1ccc(cc1)CCNC(=O)COc2ccccc2,ALE-UNK-fca05062-4,,,,-0.178,1.95,-0.0738,2.77,1.0,1.0,-8.960869,x0678,1.511668,active-noncovalent
+Cc1cc(cc(c1)Cl)NC(=O)Nc2cccnc2,WAR-XCH-eb7b662f-5,,,,,,18.0,0.287,,,-8.949402,x0678,1.038997,active-noncovalent
+c1cc(oc1)C2CCN(CC2)c3ccc(cc3)S(=O)(=O)N,WAR-XCH-b72a1bbc-7,,,,5.4,0.328,8.47,1.73,1.0,0.83,-8.915313,x0195,1.821337,active-noncovalent
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,JOH-MSK-35a8745a-1,,,,1.37,3.81,-0.962,1.03,1.0,0.99,-8.913157,x0104,-1.58685,active-noncovalent
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,ALE-ACE-2610ee4d-1,,,,1.37,3.81,-0.962,1.03,1.0,0.99,-8.913157,x0104,-1.58685,active-noncovalent
+c1ccc2c(c1)c(no2)CNC(=O)c3ccccc3OCC4CC4,BAR-COM-4e090d3a-43,,,,5.31,0.679,11.7,1.64,1.0,0.64,-8.908870,x0678,1.314141,active-noncovalent
+C[C@H](c1cccc(c1)NC(=O)Cc2cnccc2Cl)[NH+]3CCOCC3,BAR-COM-4e090d3a-66,,,,2.12,1.78,3.92,0.0791,0.97,0.92,-8.907784,x0107,2.379714,active-noncovalent
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cc3)C#N,TRY-UNI-1fd04853-8,,,,2.44,4.57,1.71,1.04,1.0,0.99,-8.901452,x0749,-0.271994,active-covalent
+C[C@H](C(=O)N(CCc1ccccc1)Cc2cccnc2)OC[C@@H]3CCCCO3,BAR-COM-4e090d3a-55,,,,,,14.1,0.189,,,-8.880486,x0678,3.497102,active-noncovalent
+c1cc(cnc1)NC(=O)Nc2ccc(cc2)C#N,ANN-UNI-26382800-3,,,,5.82,0.482,11.6,0.824,1.0,1.0,-8.835213,x0749,0.975317,active-covalent
+c1cc(cnc1)NC(=O)Nc2ccc(cc2)C#N,JOH-UNK-14e6adc5-2,,,,5.82,0.482,11.6,0.824,1.0,1.0,-8.835213,x0749,0.975317,active-covalent
+CCOCC1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b6889685-20,,,,,,0.838,0.312,,,-8.822823,x0161,1.813001,active-noncovalent
+c1cc(ccc1N2CCC(CC2)c3ccsc3)S(=O)(=O)N,WAR-XCH-b72a1bbc-16,,,,7.4,0.16,17.1,0.0726,0.98,0.76,-8.814410,x0195,3.787546,active-noncovalent
+c1cc(cc(c1)Cl)C[NH+]2CCN(CC2)C(=O)CCl,MED-COV-4280ac29-16,,,,,,100.0,0.0832,,,-8.791433,x0831,-0.522922,active-covalent
+c1cc(cc(c1)Cl)C[NH+]2CCN(CC2)C(=O)CCl,MED-COV-4280ac29-15,,,,,,100.0,0.0832,,,-8.791433,x0831,-0.522922,active-covalent
+c1cc(cc(c1)Cl)C[NH+]2CCN(CC2)C(=O)CCl,AAR-POS-d2a4d1df-35,,,,,,100.0,0.0832,,,-8.791433,x0831,-0.522922,active-covalent
+c1cc(cc(c1)OCCn2cncn2)NC(=O)Cc3cccnc3Br,BAR-COM-4e090d3a-35,,,,,,13.6,1.91,,,-8.784991,x0195,5.101603,active-noncovalent
+c1cc(ccc1N2CCSCC2)S(=O)(=O)N,WAR-XCH-b72a1bbc-1,,,,,,12.8,0.959,,,-8.766706,x0749,0.927176,active-covalent
+CC(=O)N1CC[NH+](CC1)Cc2cccc(c2)C#N,PAT-UNK-b2d83456-1,,,,-0.339,7.61,6.59,0.42,1.0,0.99,-8.765173,x0749,-1.116944,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C)OC,LON-WEI-b8d98729-1,,,,3.21,1.6,11.3,0.114,0.94,0.92,-8.756179,x0831,4.602241,active-covalent
+c1ccc(cc1)C(=O)N2CCN(CC2)C(=O)C3CCOCC3,GIA-UNK-eaadd1d4-1,,,,2.9,1.43,6.27,1.02,1.0,1.0,-8.754841,x0946,2.595766,active-noncovalent
+CCSCC1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b72a1bbc-39,,,,,,6.96,1.63,,,-8.731390,x0161,1.043037,active-noncovalent
+c1cc(cc(c1)O[C@H]2CC(=O)N2)NC(=O)Cc3cncnc3,BAR-COM-4e090d3a-39,,,,7.86,1.84,22.8,6.11,1.0,1.0,-8.729742,x0678,1.320221,active-noncovalent
+c1ccc(c(c1)NC(=O)c2cc(ccc2O)Cl)Cl,CHR-SOS-7098f804-4,,,,5.47,3.87,5.58,1.3,0.91,0.7,-8.723997,x0195,-0.480806,active-noncovalent
+CNS(=O)(=O)Cc1ccc2c(c1)c(c[nH]2)CC[NH+](C)C,LON-WEI-b8d98729-34,,,,4.66,5.34,2.38,1.67,1.0,1.0,-8.722964,x0072,-0.018803,active-noncovalent
+CNS(=O)(=O)Cc1ccc2c(c1)c(c[nH]2)CC[NH+](C)C,TOM-OIS-cbf37265-2,,,,4.66,5.34,2.38,1.67,1.0,1.0,-8.722964,x0072,-0.018803,active-noncovalent
+CNS(=O)(=O)Cc1ccc2c(c1)c(c[nH]2)CC[NH+](C)C,ANT-OPE-47f3bb65-1,,,,4.66,5.34,2.38,1.67,1.0,1.0,-8.722964,x0072,-0.018803,active-noncovalent
+Cc1ccc2c(c1S(=O)(=O)[O-])sc(n2)c3ccc(cc3)N,AAR-POS-dddeddbf-1,,,,,,18.7,3.38,,,-8.717568,x0749,1.554171,active-covalent
+c1ccc(cc1)NC(=O)CC(=O)N2CCOCC2,GIA-UNK-3f36037a-2,,,,,,6.66,1.94,,,-8.713440,x1093,-0.133909,active-noncovalent
+c1cc(ccc1N2CCC(CC2)[C@@H]3CCCO3)S(=O)(=O)N,WAR-XCH-b72a1bbc-18,,,,,,4.23,0.489,,,-8.696627,x0161,1.222047,active-noncovalent
+c1ccc2c(c1)cncc2CC(=O)Nc3cccc(c3)C#N,DAR-DIA-23aa0b97-19,28.2,2.7,> 99.0,48.7,0.877,73.0,0.425,0.99,0.98,-8.666809,x0831,-1.347108,active-covalent
+c1ccc(cc1)NC(=O)c2cc(ccc2O)Cl,CHR-SOS-7098f804-7,,,,3.75,1.9,8.41,0.723,1.0,0.89,-8.661772,x0749,-1.143114,active-covalent
+c1ccc(cc1)[C@@H](Cn2cccn2)NC(=O)CCc3cn[nH]n3,BAR-COM-4e090d3a-30,,,,-1.52,2.71,-1.11,1.55,,,-8.655871,x0678,0.961316,active-noncovalent
+Cc1ccccc1NC2CCN(CC2)c3ccc(cc3)S(=O)(=O)N,WAR-XCH-b6889685-30,,,,4.98,0.13,7.22,2.41,0.91,0.91,-8.649417,x0072,1.965924,active-noncovalent
+c1ccc(cc1)C(=O)N2CCC[C@@H]2C(=O)N3CCOCC3,GIA-UNK-d2defdc3-6,,,,,,-1.33,0.0464,,,-8.646894,x1093,0.014361,active-noncovalent
+CNC(=O)OC1CC[NH+](CC1)Cc2ccccc2,GIA-UNK-595fac82-5,,,,,,22.1,0.43,,,-8.642924,x0678,0.322854,active-noncovalent
+c1cc(cc(c1)NC(=O)Nc2cc(cnc2)N)C#N,DAR-DIA-23aa0b97-8,,,,,,59.9,6.01,,,-8.612061,x0749,2.455765,active-covalent
+C[C@@H](c1ccc(cc1)S(=O)(=O)NC)NC(=O)[C@@H]2CC2=C,VIJ-CYC-1a381570-5,,,,-2.67,0.373,-0.972,0.0824,1.0,1.0,-8.562788,x0195,0.366719,active-noncovalent
+COc1ccccc1OCCNC(=O)c2cc(=O)[nH]c3c2cccc3,MAT-POS-916a2c5a-2,7.02,0.47,> 99.0,83.7,0.902,92.7,0.173,0.99,0.96,-8.549057,x1093,1.915458,active-noncovalent
+c1cc(sc1)C[NH+]2CCN(CC2)C(=O)CCl,AAR-POS-0daf6b7e-17,5.66,0.395,> 99.0,,,,,1.0,1.0,-8.544258,x0831,-1.384621,active-covalent
+c1cc(sc1)C[NH+]2CCN(CC2)C(=O)CCl,LON-WEI-8f408cad-5,5.66,0.395,> 99.0,,,,,1.0,1.0,-8.544258,x0831,-1.384621,active-covalent
+c1cscc1C[NH+]2CCN(CC2)C(=O)CCl,AAR-POS-0daf6b7e-13,3.27,0.19,> 99.0,,,,,1.0,0.99,-8.542832,x0831,-1.102679,active-covalent
+c1cscc1C[NH+]2CCN(CC2)C(=O)CCl,LON-WEI-8f408cad-7,3.27,0.19,> 99.0,,,,,1.0,0.99,-8.542832,x0831,-1.102679,active-covalent
+c1cscc1C[NH+]2CCN(CC2)C(=O)CCl,MAK-UNK-212f693e-8,3.27,0.19,> 99.0,,,,,1.0,0.99,-8.542832,x0831,-1.102679,active-covalent
+COc1ccnc(c1)NC(=O)Cc2ccc3ccccc3c2,ALV-UNI-7ff1a6f9-47,,,,3.47,0.377,6.09,0.746,0.95,0.91,-8.538442,x0104,0.73586,active-noncovalent
+Cc1ccccc1C[NH+]2CCN(CC2)C(=O)[C@H](C(C)C)F,JON-UIO-066ce08b-9,,,,2.74,0.581,6.7,0.127,1.0,1.0,-8.529145,x1093,0.858974,active-noncovalent
+CC(=O)Oc1ccccc1C(=O)Nc2ncc(s2)N(=O)=O,AAR-POS-dddeddbf-4,,,,,,-32.6,3.36,,,-8.506630,x0678,-0.041742,active-noncovalent
+CNC(=O)OC1CCN(CC1)S(=O)(=O)c2ccccc2,GIA-UNK-595fac82-4,,,,,,-1.43,0.802,,,-8.492133,x0072,-0.247421,active-noncovalent
+COCC1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b72a1bbc-23,,,,,,3.85,0.718,,,-8.468962,x0749,2.068261,active-covalent
+c1ccc(cc1)C(=O)N[C@H]2CCCC[C@@H]2NC(=O)c3ccncc3,GIA-UNK-d2defdc3-2,,,,,,12.0,0.431,,,-8.447964,x0107,2.090658,active-noncovalent
+c1c[nH+]ccc1N2CCC(CC2)C(=O)N3CCOCC3,GIA-UNK-30c7cb75-2,,,,,,1.67,0.794,,,-8.439287,x0072,0.110055,active-noncovalent
+c1cc(ccc1S(=O)(=O)c2cnc(nc2N)N)Cl,AAR-POS-dddeddbf-3,,,,,,15.7,0.646,,,-8.429440,x0678,-0.487026,active-noncovalent
+CC[C@H](c1ccccc1OCC(=O)N2CCCC2)NC(=O)[C@H](C)n3cncn3,BAR-COM-4e090d3a-31,,,,-0.907,0.797,0.701,0.541,1.0,0.99,-8.428527,x0195,3.627711,active-noncovalent
+c1ccc(cc1)N2CC[NH+](CC2)CCNC(=O)NCc3ccccn3,TRI-UNI-97428359-1,,,,,,-11.4,8.64,,,-8.423624,x0678,3.942343,active-noncovalent
+Cc1cc(c(c(c1C)S(=O)(=O)N2CCN(CC2)C(=O)c3cc(=O)[nH]c4c3cccc4)C)C,MAT-POS-916a2c5a-3,8.19,0.52,> 99.0,84.4,0.904,92.9,0.294,0.75,0.65,-8.398966,x0434,5.770675,active-noncovalent
+c1cc(cc(c1)NC(=O)Cc2c[nH]c3c2cccn3)C#N,DAR-DIA-23aa0b97-1,,,,2.74,4.51,2.91,1.69,1.0,0.95,-8.394180,x0830,0.560642,active-covalent
+CS(=O)(=O)NCCc1ccccc1O,ANT-DIA-b7f58f21-3,,,,,,-5.0,3.41,,,-8.386959,x0195,-1.445947,active-noncovalent
+c1ccc(c(c1)C(=O)NCc2cnsc2)OCC#N,BAR-COM-4e090d3a-49,,,,2.21,1.97,5.96,0.936,1.0,1.0,-8.371911,x0830,-1.137905,active-covalent
+Cc1ccncc1NC(=O)Cc2cccc(c2)C#N,TRY-UNI-714a760b-20,63.7,8.5,> 49.5,33.6,0.817,58.3,0.0957,1.0,1.01,-8.371187,x1385,-1.665791,active-covalent
+Cc1cc(c2cc(ccc2n1)OC)C(=O)NN,MAT-POS-4e253971-3,,,,,,17.9,1.08,,,-8.344446,x0195,-0.428243,active-noncovalent
+CC[N@@H+](C)CC1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b72a1bbc-49,,,,3.39,0.498,6.02,1.2,1.0,0.98,-8.318925,x0104,1.778923,active-noncovalent
+c1ccc2cc(ccc2c1)CC(=O)Nc3cc(ccn3)C(F)(F)F,ALV-UNI-7ff1a6f9-46,,,,-2.55,4.03,3.43,0.58,0.9,0.38,-8.308216,x0161,1.373027,active-noncovalent
+c1c[nH+]ccc1N2CCC(CC2)C(=O)N3CCCCC3,GIA-UNK-30c7cb75-1,,,,,,14.7,2.39,,,-8.284107,x0161,-0.16463,active-noncovalent
+c1cc(cc(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)F,AAR-POS-d2a4d1df-23,4.1,0.36,> 99.0,97.3,0.758,99.0,0.178,1.0,1.0,-8.249612,x0830,0.419878,active-covalent
+c1cc(cc(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)F,LON-WEI-8f408cad-4,4.1,0.36,> 99.0,97.3,0.758,99.0,0.178,1.0,1.0,-8.249612,x0830,0.419878,active-covalent
+c1cc(c(c(c1)F)S(=O)(=O)N2CCN(CC2)C(=O)CCl)F,AAR-POS-d2a4d1df-32,3.43,0.33,> 99.0,98.7,0.169,99.3,0.28,0.96,0.88,-8.249490,x0830,1.028883,active-covalent
+c1cc(c(c(c1)F)S(=O)(=O)N2CCN(CC2)C(=O)CCl)F,LON-WEI-8f408cad-2,3.43,0.33,> 99.0,98.7,0.169,99.3,0.28,0.96,0.88,-8.249490,x0830,1.028883,active-covalent
+C[C@@H](c1ccc(c(c1)F)F)C(=O)N[C@@H](C)c2cccc(c2)F,JON-UIO-066ce08b-7,,,,,,8.92,0.141,,,-8.247419,x0195,2.516587,active-noncovalent
+Cc1ccc(c(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)C,AAR-POS-0daf6b7e-3,,,,,,94.5,0.405,,,-8.226967,x0830,-0.405725,active-covalent
+Cc1ccc(c(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)C,WAR-XCH-79d12f6e-6,,,,,,94.5,0.405,,,-8.226967,x0830,-0.405725,active-covalent
+c1cc(cc(c1)N2CCCC2=O)NC(=O)CCl,LON-WEI-8f408cad-1,72.0,13.65,> 49.5,,,,,1.0,1.0,-8.221556,x0749,-0.050324,active-covalent
+c1cc(cc(c1)N2CCCC2=O)NC(=O)CCl,MAK-UNK-7a704a63-10,72.0,13.65,> 49.5,,,,,1.0,1.0,-8.221556,x0749,-0.050324,active-covalent
+c1cc(cc(c1)N2CCCC2=O)NC(=O)CCl,AAR-POS-0daf6b7e-11,72.0,13.65,> 49.5,,,,,1.0,1.0,-8.221556,x0749,-0.050324,active-covalent
+C[NH2+]Cc1c[nH]c2c1cc(cc2)F,DAR-DIA-eace69ff-36,,,,,,37.9,0.13,,,-8.188797,x0195,-2.530352,active-noncovalent
+CC(=O)N1CC[NH+](CC1)Cc2ccsc2,MAK-UNK-6435e6c2-3,,,,98.8,0.000332,99.4,0.175,,,-8.185779,x0831,-1.248268,active-covalent
+C=CC(=O)N1CCN(CC1)C(=O)c2cccc(c2)Cl,MED-COV-4280ac29-14,,,,,,4.79,2.05,,,-8.169322,x0749,-1.090447,active-covalent
+C#Cc1ccc(cc1)CNC(=O)N2CCOCC2,PAT-GYR-359dbb24-1,,,,1.4,1.59,2.46,0.567,1.0,1.0,-8.167992,x0104,0.154867,active-noncovalent
+c1c[nH+]ccc1N2CCC(CC2)C(=O)N3CCS(=O)(=O)CC3,GIA-UNK-30c7cb75-3,,,,,,13.0,2.79,,,-8.145669,x0072,0.570498,active-noncovalent
+CC(=O)N1CC[NH+](CC1)Cc2cccs2,MAK-UNK-6435e6c2-2,,,,94.5,1.7,99.0,0.0298,,,-8.134935,x0434,-1.046222,active-noncovalent
+Cc1ccc(cc1)c2cc(nn2c3ccc(cc3)S(=O)(=O)N)C(F)(F)F,GER-UNI-05c7e912-1,,,,6.23,0.227,11.9,0.592,0.91,0.79,-8.128628,x0161,2.484577,active-noncovalent
+c1cc(sc1)S(=O)(=O)N2CCN(CC2)C(=O)CCl,LON-WEI-8f408cad-3,2.07,0.15,> 99.0,99.3,0.268,99.6,0.0712,1.0,1.0,-8.104933,x0749,0.526449,active-covalent
+c1cc(sc1)S(=O)(=O)N2CCN(CC2)C(=O)CCl,AAR-POS-d2a4d1df-22,2.07,0.15,> 99.0,99.3,0.268,99.6,0.0712,1.0,1.0,-8.104933,x0749,0.526449,active-covalent
+COc1cccc(c1)NC(=O)Nc2cccc(c2)C#N,ANN-UNI-26382800-6,,,,5.11,0.0988,9.79,0.332,0.96,0.94,-8.098941,x0749,2.185724,active-covalent
+c1cc(ccc1N2CCC(CC2)[NH+]3CCCCC3)S(=O)(=O)N,WAR-XCH-b72a1bbc-10,,,,,,2.3,0.421,,,-8.096125,x0104,3.282734,active-noncovalent
+c1cc(nc(c1)OCC(F)F)NC(=O)NCc2cccnc2,BAR-COM-4e090d3a-69,,,,3.33,1.47,8.28,1.36,1.0,1.0,-8.066553,x1093,2.057149,active-noncovalent
+CCc1nnnn1c2ccccc2NC(=O)C3(CC3)c4cc(cnc4)Br,BAR-COM-4e090d3a-16,,,,,,7.51,1.8,,,-8.060421,x0830,2.799105,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3cc([nH]n3)C(C)(C)C)C(=O)C=C)C,LON-WEI-b8d98729-20,,,,4.05,4.47,4.71,2.18,0.92,0.78,-8.018552,x0831,3.409809,active-covalent
+Cc1cccc(c1)NC(=O)/C(=C(\C2CCC2)/O)/C#N,JOH-UNI-c7afdb96-7,,,,,,16.7,1.8,,,-7.984158,x0831,-1.091747,active-covalent
+c1cc(cc(c1)NC(=O)Nc2cccnc2)C#N,ANN-UNI-26382800-4,,,,6.21,4.27,10.3,1.53,1.0,1.0,-7.983136,x0749,2.194333,active-covalent
+c1cc(cc(c1)NC(=O)Nc2cccnc2)C#N,JOR-UNI-61e7b1d5-2,,,,6.21,4.27,10.3,1.53,1.0,1.0,-7.983136,x0749,2.194333,active-covalent
+c1cc(cc(c1)NC(=O)Nc2cccnc2)C#N,WAR-XCH-eb7b662f-1,,,,6.21,4.27,10.3,1.53,1.0,1.0,-7.983136,x0749,2.194333,active-covalent
+c1cc(cc(c1)NC(=O)Nc2cccnc2)C#N,DAR-DIA-23aa0b97-5,,,,6.21,4.27,10.3,1.53,1.0,1.0,-7.983136,x0749,2.194333,active-covalent
+c1ccc(cc1)C[C@H](C(=O)NCc2ccno2)NC(=O)OCc3ccccc3,BAR-COM-4e090d3a-19,,,,,,7.1,6.22,,,-7.968852,x0678,4.174881,active-noncovalent
+CC(=O)N1CC[NH+](CC1)CC(=O)Nc2cccc(c2)S(=O)(=O)N,LON-WEI-b8d98729-4,,,,-3.12,2.66,2.63,0.332,1.0,1.0,-7.938325,x0104,1.351343,active-noncovalent
+CC(=O)N1CC[NH+](CC1)CC(=O)Nc2cccc(c2)S(=O)(=O)N,JAN-GHE-1d98ec1c-7,,,,-3.12,2.66,2.63,0.332,1.0,1.0,-7.938325,x0104,1.351343,active-noncovalent
+CCn1c2ccccc2n(c1=O)CC(=O)NCc3cnccn3,BAR-COM-4e090d3a-51,,,,1.73,2.23,6.74,0.836,1.0,1.0,-7.938208,x0678,0.837487,active-noncovalent
+Cc1cccc(c1)NC(=O)/C(=C(\C2CCCC2)/O)/C#N,JOH-UNI-c7afdb96-6,,,,,,8.05,1.42,,,-7.910522,x0831,-0.114184,active-covalent
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cn3)C#N,TRY-UNI-1fd04853-12,,,,4.15,5.6,0.616,0.662,1.0,1.0,-7.890812,x0749,0.280749,active-covalent
+c1cc(cc(c1)C#N)CC(=O)Nc2cccnc2,ANN-UNI-26382800-5,,,,11.4,1.42,25.0,0.939,1.0,1.0,-7.873439,x0749,-1.251872,active-covalent
+c1cc(cc(c1)Cl)NC(=O)/C(=C(\c2cccs2)/O)/C#N,JOH-UNI-c7afdb96-5,,,,,,18.8,4.8,,,-7.871647,x0830,-0.26054,active-covalent
+CC(C)N(C)C(=O)C1CCN(CC1)C(=O)CCl,VIR-GIT-7b3d3065-3,,,,17.3,0.758,38.8,0.0201,1.0,1.0,-7.862561,x0749,0.810779,active-covalent
+CC(C)N(C)C(=O)C1CCN(CC1)C(=O)CCl,AAR-POS-0daf6b7e-19,,,,17.3,0.758,38.8,0.0201,1.0,1.0,-7.862561,x0749,0.810779,active-covalent
+c1ccc(cc1)NC(=O)CC(=O)Nc2ccncc2,GIA-UNK-3f36037a-7,,,,,,-16.6,6.58,,,-7.789352,x0107,0.626083,active-noncovalent
+c1ccc2c(c1)cc(cc2C[NH+]3CCN(CC3)CC#N)Cl,MAT-POS-4e253971-1,,,,,,-1.08,0.303,,,-7.785496,x0830,1.05441,active-covalent
+Cc1nc(on1)C[C@@H](c2ccccc2)NC(=O)[C@H](C)Cn3ccnc3,BAR-COM-4e090d3a-38,,,,,,14.8,1.2,,,-7.774179,x0678,2.55209,active-noncovalent
+c1cc(cc(c1)OCC[NH+]2CCOCC2)NC(=O)NCc3cccnn3,BAR-COM-4e090d3a-54,,,,1.16,0.388,1.22,0.671,1.0,0.99,-7.753376,x0678,6.099532,active-noncovalent
+c1ccc(cc1)S(=O)(=O)N2CCC(CC2)C(=O)N3CCOCC3,GIA-UNK-eaadd1d4-3,,,,1.87,0.14,5.52,0.277,1.0,0.99,-7.749019,x0072,1.161635,active-noncovalent
+CC(C)[NH2+]C1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,WAR-XCH-b6889685-23,,,,-1.27,0.227,-1.56,2.97,1.0,0.98,-7.678153,x0395,1.516358,active-noncovalent
+CS(=O)(=O)Nc1cccc(c1)C(=O)Nc2cccc(c2)N3CCCC3=O,MAK-UNK-9159f8ed-6,,,,0.866,2.74,5.19,0.742,1.0,0.99,-7.669181,x1077,5.451528,active-noncovalent
+CS(=O)(=O)Nc1cccc(c1)C(=O)Nc2cccc(c2)N3CCCC3=O,MAK-UNK-1e8f9e3c-1,,,,0.866,2.74,5.19,0.742,1.0,0.99,-7.669181,x1077,5.451528,active-noncovalent
+c1cc(c(cc1N(=O)=O)Cl)NC(=O)c2cc(ccc2O)Cl,CHR-SOS-7098f804-1,,,,,,18.2,7.97,,,-7.658549,x0678,0.550615,active-noncovalent
+CS(=O)(=O)NCCCN1CCCc2c1cc(cc2)S(=O)(=O)N,PET-SGC-abcbce68-1,,,,,,-1.74,4.03,,,-7.647782,x0195,2.304781,active-noncovalent
+COc1ccc2c(c1)c(c[nH]2)CCNS(=O)(=O)C,MAR-UNI-9ca61fdc-1,,,,-4.19,2.41,-4.39,0.755,0.92,0.86,-7.645136,x0831,0.122811,active-covalent
+Cc1cccc(c1)NC(=O)/C(=C(\CC(C)C)/O)/C#N,JOH-UNI-c7afdb96-13,,,,,,26.4,0.783,,,-7.610608,x0749,-0.65401,active-covalent
+C=CC(=O)N(c1ccc2c(c1)scn2)[C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Br,LON-WEI-b8d98729-9,,,,17.4,4.44,34.9,0.534,0.75,0.64,-7.523878,x0831,4.433122,active-covalent
+CCC(CC)/C(=C(/C#N)\C(=O)Nc1ccc(cc1)F)/O,JOH-UNI-c7afdb96-14,,,,,,13.7,1.74,,,-7.504443,x0749,0.117847,active-covalent
+CC(=O)N1CC[NH+](CC1)Cc2cn(nn2)c3cccc(c3)S(=O)(=O)N,NIM-UNI-02269248-3,,,,-2.75,1.47,1.36,0.123,0.95,0.97,-7.492530,x0104,3.13829,active-noncovalent
+C[C@@H]1C[C@@H](CN(C1)C(=O)c2ccccc2NC(=O)NCc3ccoc3)C,BAR-COM-4e090d3a-44,,,,,,-2.25,2.31,,,-7.434844,x0434,1.961923,active-noncovalent
+Cc1cccc(c1)NC(=O)/C(=C(\C2CC2)/O)/C#N,JOH-UNI-c7afdb96-8,,,,,,24.5,1.88,,,-7.429615,x0749,-0.814102,active-covalent
+CC1(CC1)c2ccc(cc2)N([C@H](c3cccnc3)C(=O)NC(C)(C)C)C(=O)C=C,LON-WEI-d1c9908a-1,,,,,,25.8,0.0492,,,-7.423429,x0749,2.038586,active-covalent
+CS(=O)(=O)NCCc1cccc(c1)O,ANT-DIA-b7f58f21-2,,,,-1.8,0.0968,0.0445,0.735,1.0,1.0,-7.416083,x0749,-2.026322,active-covalent
+CC(C)(C)C/C(=C(/C#N)\C(=O)Nc1ccccc1)/O,JOH-UNI-c7afdb96-12,,,,,,9.17,0.491,,,-7.342156,x0831,-0.913601,active-covalent
+Cc1ccc(cc1)NC(=O)/C(=C(\CC(C)C)/O)/C#N,JOH-UNI-c7afdb96-11,,,,,,25.8,0.292,,,-7.296918,x0749,0.099686,active-covalent
+C[C@@H](c1ccc(cc1)S(=O)(=O)NC)NC(=O)NC(C)(C)C,VIJ-CYC-1a381570-11,,,,-0.809,3.03,-0.25,0.284,1.0,1.0,-7.291488,x0195,2.079654,active-noncovalent
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccccc3Br)C(=O)C=C,LON-WEI-d1c9908a-12,,,,,,20.7,0.213,,,-7.274395,x0749,4.838636,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3cc(on3)C(C)(C)C)C(=O)C=C)OC,LON-WEI-b8d98729-43,,,,12.9,3.4,23.4,0.0163,1.0,0.91,-7.271996,x1392,5.571238,active-covalent
+CC(C)(C)c1cc(n[nH]1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,LON-WEI-b8d98729-21,,,,6.12,0.252,19.5,0.43,0.78,0.68,-7.264618,x1418,3.244373,active-covalent
+c1cc(cnc1)NC(=O)Nc2cc(cc(c2)Cl)C#N,WAR-XCH-eb7b662f-2,,,,23.0,0.819,43.9,1.17,0.99,0.88,-7.243569,x0749,1.538457,active-covalent
+Cc1ccncc1NC(=O)Nc2cccc(c2)C#N,TRY-UNI-714a760b-24,,,,19.4,2.58,44.3,0.178,1.0,0.97,-7.196349,x0749,0.974347,active-covalent
+CC(C)(C)c1cc(no1)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C,LON-WEI-b8d98729-23,99.0,,> 99.0,7.86,1.11,16.1,0.414,0.98,0.91,-7.190642,x0749,2.608409,active-covalent
+c1cc(cnc1)NC(=O)Cc2cc(cnc2)C#N,DAR-DIA-23aa0b97-17,,,,6.61,1.66,21.8,0.112,1.0,1.0,-7.190603,x0749,-0.712754,active-covalent
+c1cc(cc(c1)Cl)[C@@H](CO)NC(=O)CCl,DAV-CRI-3edb475e-4,,,,,,41.5,0.939,,,-7.169279,x0749,-1.838645,active-covalent
+C[C@@H](c1ccc(cc1)CNC(=O)C=C)NC(=O)OC(C)(C)C,VIJ-CYC-1a381570-10,,,,,,3.94,4.74,,,-7.127817,x0749,2.101524,active-covalent
+CCCSC/C(=C(/C#N)\C(=O)Nc1ccc(cc1F)F)/O,JOH-UNI-c7afdb96-10,,,,,,4.38,2.03,,,-7.116019,x0749,3.409525,active-covalent
+CCCNC(=O)[C@H](C)NC(=O)N(C)Cc1csc(n1)C,ALE-UNK-fca05062-9,,,,0.814,2.71,-2.74,0.376,1.0,1.0,-7.045680,x0195,0.801408,active-noncovalent
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3cccc(c3C)F)C(=O)C=C,LON-WEI-b8d98729-36,,,,16.3,0.472,31.8,1.09,0.86,0.72,-6.975394,x0749,5.058728,active-covalent
+CCCSC/C(=C(/C#N)\C(=O)Nc1ccccc1F)/O,JOH-UNI-c7afdb96-9,,,,,,9.99,1.01,,,-6.906663,x0749,-0.691132,active-covalent
+C[NH+]1CCC(CC1)C(=O)N[C@H]2CCCC[C@@H]2NC(=O)c3ccccc3,GIA-UNK-d2defdc3-4,,,,,,0.89,4.23,,,-6.880795,x0967,2.981867,active-noncovalent
+CC(C)(C)NC(=O)[C@@H](c1cccnc1)N(c2ccc3c(c2)scn3)C(=O)C=C,LON-WEI-b8d98729-31,,,,9.29,11.4,0.772,1.75,1.0,1.0,-6.844155,x0831,2.887503,active-covalent
+c1cc(cc(c1)NC(=O)Nc2c[nH]c3c2cccn3)C#N,DAR-DIA-23aa0b97-11,,,,,,49.3,2.37,,,-6.808415,x0749,1.724748,active-covalent
+C#CC[NH+]1CCN(CC1)C(=O)CCl,TOB-UNK-c2aba166-1,,,,,,24.9,3.22,,,-6.639501,x0831,-2.050301,active-covalent
+CC(C)[C@@H](C#N)NS(=O)(=O)c1ccc(cc1)CF,VIJ-CYC-1a381570-12,,,,,,22.6,1.08,,,-6.573712,x1386,-0.869388,active-covalent
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Br)C(=O)C=C,LON-WEI-b8d98729-35,,,,8.32,0.271,18.4,0.232,0.91,0.66,-6.567985,x0749,4.689454,active-covalent
+C1CS(=O)(=O)C[C@@H]1N(CCC(=O)N)C(=O)CCl,DAN-PUR-6788a628-2,,,,,,31.4,13.1,,,-6.467215,x0770,-1.077626,active-covalent
+COc1ccc(cc1OC)[C@@H]2CC(=NN2C(=O)CCl)c3cccs3,MAT-POS-916a2c5a-1,1.75,0.14,> 49.5,99.4,0.0695,99.2,0.0382,0.95,0.83,-6.344529,x1392,1.213684,active-covalent
+CC(C)(C)c1c(sc(n1)NS(=O)(=O)c2ccc(cc2)CF)C(=O)OC,VIJ-CYC-1a381570-13,,,,,,9.22,3.77,,,-6.340725,x0161,2.031266,active-noncovalent
+C[C@@H](c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C)OC,LON-WEI-b8d98729-22,,,,12.3,2.71,26.1,1.87,0.84,0.76,-6.333134,x0749,4.670924,active-covalent
+Cc1cc(c(cc1Cl)Cl)S(=O)(=O)c2c(cc(cc2N(=O)=O)C(F)(F)F)N(=O)=O,AAR-POS-dddeddbf-2,,,,,,10.7,10.7,,,-6.275576,x0104,2.393945,active-noncovalent
+C[C@@H](c1ccc(cc1)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C)OC,LON-WEI-b8d98729-10,,,,7.07,1.98,15.9,0.706,0.98,0.86,-6.235109,x0749,1.79502,active-covalent
+Cc1ccncc1NC(=O)c2ccc(cc2)NC(=O)Nc3cccnc3,MAK-UNK-129dcd6f-12,,,,,,-0.926,2.18,,,-6.229748,x0104,8.429572,active-noncovalent
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,LON-WEI-b8d98729-33,,,,16.5,5.09,22.7,2.32,0.82,0.68,-6.207908,x0749,4.781483,active-covalent
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C,LON-WEI-8f408cad-9,,,,2.89,1.54,8.8,1.67,0.98,0.95,-6.128372,x0749,2.08568,active-covalent
+COc1ccc(cc1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)SC)C(=O)C=C,LON-WEI-b8d98729-47,,,,13.5,2.82,27.0,0.9,0.91,0.77,-6.003866,x0749,3.609512,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3cc(on3)C(C)(C)C)C(=O)C=C)C,LON-WEI-b8d98729-46,,,,7.33,0.74,21.1,0.99,0.99,0.9,-5.954724,x0831,4.937933,active-covalent
+CC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C,LON-WEI-8f408cad-8,,,,12.7,2.36,27.2,0.674,0.96,0.89,-5.917193,x0749,2.402975,active-covalent
+CC(C)(C)NC(=O)[C@@H](c1cccnc1)N(c2ccc(cc2)SC)C(=O)C=C,LON-WEI-b8d98729-6,,,,3.54,5.36,7.75,2.46,1.0,0.99,-5.821193,x0749,1.479574,active-covalent
+c1cc(ccc1/C(=C(\C#N)/C(=O)Nc2ccc(cc2)F)/O)Cl,JOH-UNI-c7afdb96-2,,,,,,7.43,2.3,,,-5.794032,x0734,1.605694,active-covalent
+CC(C)c1ccc(cn1)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C,LON-WEI-b8d98729-32,,,,11.7,8.33,11.4,1.46,1.0,0.99,-5.736517,x0749,1.734861,active-covalent
+C[C@@H](c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccccc3Br)C(=O)C=C)OC,LON-WEI-b8d98729-19,,,,3.04,4.9,9.73,0.763,0.89,0.84,-5.576895,x0749,4.531846,active-covalent
+CCC(=O)O[C@H](C(C)C)O[P@@](=O)(CCCCc1ccccc1)CC(=O)N2C[C@@H](C[C@H]2C(=O)[O-])C3CCCCC3,LON-WEI-b8d98729-5,,,,4.91,5.73,-0.253,1.1,1.0,0.92,-5.570315,x0678,7.501105,active-noncovalent
+COc1ccc(cc1)NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C,LON-WEI-b8d98729-25,,,,4.02,4.23,15.4,1.5,0.92,0.87,-5.472166,x0759,5.212279,active-covalent
+C=CC(=O)N(c1ccc2c(c1)scn2)[C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Cl,LON-WEI-b8d98729-44,,,,8.95,0.906,25.3,0.217,0.87,0.69,-5.381918,x1392,3.649102,active-covalent
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C4(CC4)C)C(=O)C=C,LON-WEI-d1c9908a-6,,,,,,49.0,2.56,,,-5.348599,x1380,4.606168,active-covalent
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)[C@H](C)OC)C(=O)C=C,LON-WEI-b8d98729-17,67.8,23.15,> 49.5,36.6,3.78,63.7,0.795,0.92,0.82,-5.173100,x0831,5.067852,active-covalent
+CC1(CC1)c2ccc(cc2)N([C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Cl)C(=O)C=C,LON-WEI-d1c9908a-2,,,,,,9.66,0.849,,,-5.000449,x0831,3.638221,active-covalent
+CC1(CC1)c2ccc(cc2)N([C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Br)C(=O)C=C,LON-WEI-d1c9908a-11,,,,,,42.5,4.38,,,-4.995249,x0749,4.570319,active-covalent
+C=CC(=O)N(c1ccc(cc1)C(F)(F)F)[C@H](c2cccnc2)C(=O)Nc3ccccc3Br,LON-WEI-b8d98729-41,,,,15.6,7.32,22.0,1.11,0.94,0.83,-4.750962,x1380,4.8406,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(F)(F)F)C(=O)C=C)C,LON-WEI-b8d98729-39,97.8,39.5,> 99.0,22.3,0.806,38.6,0.0151,0.89,0.79,-4.642575,x0831,4.456306,active-covalent
+Cc1c(cccc1F)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C4(CC4)C)C(=O)C=C,LON-WEI-d1c9908a-13,,,,,,19.6,1.02,,,-4.542414,x0749,4.466914,active-covalent
+Cc1c(cccc1F)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(C)(C)C)C(=O)C=C,LON-WEI-d1c9908a-9,,,,,,-20.7,9.17,,,-4.508196,x1380,4.109283,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)SC)C(=O)C=C)OC,LON-WEI-b8d98729-40,,,,8.27,5.86,22.2,0.594,0.95,0.84,-4.433858,x0831,4.098318,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)SC)C(=O)C=C)C,LON-WEI-b8d98729-2,,,,11.1,1.29,24.5,1.47,0.85,0.67,-4.300403,x0831,5.996135,active-covalent
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,LON-WEI-b8d98729-11,,,,4.26,4.03,12.1,0.809,0.88,0.78,-4.042912,x0831,3.743911,active-covalent
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3cc(on3)C(C)(C)C)C(=O)C=C,LON-WEI-b8d98729-15,,,,15.6,1.8,43.1,0.132,0.87,0.76,-4.035255,x1380,6.772664,active-covalent
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccccc3Br)C(=O)C=C,LON-WEI-b8d98729-13,,,,2.84,3.7,8.13,2.86,0.86,0.79,-3.970939,x1392,4.018184,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C4(CC4)C)C(=O)C=C)C,LON-WEI-d1c9908a-8,,,,,,8.55,0.383,,,-3.686610,x0831,4.341524,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(nc3)C(C)C)C(=O)C=C)C,LON-WEI-b8d98729-18,,,,5.61,2.53,12.5,1.87,1.0,0.95,-3.682618,x1392,5.247264,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C)C,LON-WEI-b8d98729-48,,,,7.67,3.72,10.7,1.22,0.97,0.97,-3.652820,x0831,4.31251,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)[C@H](C)OC)C(=O)C=C)OC,LON-WEI-b8d98729-8,,,,2.91,0.123,6.9,0.785,0.99,0.97,-3.603661,x1418,4.655709,active-covalent
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(c(c3)C)N(C)C)C(=O)C=C,LON-WEI-b8d98729-16,,,,7.05,2.96,11.7,1.09,0.85,0.68,-3.552167,x1380,4.49022,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(F)(F)F)C(=O)C=C)OC,LON-WEI-b8d98729-37,,,,7.06,1.62,25.4,0.233,0.95,0.62,-3.529982,x1380,6.219213,active-covalent
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C,LON-WEI-b8d98729-38,63.3,11.25,> 49.5,33.9,0.707,59.3,0.47,0.8,0.63,-3.529699,x0749,4.281746,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(nc3)C(C)C)C(=O)C=C)OC,LON-WEI-b8d98729-26,,,,6.56,2.76,10.4,1.07,0.98,0.93,-3.504733,x1380,4.724122,active-covalent
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Br)C(=O)C=C,LON-WEI-b8d98729-14,,,,3.45,3.38,3.43,1.03,0.84,0.74,-3.499897,x0831,4.639638,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(c(c3)C)N(C)C)C(=O)C=C)C,LON-WEI-b8d98729-42,,,,6.4,1.5,13.2,0.141,0.9,0.77,-3.483134,x0749,4.593122,active-covalent
+CSc1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,LON-WEI-b8d98729-24,,,,16.9,2.12,32.3,1.06,0.81,0.64,-3.232907,x0770,4.875348,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C4(CC4)C)C(=O)C=C)OC,LON-WEI-d1c9908a-4,,,,,,1.72,1.59,,,-3.195148,x0759,5.904019,active-covalent
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)OC)C(=O)C=C,LON-WEI-8f408cad-10,,,,2.56,1.02,7.05,2.55,0.88,0.77,-3.120221,x1418,5.022598,active-covalent
+CC1(CC1)c2ccc(cc2)N([C@H](c3cccnc3)C(=O)Nc4ccc(cc4)OC)C(=O)C=C,LON-WEI-d1c9908a-5,,,,,,39.3,2.57,,,-2.965664,x0749,5.590662,active-covalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(C)(C)C)C(=O)C=C)C,LON-WEI-d1c9908a-10,,,,,,10.2,0.324,,,-2.927537,x0692,5.107371,active-covalent
+COc1ccc(cc1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(F)(F)F)C(=O)C=C,LON-WEI-b8d98729-27,46.4,8.95,> 49.5,40.3,3.05,60.7,0.291,0.84,0.75,-2.920132,x0749,5.354342,active-covalent
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3C)OC)C(=O)C=C,LON-WEI-b8d98729-30,,,,2.51,1.12,7.01,0.146,0.87,0.83,-2.911081,x1392,5.438154,active-covalent
+Cc1cccc(c1OCC(=O)N[C@@H](Cc2ccccc2)[C@H](C[C@H](Cc3ccccc3)NC(=O)[C@H](C(C)C)N4CCCNC4=O)O)C,ALE-UNK-fca05062-1,,,,7.22,1.3,13.0,1.35,0.83,0.53,-2.535317,x0104,14.471954,active-noncovalent
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)[C@H](C)OC)C(=O)C=C)C,LON-WEI-b8d98729-45,,,,5.9,6.3,3.94,2.24,0.96,0.87,-2.493143,x0692,5.108878,active-covalent
+CC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)OC)C(=O)C=C,LON-WEI-d1c9908a-7,,,,,,28.7,1.17,,,-2.073396,x0749,6.361499,active-covalent
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(C)(C)C)C(=O)C=C)OC,LON-WEI-d1c9908a-3,,,,,,46.5,0.249,,,-2.043368,x0749,6.493489,active-covalent
+CC(C)c1nc(cs1)CN(C)C(=O)N[C@@H](C(C)C)C(=O)N[C@@H](Cc2ccccc2)C[C@@H]([C@H](Cc3ccccc3)NC(=O)OCc4cncs4)O,ALE-UNK-fca05062-2,,,,2.31,0.138,6.72,0.179,0.82,0.32,0.619766,x0104,20.843678,active-noncovalent
