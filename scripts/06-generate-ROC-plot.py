@@ -14,8 +14,8 @@ covalent_warhead_smarts = {
     'chloroacetamide_adduct' : 'S[C:1]C(N)=O',
     'vinylsulfonamide' : 'NS(=O)([C;H1]=[C;H2:1])=O',
     'vinylsulfonamide_adduct' : 'NS(=O)(C[C:1]S)=O',
-    'nitrile' : 'N#[C:1]-[*]',
-    'nitrile_adduct' : 'C-S-[C:1](=N)',
+    #'nitrile' : 'N#[C:1]-[*]',
+    #'nitrile_adduct' : 'C-S-[C:1](=N)',
     }
 
 def get_covalent_warhead_atom(molecule, covalent_warhead_type):
@@ -171,13 +171,13 @@ if __name__ == '__main__':
     # Parse arguments
     import argparse
 
-    parser = argparse.ArgumentParser(description='Aggregate results and coalesce Folding@Home RUNs.')
+    parser = argparse.ArgumentParser(description='Generate ROC plot for assayed data.')
     parser.add_argument('--docked', dest='docked_molecules', type=str, default='activity_data-docked.sdf',
                         help='docked assayed molecules (default: activity_data-docked.sdf)')
 
     args = parser.parse_args()
 
-    # Read the docked molecules as CSV
+    # Read the docked molecules
     print('Loading molecules...')
     docked_molecules = list()
     with oechem.oemolistream(args.docked_molecules) as ifs:
