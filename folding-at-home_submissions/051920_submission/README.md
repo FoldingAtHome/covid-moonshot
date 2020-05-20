@@ -1,5 +1,5 @@
 #  Folding@Home absolute FEP from ligands docked to fragment-bound Mpro structures
-## Release of ranked compounds 2020-05-12
+## Release of ranked compounds 2020-05-19
 
 ### Files found in this release:
 * COVID Moonshot 051920 Release.pdf - The announcement of this submitted batch of results.
