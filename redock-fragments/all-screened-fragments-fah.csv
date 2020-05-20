@@ -1,0 +1,681 @@
+SMILES,TITLE,fragments,CrystalName,CompoundCode,MountingResult,DataCollectionOutcome,DataProcessingResolutionHigh,RefinementOutcome,Deposition_PDB_ID,Hybrid2,docked_fragment,Mpro-x2643_dock,site,run
+c1cc(cnc1)NC(=O)Cc2ccc(s2)Cl,x2643,x2643,Mpro-x2643,Z2010253653,OK: No comment:No comment,success,3.46,6 - Deposited,5RH1,-11.181113,x0678,-1.170343,active-noncovalent,RUN0
+c1cc(cc(c1)F)NC(=O)c2cnccn2,x0528,x0528,Mpro-x0528,Z28143241,OK: No comment:No comment,success,1.9,7 - Analysed & Rejected,None,-11.158923,x0678,,active-noncovalent,RUN1
+Cc1ccncc1NC(=O)[C@@H](C)c2cccc(c2)Cl,x2649,x2649,Mpro-x2649,Z1264525706,OK: No comment:No comment,success,1.69,6 - Deposited,5RH3,-11.149205,x0678,,active-noncovalent,RUN2
+c1cc(cnc1)C(=O)OCc2ccc(cc2)Cl,x0522,x0522,Mpro-x0522,Z57515803,OK: No comment:No comment,success,2.17,7 - Analysed & Rejected,None,-11.040628,x0678,,active-noncovalent,RUN3
+c1ccc2c(c1)nc(s2)[C@@H]3CCCN(C3)C(=O)CCl,x0749,x0749,Mpro-x0749,PCM-0102425,OK: Clear:Normal,success,2.15,6 - Deposited,5REN,-10.828880,x0749,,active-covalent,RUN4
+c1cnccc1CCNC(=O)NC2CCCCC2,x0540,x0540,Mpro-x0540,Z111507846,OK: No comment:No comment,success,1.8,6 - Deposited,5REH,-10.720702,x0967,,active-noncovalent,RUN5
+c1cc(cc(c1)Cl)CNC(=O)Cc2c[nH]c3c2cccn3,x2482,x2482,Mpro-x2482,Z1400783129,OK: Clear:Normal,success,1.83,7 - Analysed & Rejected,None,-10.682974,x0678,,active-noncovalent,RUN6
+c1cc(cc(c1)Cl)CNC(=O)Cc2c[nH]c3c2cccn3,x2650,x2650,Mpro-x2650,Z1400783129,OK: Precipitated:No comment,success,1.76,7 - Analysed & Rejected,None,-10.682974,x0678,,active-noncovalent,RUN7
+c1ccc(cc1)C[NH+]2CCC(CC2)n3cccc3,x1287,x1287,Mpro-x1287,Z2856434898,OK: No comment:No comment,success,1.86,7 - Analysed & Rejected,None,-10.477966,x0104,,active-noncovalent,RUN8
+C[C@H](C(=O)[O-])Oc1ccc(cc1)c2ccccc2,x1204,x1204,Mpro-x1204,Z111782404,OK: No comment:No comment,None,None,,None,-10.414139,x0678,,active-noncovalent,RUN9
+Cc1ccncc1NC(=O)Cc2cccc(c2)Cl,x2646,x2646,Mpro-x2646,Z1129289650,OK: No comment:No comment,success,1.83,6 - Deposited,5RH2,-10.387289,x0678,,active-noncovalent,RUN10
+c1ccc(cc1)NC2CCN(CC2)c3ccc(cc3)S(=O)(=O)N,x2848,x2848,Mpro-x2848,WAR-XCH-b68-29,OK: Clear:No comment,success,1.91,7 - Analysed & Rejected,None,-10.363422,x0072,,active-noncovalent,RUN11
+C[C@@H](c1ccc2c3cc(ccc3[nH]c2c1)Cl)C(=O)[O-],x2659,x2659,Mpro-x2659,Z1530425063,OK: No comment:Cracked,success,1.34,6 - Deposited,5RH4,-10.343470,x0749,,active-covalent,RUN12
+c1ccc(cc1)[C@H]2CN(Cc3c2cccc3)C(=O)CCl,x1440,x1440,Mpro-x1440,PCM-0102432,OK: No comment:No comment,success,1.98,7 - Analysed & Rejected,None,-10.232087,x0831,,active-covalent,RUN13
+c1ccc(cc1)[C@H]2CN(Cc3c2cccc3)C(=O)CCl,x1337,x1337,Mpro-x1337,PCM-0102432,OK: No comment:No comment,success,1.82,7 - Analysed & Rejected,None,-10.232087,x0831,,active-covalent,RUN14
+c1ccc(cc1)[C@H]2CN(Cc3c2cccc3)C(=O)CCl,x1470,x1470,Mpro-x1470,PCM-0102432,OK: No comment:No comment,success,1.69,7 - Analysed & Rejected,None,-10.232087,x0831,,active-covalent,RUN15
+Cn1cc(nn1)CNC(=O)N(CCc2ccccc2)Cc3cccnc3,x2825,x2825,Mpro-x2825,BAR-COM-4e0-47,OK: Clear:No comment,success,3.18,7 - Analysed & Rejected,None,-10.219568,x0678,,active-noncovalent,RUN16
+CC(=O)N[C@H](Cc1ccc(cc1)O)C(=O)NCC#CBr,x0967,x0967,Mpro-x0967,NCL-00024905,OK: No comment:No comment,success,1.65,6 - Deposited,5RG1,-10.207242,x0678,,active-noncovalent,RUN17
+c1cc(cc(c1)NC(=O)[C@H](c2cccnc2)O)c3cc[nH]n3,x2835,x2835,Mpro-x2835,BAR-COM-4e0-68,OK: Clear:No comment,success,1.79,7 - Analysed & Rejected,None,-10.195171,x0195,,active-noncovalent,RUN18
+c1ccc(cc1)c2ccc(cc2)n3cnnn3,x0042,x0042,Mpro-x0042,Z57479285,OK: No comment:No comment,success,2.56,7 - Analysed & Rejected,None,-10.162877,x0749,,active-covalent,RUN19
+C[C@H]1CCC[C@H](C1)OCc2cccc(c2)NC(=O)N[C@@H](C)c3cc[nH]n3,x2821,x2821,Mpro-x2821,BAR-COM-4e0-63,OK: Clear:No comment,success,1.87,7 - Analysed & Rejected,None,-10.126563,x0195,,active-noncovalent,RUN20
+Cc1ccc(cc1)Nc2c3c[nH]nc3ncn2,x1233,x1233,Mpro-x1233,Z57101343,OK: Precipitated:No comment,success,1.27,7 - Analysed & Rejected,None,-10.091614,x0072,,active-noncovalent,RUN21
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cc3)Cl,x2647,x2647,Mpro-x2647,Z1400780364,OK: No comment:No comment,success,1.87,7 - Analysed & Rejected,None,-10.089762,x0678,,active-noncovalent,RUN22
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cc3)Cl,x2479,x2479,Mpro-x2479,Z1400780364,OK: Crystalline:Normal,success,1.84,7 - Analysed & Rejected,None,-10.089762,x0678,,active-noncovalent,RUN23
+Cc1cc(no1)C(=O)Nc2ccc3c(c2)cc[nH]3,x0459,x0459,Mpro-x0459,Z1190787729,OK: No comment:No comment,success,1.95,7 - Analysed & Rejected,None,-10.088093,x0678,,active-noncovalent,RUN24
+Cc1ccc(c(c1)OC(=O)c2ccncc2)C,x0607,x0607,Mpro-x0607,Z30891796,OK: No comment:No comment,success,1.77,7 - Analysed & Rejected,None,-10.074556,x0749,,active-covalent,RUN25
+c1cc(ccc1N2CCN(CC2)C(=O)C3CC3)F,x1251,x1251,Mpro-x1251,Z30620520,OK: No comment:No comment,success,1.71,7 - Analysed & Rejected,None,-10.040556,x0749,,active-covalent,RUN26
+c1ccc2c(c1)c(cc(n2)Cl)NC(=O)C3CCN(CC3)C(=O)CCl,x2724,x2724,Mpro-x2724,PG-COV-17,OK: Clear:No comment,success,2.35,7 - Analysed & Rejected,None,-9.996580,x0831,,active-covalent,RUN27
+c1ccc2c(c1)c(cc(n2)Cl)NC(=O)C3CCN(CC3)C(=O)CCl,x2048,x2048,Mpro-x2048,PG-COV-17,OK: No comment:No comment,success,1.53,7 - Analysed & Rejected,None,-9.996580,x0831,,active-covalent,RUN28
+CC(=O)N1CCC(CC1)[NH2+]CCc2ccccc2,x0494,x0494,Mpro-x0494,Z2856434883,OK: No comment:No comment,success,2.38,7 - Analysed & Rejected,None,-9.992181,x0678,,active-noncovalent,RUN29
+Cc1nc(on1)C[C@H](c2ccccc2)[NH3+],x1140,x1140,Mpro-x1140,Z2442269480,OK: No comment:No comment,success,1.85,7 - Analysed & Rejected,None,-9.955351,x0678,,active-noncovalent,RUN30
+CC(C)[NH+]1CCN(CC1)C(=O)c2cccs2,x0442,x0442,Mpro-x0442,Z2856434826,OK: No comment:No comment,success,1.82,7 - Analysed & Rejected,None,-9.915393,x0104,,active-noncovalent,RUN31
+C[C@@H](c1cnccn1)C(=O)Nc2cccc(c2)O[C@H]3CC(=O)N3,x2829,x2829,Mpro-x2829,BAR-COM-4e0-53,OK: Clear:No comment,success,2.29,7 - Analysed & Rejected,None,-9.905735,x0195,,active-noncovalent,RUN32
+CS(=O)(=O)Nc1cccc(c1)C(=O)Oc2cccc(c2)N3CCCC3=O,x2858,x2858,Mpro-x2858,MAK-UNK-915-7,OK: Clear:No comment,success,2.16,7 - Analysed & Rejected,None,-9.903871,x0161,,active-noncovalent,RUN33
+c1cc(ccc1NC2CCN(CC2)c3ccc(cc3)S(=O)(=O)N)F,x2822,x2822,Mpro-x2822,WAR-XCH-b68-26,OK: Clear:No comment,success,2.24,7 - Analysed & Rejected,None,-9.858924,x0072,,active-noncovalent,RUN34
+C[C@H](c1ccccc1)[NH+]2CCN(CC2)C(=O)CCl,x0699,x0699,Mpro-x0699,PCM-0102710,OK: Clear:Normal,success,1.88,7 - Analysed & Rejected,None,-9.851532,x0831,,active-covalent,RUN35
+CS(=O)(=O)Cc1ccc(o1)C(=O)Nc2cccnc2,x2642,x2642,Mpro-x2642,Z995832158,OK: No comment:No comment,success,1.89,7 - Analysed & Rejected,None,-9.845098,x0107,,active-noncovalent,RUN36
+CS(=O)(=O)Cc1ccc(o1)C(=O)Nc2cccnc2,x2474,x2474,Mpro-x2474,Z995832158,OK: Clear:Normal,success,1.85,7 - Analysed & Rejected,None,-9.845098,x0107,,active-noncovalent,RUN37
+c1cc(cc(c1)Cl)NC(=O)Cc2c[nH]c3c2cccn3,x2480,x2480,Mpro-x2480,Z1400781098,OK: Clear:Normal,success,1.9,7 - Analysed & Rejected,None,-9.791058,x0397,,active-noncovalent,RUN38
+c1cc(cc(c1)Cl)NC(=O)Cc2c[nH]c3c2cccn3,x2648,x2648,Mpro-x2648,Z1400781098,OK: Precipitated:Cracked,success,2.3,7 - Analysed & Rejected,None,-9.791058,x0397,,active-noncovalent,RUN39
+c1cnccc1c2nc(on2)C3CCCCC3,x0437,x0437,Mpro-x0437,Z57715447,OK: No comment:No comment,success,2.46,7 - Analysed & Rejected,None,-9.766360,x0749,,active-covalent,RUN40
+c1ccc(cc1)C[NH+]2CC(=O)NC(=O)C2,x0076,x0076,Mpro-x0076,Z2856434910,OK: No comment:No comment,success,2.74,7 - Analysed & Rejected,None,-9.763610,x0195,,active-noncovalent,RUN41
+c1ccc(cc1)COc2ccc(cc2)C(=O)[O-],x0116,x0116,Mpro-x0116,Z2856434845,OK: Precipitated:Normal,success,2.84,7 - Analysed & Rejected,None,-9.734284,x0072,,active-noncovalent,RUN42
+C=CC(=O)N1CCn2c3cccc(c3cc2C1)Cl,x2029,x2029,Mpro-x2029,PCM-0102835-001,OK: No comment:No comment,success,2.04,7 - Analysed & Rejected,None,-9.699213,x0749,,active-covalent,RUN43
+c1ccc2c(c1)cccc2C[NH+]3CCN(CC3)C(=O)CCl,x0830,x0830,Mpro-x0830,PCM-0102287,OK: Clear:Normal,success,2.07,6 - Deposited,5REX,-9.686901,x0830,,active-covalent,RUN44
+c1ccc2c(c1)cccc2C[NH+]3CCN(CC3)C(=O)CCl,x0756,x0756,Mpro-x0756,PCM-0102287,OK: Clear:Normal,success,2.77,7 - Analysed & Rejected,None,-9.686901,x0830,,active-covalent,RUN45
+c1cc(cc(c1)Cl)NC(=O)Nc2cc(cnc2)N,x2866,x2866,Mpro-x2866,DAR-DIA-23a-13,OK: Clear:No comment,success,3.18,7 - Analysed & Rejected,None,-9.678142,x0678,,active-noncovalent,RUN46
+CCc1nnc(s1)NC(=O)c2cnccn2,x0606,x0606,Mpro-x0606,Z26824727,OK: No comment:No comment,success,3.12,7 - Analysed & Rejected,None,-9.664877,x0678,,active-noncovalent,RUN47
+c1ccc(cc1)C[NH2+]Cc2ccc(cc2)F,x0435,x0435,Mpro-x0435,Z2856434783,OK: No comment:No comment,success,1.75,7 - Analysed & Rejected,None,-9.645031,x1093,,active-noncovalent,RUN48
+c1cc(c(c(c1)Cl)C[NH+]2CCN(CC2)C(=O)CCl)F,x0729,x0729,Mpro-x0729,PCM-0102137,OK: Clear:Normal,success,1.98,7 - Analysed & Rejected,None,-9.636753,x0830,,active-covalent,RUN49
+C[NH+]1CCN(CC1)c2ccc(cc2)C#N,x0609,x0609,Mpro-x0609,Z2856434840,OK: Crystalline:Cracked,Failed - low resolution,3.86,,None,-9.630262,x0749,,active-covalent,RUN50
+C[NH+]1CCN(CC1)c2ccc(cc2)C#N,x1265,x1265,Mpro-x1265,Z2856434840,OK: No comment:No comment,success,1.48,7 - Analysed & Rejected,None,-9.630262,x0749,,active-covalent,RUN51
+CC(C)[N@@H+](C)CC1CCN(CC1)c2ccc(cc2)S(=O)(=O)N,x2804,x2804,Mpro-x2804,WAR-XCH-b72-48,OK: Clear:No comment,success,2.88,7 - Analysed & Rejected,None,-9.625897,x0104,,active-noncovalent,RUN52
+c1cc(cc(c1)Cl)C(=O)Nc2cccnc2,x2658,x2658,Mpro-x2658,Z31791487,OK: No comment:No comment,success,2.29,7 - Analysed & Rejected,None,-9.620449,x0678,,active-noncovalent,RUN53
+c1cc(cc(c1)Cl)C(=O)Nc2cccnc2,x2490,x2490,Mpro-x2490,Z31791487,OK: Clear:Cracked,success,2.48,7 - Analysed & Rejected,None,-9.620449,x0678,,active-noncovalent,RUN54
+c1cc(ccc1C[NH2+]C2CCCCC2)O,x1121,x1121,Mpro-x1121,Z2241127906,OK: No comment:No comment,success,2.03,7 - Analysed & Rejected,None,-9.573311,x0678,,active-noncovalent,RUN55
+c1cc(cnc1)NC(=O)c2cc(ccc2O)Cl,x2486,x2486,Mpro-x2486,Z280470232,OK: Crystalline:Normal,Failed - low resolution,3.04,,None,-9.563734,x0678,,active-noncovalent,RUN56
+c1cc(cnc1)NC(=O)c2cc(ccc2O)Cl,x2654,x2654,Mpro-x2654,Z280470232,OK: No comment:No comment,success,2.64,7 - Analysed & Rejected,None,-9.563734,x0678,,active-noncovalent,RUN57
+c1ccc(cc1)CCNc2[nH]c3ccccc3n2,x1049,x1049,Mpro-x1049,Z57299529,OK: Precipitated:Normal,success,2.08,7 - Analysed & Rejected,None,-9.556696,x0434,,active-noncovalent,RUN58
+c1ccc(cc1)CCNc2[nH]c3ccccc3n2,x0463,x0463,Mpro-x0463,Z57299529,OK: No comment:No comment,success,1.88,7 - Analysed & Rejected,None,-9.556696,x0434,,active-noncovalent,RUN59
+Cc1ccnc(c1)NC(=O)Cc2ccc3ccccc3c2,x2495,x2495,Mpro-x2495,Z71390073,OK: Precipitated:Normal,success,1.75,7 - Analysed & Rejected,None,-9.554324,x1093,,active-noncovalent,RUN60
+Cc1ccnc(c1)NC(=O)Cc2ccc3ccccc3c2,x2663,x2663,Mpro-x2663,Z71390073,OK: No comment:No comment,success,1.82,7 - Analysed & Rejected,None,-9.554324,x1093,,active-noncovalent,RUN61
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3cc(ccn3)Cl,x2644,x2644,Mpro-x2644,Z1575152133,OK: No comment:No comment,success,1.93,7 - Analysed & Rejected,None,-9.539196,x0678,,active-noncovalent,RUN62
+c1cc(ccc1[C@H]2CN(CCO2)C(=O)CCl)F,x0685,x0685,Mpro-x0685,PCM-0102615,OK: Clear:Normal,success,2.28,7 - Analysed & Rejected,None,-9.509590,x0749,,active-covalent,RUN63
+c1cc(ccc1[C@H]2CN(CCO2)C(=O)CCl)F,x1329,x1329,Mpro-x1329,PCM-0102615,OK: No comment:No comment,success,3.14,7 - Analysed & Rejected,None,-9.509590,x0749,,active-covalent,RUN64
+C[NH+]1CCN(CC1)C(=O)c2ccc(c(c2)F)F,x0507,x0507,Mpro-x0507,Z2856434829,OK: No comment:No comment,success,1.91,7 - Analysed & Rejected,None,-9.467382,x0072,,active-noncovalent,RUN65
+C[C@@H](c1cnccn1)NC(=O)c2ccccc2OC3CCCCC3,x2814,x2814,Mpro-x2814,BAR-COM-4e0-26,OK: Clear:No comment,success,2.29,7 - Analysed & Rejected,None,-9.447334,x0678,,active-noncovalent,RUN66
+C=CC(=O)N1CCCn2c3ccccc3cc2C1,x2774,x2774,Mpro-x2774,PCM-0102730-001,OK: Clear:No comment,success,2.12,7 - Analysed & Rejected,None,-9.444095,x0749,,active-covalent,RUN67
+C=CC(=O)N1CCCn2c3ccccc3cc2C1,x2761,x2761,Mpro-x2761,PCM-0102730-001,OK: Clear:No comment,success,1.89,7 - Analysed & Rejected,None,-9.444095,x0749,,active-covalent,RUN68
+c1cc(ccc1N2CCN(CC2)C(=O)CCl)F,x1346,x1346,Mpro-x1346,PCM-0102905,OK: No comment:No comment,success,2.05,7 - Analysed & Rejected,None,-9.437925,x0749,,active-covalent,RUN69
+c1ccc2c(c1)CC[N@H+](C2)Cc3ccccc3O,x0581,x0581,Mpro-x0581,Z2856434881,OK: Precipitated:No comment,success,1.86,7 - Analysed & Rejected,None,-9.420887,x1093,,active-noncovalent,RUN70
+c1cc(cc(c1)N2CCN(CC2)C(=O)CCl)C(F)(F)F,x0754,x0754,Mpro-x0754,PCM-0102239,OK: Clear:Normal,success,1.77,7 - Analysed & Rejected,None,-9.381646,x0749,,active-covalent,RUN71
+c1ccc(c(c1)N2CCN(CC2)C(=O)CCl)F,x0714,x0714,Mpro-x0714,PCM-0102373,OK: Clear:Normal,success,1.83,7 - Analysed & Rejected,None,-9.349375,x0749,,active-covalent,RUN72
+CNC(=O)OC1CCN(CC1)C(=O)c2ccccc2,x2857,x2857,Mpro-x2857,GIA-UNK-595-2,OK: Clear:No comment,success,2.55,7 - Analysed & Rejected,None,-9.340299,x0104,,active-noncovalent,RUN73
+c1ccc(c(c1)C(=O)N)NC(=O)c2ccncc2,x0472,x0472,Mpro-x0472,Z91797745,OK: No comment:No comment,success,1.62,7 - Analysed & Rejected,None,-9.338719,x0749,,active-covalent,RUN74
+CCC(=O)NCC[C@@H]1CCc2c1c3c(cc2)OCC3,x2674,x2674,Mpro-x2674,Z2037281108,OK: No comment:No comment,success,2.23,7 - Analysed & Rejected,None,-9.332843,x0104,,active-noncovalent,RUN75
+c1cc(cc(c1)Cl)N2CCN(CC2)CC#N,x0571,x0571,Mpro-x0571,Z2856434806,OK: Phase Separation:No comment,Failed - low resolution,3.76,,None,-9.320927,x0749,,active-covalent,RUN76
+CC(=O)N1CC[NH+](CC1)CCCc2ccccc2,x0501,x0501,Mpro-x0501,Z2856434884,OK: No comment:No comment,success,1.76,7 - Analysed & Rejected,None,-9.310516,x0678,,active-noncovalent,RUN77
+c1ccc(cc1)CNC(=O)c2cccc(c2)F,x0549,x0549,Mpro-x0549,Z27749656,OK: Crystalline:Cracked,success,2.2,7 - Analysed & Rejected,None,-9.303605,x1093,,active-noncovalent,RUN78
+COC(=O)N1CCN(CC1)c2ccc(cc2)F,x0570,x0570,Mpro-x0570,Z192955056,OK: No comment:Cracked,None,None,,None,-9.301781,x0749,,active-covalent,RUN79
+c1ccc(cc1)C#CC[NH+]2CCCCC2,x1279,x1279,Mpro-x1279,Z57257264,OK: No comment:No comment,success,2.17,7 - Analysed & Rejected,None,-9.289313,x0195,,active-noncovalent,RUN80
+c1ccc(cc1)C#CC[NH+]2CCCCC2,x1059,x1059,Mpro-x1059,Z57257264,OK: Clear:Normal,success,2.31,7 - Analysed & Rejected,None,-9.289313,x0195,,active-noncovalent,RUN81
+c1nncn1NC(=O)CC2CCCCC2,x1285,x1285,Mpro-x1285,Z57261895,OK: No comment:No comment,success,1.62,7 - Analysed & Rejected,None,-9.278269,x0678,,active-noncovalent,RUN82
+c1nncn1NC(=O)CC2CCCCC2,x1081,x1081,Mpro-x1081,Z57261895,OK: Clear:Normal,success,1.65,7 - Analysed & Rejected,None,-9.278269,x0678,,active-noncovalent,RUN83
+CN(CCc1ccccn1)C(=O)c2ccccc2,x1257,x1257,Mpro-x1257,Z68277692,OK: No comment:No comment,success,1.52,7 - Analysed & Rejected,None,-9.243225,x0397,,active-noncovalent,RUN84
+CN(CCc1ccccn1)C(=O)c2ccccc2,x0568,x0568,Mpro-x0568,Z68277692,OK: No comment:No comment,Failed - low resolution,4.34,,None,-9.243225,x0397,,active-noncovalent,RUN85
+c1ccc(cc1)C[N@@H+]2CCO[C@@H](C2)CO,x0574,x0574,Mpro-x0574,Z1259086950,OK: No comment:Cracked,success,1.88,7 - Analysed & Rejected,None,-9.206902,x0678,,active-noncovalent,RUN86
+c1ccc(cc1)CC(=O)N2CCc3c2cccc3,x0090,x0090,Mpro-x0090,Z30624464,OK: No comment:No comment,success,1.54,7 - Analysed & Rejected,None,-9.179364,x0749,,active-covalent,RUN87
+CC(=O)N1CCC(CC1)c2c[nH]c3c2cccc3,x0062,x0062,Mpro-x0062,Z223388508,OK: No comment:No comment,success,2.07,7 - Analysed & Rejected,None,-9.172703,x0072,,active-noncovalent,RUN88
+C[NH2+][C@@H]1CCN(C1=O)c2ccccc2F,x1164,x1164,Mpro-x1164,Z1186029914,OK: No comment:No comment,success,1.85,7 - Analysed & Rejected,None,-9.170418,x0195,,active-noncovalent,RUN89
+c1ccc2c(c1)ncn2Cc3ccc(cc3)C#N,x0486,x0486,Mpro-x0486,Z26333434,OK: No comment:No comment,success,2.06,7 - Analysed & Rejected,None,-9.151552,x0749,,active-covalent,RUN90
+CC[C@H](c1ccccc1OCC(=O)N2CCCC2)NC(=O)NCc3cnccn3,x2824,x2824,Mpro-x2824,BAR-COM-4e0-27,OK: Clear:No comment,success,2.06,7 - Analysed & Rejected,None,-9.135799,x0072,,active-noncovalent,RUN91
+CS(=O)(=O)Nc1ccc(cc1)c2ccccc2,x0582,x0582,Mpro-x0582,Z45641455,OK: Precipitated:No comment,Failed - low resolution,3.6,,None,-9.133917,x0161,,active-noncovalent,RUN92
+C1CCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,x2667,x2667,Mpro-x2667,Z291278798,OK: No comment:No comment,success,1.7,7 - Analysed & Rejected,None,-9.132237,x0749,,active-covalent,RUN93
+C1CCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,x0818,x0818,Mpro-x0818,PCM-0102972,OK: Clear:Normal,Failed - low resolution,3.53,,None,-9.132237,x0749,,active-covalent,RUN94
+C1CCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,x0738,x0738,Mpro-x0738,PCM-0102972,OK: Clear:Normal,None,None,,None,-9.132237,x0749,,active-covalent,RUN95
+Cc1c(cco1)C(=O)N2CCc3c2cccc3,x0533,x0533,Mpro-x0533,Z89307993,OK: No comment:No comment,success,3.25,7 - Analysed & Rejected,None,-9.126317,x0749,,active-covalent,RUN96
+CCOC(=O)c1cc(no1)c2ccc(cc2)C,x1062,x1062,Mpro-x1062,Z793500562,OK: Clear:Normal,success,1.56,7 - Analysed & Rejected,None,-9.125563,x0749,,active-covalent,RUN97
+Cc1ccc(cc1O)NC(=O)c2cccc(c2)F,x0596,x0596,Mpro-x0596,Z1430613393,OK: No comment:No comment,success,2.31,7 - Analysed & Rejected,None,-9.122139,x0749,,active-covalent,RUN98
+CC(=O)N[C@@H](Cc1ccccc1)C(=O)NCC#CBr,x0968,x0968,Mpro-x0968,NCL-00024907,OK: No comment:No comment,success,1.94,7 - Analysed & Rejected,None,-9.117947,x0678,,active-noncovalent,RUN99
+CCC(=O)Nc1c2ccccc2oc1C(=O)N,x1063,x1063,Mpro-x1063,Z108545814,OK: Crystalline:Normal,success,1.44,7 - Analysed & Rejected,None,-9.109912,x0195,,active-noncovalent,RUN100
+Cc1cc(on1)C(=O)NC[C@@H]2CCOC2,x1165,x1165,Mpro-x1165,Z384361454,OK: No comment:No comment,success,1.77,7 - Analysed & Rejected,None,-9.108032,x0678,,active-noncovalent,RUN101
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cn3)Cl,x2676,x2676,Mpro-x2676,Z1593808911,OK: No comment:No comment,success,2.19,7 - Analysed & Rejected,None,-9.105130,x0749,,active-covalent,RUN102
+COc1ccc(cc1)N2CCN(CC2)C(=O)CCl,x0720,x0720,Mpro-x0720,PCM-0102254,OK: Clear:Normal,success,1.9,7 - Analysed & Rejected,None,-9.104680,x0749,,active-covalent,RUN103
+COc1ccc(cc1)N2CCN(CC2)C(=O)CCl,x1347,x1347,Mpro-x1347,PCM-0102254,OK: No comment:No comment,None,None,,None,-9.104680,x0749,,active-covalent,RUN104
+c1c(cn(n1)CC(=O)[O-])Br,x0956,x0956,Mpro-x0956,NCL-00024890,OK: No comment:No comment,None,None,,None,-9.091599,x0397,,active-noncovalent,RUN105
+CC(=O)NCCc1c[nH]c2c1cc(c(c2)O)OC,x2463,x2463,Mpro-x2463,6-hydroxymelatonin,OK: Clear:Normal,success,3.21,7 - Analysed & Rejected,None,-9.089545,x0104,,active-noncovalent,RUN106
+CC(=O)NCCc1c[nH]c2c1cc(c(c2)O)OC,x2357,x2357,Mpro-x2357,6-hydroxymelatonin,OK: Clear:Normal,None,None,,None,-9.089545,x0104,,active-noncovalent,RUN107
+CC(=O)N1CCN(CC1)S(=O)(=O)c2cccs2,x2664,x2664,Mpro-x2664,Z29501928,OK: No comment:No comment,success,1.93,7 - Analysed & Rejected,None,-9.079074,x0072,,active-noncovalent,RUN108
+CC(=O)N1CCN(CC1)S(=O)(=O)c2cccs2,x2496,x2496,Mpro-x2496,Z29501928,OK: Clear:Normal,success,1.83,7 - Analysed & Rejected,None,-9.079074,x0072,,active-noncovalent,RUN109
+c1ccc(cc1)NC(=O)NCc2ccc(cc2)F,x0498,x0498,Mpro-x0498,Z44609285,OK: No comment:No comment,success,1.57,7 - Analysed & Rejected,None,-9.076805,x0678,,active-noncovalent,RUN110
+C[C@H](c1cn(nn1)c2ccccc2)[NH3+],x0083,x0083,Mpro-x0083,Z2527301677,OK: No comment:No comment,Failed - low resolution,3.72,,None,-9.072893,x0195,,active-noncovalent,RUN111
+CC(=O)N1CCN(CC1)S(=O)(=O)c2cccc(c2)F,x2656,x2656,Mpro-x2656,Z30722976,OK: No comment:No comment,success,1.79,7 - Analysed & Rejected,None,-9.055698,x0072,,active-noncovalent,RUN112
+CC(=O)N1CCN(CC1)S(=O)(=O)c2cccc(c2)F,x2488,x2488,Mpro-x2488,Z30722976,OK: Clear:Normal,success,2.1,7 - Analysed & Rejected,None,-9.055698,x0072,,active-noncovalent,RUN113
+Cc1ccnc(c1)NC(=O)C[NH2+]C,x0584,x0584,Mpro-x0584,Z927746322,OK: No comment:No comment,success,2.01,7 - Analysed & Rejected,None,-9.047160,x0195,,active-noncovalent,RUN114
+Cc1cccc(c1)C(=O)Nc2ccc(cc2O)C,x0488,x0488,Mpro-x0488,Z33452549,OK: No comment:No comment,success,1.8,7 - Analysed & Rejected,None,-9.044549,x0195,,active-noncovalent,RUN115
+c1ccc(cc1)OCC(=O)NC2CCCCC2,x0460,x0460,Mpro-x0460,Z19735904,OK: No comment:No comment,success,1.7,7 - Analysed & Rejected,None,-9.040543,x1093,,active-noncovalent,RUN116
+c1cc(oc1)C(=O)N2CCN(CC2)C(=O)C3CC3,x0441,x0441,Mpro-x0441,Z32327641,OK: No comment:No comment,success,2.51,7 - Analysed & Rejected,None,-8.991626,x0195,,active-noncovalent,RUN117
+c1cc(c(nc1)NCC2CCOCC2)F,x0504,x0504,Mpro-x0504,Z1373430305,OK: No comment:No comment,success,1.68,7 - Analysed & Rejected,None,-8.984223,x0072,,active-noncovalent,RUN118
+CC(=O)N1CCN(CC1)c2ccc(cc2)Cl,x0056,x0056,Mpro-x0056,Z275165822,OK: No comment:No comment,success,2.04,7 - Analysed & Rejected,None,-8.982459,x0749,,active-covalent,RUN119
+CC(=O)N1CC[C@@H]2[C@]1(C2)C(=O)c3cccnc3,x0932,x0932,Mpro-x0932,POB0163,OK: No comment:No comment,None,None,,None,-8.980422,x0195,,active-noncovalent,RUN120
+c1cc(sc1)C(=O)N2CCN(CC2)C(=O)CCl,x0758,x0758,Mpro-x0758,PCM-0102306,OK: Clear:Normal,success,1.75,7 - Analysed & Rejected,None,-8.973487,x0749,,active-covalent,RUN121
+c1cc(sc1)C(=O)N2CCN(CC2)C(=O)CCl,x1366,x1366,Mpro-x1366,PCM-0102306,OK: No comment:No comment,success,3.46,7 - Analysed & Rejected,None,-8.973487,x0749,,active-covalent,RUN122
+Cc1cc(cc(c1)Cl)NC(=O)Nc2cccnc2,x2826,x2826,Mpro-x2826,Z4444622166,OK: Clear:No comment,success,2.03,7 - Analysed & Rejected,None,-8.949402,x0678,,active-noncovalent,RUN123
+Cc1nc2ccccc2n1CCC(=O)N,x1239,x1239,Mpro-x1239,Z53116498,OK: No comment:No comment,Failed - low resolution,3.67,,None,-8.917376,x0678,,active-noncovalent,RUN124
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2384,x2384,Mpro-x2384,melatonine,OK: Clear:Normal,success,1.68,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN125
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2391,x2391,Mpro-x2391,melatonine,OK: Clear:Normal,success,1.69,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN126
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2503,x2503,Mpro-x2503,Z1191880499,OK: Clear:Normal,success,2.18,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN127
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2378,x2378,Mpro-x2378,melatonine,OK: Clear:Cracked,success,1.79,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN128
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2385,x2385,Mpro-x2385,melatonine,OK: Clear:Normal,success,1.7,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN129
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2388,x2388,Mpro-x2388,melatonine,OK: Clear:Normal,success,1.74,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN130
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2381,x2381,Mpro-x2381,melatonine,OK: Clear:Normal,success,1.92,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN131
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2397,x2397,Mpro-x2397,melatonine,OK: Clear:Normal,success,1.97,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN132
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2671,x2671,Mpro-x2671,Z1191880499,OK: No comment:No comment,success,2.04,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN133
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2399,x2399,Mpro-x2399,melatonine,OK: Clear:Normal,success,2.48,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN134
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2400,x2400,Mpro-x2400,melatonine,OK: Clear:Normal,success,1.87,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN135
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2355,x2355,Mpro-x2355,melatonine,OK: Clear:Cracked,None,None,,None,-8.913157,x0104,,active-noncovalent,RUN136
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2392,x2392,Mpro-x2392,melatonine,OK: Clear:Cracked,success,1.74,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN137
+CC(=O)NCCc1c[nH]c2c1cc(cc2)OC,x2460,x2460,Mpro-x2460,melatonine,OK: Clear:Normal,success,1.76,7 - Analysed & Rejected,None,-8.913157,x0104,,active-noncovalent,RUN138
+C[C@@H]1CCCN(C1)C(=O)C2CCN(CC2)C(=O)CCl,x0817,x0817,Mpro-x0817,PCM-0102933,OK: Clear:Normal,Failed - low resolution,4.3,,None,-8.912820,x0749,,active-covalent,RUN139
+C[C@@H]1CCCN(C1)C(=O)C2CCN(CC2)C(=O)CCl,x0707,x0707,Mpro-x0707,PCM-0102933,OK: Clear:Normal,success,2.1,7 - Analysed & Rejected,None,-8.912820,x0749,,active-covalent,RUN140
+C[C@@H]1CCCN(C1)C(=O)C2CCN(CC2)C(=O)CCl,x0743,x0743,Mpro-x0743,PCM-0102933,OK: Clear:Normal,success,1.85,7 - Analysed & Rejected,None,-8.912820,x0749,,active-covalent,RUN141
+CN(c1ccccc1)C(=O)[C@@H]2CC[NH2+]C2,x0600,x0600,Mpro-x0600,Z2447286438,OK: No comment:No comment,success,2.97,7 - Analysed & Rejected,None,-8.903916,x0749,,active-covalent,RUN142
+CN(c1ccccc1)C(=O)[C@@H]2CC[NH2+]C2,x1205,x1205,Mpro-x1205,Z2447286438,OK: No comment:No comment,success,1.67,7 - Analysed & Rejected,None,-8.903916,x0749,,active-covalent,RUN143
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cc3)C#N,x2645,x2645,Mpro-x2645,Z1400838206,OK: Precipitated:No comment,success,2.39,7 - Analysed & Rejected,None,-8.901452,x0749,,active-covalent,RUN144
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cc3)C#N,x2477,x2477,Mpro-x2477,Z1400838206,OK: Clear:Normal,success,1.85,7 - Analysed & Rejected,None,-8.901452,x0749,,active-covalent,RUN145
+c1ccc(c(c1)C[NH2+]C2CCOCC2)F,x0566,x0566,Mpro-x0566,Z823455846,OK: No comment:Cracked,success,3.16,7 - Analysed & Rejected,None,-8.897429,x0678,,active-noncovalent,RUN146
+Cc1ccc(cc1)N2CCN(CC2)C(=O)N,x1071,x1071,Mpro-x1071,Z1650868495,OK: Clear:Normal,success,1.54,7 - Analysed & Rejected,None,-8.886573,x0749,,active-covalent,RUN147
+Cc1ccccc1OCC(=O)N(C)C,x0684,x0684,Mpro-x0684,Z19733482,Mounted_Clear,success,1.81,7 - Analysed & Rejected,None,-8.853641,x0195,,active-noncovalent,RUN148
+Cc1cc(no1)C(=O)NCC(=O)OC,x0466,x0466,Mpro-x0466,Z375990520,OK: No comment:No comment,success,2.63,7 - Analysed & Rejected,None,-8.849805,x0397,,active-noncovalent,RUN149
+Cc1cccc(c1)Nc2c3cnn(c3ncn2)C,x0543,x0543,Mpro-x0543,Z56983806,OK: Phase Separation:No comment,None,None,,None,-8.837940,x0678,,active-noncovalent,RUN150
+c1cc(cnc1)NC(=O)Nc2ccc(cc2)C#N,x2653,x2653,Mpro-x2653,Z195735586,OK: Precipitated:No comment,success,1.98,7 - Analysed & Rejected,None,-8.835213,x0749,,active-covalent,RUN151
+c1cc(cnc1)NC(=O)Nc2ccc(cc2)C#N,x2485,x2485,Mpro-x2485,Z195735586,OK: Clear:Normal,success,1.82,7 - Analysed & Rejected,None,-8.835213,x0749,,active-covalent,RUN152
+C1CCCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,x1341,x1341,Mpro-x1341,PCM-0102781,OK: No comment:No comment,None,None,,None,-8.821181,x0749,,active-covalent,RUN153
+C1CCCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,x1359,x1359,Mpro-x1359,PCM-0102781,OK: No comment:No comment,success,2.23,7 - Analysed & Rejected,None,-8.821181,x0749,,active-covalent,RUN154
+C1CCCN(CC1)C(=O)C2CCN(CC2)C(=O)CCl,x0742,x0742,Mpro-x0742,PCM-0102781,OK: Clear:Normal,success,1.78,7 - Analysed & Rejected,None,-8.821181,x0749,,active-covalent,RUN155
+Cn1nc(nn1)NC(=O)c2ccc(cc2)F,x0640,x0640,Mpro-x0640,Z57292433,Mounted_Clear,success,2.41,7 - Analysed & Rejected,None,-8.800728,x0678,,active-noncovalent,RUN156
+Cc1ccccc1[C@@H]2COC[C@@H]2C(=O)[O-],x0898,x0898,Mpro-x0898,POB0135,OK: No comment:No comment,Failed - low resolution,3.73,,None,-8.796511,x1392,,active-covalent,RUN157
+c1cc(cc(c1)Cl)C[NH+]2CCN(CC2)C(=O)CCl,x0770,x0770,Mpro-x0770,PCM-0102269,OK: Clear:Normal,success,1.68,6 - Deposited,5RET,-8.791433,x0831,,active-covalent,RUN158
+CS(=O)(=O)Cc1[nH]c2ccccc2n1,x1237,x1237,Mpro-x1237,Z126932614,OK: No comment:No comment,success,1.41,6 - Deposited,5RFD,-8.784011,x0678,,active-noncovalent,RUN159
+CC(=O)N1CC[NH+](CC1)Cc2cccc(c2)C#N,x2483,x2483,Mpro-x2483,Z46180946,OK: Clear:Normal,success,2.05,7 - Analysed & Rejected,None,-8.765173,x0749,,active-covalent,RUN160
+CC(=O)N1CC[NH+](CC1)Cc2cccc(c2)C#N,x2651,x2651,Mpro-x2651,Z46180946,OK: No comment:No comment,success,1.66,7 - Analysed & Rejected,None,-8.765173,x0749,,active-covalent,RUN161
+c1ccc(c(c1)C(=O)NCCNc2cccnn2)NS(=O)(=O)c3cc(ccc3F)F,x2836,x2836,Mpro-x2836,BAR-COM-4e0-10,OK: Clear:No comment,success,1.89,7 - Analysed & Rejected,None,-8.764250,x0678,,active-noncovalent,RUN162
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C)OC,x2468,x2468,Mpro-x2468,Z4438424252,OK: No comment:Normal,success,1.87,7 - Analysed & Rejected,None,-8.756179,x0831,,active-covalent,RUN163
+c1cc(cc(c1)F)C[NH+]2CCOCC2,x0520,x0520,Mpro-x0520,Z2856434791,OK: No comment:No comment,success,2.23,7 - Analysed & Rejected,None,-8.740264,x0678,,active-noncovalent,RUN164
+c1ccc(c(c1)NC(=O)c2cc(ccc2O)Cl)Cl,x2666,x2666,Mpro-x2666,Z241957544,OK: Precipitated:No comment,success,2.2,7 - Analysed & Rejected,None,-8.723997,x0195,,active-noncovalent,RUN165
+CNS(=O)(=O)Cc1ccc2c(c1)c(c[nH]2)CC[NH+](C)C,x2669,x2669,Mpro-x2669,Z1544404947,OK: No comment:No comment,success,2.29,7 - Analysed & Rejected,None,-8.722964,x0072,,active-noncovalent,RUN166
+CNS(=O)(=O)Cc1ccc2c(c1)c(c[nH]2)CC[NH+](C)C,x2501,x2501,Mpro-x2501,Z1544404947,OK: Clear:Normal,success,1.76,7 - Analysed & Rejected,None,-8.722964,x0072,,active-noncovalent,RUN167
+c1cc(ccc1NC(=O)C[NH+]2CCCC2)F,x0440,x0440,Mpro-x0440,Z2856434942,OK: No comment:No comment,success,2.51,7 - Analysed & Rejected,None,-8.676518,x0161,,active-noncovalent,RUN168
+c1ccc(cc1)NC(=O)c2cc(ccc2O)Cl,x2655,x2655,Mpro-x2655,Z56871780,OK: Precipitated:No comment,success,2.07,7 - Analysed & Rejected,None,-8.661772,x0749,,active-covalent,RUN169
+C=CC(=O)N1CCN(CC1)C(=O)C23CC4CC(C2)CC(C4)C3,x2031,x2031,Mpro-x2031,PCM-0102682-001,OK: No comment:No comment,success,2.4,7 - Analysed & Rejected,None,-8.649374,x0749,,active-covalent,RUN170
+C=CC(=O)N1CCN(CC1)C(=O)C23CC4CC(C2)CC(C4)C3,x2783,x2783,Mpro-x2783,PCM-0102682-001,OK: Clear:No comment,success,1.64,7 - Analysed & Rejected,None,-8.649374,x0749,,active-covalent,RUN171
+C=CC(=O)N1CCN(CC1)C(=O)C23CC4CC(C2)CC(C4)C3,x2772,x2772,Mpro-x2772,PCM-0102682-001,OK: Clear:No comment,success,1.84,7 - Analysed & Rejected,None,-8.649374,x0749,,active-covalent,RUN172
+C[NH2+]Cc1ccc(cc1)C(F)(F)F,x0136,x0136,Mpro-x0136,Z2856434809,OK: Clear:Normal,success,2.17,7 - Analysed & Rejected,None,-8.638557,x0195,,active-noncovalent,RUN173
+COc1ccc2c(c1)sc(n2)NC(=O)C3CC3,x1089,x1089,Mpro-x1089,Z27678561,OK: Precipitated:No comment,success,1.63,7 - Analysed & Rejected,None,-8.622681,x0749,,active-covalent,RUN174
+c1cc(cc(c1)NC(=O)Nc2cc(cnc2)N)C#N,x2863,x2863,Mpro-x2863,Z4444622224,OK: Clear:No comment,success,3.16,7 - Analysed & Rejected,None,-8.612061,x0749,,active-covalent,RUN175
+CC1(CN(C[C@@H]1O)c2c(cccn2)F)C,x0458,x0458,Mpro-x0458,Z1929757385,OK: No comment:No comment,success,2.28,7 - Analysed & Rejected,None,-8.574858,x0749,,active-covalent,RUN176
+CC1(CN(C[C@@H]1O)c2c(cccn2)F)C,x1197,x1197,Mpro-x1197,Z1929757385,OK: No comment:No comment,success,1.59,7 - Analysed & Rejected,None,-8.574858,x0749,,active-covalent,RUN177
+c1cc(ncc1N2CCCOCC2)C#N,x1048,x1048,Mpro-x1048,Z1348371854,OK: Clear:Normal,success,1.86,7 - Analysed & Rejected,None,-8.573239,x0749,,active-covalent,RUN178
+Cc1ccc(c(c1)NC(=O)Nn2cnnc2)OC,x0529,x0529,Mpro-x0529,Z2234920345,OK: No comment:No comment,success,1.99,7 - Analysed & Rejected,None,-8.562340,x0678,,active-noncovalent,RUN179
+c1cc(sc1)C[NH+]2CCN(CC2)C(=O)CCl,x2779,x2779,Mpro-x2779,Z147647874,OK: Clear:No comment,success,1.51,6 - Deposited,5RHA,-8.544258,x0831,,active-covalent,RUN180
+c1cc(sc1)C[NH+]2CCN(CC2)C(=O)CCl,x2765,x2765,Mpro-x2765,Z147647874,OK: Clear:No comment,success,1.79,7 - Analysed & Rejected,None,-8.544258,x0831,,active-covalent,RUN181
+c1cc(sc1)C[NH+]2CCN(CC2)C(=O)CCl,x2729,x2729,Mpro-x2729,Z147647874,OK: Clear:No comment,success,1.66,7 - Analysed & Rejected,None,-8.544258,x0831,,active-covalent,RUN182
+c1cc(sc1)C[NH+]2CCN(CC2)C(=O)CCl,x0693,x0693,Mpro-x0693,PCM-0102243,OK: Clear:Normal,success,1.84,7 - Analysed & Rejected,None,-8.544258,x0831,,active-covalent,RUN183
+c1cscc1C[NH+]2CCN(CC2)C(=O)CCl,x2743,x2743,Mpro-x2743,Z2608820553,OK: Clear:No comment,success,1.59,6 - Deposited,None,-8.542832,x0831,,active-covalent,RUN184
+c1cscc1C[NH+]2CCN(CC2)C(=O)CCl,x1485,x1485,Mpro-x1485,PCM-0102739,OK: No comment:No comment,success,1.81,7 - Analysed & Rejected,None,-8.542832,x0831,,active-covalent,RUN185
+c1cscc1C[NH+]2CCN(CC2)C(=O)CCl,x2730,x2730,Mpro-x2730,Z2608820553,OK: Clear:No comment,success,1.9,7 - Analysed & Rejected,None,-8.542832,x0831,,active-covalent,RUN186
+Cc1ccc(nc1)NC(=O)[C@H]2CCCO2,x1210,x1210,Mpro-x1210,Z71580604,OK: No comment:No comment,success,1.37,7 - Analysed & Rejected,None,-8.540951,x0749,,active-covalent,RUN187
+CC(=O)Nc1ccc(cc1)CC(=O)N,x0087,x0087,Mpro-x0087,Z87615031,OK: No comment:No comment,success,2.22,7 - Analysed & Rejected,None,-8.540783,x1385,,active-covalent,RUN188
+c1cc(oc1)C(=O)NCCc2ccc(cc2)F,x0444,x0444,Mpro-x0444,Z26769872,OK: No comment:No comment,success,1.45,7 - Analysed & Rejected,None,-8.540394,x0678,,active-noncovalent,RUN189
+CCCn1c2ccccc2nc1NC(=O)CC,x0681,x0681,Mpro-x0681,Z29077827,Mounted_Clear,success,1.92,7 - Analysed & Rejected,None,-8.521357,x0195,,active-noncovalent,RUN190
+C[NH2+]C[C@H]1COc2ccccc2O1,x1242,x1242,Mpro-x1242,Z1891773476,OK: No comment:No comment,success,1.75,7 - Analysed & Rejected,None,-8.505136,x0195,,active-noncovalent,RUN191
+C[C@H](c1ccc(cc1)c2cncnc2)[NH3+],x0092,x0092,Mpro-x0092,Z1696822287,OK: No comment:No comment,success,2.42,7 - Analysed & Rejected,None,-8.504209,x0104,,active-noncovalent,RUN192
+COc1ccc(cc1)N2C[C@H](CC2=O)C(=O)N,x1153,x1153,Mpro-x1153,Z57324924,OK: No comment:No comment,success,1.56,7 - Analysed & Rejected,None,-8.492237,x0749,,active-covalent,RUN193
+c1ccc(cc1)NC(=O)C2CCN(CC2)C(=O)CCl,x2750,x2750,Mpro-x2750,PG-COV-2,OK: Clear:No comment,None,None,,None,-8.482620,x0749,,active-covalent,RUN194
+c1ccc(cc1)NC(=O)C2CCN(CC2)C(=O)CCl,x0814,x0814,Mpro-x0814,PCM-0102219,OK: Clear:Normal,success,1.89,7 - Analysed & Rejected,None,-8.482620,x0749,,active-covalent,RUN195
+c1ccc(cc1)NC(=O)C2CCN(CC2)C(=O)CCl,x0760,x0760,Mpro-x0760,PCM-0102219,OK: Clear:Normal,success,2.22,7 - Analysed & Rejected,None,-8.482620,x0749,,active-covalent,RUN196
+c1ccc(cc1)NC(=O)C2CCN(CC2)C(=O)CCl,x2725,x2725,Mpro-x2725,PG-COV-2,OK: Clear:No comment,success,1.78,7 - Analysed & Rejected,None,-8.482620,x0749,,active-covalent,RUN197
+c1ccc(cc1)NC(=O)C2CCN(CC2)C(=O)CCl,x1357,x1357,Mpro-x1357,PCM-0102219,OK: No comment:No comment,success,2.71,7 - Analysed & Rejected,None,-8.482620,x0749,,active-covalent,RUN198
+c1ccc(cc1)NC(=O)C2CCN(CC2)C(=O)CCl,x0740,x0740,Mpro-x0740,PCM-0102219,OK: Clear:Normal,success,2.14,7 - Analysed & Rejected,None,-8.482620,x0749,,active-covalent,RUN199
+c1ccc(cc1)NC(=O)C2CCN(CC2)C(=O)CCl,x2768,x2768,Mpro-x2768,PG-COV-2,OK: Clear:No comment,success,1.9,7 - Analysed & Rejected,None,-8.482620,x0749,,active-covalent,RUN200
+CN(Cc1cccc(c1)C(F)(F)F)C(=O)CCl,x0704,x0704,Mpro-x0704,PCM-0102987,OK: Clear:Normal,success,2.3,7 - Analysed & Rejected,None,-8.473181,x0749,,active-covalent,RUN201
+CN(Cc1cccc(c1)C(F)(F)F)C(=O)CCl,x1441,x1441,Mpro-x1441,PCM-0102987,OK: No comment:No comment,success,2.21,7 - Analysed & Rejected,None,-8.473181,x0749,,active-covalent,RUN202
+Cc1ccc(c(c1)O)NC(=O)c2ccccc2C,x0515,x0515,Mpro-x0515,Z33452282,OK: No comment:No comment,success,1.79,7 - Analysed & Rejected,None,-8.473072,x1093,,active-noncovalent,RUN203
+Cc1cccc(n1)[N@]2CC[NH2+][C@@H](C2)C,x0537,x0537,Mpro-x0537,Z1267885772,OK: No comment:No comment,success,2.36,7 - Analysed & Rejected,None,-8.469460,x0195,,active-noncovalent,RUN204
+Cc1cccc(n1)[N@]2CC[NH2+][C@@H](C2)C,x1188,x1188,Mpro-x1188,Z1267885772,OK: No comment:Cracked,success,2.19,7 - Analysed & Rejected,None,-8.469460,x0195,,active-noncovalent,RUN205
+C[C@H](c1ccc(cc1)NC(=O)C2CC2)[NH3+],x0589,x0589,Mpro-x0589,Z1891773393,OK: No comment:No comment,success,1.65,7 - Analysed & Rejected,None,-8.462635,x0749,,active-covalent,RUN206
+CC(=O)N[C@@H](Cc1cnc[nH]1)C(=O)NCC#CBr,x0984,x0984,Mpro-x0984,NCL-00025550 ,OK: No comment:No comment,success,1.92,7 - Analysed & Rejected,None,-8.446019,x0678,,active-noncovalent,RUN207
+CN(c1ccccc1)C(=O)C2CCN(CC2)C(=O)CCl,x2754,x2754,Mpro-x2754,PG-COV-34,OK: Clear:No comment,success,1.76,6 - Deposited,5RHF,-8.441025,x0749,,active-covalent,RUN208
+CN(c1ccccc1)C(=O)C2CCN(CC2)C(=O)CCl,x2739,x2739,Mpro-x2739,PG-COV-34,OK: Clear:No comment,Failed - low resolution,3.33,,None,-8.441025,x0749,,active-covalent,RUN209
+c1c[nH+]ccc1N2CCC(CC2)C(=O)N3CCOCC3,x2845,x2845,Mpro-x2845,GIA-UNK-30c-2,OK: Clear:No comment,success,3.07,7 - Analysed & Rejected,None,-8.439287,x0072,,active-noncovalent,RUN210
+c1ccc(c(c1)N2CCN(CC2)C(=O)CCl)N(=O)=O,x0734,x0734,Mpro-x0734,PCM-0103016,OK: Clear:Normal,success,1.96,6 - Deposited,5REM,-8.431313,x0749,,active-covalent,RUN211
+C[C@H](C(=O)Nc1cc(n[nH]1)C(F)(F)F)[NH3+],x1142,x1142,Mpro-x1142,Z1622626423,OK: No comment:No comment,success,2.43,7 - Analysed & Rejected,None,-8.421195,x0161,,active-noncovalent,RUN212
+CC(C)NC(=O)c1ccc2ccccc2n1,x0538,x0538,Mpro-x0538,Z31385861,OK: No comment:No comment,Failed - low resolution,4.08,,None,-8.411561,x0195,,active-noncovalent,RUN213
+c1cc(ccc1NC(=S)N)OC(F)(F)F,x1243,x1243,Mpro-x1243,Z1741960769,OK: Precipitated:No comment,success,1.81,7 - Analysed & Rejected,None,-8.400145,x0749,,active-covalent,RUN214
+COC(=O)Nc1nnc(s1)CC2CCCC2,x0660,x0660,Mpro-x0660,Z1119505742,Mounted_Clear,success,1.47,7 - Analysed & Rejected,None,-8.395270,x0678,,active-noncovalent,RUN215
+c1cc(cc(c1)NC(=O)Cc2c[nH]c3c2cccn3)C#N,x2677,x2677,Mpro-x2677,Z1400784309,OK: No comment:No comment,success,2.14,7 - Analysed & Rejected,None,-8.394180,x0830,,active-covalent,RUN216
+C[NH2+]CCC1CCCCC1,x0158,x0158,Mpro-x0158,Z2856434901,OK: Clear:Normal,success,1.67,7 - Analysed & Rejected,None,-8.391209,x0195,,active-noncovalent,RUN217
+c1ccc(c(c1)C#N)S(=O)(=O)N2CCN(CC2)C(=O)CCl,x1335,x1335,Mpro-x1335,PCM-0102395,OK: No comment:No comment,success,2.26,7 - Analysed & Rejected,None,-8.382928,x0831,,active-covalent,RUN218
+C[NH2+]Cc1ccncc1,x1211,x1211,Mpro-x1211,Z2856434786,OK: No comment:No comment,success,1.5,7 - Analysed & Rejected,None,-8.380624,x0540,,active-noncovalent,RUN219
+c1ccc(c(c1)C(=O)NCc2cnsc2)OCC#N,x2742,x2742,Mpro-x2742,Z4444621965,OK: Clear:No comment,success,1.86,7 - Analysed & Rejected,None,-8.371911,x0830,,active-covalent,RUN220
+c1ccc(c(c1)C(=O)NCc2cnsc2)OCC#N,x2764,x2764,Mpro-x2764,Z4444621965,OK: Clear:No comment,success,1.81,6 - Deposited,5RH8,-8.371911,x0830,,active-covalent,RUN221
+c1ccc(cc1)CCCC(=O)N2CCOCC2,x0449,x0449,Mpro-x0449,Z419995480,OK: No comment:No comment,success,1.63,7 - Analysed & Rejected,None,-8.367527,x0749,,active-covalent,RUN222
+C[NH+]1CCN(CC1)C(=O)Nc2ccc(cc2)F,x1066,x1066,Mpro-x1066,Z2856434944,OK: Clear:Normal,success,1.84,7 - Analysed & Rejected,None,-8.338463,x0104,,active-noncovalent,RUN223
+c1ccc(cc1)C(=O)NC2CCN(CC2)C(=O)CCl,x1313,x1313,Mpro-x1313,PCM-0102575,OK: No comment:No comment,success,2.34,7 - Analysed & Rejected,None,-8.333139,x0749,,active-covalent,RUN224
+c1ccc(cc1)C(=O)NC2CCN(CC2)C(=O)CCl,x0725,x0725,Mpro-x0725,PCM-0102575,OK: Clear:Normal,success,1.74,7 - Analysed & Rejected,None,-8.333139,x0749,,active-covalent,RUN225
+c1ccc(cc1)CN[C@H]2CC[NH2+]C2,x0477,x0477,Mpro-x0477,Z1827898537,OK: No comment:No comment,success,3.47,7 - Analysed & Rejected,None,-8.310785,x0161,,active-noncovalent,RUN226
+CN1CC[C@@H](C1=O)Oc2cccc(c2)F,x0544,x0544,Mpro-x0544,Z1217960891,OK: No comment:No comment,success,2.14,7 - Analysed & Rejected,None,-8.303802,x0749,,active-covalent,RUN227
+COc1ccc(cc1)NC(=O)Nc2ccncc2,x0448,x0448,Mpro-x0448,Z321318226,OK: No comment:No comment,success,2.1,7 - Analysed & Rejected,None,-8.300281,x0678,,active-noncovalent,RUN228
+c1cc(ccc1C[NH+]2CCOCC2)C(F)(F)F,x0539,x0539,Mpro-x0539,Z2856434871,OK: No comment:No comment,success,2.21,7 - Analysed & Rejected,None,-8.298043,x0749,,active-covalent,RUN229
+c1c[nH+]c(cc1N2CCCC2)C(=O)N,x0658,x0658,Mpro-x0658,Z145119960,Mounted_Clear,success,1.44,7 - Analysed & Rejected,None,-8.296037,x0195,,active-noncovalent,RUN230
+c1cc(ccc1C[N@H+]2CC[C@H](C2)O)Cl,x0654,x0654,Mpro-x0654,Z2856434858,Mounted_Clear,success,2.68,7 - Analysed & Rejected,None,-8.292242,x0749,,active-covalent,RUN231
+Cc1c(cccc1Cl)NC(=O)C[NH3+],x0676,x0676,Mpro-x0676,Z85956652,Mounted_Clear,success,2.01,7 - Analysed & Rejected,None,-8.277519,x0749,,active-covalent,RUN232
+CCCn1c(ccn1)c2ccncc2,x1091,x1091,Mpro-x1091,Z1381484542,OK: No comment:No comment,success,2.1,7 - Analysed & Rejected,None,-8.268024,x0072,,active-noncovalent,RUN233
+CCCn1c(ccn1)c2ccncc2,x0162,x0162,Mpro-x0162,Z1381484542,OK: Clear:Normal,success,2.93,7 - Analysed & Rejected,None,-8.268024,x0072,,active-noncovalent,RUN234
+c1cc(oc1)C(=O)N2CCN(CC2)C(=O)CCl,x1481,x1481,Mpro-x1481,PCM-0102248,OK: No comment:No comment,success,3.27,7 - Analysed & Rejected,None,-8.267857,x0749,,active-covalent,RUN235
+c1cc(oc1)C(=O)N2CCN(CC2)C(=O)CCl,x0736,x0736,Mpro-x0736,PCM-0102248,OK: Clear:Normal,success,1.74,6 - Deposited,5RGO,-8.267857,x0749,,active-covalent,RUN236
+CC(=O)c1cccc(c1)NC(=O)C(F)(F)F,x0438,x0438,Mpro-x0438,Z57111868,OK: No comment:No comment,success,2.46,7 - Analysed & Rejected,None,-8.266839,x0195,,active-noncovalent,RUN237
+C1CCC(C1)[NH2+]C[C@@H]2CCCO2,x0562,x0562,Mpro-x0562,Z90504169,OK: No comment:No comment,success,1.68,7 - Analysed & Rejected,None,-8.265560,x0678,,active-noncovalent,RUN238
+c1ccc(cc1)S(=O)(=O)[N@@]2CC[C@@H](C2)[NH3+],x1250,x1250,Mpro-x1250,Z2443429438,OK: No comment:No comment,success,1.51,7 - Analysed & Rejected,None,-8.265256,x0749,,active-covalent,RUN239
+c1ccc(cc1)S(=O)(=O)[N@@]2CC[C@@H](C2)[NH3+],x0489,x0489,Mpro-x0489,Z2443429438,OK: No comment:No comment,Failed - low resolution,4.33,,None,-8.265256,x0749,,active-covalent,RUN240
+COc1cc(cc(c1OC)OC)C[NH3+],x0118,x0118,Mpro-x0118,Z1741959530,OK: Clear:Normal,success,1.77,7 - Analysed & Rejected,None,-8.253920,x0195,,active-noncovalent,RUN241
+c1cc(cc(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)F,x0691,x0691,Mpro-x0691,PCM-0102327,OK: Clear:Normal,success,1.74,6 - Deposited,5REK,-8.249612,x0830,,active-covalent,RUN242
+c1cc(cc(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)F,x2791,x2791,Mpro-x2791,Z147647642,OK: Clear:No comment,success,1.57,3 - In Refinement,None,-8.249612,x0830,,active-covalent,RUN243
+c1cc(sc1C[NH+]2CCN(CC2)C(=O)CCl)Cl,x1334,x1334,Mpro-x1334,PCM-0102277,OK: No comment:No comment,success,1.58,6 - Deposited,5RFH,-8.249142,x0749,,active-covalent,RUN244
+c1cc(sc1C[NH+]2CCN(CC2)C(=O)CCl)Cl,x0698,x0698,Mpro-x0698,PCM-0102277,OK: Clear:Normal,success,1.82,7 - Analysed & Rejected,None,-8.249142,x0749,,active-covalent,RUN245
+COC(=O)c1ccc(cc1)NC(=O)C(F)(F)F,x0616,x0616,Mpro-x0616,Z56767614,Mounted_Clear,success,1.87,7 - Analysed & Rejected,None,-8.248976,x0749,,active-covalent,RUN246
+CCNC(=O)c1ccc(c(c1)F)N(C)C,x0560,x0560,Mpro-x0560,Z907784200,OK: No comment:No comment,success,2.19,7 - Analysed & Rejected,None,-8.238508,x0161,,active-noncovalent,RUN247
+CC(=O)N1CCN(CC1)S(=O)(=O)c2ccsc2,x2817,x2817,Mpro-x2817,MAK-UNK-4c6-1,OK: Clear:No comment,success,1.89,7 - Analysed & Rejected,None,-8.231065,x0072,,active-noncovalent,RUN248
+CC[C@@H](c1ccncc1)[NH2+]C,x0289,x0289,Mpro-x0289,Z1250132788,OK: No comment:Cracked,None,None,,None,-8.228788,x0540,,active-noncovalent,RUN249
+Cc1ccc(c(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)C,x1491,x1491,Mpro-x1491,PCM-0102353,OK: No comment:No comment,success,2.27,7 - Analysed & Rejected,None,-8.226967,x0830,,active-covalent,RUN250
+Cc1ccc(c(c1)S(=O)(=O)N2CCN(CC2)C(=O)CCl)C,x0701,x0701,Mpro-x0701,PCM-0102353,OK: Clear:Normal,success,2.03,7 - Analysed & Rejected,None,-8.226967,x0830,,active-covalent,RUN251
+CN(C[C@@H]1CCOC1)c2c(cncn2)Cl,x1166,x1166,Mpro-x1166,Z1787627869,OK: No comment:No comment,success,1.66,7 - Analysed & Rejected,None,-8.226234,x1093,,active-noncovalent,RUN252
+c1cc(cc(c1)N2CCCC2=O)NC(=O)CCl,x0753,x0753,Mpro-x0753,PCM-0102179,OK: Clear:Normal,success,2.17,7 - Analysed & Rejected,None,-8.221556,x0749,,active-covalent,RUN253
+c1ccc(c(c1)C[NH+]2CCOCC2)O,x0624,x0624,Mpro-x0624,Z2856434887,Mounted_Clear,success,2.24,7 - Analysed & Rejected,None,-8.217443,x0678,,active-noncovalent,RUN254
+C[C@@H](C[NH2+]Cc1c(cccc1Cl)Cl)O,x0590,x0590,Mpro-x0590,Z2856434909,OK: No comment:No comment,success,2.71,7 - Analysed & Rejected,None,-8.209663,x0678,,active-noncovalent,RUN255
+C[C@@H](C[NH2+]Cc1c(cccc1Cl)Cl)O,x1199,x1199,Mpro-x1199,Z2856434909,OK: No comment:No comment,success,1.96,7 - Analysed & Rejected,None,-8.209663,x0678,,active-noncovalent,RUN256
+COC[C@@H]1C[N@](CCO1)c2ccccn2,x1144,x1144,Mpro-x1144,Z1272480091,OK: No comment:No comment,success,1.72,7 - Analysed & Rejected,None,-8.203186,x0195,,active-noncovalent,RUN257
+COc1ccc(cc1)[C@H](C(=O)[O-])[NH3+],x1218,x1218,Mpro-x1218,Z56755722,OK: No comment:No comment,success,2.67,7 - Analysed & Rejected,None,-8.202593,x0830,,active-covalent,RUN258
+C[C@@]1(C(=O)NC(=O)N1)CCc2ccc(cc2)OC,x1203,x1203,Mpro-x1203,Z56772132,OK: Precipitated:No comment,success,2.32,7 - Analysed & Rejected,None,-8.199460,x0104,,active-noncovalent,RUN259
+Cc1cc(nc(n1)Nc2ccccc2)C,x0510,x0510,Mpro-x0510,Z285675722,OK: No comment:No comment,success,2.03,7 - Analysed & Rejected,None,-8.198807,x1093,,active-noncovalent,RUN260
+CCN(CC)c1cccc(c1)O,x1052,x1052,Mpro-x1052,Z2856434814,OK: Precipitated:Normal,success,1.97,7 - Analysed & Rejected,None,-8.195868,x0195,,active-noncovalent,RUN261
+Cn1c(=O)n(c(=O)s1)Cc2ccccc2,x1302,x1302,Mpro-x1302,T8325-5MG TDZD-8,OK: No comment:No comment,None,None,,None,-8.193286,x0678,,active-noncovalent,RUN262
+Cn1c(=O)n(c(=O)s1)Cc2ccccc2,x1299,x1299,Mpro-x1299,T8325-5MG TDZD-8,OK: No comment:No comment,None,None,,None,-8.193286,x0678,,active-noncovalent,RUN263
+Cn1c(=O)n(c(=O)s1)Cc2ccccc2,x1296,x1296,Mpro-x1296,T8325-5MG TDZD-8,OK: No comment:No comment,None,None,,None,-8.193286,x0678,,active-noncovalent,RUN264
+Cc1ccc(c2c1NCCC2)NC(=O)C,x0089,x0089,Mpro-x0089,Z1650168321,OK: No comment:No comment,success,1.67,7 - Analysed & Rejected,None,-8.175303,x0195,,active-noncovalent,RUN265
+CC(C)Nc1[nH]c2ccccc2n1,x0168,x0168,Mpro-x0168,Z2467208649,OK: Precipitated:Normal,success,2.94,7 - Analysed & Rejected,None,-8.171877,x0678,,active-noncovalent,RUN266
+CCOc1ccc(cc1)[C@@H](C)[NH3+],x1130,x1130,Mpro-x1130,Z210803634,OK: No comment:No comment,success,1.76,7 - Analysed & Rejected,None,-8.169896,x0195,,active-noncovalent,RUN267
+c1ccc(c(c1)F)S(=O)(=O)N2CCN(CC2)C(=O)CCl,x0695,x0695,Mpro-x0695,PCM-0102281,OK: Clear:Normal,success,1.89,7 - Analysed & Rejected,None,-8.157534,x0749,,active-covalent,RUN268
+c1cc(ccc1NC(=O)CC#N)Cl,x0585,x0585,Mpro-x0585,Z56837087,OK: Precipitated:Cracked,success,1.94,7 - Analysed & Rejected,None,-8.147179,x0749,,active-covalent,RUN269
+c1cc(ncc1F)NC2CCOCC2,x0631,x0631,Mpro-x0631,Z1172243962,Mounted_Clear,success,1.99,7 - Analysed & Rejected,None,-8.139266,x0434,,active-noncovalent,RUN270
+Cc1ccc(cc1)c2cc(nn2c3ccc(cc3)S(=O)(=O)N)C(F)(F)F,x2672,x2672,Mpro-x2672,Z1258938406,OK: No comment:No comment,success,1.84,7 - Analysed & Rejected,None,-8.128628,x0161,,active-noncovalent,RUN271
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2420,x2420,Mpro-x2420,AFMK,OK: Clear:Normal,None,None,,None,-8.123390,x0104,,active-noncovalent,RUN272
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2465,x2465,Mpro-x2465,AFMK,OK: Clear:Normal,None,None,,None,-8.123390,x0104,,active-noncovalent,RUN273
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2421,x2421,Mpro-x2421,AFMK,OK: Clear:Normal,success,3.27,7 - Analysed & Rejected,None,-8.123390,x0104,,active-noncovalent,RUN274
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2410,x2410,Mpro-x2410,AFMK,OK: Bad Dispense:Normal,Failed - low resolution,3.92,,None,-8.123390,x0104,,active-noncovalent,RUN275
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2404,x2404,Mpro-x2404,AFMK,OK: Clear:Normal,None,None,,None,-8.123390,x0104,,active-noncovalent,RUN276
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2415,x2415,Mpro-x2415,AFMK,OK: Clear:Normal,None,None,,None,-8.123390,x0104,,active-noncovalent,RUN277
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2423,x2423,Mpro-x2423,AFMK,OK: Clear:Cracked,None,None,,None,-8.123390,x0104,,active-noncovalent,RUN278
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2411,x2411,Mpro-x2411,AFMK,OK: Clear:Normal,Failed - low resolution,3.81,,None,-8.123390,x0104,,active-noncovalent,RUN279
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2409,x2409,Mpro-x2409,AFMK,OK: Clear:Normal,Failed - low resolution,6.2,,None,-8.123390,x0104,,active-noncovalent,RUN280
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2418,x2418,Mpro-x2418,AFMK,OK: Clear:Normal,None,None,,None,-8.123390,x0104,,active-noncovalent,RUN281
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2425,x2425,Mpro-x2425,AFMK,OK: Clear:Cracked,None,None,,None,-8.123390,x0104,,active-noncovalent,RUN282
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2416,x2416,Mpro-x2416,AFMK,OK: Clear:Normal,Failed - low resolution,6.23,,None,-8.123390,x0104,,active-noncovalent,RUN283
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2419,x2419,Mpro-x2419,AFMK,OK: Clear:Normal,Failed - low resolution,6.74,,None,-8.123390,x0104,,active-noncovalent,RUN284
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2412,x2412,Mpro-x2412,AFMK,OK: Clear:Normal,success,2.14,7 - Analysed & Rejected,None,-8.123390,x0104,,active-noncovalent,RUN285
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2407,x2407,Mpro-x2407,AFMK,OK: Bad Dispense:Cracked,Failed - low resolution,6.78,,None,-8.123390,x0104,,active-noncovalent,RUN286
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2405,x2405,Mpro-x2405,AFMK,OK: Clear:Normal,Failed - low resolution,4.99,,None,-8.123390,x0104,,active-noncovalent,RUN287
+CC(=O)NCCC(=O)c1cc(ccc1NC=O)OC,x2424,x2424,Mpro-x2424,AFMK,OK: Clear:Cracked,Failed - low resolution,6.86,,None,-8.123390,x0104,,active-noncovalent,RUN288
+Cc1ccc(cc1)CNC(=O)COC,x0523,x0523,Mpro-x0523,Z33297786,OK: No comment:No comment,success,1.53,7 - Analysed & Rejected,None,-8.117338,x0104,,active-noncovalent,RUN289
+CC(=O)N1CCC[C@H]1C(=O)NCC#CBr,x0976,x0976,Mpro-x0976,NCL-00024977,OK: No comment:No comment,success,1.98,7 - Analysed & Rejected,None,-8.115957,x0195,,active-noncovalent,RUN290
+c1cc(sc1)S(=O)(=O)N2CCN(CC2)C(=O)CCl,x0689,x0689,Mpro-x0689,PCM-0102241,OK: Clear:Normal,success,1.72,6 - Deposited,5REJ,-8.104933,x0749,,active-covalent,RUN291
+c1cc(sc1)S(=O)(=O)N2CCN(CC2)C(=O)CCl,x0763,x0763,Mpro-x0763,PCM-0102241,OK: Clear:Normal,success,1.93,7 - Analysed & Rejected,None,-8.104933,x0749,,active-covalent,RUN292
+c1ccc(c(c1)C(=O)CC[NH3+])N,x2746,x2746,Mpro-x2746,kynuramine dihydrobromide,OK: Clear:No comment,success,2.1,7 - Analysed & Rejected,None,-8.091883,x0195,,active-noncovalent,RUN293
+c1ccc(c(c1)C(=O)CC[NH3+])N,x2752,x2752,Mpro-x2752,kynuramine dihydrobromide,OK: Clear:No comment,success,1.79,7 - Analysed & Rejected,None,-8.091883,x0195,,active-noncovalent,RUN294
+C=CC(=O)N1CCC(CC1)c2nc(cs2)C(F)(F)F,x2741,x2741,Mpro-x2741,PCM-0102525-001,OK: Clear:No comment,success,1.75,7 - Analysed & Rejected,None,-8.087995,x0749,,active-covalent,RUN295
+c1cc2c(cc1O)c(c[nH]2)CC[NH3+],x2358,x2358,Mpro-x2358,serotonin hydrochloride,OK: Clear:Jelly,None,None,,None,-8.063527,x0678,,active-noncovalent,RUN296
+c1cc2c(cc1O)c(c[nH]2)CC[NH3+],x2364,x2364,Mpro-x2364,serotonin hydrochloride,OK: Clear:Normal,Failed - low resolution,3.75,,None,-8.063527,x0678,,active-noncovalent,RUN297
+c1cc2c(cc1O)c(c[nH]2)CC[NH3+],x2464,x2464,Mpro-x2464,serotonin hydrochloride,OK: Clear:Normal,success,2.18,7 - Analysed & Rejected,None,-8.063527,x0678,,active-noncovalent,RUN298
+CCc1nnnn1c2ccccc2NC(=O)C3(CC3)c4cc(cnc4)Br,x2818,x2818,Mpro-x2818,BAR-COM-4e0-16,OK: Clear:No comment,success,2.57,7 - Analysed & Rejected,None,-8.060421,x0830,,active-covalent,RUN299
+C1CS(=O)(=O)C[C@@H]1N2CCN(CC2)C(=O)CCl,x0726,x0726,Mpro-x0726,PCM-0102405,OK: Clear:Normal,success,1.85,7 - Analysed & Rejected,None,-8.041692,x0749,,active-covalent,RUN300
+COC(=O)[C@@H]1C[C@H](CN1C(=O)c2ccco2)O,x0436,x0436,Mpro-x0436,Z1614545742,OK: No comment:No comment,success,3.22,7 - Analysed & Rejected,None,-8.037658,x0195,,active-noncovalent,RUN301
+CC(C)(c1ccccc1)C(=O)N,x1267,x1267,Mpro-x1267,Z270979606,OK: No comment:No comment,success,1.55,7 - Analysed & Rejected,None,-8.031240,x0678,,active-noncovalent,RUN302
+Cc1cccc(c1C)NC(=O)C[NH+]2CCOCC2,x0419,x0419,Mpro-x0419,Z2856434834,OK: No comment:No comment,success,2.27,7 - Analysed & Rejected,None,-8.025280,x0749,,active-covalent,RUN303
+Cc1nc(cs1)C[N@]2C[C@H](C[C@H]2C[NH3+])F,x1248,x1248,Mpro-x1248,Z2444997446,OK: No comment:No comment,success,2.1,7 - Analysed & Rejected,None,-8.023185,x1418,,active-covalent,RUN304
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3cc([nH]n3)C(C)(C)C)C(=O)C=C)C,x2705,x2705,Mpro-x2705,Z4439011584,OK: No comment:No comment,success,1.71,6 - Deposited,5RH7,-8.018552,x0831,,active-covalent,RUN305
+C1C[C@H](CN(C1)C(=O)CCC(F)(F)F)[NH3+],x1181,x1181,Mpro-x1181,Z1818332938,OK: No comment:No comment,success,2.92,7 - Analysed & Rejected,None,-8.015240,x0195,,active-noncovalent,RUN306
+CC(=O)N1CC[C@H](c2ccc(cc2C1)F)NC(=O)C=C,x2773,x2773,Mpro-x2773,PCM-0102635-001,OK: Clear:No comment,None,None,,None,-8.010679,x1392,,active-covalent,RUN307
+CC(=O)N1CC[C@H](c2ccc(cc2C1)F)NC(=O)C=C,x2760,x2760,Mpro-x2760,PCM-0102635-001,OK: Clear:No comment,None,None,,None,-8.010679,x1392,,active-covalent,RUN308
+c1cc(sc1S(=O)(=O)N2CCN(CC2)C(=O)CCl)Cl,x0732,x0732,Mpro-x0732,PCM-0102121,OK: Clear:Normal,success,1.63,7 - Analysed & Rejected,None,-8.008788,x1392,,active-covalent,RUN309
+c1cc(sc1S(=O)(=O)N2CCN(CC2)C(=O)CCl)Cl,x1480,x1480,Mpro-x1480,PCM-0102121,OK: No comment:No comment,success,1.9,7 - Analysed & Rejected,None,-8.008788,x1392,,active-covalent,RUN310
+Cc1nc(cs1)CC(=O)N2CCOCC2,x0580,x0580,Mpro-x0580,Z31720228,OK: No comment:No comment,success,2.39,7 - Analysed & Rejected,None,-8.000721,x0749,,active-covalent,RUN311
+c1cc(cc(c1)NC(=O)CCl)C(=O)N2CCSCC2,x1495,x1495,Mpro-x1495,PCM-0103072,OK: No comment:No comment,success,2.21,7 - Analysed & Rejected,None,-7.999418,x0831,,active-covalent,RUN312
+c1cc(cc(c1)NC(=O)CCl)C(=O)N2CCSCC2,x0712,x0712,Mpro-x0712,PCM-0103072,OK: Clear:Normal,success,1.81,7 - Analysed & Rejected,None,-7.999418,x0831,,active-covalent,RUN313
+c1cc(ccc1S(=O)(=O)N2CCN(CC2)C(=O)CCl)Cl,x0718,x0718,Mpro-x0718,PCM-0102704,OK: Clear:Normal,success,2.02,7 - Analysed & Rejected,None,-7.990904,x0831,,active-covalent,RUN314
+c1cc(ccc1S(=O)(=O)N2CCN(CC2)C(=O)CCl)Cl,x1424,x1424,Mpro-x1424,PCM-0102704,OK: No comment:No comment,success,1.71,7 - Analysed & Rejected,None,-7.990904,x0831,,active-covalent,RUN315
+c1cc(c(c(c1)F)C(=O)N2CCCC2)F,x0496,x0496,Mpro-x0496,Z54226006,OK: No comment:No comment,success,1.89,7 - Analysed & Rejected,None,-7.983286,x0678,,active-noncovalent,RUN316
+c1cc(cc(c1)NC(=O)Nc2cccnc2)C#N,x2652,x2652,Mpro-x2652,Z195739680,OK: Precipitated:No comment,success,1.86,7 - Analysed & Rejected,None,-7.983136,x0749,,active-covalent,RUN317
+c1cc(cc(c1)NC(=O)C2CCN(CC2)C(=O)CCl)c3ccn[nH]3,x2747,x2747,Mpro-x2747,PG-COV-24,OK: Clear:No comment,success,1.8,7 - Analysed & Rejected,None,-7.958611,x0749,,active-covalent,RUN318
+c1cc(cc(c1)NC(=O)C2CCN(CC2)C(=O)CCl)c3ccn[nH]3,x2036,x2036,Mpro-x2036,PG-COV-24,OK: No comment:No comment,success,1.52,7 - Analysed & Rejected,None,-7.958611,x0749,,active-covalent,RUN319
+COc1ccc(cc1)C(=O)NCC(=O)N,x1217,x1217,Mpro-x1217,Z33546965,OK: No comment:No comment,success,1.67,7 - Analysed & Rejected,None,-7.953971,x0678,,active-noncovalent,RUN320
+CC(C)(C)NC(=O)N1CCC(CC1)C(=O)OC,x0457,x0457,Mpro-x0457,Z44567722,OK: No comment:No comment,success,1.91,7 - Analysed & Rejected,None,-7.945666,x0749,,active-covalent,RUN321
+CC(=O)N1CC[NH+](CC1)CC(=O)Nc2cccc(c2)S(=O)(=O)N,x2678,x2678,Mpro-x2678,Z102844650,OK: No comment:No comment,success,1.92,7 - Analysed & Rejected,None,-7.938325,x0104,,active-noncovalent,RUN322
+c1c[nH+]ccc1NC[C@@H]2CCCO2,x1185,x1185,Mpro-x1185,Z1267882044,OK: No comment:No comment,success,1.99,7 - Analysed & Rejected,None,-7.936506,x0749,,active-covalent,RUN323
+CC(=O)N[C@@H](CCC(=O)N)C(=O)NCC#CBr,x0979,x0979,Mpro-x0979,NCL-00025065,OK: No comment:No comment,success,2.01,7 - Analysed & Rejected,None,-7.919563,x0830,,active-covalent,RUN324
+c1ccc(c(c1)NC(=O)C2CCN(CC2)C(=O)CCl)O,x1358,x1358,Mpro-x1358,PCM-0102389,OK: No comment:No comment,success,1.64,6 - Deposited,5RFL,-7.899599,x0749,,active-covalent,RUN325
+c1ccc(c(c1)NC(=O)C2CCN(CC2)C(=O)CCl)O,x0737,x0737,Mpro-x0737,PCM-0102389,OK: Clear:Normal,success,1.7,7 - Analysed & Rejected,None,-7.899599,x0749,,active-covalent,RUN326
+c1cc(cc(c1)F)C[N@@]2CCCS2(=O)=O,x0672,x0672,Mpro-x0672,Z729352906,Mounted_Clear,success,1.91,7 - Analysed & Rejected,None,-7.894145,x0749,,active-covalent,RUN327
+CCc1ccc(cc1)OCC(=O)N2CCCCC2,x0455,x0455,Mpro-x0455,Z18839017,OK: No comment:No comment,success,1.76,7 - Analysed & Rejected,None,-7.894075,x0749,,active-covalent,RUN328
+CCc1ccc(cc1)OCC(=O)N2CCCCC2,x1270,x1270,Mpro-x1270,Z18839017,OK: No comment:No comment,success,3,7 - Analysed & Rejected,None,-7.894075,x0749,,active-covalent,RUN329
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cn3)C#N,x2675,x2675,Mpro-x2675,Z1767447079,OK: No comment:No comment,success,1.78,7 - Analysed & Rejected,None,-7.890812,x0749,,active-covalent,RUN330
+c1cc2c(c[nH]c2nc1)CC(=O)NCc3ccc(cn3)C#N,x2507,x2507,Mpro-x2507,Z1767447079,OK: Clear:Normal,success,1.91,7 - Analysed & Rejected,None,-7.890812,x0749,,active-covalent,RUN331
+Cc1cc(=O)n([nH]1)c2ccccc2,x0297,x0297,Mpro-x0297,Z50145861,OK: No comment:No comment,success,1.98,7 - Analysed & Rejected,None,-7.889587,x0195,,active-noncovalent,RUN332
+CCNC(=O)C[N@@H+]1C[C@@H](OC[C@H]1C)C,x0668,x0668,Mpro-x0668,Z355728146,Mounted_Clear,success,1.73,7 - Analysed & Rejected,None,-7.863604,x0104,,active-noncovalent,RUN333
+CC(C)N(C)C(=O)C1CCN(CC1)C(=O)CCl,x2665,x2665,Mpro-x2665,Z561717446,OK: No comment:No comment,success,1.76,3 - In Refinement,None,-7.862561,x0749,,active-covalent,RUN334
+CC(C)N(C)C(=O)C1CCN(CC1)C(=O)CCl,x0739,x0739,Mpro-x0739,PCM-0102974,OK: Clear:Normal,success,2.98,7 - Analysed & Rejected,None,-7.862561,x0749,,active-covalent,RUN335
+Cc1ccc(c(c1)NC(=O)C[NH3+])OC,x0044,x0044,Mpro-x0044,Z235341991,OK: No comment:No comment,success,1.78,7 - Analysed & Rejected,None,-7.838633,x0195,,active-noncovalent,RUN336
+Cc1ccc(cc1)S(=O)(=O)N2CCN(CC2)C(=O)CCl,x0731,x0731,Mpro-x0731,PCM-0102759,OK: Clear:Normal,success,1.83,6 - Deposited,5RGN,-7.833354,x0749,,active-covalent,RUN337
+CN(C)C(=O)OCCn1ccnc1,x1264,x1264,Mpro-x1264,Z1722836661,OK: No comment:No comment,success,1.49,7 - Analysed & Rejected,None,-7.830452,x0195,,active-noncovalent,RUN338
+CN(C)C(=O)OCCn1ccnc1,x0605,x0605,Mpro-x0605,Z1722836661,OK: No comment:No comment,Failed - low resolution,3.91,,None,-7.830452,x0195,,active-noncovalent,RUN339
+C[C@H]1CN(c2cccc(c2O1)F)C(=O)C,x1154,x1154,Mpro-x1154,Z1730522163,OK: No comment:No comment,success,1.74,7 - Analysed & Rejected,None,-7.827809,x0195,,active-noncovalent,RUN340
+C[C@H]1CN(c2cccc(c2O1)F)C(=O)C,x0335,x0335,Mpro-x0335,Z1730522163,OK: No comment:No comment,success,1.82,7 - Analysed & Rejected,None,-7.827809,x0195,,active-noncovalent,RUN341
+CC[C@H](CO)NC(=O)Nc1ccc(cc1)Cl,x1152,x1152,Mpro-x1152,Z1593306637,OK: No comment:No comment,success,1.72,7 - Analysed & Rejected,None,-7.825851,x0678,,active-noncovalent,RUN342
+c1ccc(cc1)C(c2ccccc2)OC(=O)[C@]3(CCC(=O)O3)n4c(=O)c5ccccc5s4,x2062,x2062,Mpro-x2062,tfs0350,OK: Precipitated:No comment,success,2.92,7 - Analysed & Rejected,None,-7.819194,x0874,,active-noncovalent,RUN343
+CC(=O)N1CCCC2(C1)CCCCCC2,x0035,x0035,Mpro-x0035,Z1275599911,OK: No comment:No comment,success,1.79,7 - Analysed & Rejected,None,-7.816387,x1093,,active-noncovalent,RUN344
+Cc1ccsc1C[NH2+]C(C)(C)CO,x0524,x0524,Mpro-x0524,Z2856434821,OK: No comment:Cracked,success,3.36,7 - Analysed & Rejected,None,-7.816010,x0946,,active-noncovalent,RUN345
+Cc1cc(c(c(c1)C)NC(=O)COC)C,x1281,x1281,Mpro-x1281,Z57260516,OK: No comment:No comment,success,2.6,7 - Analysed & Rejected,None,-7.810631,x0195,,active-noncovalent,RUN346
+C[NH+]1CCC(CC1)C(=O)N[C@@H]2CCCC[C@H]2NC(=O)c3ccccc3,x2823,x2823,Mpro-x2823,GIA-UNK-d2d-4,OK: Clear:No comment,success,2.26,7 - Analysed & Rejected,None,-7.797143,x0874,,active-noncovalent,RUN347
+CC(C)c1ccc(cc1)C(=O)Nc2ccccn2,x1252,x1252,Mpro-x1252,Z85525355,OK: No comment:No comment,success,1.43,7 - Analysed & Rejected,None,-7.792404,x0678,,active-noncovalent,RUN348
+c1ccc(cc1)NC(=O)CC(=O)Nc2ccncc2,x2833,x2833,Mpro-x2833,Z4444622142,OK: Clear:No comment,success,1.99,7 - Analysed & Rejected,None,-7.789352,x0107,,active-noncovalent,RUN349
+C[C@@H](CO)N(C)c1c(cccn1)F,x1275,x1275,Mpro-x1275,Z2017168803,OK: No comment:No comment,success,3.38,7 - Analysed & Rejected,None,-7.785793,x1382,,active-covalent,RUN350
+c1cc(sc1)C(=O)Nc2ccc(cc2)C#N,x0487,x0487,Mpro-x0487,Z30612387,OK: No comment:No comment,success,1.5,7 - Analysed & Rejected,None,-7.781003,x0749,,active-covalent,RUN351
+CC(=O)NCC[NH+]1CCCCCC1,x0468,x0468,Mpro-x0468,Z169226638,OK: No comment:Cracked,success,2.04,7 - Analysed & Rejected,None,-7.776066,x0104,,active-noncovalent,RUN352
+c1cc(ccc1C(=O)N2CCSCC2)Cl,x0545,x0545,Mpro-x0545,Z437584380,OK: Precipitated:No comment,success,2.93,7 - Analysed & Rejected,None,-7.772902,x0749,,active-covalent,RUN353
+CCOC(=O)Nc1cccc(c1)Cl,x1105,x1105,Mpro-x1105,Z31697001,OK: Phase Separation:No comment,success,1.69,7 - Analysed & Rejected,None,-7.756975,x0195,,active-noncovalent,RUN354
+CC(=O)Nc1ccc(cc1)c2csc(n2)N,x0054,x0054,Mpro-x0054,Z48847594,OK: No comment:No comment,success,1.68,7 - Analysed & Rejected,None,-7.753472,x0749,,active-covalent,RUN355
+Cc1cc(no1)NC(=O)CSc2ccccc2,x0447,x0447,Mpro-x0447,Z19750454,OK: No comment:No comment,success,1.76,7 - Analysed & Rejected,None,-7.745981,x0831,,active-covalent,RUN356
+CN(C)C(=O)C1(CC1)C(=O)[O-],x0269,x0269,Mpro-x0269,Z1874937335,OK: No comment:No comment,success,2.12,7 - Analysed & Rejected,None,-7.745976,x0397,,active-noncovalent,RUN357
+Cc1ccc(cc1NC(=O)C2CCN(CC2)C(=O)CCl)c3nc([nH]n3)C,x2721,x2721,Mpro-x2721,PG-COV-26,OK: Clear:No comment,success,1.81,7 - Analysed & Rejected,None,-7.730350,x0749,,active-covalent,RUN358
+C[C@@H](c1cccc2c1cccc2)NC(=O)CCl,x0746,x0746,Mpro-x0746,PCM-0102275,OK: Clear:Normal,success,1.83,7 - Analysed & Rejected,None,-7.728835,x1382,,active-covalent,RUN359
+c1cc2c(cc1/C=C/C=C/C(=O)N3CCCCC3)OCO2,x2661,x2661,Mpro-x2661,Z104476830,OK: No comment:No comment,success,1.89,7 - Analysed & Rejected,None,-7.724535,x0946,,active-noncovalent,RUN360
+Cc1ccccc1C(=O)NC2CCN(CC2)C(=O)CCl,x0713,x0713,Mpro-x0713,PCM-0103013,OK: Clear:Normal,success,1.99,7 - Analysed & Rejected,None,-7.706929,x0749,,active-covalent,RUN361
+Cc1nc(no1)c2ccccc2,x1231,x1231,Mpro-x1231,Z57791725,OK: No comment:No comment,success,3.41,7 - Analysed & Rejected,None,-7.706484,x0195,,active-noncovalent,RUN362
+c1cc(cnc1)NC(=O)C2CCN(CC2)C(=O)CCl,x2757,x2757,Mpro-x2757,PG-COV-43,OK: Clear:No comment,success,2.24,7 - Analysed & Rejected,None,-7.704693,x0830,,active-covalent,RUN363
+c1cc(cnc1)NC(=O)C2CCN(CC2)C(=O)CCl,x2723,x2723,Mpro-x2723,PG-COV-43,OK: Clear:No comment,success,2.09,7 - Analysed & Rejected,None,-7.704693,x0830,,active-covalent,RUN364
+C[NH+]1CCN(CC1)C(=O)[C@H]2CCC[NH2+]2,x1278,x1278,Mpro-x1278,Z241832786,OK: No comment:No comment,success,2.01,7 - Analysed & Rejected,None,-7.697544,x0195,,active-noncovalent,RUN365
+COC(=O)CNC(=O)C1CCCCC1,x0446,x0446,Mpro-x0446,Z18618496,OK: No comment:No comment,success,2.14,7 - Analysed & Rejected,None,-7.687178,x0195,,active-noncovalent,RUN366
+Cc1cccc(c1F)S(=O)(=O)NC,x1241,x1241,Mpro-x1241,Z1639162606,OK: No comment:No comment,success,2.46,7 - Analysed & Rejected,None,-7.684748,x0195,,active-noncovalent,RUN367
+Cc1ccccc1CC(=O)N,x0150,x0150,Mpro-x0150,Z52214433,OK: Crystalline:Normal,success,1.61,7 - Analysed & Rejected,None,-7.681866,x1382,,active-covalent,RUN368
+CC(=O)N1[C@@H]2CC[C@H]1c3cccnc3C2,x0846,x0846,Mpro-x0846,POB0103,OK: Clear:Normal,success,2.08,7 - Analysed & Rejected,None,-7.677588,x0397,,active-noncovalent,RUN369
+CS(=O)(=O)Nc1cccc(c1)C(=O)Nc2cccc(c2)N3CCCC3=O,x2657,x2657,Mpro-x2657,Z102622686,OK: No comment:No comment,success,1.86,7 - Analysed & Rejected,None,-7.669181,x1077,,active-noncovalent,RUN370
+CS(=O)(=O)Nc1cccc(c1)C(=O)Nc2cccc(c2)N3CCCC3=O,x2489,x2489,Mpro-x2489,Z102622686,OK: Crystalline:Normal,success,1.67,7 - Analysed & Rejected,None,-7.669181,x1077,,active-noncovalent,RUN371
+Cc1csc(n1)NC(=O)C2CCOCC2,x0418,x0418,Mpro-x0418,Z73240835,OK: No comment:No comment,success,2.03,7 - Analysed & Rejected,None,-7.657047,x0749,,active-covalent,RUN372
+CS(=O)(=O)NCCCN1CCCc2c1cc(cc2)S(=O)(=O)N,x2830,x2830,Mpro-x2830,PET-SGC-abc-1,OK: Clear:No comment,success,2.09,7 - Analysed & Rejected,None,-7.647782,x0195,,active-noncovalent,RUN373
+COc1ccc2c(c1)c(c[nH]2)CCNS(=O)(=O)C,x2494,x2494,Mpro-x2494,Z1316790959,OK: Clear:Normal,success,2.07,7 - Analysed & Rejected,None,-7.645136,x0831,,active-covalent,RUN374
+COc1ccc2c(c1)c(c[nH]2)CCNS(=O)(=O)C,x2662,x2662,Mpro-x2662,Z1316790959,OK: No comment:No comment,success,2.21,7 - Analysed & Rejected,None,-7.645136,x0831,,active-covalent,RUN375
+C[NH2+]Cc1cccc(c1)Cl,x0257,x0257,Mpro-x0257,Z2856434770,OK: No comment:Melted,success,2.97,7 - Analysed & Rejected,None,-7.637341,x0195,,active-noncovalent,RUN376
+C[N@@H+]1CCC[C@H](C1)OC(=O)c2ccco2,x1155,x1155,Mpro-x1155,Z2940170964,OK: No comment:No comment,success,1.83,7 - Analysed & Rejected,None,-7.635798,x0195,,active-noncovalent,RUN377
+CCNc1ccc(cc1F)S(=O)(=O)C,x0592,x0592,Mpro-x0592,Z2142244288,OK: No comment:Cracked,success,2.75,7 - Analysed & Rejected,None,-7.626258,x0195,,active-noncovalent,RUN378
+c1cc(=O)[nH]nc1,x1018,x1018,Mpro-x1018,Z3219959731,OK: No comment:No comment,success,3.47,7 - Analysed & Rejected,None,-7.623253,x0678,,active-noncovalent,RUN379
+COC(=O)[C@@]1(CCC[NH2+]C1)c2ccc(cc2)F,x0837,x0837,Mpro-x0837,POB0084,OK: Clear:Normal,success,2.07,7 - Analysed & Rejected,None,-7.617676,x0195,,active-noncovalent,RUN380
+CCNC(=O)c1cn[nH]n1,x0556,x0556,Mpro-x0556,Z755044716,OK: No comment:No comment,success,1.91,7 - Analysed & Rejected,None,-7.610065,x0397,,active-noncovalent,RUN381
+CC(=O)N[C@@H](CCC(=O)[O-])C(=O)NCC#CBr,x0971,x0971,Mpro-x0971,NCL-00025059,OK: No comment:No comment,success,2.09,7 - Analysed & Rejected,None,-7.607946,x0831,,active-covalent,RUN382
+CN(C)C(=O)CNc1ccccc1,x0483,x0483,Mpro-x0483,Z104584152,OK: No comment:No comment,success,2.22,7 - Analysed & Rejected,None,-7.606360,x0749,,active-covalent,RUN383
+c1cc(sc1)c2[nH]ccn2,x0155,x0155,Mpro-x0155,Z744754722,OK: Precipitated:Normal,success,1.68,7 - Analysed & Rejected,None,-7.597924,x0749,,active-covalent,RUN384
+c1c[nH]ncc1=O,x1041,x1041,Mpro-x1041,Z1741975221,OK: No comment:No comment,None,None,,None,-7.560664,x0678,,active-noncovalent,RUN385
+COc1cccc2c1cc[nH]2,x0346,x0346,Mpro-x0346,Z1429867185,OK: No comment:No comment,success,2.01,7 - Analysed & Rejected,None,-7.549317,x0195,,active-noncovalent,RUN386
+C[C@H](CS(=O)(=O)N)c1ccccc1,x0079,x0079,Mpro-x0079,Z1407673036,OK: No comment:No comment,success,2.43,7 - Analysed & Rejected,None,-7.548541,x0195,,active-noncovalent,RUN387
+Cc1ccc(c(c1)C)S(=O)(=O)N2CCN(CC2)C(=O)CCl,x1488,x1488,Mpro-x1488,PCM-0102628,OK: No comment:No comment,success,2.57,7 - Analysed & Rejected,None,-7.543831,x0831,,active-covalent,RUN388
+Cc1ccc(c(c1)C)S(=O)(=O)N2CCN(CC2)C(=O)CCl,x0771,x0771,Mpro-x0771,PCM-0102628,OK: Clear:Normal,success,1.9,6 - Deposited,5RGP,-7.543831,x0831,,active-covalent,RUN389
+c1cc(ccc1C[NH2+]Cc2ccc(cc2)F)C#N,x0597,x0597,Mpro-x0597,Z2856434851,OK: Phase Separation:No comment,None,None,,None,-7.543612,x0749,,active-covalent,RUN390
+CC(=O)c1ccc(cc1)OC(F)F,x0041,x0041,Mpro-x0041,Z55671900,OK: No comment:No comment,success,1.53,7 - Analysed & Rejected,None,-7.542289,x0749,,active-covalent,RUN391
+c1cc2c(cc1CNC(=O)CCl)OCO2,x0752,x0752,Mpro-x0752,PCM-0102578,OK: Clear:Normal,success,1.88,6 - Deposited,5REO,-7.540138,x0749,,active-covalent,RUN392
+c1cc(cc(c1)NC(=O)C2CCN(CC2)C(=O)CCl)c3c4c(n[nH]3)CCCC4,x2749,x2749,Mpro-x2749,PG-COV-25,OK: Clear:No comment,success,2.88,7 - Analysed & Rejected,None,-7.526568,x0830,,active-covalent,RUN393
+c1cc(cc(c1)NC(=O)C2CCN(CC2)C(=O)CCl)c3c4c(n[nH]3)CCCC4,x2755,x2755,Mpro-x2755,PG-COV-25,OK: Clear:No comment,success,2.83,7 - Analysed & Rejected,None,-7.526568,x0830,,active-covalent,RUN394
+c1cc(cc(c1)NC(=O)C2CCN(CC2)C(=O)CCl)c3c4c(n[nH]3)CCCC4,x2040,x2040,Mpro-x2040,PG-COV-25,OK: No comment:No comment,success,1.77,7 - Analysed & Rejected,None,-7.526568,x0830,,active-covalent,RUN395
+Cc1c(sc2c1c(ncn2)N(C)C)C,x1230,x1230,Mpro-x1230,Z31222641,OK: No comment:No comment,success,1.68,7 - Analysed & Rejected,None,-7.526505,x0195,,active-noncovalent,RUN396
+c1ccc(c(c1)NC(=O)C2CCN(CC2)C(=O)CCl)Br,x2726,x2726,Mpro-x2726,PG-COV-35,OK: Clear:No comment,success,2.28,7 - Analysed & Rejected,None,-7.525287,x0749,,active-covalent,RUN397
+c1ccc(c(c1)NC(=O)C2CCN(CC2)C(=O)CCl)Br,x2051,x2051,Mpro-x2051,PG-COV-35,OK: No comment:No comment,success,2.43,7 - Analysed & Rejected,None,-7.525287,x0749,,active-covalent,RUN398
+C=CC(=O)N(c1ccc2c(c1)scn2)[C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Br,x2777,x2777,Mpro-x2777,Z4439011556,OK: Clear:No comment,success,2.35,7 - Analysed & Rejected,None,-7.523878,x0831,,active-covalent,RUN399
+C=CC(=O)N(c1ccc2c(c1)scn2)[C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Br,x2688,x2688,Mpro-x2688,Z4439011556,OK: No comment:No comment,success,1.72,7 - Analysed & Rejected,None,-7.523878,x0831,,active-covalent,RUN400
+C=CC(=O)N(c1ccc2c(c1)scn2)[C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Br,x2790,x2790,Mpro-x2790,Z4439011556,OK: Clear:No comment,success,2.51,7 - Analysed & Rejected,None,-7.523878,x0831,,active-covalent,RUN401
+CC(=O)Nc1ccc(cc1)C[NH+]2CCOCC2,x0554,x0554,Mpro-x0554,Z2856434875,OK: No comment:No comment,success,1.92,7 - Analysed & Rejected,None,-7.520943,x0104,,active-noncovalent,RUN402
+c1cc2c(nc1)C[C@H]3CC[C@@H]2[NH2+]3,x0838,x0838,Mpro-x0838,POB0102,OK: Clear:Normal,success,1.93,7 - Analysed & Rejected,None,-7.516714,x0072,,active-noncovalent,RUN403
+c1cnc(cc1I)N,x0937,x0937,Mpro-x0937,NCL-00023822,OK: No comment:No comment,success,2.21,7 - Analysed & Rejected,None,-7.495326,x0540,,active-noncovalent,RUN404
+C[C@@H](CO)Nc1c(cc(cn1)Cl)F,x1149,x1149,Mpro-x1149,Z1432018343,OK: No comment:No comment,success,1.7,7 - Analysed & Rejected,None,-7.494957,x0195,,active-noncovalent,RUN405
+c1cc2c(cc1C(=O)N)CCN2,x0311,x0311,Mpro-x0311,Z2434225559,OK: No comment:No comment,None,None,,None,-7.481947,x0195,,active-noncovalent,RUN406
+CC(C)Nc1cccnc1,x0572,x0572,Mpro-x0572,Z1259341037,OK: No comment:No comment,success,2.98,7 - Analysed & Rejected,None,-7.474369,x0678,,active-noncovalent,RUN407
+C[C@H]1[C@@H](C(=O)N1S(=O)(=O)[O-])NC(=O)/C(=N\OC(C)(C)C(=O)[O-])/c2csc(n2)N,x2058,x2058,Mpro-x2058,Aztreonam,OK: No comment:No comment,success,2.44,7 - Analysed & Rejected,None,-7.470818,x1077,,active-noncovalent,RUN408
+Cc1nc2c(s1)CCC[C@H]2C(=O)NC,x1148,x1148,Mpro-x1148,Z1904249627,OK: No comment:No comment,success,1.56,7 - Analysed & Rejected,None,-7.454516,x1077,,active-noncovalent,RUN409
+Cc1cc(c(cc1C)[C@H](C)NC(=O)CCl)C,x0821,x0821,Mpro-x0821,PCM-0102879,OK: Crystalline:Normal,success,1.79,7 - Analysed & Rejected,None,-7.452919,x0749,,active-covalent,RUN410
+CCOc1cccc(c1)C(=O)Nc2nnn(n2)C,x0527,x0527,Mpro-x0527,Z57292400,OK: No comment:No comment,success,1.88,7 - Analysed & Rejected,None,-7.439372,x0830,,active-covalent,RUN411
+CNS(=O)(=O)c1ccccc1Cl,x1268,x1268,Mpro-x1268,Z45527714,OK: No comment:No comment,success,1.96,7 - Analysed & Rejected,None,-7.434351,x0678,,active-noncovalent,RUN412
+CC(=O)N1CCN(CC1)C(=O)CCl,x0703,x0703,Mpro-x0703,PCM-0102535,OK: Clear:Normal,success,1.79,7 - Analysed & Rejected,None,-7.432066,x0749,,active-covalent,RUN413
+CC(=O)Nc1ccc(cc1)Br,x0940,x0940,Mpro-x0940,NCL-00023828,OK: No comment:No comment,success,2.22,7 - Analysed & Rejected,None,-7.428520,x0195,,active-noncovalent,RUN414
+C[C@@H]1[C@@H](CCC[N@@]1S(=O)(=O)C)C(=O)N2CCCC2,x0849,x0849,Mpro-x0849,POB0015,OK: Clear:Normal,success,2.34,7 - Analysed & Rejected,None,-7.417205,x0195,,active-noncovalent,RUN415
+C[C@@H]1CCc2ccccc2N1C(=O)C,x0294,x0294,Mpro-x0294,Z28870646,OK: No comment:No comment,success,1.76,7 - Analysed & Rejected,None,-7.414208,x0195,,active-noncovalent,RUN416
+C[C@@H]1CCc2ccccc2N1C(=O)C,x1145,x1145,Mpro-x1145,Z28870646,OK: No comment:No comment,success,1.6,7 - Analysed & Rejected,None,-7.414208,x0195,,active-noncovalent,RUN417
+Cn1cc(c(n1)c2ccncc2)C(=O)[O-],x0266,x0266,Mpro-x0266,Z815264062,OK: No comment:Cracked,success,1.8,7 - Analysed & Rejected,None,-7.413765,x0387,,active-noncovalent,RUN418
+CC(=O)c1cccc(c1)NC(=O)C2CCN(CC2)C(=O)CCl,x2728,x2728,Mpro-x2728,PG-COV-31,OK: Clear:No comment,success,1.61,7 - Analysed & Rejected,None,-7.405107,x0749,,active-covalent,RUN419
+CC(=O)c1cccc(c1)NC(=O)C2CCN(CC2)C(=O)CCl,x2759,x2759,Mpro-x2759,PG-COV-31,OK: Clear:No comment,success,1.97,7 - Analysed & Rejected,None,-7.405107,x0749,,active-covalent,RUN420
+CC(=O)c1cccc(c1)NC(=O)C2CCN(CC2)C(=O)CCl,x2770,x2770,Mpro-x2770,PG-COV-31,OK: Clear:No comment,success,1.63,7 - Analysed & Rejected,None,-7.405107,x0749,,active-covalent,RUN421
+CC(=O)c1cccc(c1)NC(=O)C2CCN(CC2)C(=O)CCl,x2781,x2781,Mpro-x2781,PG-COV-31,OK: Clear:No comment,success,1.76,7 - Analysed & Rejected,None,-7.405107,x0749,,active-covalent,RUN422
+C[C@H](c1ccc(cc1)F)[NH2+]C,x0121,x0121,Mpro-x0121,Z166605480,OK: Clear:Normal,success,1.92,7 - Analysed & Rejected,None,-7.399781,x0678,,active-noncovalent,RUN423
+C[C@H](c1ccc(cc1)F)[NH2+]C,x1170,x1170,Mpro-x1170,Z166605480,OK: No comment:No comment,success,1.83,7 - Analysed & Rejected,None,-7.399781,x0678,,active-noncovalent,RUN424
+CS(=O)(=O)c1nccn1Cc2cscn2,x0569,x0569,Mpro-x0569,Z1328968520,OK: No comment:No comment,success,3.1,7 - Analysed & Rejected,None,-7.394627,x0749,,active-covalent,RUN425
+C[C@@H]([C@@H](C(=O)NCC#CBr)NC(=O)C)O,x0978,x0978,Mpro-x0978,NCL-00025058,OK: No comment:No comment,success,1.63,6 - Deposited,5RG2,-7.387796,x1386,,active-covalent,RUN426
+c1cc2c(cc1Br)c(c[nH]2)NC(=O)C3CCN(CC3)C(=O)CCl,x2727,x2727,Mpro-x2727,PG-COV-14,OK: Clear:No comment,success,2.36,7 - Analysed & Rejected,None,-7.377210,x1334,,active-covalent,RUN427
+c1cc2c(cc1Br)c(c[nH]2)NC(=O)C3CCN(CC3)C(=O)CCl,x2758,x2758,Mpro-x2758,PG-COV-14,OK: Clear:No comment,success,1.88,7 - Analysed & Rejected,None,-7.377210,x1334,,active-covalent,RUN428
+c1cc2c(cc1Br)c(c[nH]2)NC(=O)C3CCN(CC3)C(=O)CCl,x2769,x2769,Mpro-x2769,PG-COV-14,OK: Clear:No comment,success,1.92,7 - Analysed & Rejected,None,-7.377210,x1334,,active-covalent,RUN429
+COc1cccc2c1nc(s2)NC(=O)CCl,x0721,x0721,Mpro-x0721,PCM-0103067,OK: Clear:Normal,None,None,,None,-7.360106,x0749,,active-covalent,RUN430
+Cc1cc(cnc1[C@]23C[C@H]2CC[N@]3S(=O)(=O)C)F,x0931,x0931,Mpro-x0931,POB0162,OK: No comment:No comment,success,1.49,7 - Analysed & Rejected,None,-7.359055,x0195,,active-noncovalent,RUN431
+CCC(=O)Nc1ccc(cc1)S(=O)(=O)N,x0561,x0561,Mpro-x0561,Z27682767,OK: Crystalline:No comment,success,2.3,7 - Analysed & Rejected,None,-7.355818,x0749,,active-covalent,RUN432
+COc1cc(ccn1)Br,x0942,x0942,Mpro-x0942,NCL-00023836,OK: No comment:No comment,Failed - low resolution,5.21,,None,-7.351359,x0540,,active-noncovalent,RUN433
+CC(C)N(C)c1c2cnn(c2ncn1)C,x1101,x1101,Mpro-x1101,Z328695024,OK: No comment:No comment,success,1.3,6 - Deposited,5RGR,-7.350864,x1375,,active-covalent,RUN434
+Cc1ccnc(c1)NC(=O)C2CCN(CC2)C(=O)CCl,x2767,x2767,Mpro-x2767,PG-COV-38,OK: Clear:No comment,Failed - low resolution,4.24,,None,-7.341500,x0749,,active-covalent,RUN435
+Cc1ccnc(c1)NC(=O)C2CCN(CC2)C(=O)CCl,x2047,x2047,Mpro-x2047,PG-COV-38,OK: No comment:No comment,success,1.37,7 - Analysed & Rejected,None,-7.341500,x0749,,active-covalent,RUN436
+CNC(=O)c1ccccc1NC(=O)c2ccco2,x0611,x0611,Mpro-x0611,Z30272547,Mounted_Clear,success,2.12,7 - Analysed & Rejected,None,-7.329142,x0161,,active-noncovalent,RUN437
+c1c(cncn1)Br,x0941,x0941,Mpro-x0941,NCL-00023832,OK: No comment:No comment,success,1.68,7 - Analysed & Rejected,None,-7.315763,x0397,,active-noncovalent,RUN438
+c1cc2c(ccnc2nc1)Br,x0950,x0950,Mpro-x0950,NCL-00023833,OK: No comment:No comment,success,1.91,7 - Analysed & Rejected,None,-7.293748,x0195,,active-noncovalent,RUN439
+CC(C)Nc1ncccn1,x0583,x0583,Mpro-x0583,Z31190928,OK: No comment:No comment,success,3.08,7 - Analysed & Rejected,None,-7.293537,x1093,,active-noncovalent,RUN440
+CC(C)Nc1ncccn1,x1102,x1102,Mpro-x1102,Z31190928,OK: No comment:No comment,success,1.46,7 - Analysed & Rejected,None,-7.293537,x1093,,active-noncovalent,RUN441
+c1cn(nn1)C[C@H]2CCCC[NH2+]2,x0661,x0661,Mpro-x0661,Z1891776952,Mounted_Clear,None,None,,None,-7.283552,x0104,,active-noncovalent,RUN442
+C[N@](CCO)S(=O)(=O)c1ccc(cc1)N,x0614,x0614,Mpro-x0614,Z1673618163,Mounted_Clear,success,2.47,7 - Analysed & Rejected,None,-7.277418,x0678,,active-noncovalent,RUN443
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccccc3Br)C(=O)C=C,x2870,x2870,Mpro-x2870,Z4438424217,OK: Clear:No comment,success,2.06,7 - Analysed & Rejected,None,-7.274395,x0749,,active-covalent,RUN444
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3cc(on3)C(C)(C)C)C(=O)C=C)OC,x2694,x2694,Mpro-x2694,Z4439011520,OK: No comment:No comment,success,1.72,6 - Deposited,5RH5,-7.271996,x1392,,active-covalent,RUN445
+CC(C)(C)c1cc(n[nH]1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,x2706,x2706,Mpro-x2706,Z4439011532,OK: Precipitated:Cracked,success,2.2,7 - Analysed & Rejected,None,-7.264618,x1418,,active-covalent,RUN446
+COC(=O)c1ccc(cc1)S(=O)(=O)N,x0161,x0161,Mpro-x0161,Z18197050,OK: Clear:Normal,success,1.93,6 - Deposited,5R80,-7.223508,x0749,,active-covalent,RUN447
+c1c(cncn1)N,x0995,x0995,Mpro-x0995,Z1741970824,OK: No comment:No comment,success,1.5,6 - Deposited,5RF3,-7.222010,x0426,,active-noncovalent,RUN448
+Cc1cccc(c1C)C(=O)N(C)C,x0037,x0037,Mpro-x0037,Z32014663,OK: No comment:No comment,None,None,,None,-7.220438,x0195,,active-noncovalent,RUN449
+CC[C@@H](C)[C@@H](C(=O)NCC#CBr)NC(=O)C,x0975,x0975,Mpro-x0975,NCL-00024976,OK: No comment:No comment,success,1.69,7 - Analysed & Rejected,None,-7.205454,x0104,,active-noncovalent,RUN450
+CCOC(=O)Nc1c(ccs1)C(=O)N,x1057,x1057,Mpro-x1057,Z64450924,OK: Clear:Normal,success,1.34,7 - Analysed & Rejected,None,-7.203561,x0104,,active-noncovalent,RUN451
+c1cc(ccc1NC(=O)C2CCN(CC2)C(=O)CCl)Cl,x2055,x2055,Mpro-x2055,PG-COV-36,OK: No comment:No comment,success,1.37,7 - Analysed & Rejected,5RHD,-7.200988,x0749,,active-covalent,RUN452
+c1cc(cnc1)Br,x0989,x0989,Mpro-x0989,Z1250132521,OK: No comment:No comment,success,1.71,7 - Analysed & Rejected,None,-7.194540,x0397,,active-noncovalent,RUN453
+CC(C)(C)c1cc(no1)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C,x2708,x2708,Mpro-x2708,Z4439011607,OK: No comment:No comment,success,2.13,7 - Analysed & Rejected,None,-7.190642,x0749,,active-covalent,RUN454
+C[C@@H](c1cccc(c1)Cl)NC(=O)CCl,x0822,x0822,Mpro-x0822,PCM-0102190,OK: Clear:Normal,success,1.84,7 - Analysed & Rejected,None,-7.186934,x0749,,active-covalent,RUN455
+C[C@@H](c1cccc(c1)Cl)NC(=O)CCl,x1324,x1324,Mpro-x1324,PCM-0102190,OK: No comment:No comment,success,1.87,7 - Analysed & Rejected,None,-7.186934,x0749,,active-covalent,RUN456
+C[C@@H](c1cccc(c1)Cl)NC(=O)CCl,x0748,x0748,Mpro-x0748,PCM-0102190,OK: Clear:Normal,success,1.95,7 - Analysed & Rejected,None,-7.186934,x0749,,active-covalent,RUN457
+CC(=O)N[C@@H](CCCC[NH3+])C(=O)NCC#CBr,x0969,x0969,Mpro-x0969,NCL-00024978,OK: No comment:No comment,success,2.57,7 - Analysed & Rejected,None,-7.178466,x1077,,active-noncovalent,RUN458
+CC(=O)N[C@@H](CCCC[NH3+])C(=O)NCC#CBr,x0986,x0986,Mpro-x0986,NCL-00024978-002 ,OK: No comment:No comment,success,2.19,7 - Analysed & Rejected,None,-7.178466,x1077,,active-noncovalent,RUN459
+CC(=O)Nc1ccc(cc1)NC(=O)[C@H]2CC2(C)C,x0424,x0424,Mpro-x0424,Z1505719304,OK: No comment:No comment,success,3.29,7 - Analysed & Rejected,None,-7.177170,x0749,,active-covalent,RUN460
+COCCn1cc(cn1)Br,x0963,x0963,Mpro-x0963,NCL-00024673,OK: No comment:No comment,None,None,,None,-7.159364,x0397,,active-noncovalent,RUN461
+CS(=O)(=O)N1CC[NH+](CC1)Cc2ccco2,x0451,x0451,Mpro-x0451,Z2241115980,OK: No comment:No comment,success,1.8,7 - Analysed & Rejected,None,-7.157279,x1093,,active-noncovalent,RUN462
+CC(C)(C[N@@]1CC[C@@H](C1)[NH3+])O,x0530,x0530,Mpro-x0530,Z2429435052,OK: No comment:No comment,success,1.92,7 - Analysed & Rejected,None,-7.136844,x0195,,active-noncovalent,RUN463
+C[C@@H](c1ccc(cc1)CNC(=O)C=C)NC(=O)OC(C)(C)C,x2797,x2797,Mpro-x2797,VIJ-CYC-1a3-10,OK: Clear:No comment,success,2.25,7 - Analysed & Rejected,None,-7.127817,x0749,,active-covalent,RUN464
+Cc1ccc(c(c1)C)CN(C)C(=O)CCl,x0716,x0716,Mpro-x0716,PCM-0102552,OK: Clear:Normal,success,1.83,7 - Analysed & Rejected,None,-7.124319,x0749,,active-covalent,RUN465
+CCCC(=O)Nc1cccnc1Cl,x0548,x0548,Mpro-x0548,Z240654968,OK: No comment:No comment,success,2.26,7 - Analysed & Rejected,None,-7.124144,x0749,,active-covalent,RUN466
+C[C@@H](CCn1cccn1)O,x1176,x1176,Mpro-x1176,Z1613492358,OK: No comment:No comment,success,1.39,7 - Analysed & Rejected,None,-7.119583,x0195,,active-noncovalent,RUN467
+C1C[C@@H](OC1)CNC(=O)N2CCOCC2,x0553,x0553,Mpro-x0553,Z2064898127,OK: No comment:No comment,success,1.88,7 - Analysed & Rejected,None,-7.117129,x0195,,active-noncovalent,RUN468
+c1c(csc1CNC(=O)CCl)Br,x0751,x0751,Mpro-x0751,PCM-0103050,OK: Clear:Normal,success,1.9,7 - Analysed & Rejected,None,-7.113388,x0749,,active-covalent,RUN469
+C[NH+](C)Cc1ccc(cc1)C#N,x0202,x0202,Mpro-x0202,Z2856434815,OK: Clear:Cracked,success,2.48,7 - Analysed & Rejected,None,-7.112167,x0749,,active-covalent,RUN470
+CC(=O)N(C)c1ccccc1C(=O)[O-],x0060,x0060,Mpro-x0060,Z223688272,OK: No comment:No comment,success,2.06,7 - Analysed & Rejected,None,-7.109825,x1093,,active-noncovalent,RUN471
+Cc1nnc(s1)NC(=O)COC,x1096,x1096,Mpro-x1096,Z263785508,OK: No comment:No comment,success,1.48,7 - Analysed & Rejected,None,-7.097392,x0397,,active-noncovalent,RUN472
+CCOC(=O)C[NH+]1CCCCC1,x0586,x0586,Mpro-x0586,Z2856434773,OK: No comment:No comment,success,1.93,7 - Analysed & Rejected,None,-7.093095,x0678,,active-noncovalent,RUN473
+CC(=O)NCc1c[nH]nc1,x0109,x0109,Mpro-x0109,Z383325512,OK: Clear:Normal,success,1.93,7 - Analysed & Rejected,None,-7.093080,x0678,,active-noncovalent,RUN474
+Cc1ccncc1NC(=O)C,x0107,x0107,Mpro-x0107,Z1129283193,OK: No comment:No comment,success,1.88,6 - Deposited,5RE4,-7.086791,x0426,,active-noncovalent,RUN475
+CC(C)n1cc(nc1)S(=O)(=O)N,x0086,x0086,Mpro-x0086,Z1509882419,OK: No comment:No comment,success,2.03,7 - Analysed & Rejected,None,-7.077703,x0397,,active-noncovalent,RUN476
+C[C@H]1CCO[C@@H]1C(=O)Nc2cnns2,x0428,x0428,Mpro-x0428,Z1827602749,OK: No comment:No comment,success,1.81,7 - Analysed & Rejected,None,-7.075608,x0107,,active-noncovalent,RUN477
+CS(=O)(=O)NC1(CCCCC1)C(=O)[O-],x0598,x0598,Mpro-x0598,Z133622412,OK: No comment:No comment,success,2.34,7 - Analysed & Rejected,None,-7.075496,x0678,,active-noncovalent,RUN478
+CCn1c(=O)cc([nH]1)C(F)(F)F,x0130,x0130,Mpro-x0130,Z1268152398,OK: Clear:Normal,success,1.77,7 - Analysed & Rejected,None,-7.071774,x0195,,active-noncovalent,RUN479
+CC(=O)Nc1cc(ccc1F)C(=O)[O-],x0106,x0106,Mpro-x0106,Z364328788,OK: No comment:No comment,success,2.45,7 - Analysed & Rejected,None,-7.067080,x0195,,active-noncovalent,RUN480
+CCCNC(=O)[C@H](C)NC(=O)N(C)Cc1csc(n1)C,x2492,x2492,Mpro-x2492,Z900735246,OK: Clear:Normal,success,1.91,7 - Analysed & Rejected,None,-7.045680,x0195,,active-noncovalent,RUN481
+CCCNC(=O)[C@H](C)NC(=O)N(C)Cc1csc(n1)C,x2660,x2660,Mpro-x2660,Z900735246,OK: No comment:No comment,success,1.81,7 - Analysed & Rejected,None,-7.045680,x0195,,active-noncovalent,RUN482
+C1C[NH2+][C@H]1C(=O)[O-],x0997,x0997,Mpro-x0997,Z1318268680,OK: No comment:No comment,success,1.53,7 - Analysed & Rejected,None,-7.041037,x0397,,active-noncovalent,RUN483
+Cc1cnccc1NC(=O)C,x0645,x0645,Mpro-x0645,Z1148747945,Mounted_Clear,success,1.72,7 - Analysed & Rejected,None,-7.032791,x0540,,active-noncovalent,RUN484
+c1c(cncn1)I,x0949,x0949,Mpro-x0949,NCL-00023831,OK: No comment:No comment,success,1.65,7 - Analysed & Rejected,None,-7.026112,x0397,,active-noncovalent,RUN485
+c1ccc(cc1)N([C@H]2CS(=O)(=O)C=C2)C(=O)CCl,x1476,x1476,Mpro-x1476,PCM-0102372,OK: No comment:No comment,success,2.69,7 - Analysed & Rejected,None,-7.021152,x1311,,active-covalent,RUN486
+CNC(=O)c1ccc(n1C)[C@@H]2CCCCN2C(=O)C=C,x2771,x2771,Mpro-x2771,PCM-0102610-001,OK: Clear:No comment,success,1.95,7 - Analysed & Rejected,None,-7.018138,x1392,,active-covalent,RUN487
+CNC(=O)c1ccc(n1C)[C@@H]2CCCCN2C(=O)C=C,x2782,x2782,Mpro-x2782,PCM-0102610-001,OK: Clear:No comment,success,1.52,7 - Analysed & Rejected,None,-7.018138,x1392,,active-covalent,RUN488
+CNC(=O)c1ccc(n1C)[C@@H]2CCCCN2C(=O)C=C,x2030,x2030,Mpro-x2030,PCM-0102610-001,OK: No comment:No comment,success,1.54,7 - Analysed & Rejected,None,-7.018138,x1392,,active-covalent,RUN489
+c1cc(ccc1NC(=O)C2CCN(CC2)C(=O)CCl)N3CCNC3=O,x2738,x2738,Mpro-x2738,PG-COV-7,OK: Clear:No comment,success,2.54,7 - Analysed & Rejected,None,-7.017734,x1334,,active-covalent,RUN490
+c1cc(ccc1NC(=O)C2CCN(CC2)C(=O)CCl)N3CCNC3=O,x2766,x2766,Mpro-x2766,PG-COV-7,OK: Clear:No comment,success,1.85,7 - Analysed & Rejected,None,-7.017734,x1334,,active-covalent,RUN491
+c1cc(ccc1NC(=O)C2CCN(CC2)C(=O)CCl)N3CCNC3=O,x2753,x2753,Mpro-x2753,PG-COV-7,OK: Clear:No comment,success,2.28,7 - Analysed & Rejected,None,-7.017734,x1334,,active-covalent,RUN492
+Cc1c(sc(c1C(=O)OC)NC(=O)CCl)C,x0723,x0723,Mpro-x0723,PCM-0102322,OK: Clear:Normal,success,1.83,7 - Analysed & Rejected,None,-7.008154,x1418,,active-covalent,RUN493
+CNc1ncccn1,x0310,x0310,Mpro-x0310,Z54628578,OK: No comment:No comment,success,1.65,7 - Analysed & Rejected,None,-7.000005,x1093,,active-noncovalent,RUN494
+CC(C)(C[NH2+]C1CCOCC1)O,x0450,x0450,Mpro-x0450,Z1103351268,OK: No comment:Cracked,success,1.74,7 - Analysed & Rejected,None,-6.995928,x0678,,active-noncovalent,RUN495
+COCc1cc(ccn1)Br,x0960,x0960,Mpro-x0960,NCL-00024674,OK: No comment:No comment,success,1.9,7 - Analysed & Rejected,None,-6.981602,x0195,,active-noncovalent,RUN496
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3cccc(c3C)F)C(=O)C=C,x2695,x2695,Mpro-x2695,Z4439011603,OK: No comment:No comment,success,1.8,7 - Analysed & Rejected,None,-6.975394,x0749,,active-covalent,RUN497
+C[C@@H](c1ccc(cc1)Cl)NC(=O)CCl,x0709,x0709,Mpro-x0709,PCM-0102334,OK: Clear:Normal,success,1.82,7 - Analysed & Rejected,None,-6.967341,x0749,,active-covalent,RUN498
+CC(=O)N[C@@H](Cc1c[nH]c2c1cccc2)C(=O)NCC#CBr,x0983,x0983,Mpro-x0983,NCL-00024982 ,OK: No comment:No comment,success,1.79,7 - Analysed & Rejected,None,-6.964160,x0072,,active-noncovalent,RUN499
+Cc1nc(sn1)[N@@]2CCO[C@@H]([C@@H]2C)C,x0594,x0594,Mpro-x0594,Z1439422127,OK: Phase Separation:No comment,success,3.38,7 - Analysed & Rejected,None,-6.949191,x0195,,active-noncovalent,RUN500
+Cc1c(cccc1NC(=O)C)C(=O)[O-],x1069,x1069,Mpro-x1069,Z364368134,OK: Clear:Normal,success,1.91,7 - Analysed & Rejected,None,-6.921427,x0749,,active-covalent,RUN501
+CCC(=O)/N=C(/c1nccn1C)\C2CCOCC2,x2884,x2884,Mpro-x2884,10 B03,OK: Clear:No comment,success,2.36,7 - Analysed & Rejected,None,-6.915212,x1392,,active-covalent,RUN502
+c1cc(ccc1C(=O)N)I,x0948,x0948,Mpro-x0948,NCL-00023826,OK: No comment:No comment,success,1.71,7 - Analysed & Rejected,None,-6.887597,x0749,,active-covalent,RUN503
+c1cc(ccc1CNC(=O)N2CCOCC2)C#N,x0476,x0476,Mpro-x0476,Z509756472,OK: No comment:No comment,Failed - low resolution,3.72,,None,-6.863156,x0830,,active-covalent,RUN504
+CC(C)(C)NC(=O)[C@@H](c1cccnc1)N(c2ccc3c(c2)scn3)C(=O)C=C,x2466,x2466,Mpro-x2466,Z4439011608,OK: No comment:No comment,success,1.8,7 - Analysed & Rejected,None,-6.844155,x0831,,active-covalent,RUN505
+CC(=O)N1CCO[C@H](C1)CO,x1177,x1177,Mpro-x1177,Z1454840342,OK: No comment:No comment,success,1.52,7 - Analysed & Rejected,None,-6.830017,x0195,,active-noncovalent,RUN506
+Cc1cc(no1)[C@H]2CCC[N@@]2S(=O)(=O)C,x1143,x1143,Mpro-x1143,Z319891284,OK: No comment:No comment,success,1.93,7 - Analysed & Rejected,None,-6.827914,x0195,,active-noncovalent,RUN507
+CCNc1ccc(cn1)C#N,x0305,x0305,Mpro-x0305,Z219104216,OK: No comment:No comment,success,1.31,6 - Deposited,5R82,-6.826525,x0749,,active-covalent,RUN508
+c1cc(nnc1)N,x1019,x1019,Mpro-x1019,Z1480642703,OK: No comment:No comment,success,1.85,7 - Analysed & Rejected,None,-6.825739,x0397,,active-noncovalent,RUN509
+CC(=O)N[C@@H](CCCNC(=[NH2+])N)C(=O)NCC#CBr,x0987,x0987,Mpro-x0987,NCL-00025551 ,OK: No comment:No comment,None,None,,None,-6.821247,x0967,,active-noncovalent,RUN510
+c1cnc(nc1)N,x1015,x1015,Mpro-x1015,Z1741968196,OK: No comment:No comment,Failed - low resolution,4.4,,None,-6.819480,x0397,,active-noncovalent,RUN511
+CC(=O)NCCCC[C@@H](C(=O)NCC#CBr)NC(=O)C,x0980,x0980,Mpro-x0980,NCL-00025066,OK: No comment:No comment,success,1.74,7 - Analysed & Rejected,None,-6.815424,x0104,,active-noncovalent,RUN512
+CC(C)C[C@@H](C(=O)NCC#CBr)NC(=O)C,x0985,x0985,Mpro-x0985,NCL-00024906 ,OK: No comment:No comment,success,2.37,7 - Analysed & Rejected,None,-6.812413,x0104,,active-noncovalent,RUN513
+CN(C)c1cc[nH+]cc1,x0078,x0078,Mpro-x0078,Z2856434762,OK: No comment:No comment,None,None,,None,-6.800778,x0195,,active-noncovalent,RUN514
+CC1(CCC[N@]1CC[NH3+])C,x0546,x0546,Mpro-x0546,Z1741815708,OK: No comment:No comment,success,2.3,7 - Analysed & Rejected,None,-6.800177,x0195,,active-noncovalent,RUN515
+c1ccc(cc1)OCC(=O)N[C@H]2CON(C2=O)[C@@]3(CCC(=O)O3)C(=O)OCc4ccc(cc4)N(=O)=O,x2065,x2065,Mpro-x2065,tfs0410,OK: Precipitated:No comment,success,1.68,7 - Analysed & Rejected,None,-6.798183,x0161,,active-noncovalent,RUN516
+CS(=O)(=O)c1ccc(cc1)Br,x0951,x0951,Mpro-x0951,NCL-00023835,OK: No comment:No comment,success,1.91,7 - Analysed & Rejected,None,-6.796496,x0161,,active-noncovalent,RUN517
+C[C@@H](c1ncco1)NC(=O)[C@@H](Cc2ccccc2)NC(=O)c3ccco3,x2809,x2809,Mpro-x2809,BAR-COM-4e0-7,OK: Clear:No comment,success,2.23,7 - Analysed & Rejected,None,-6.777131,x0195,,active-noncovalent,RUN518
+CCCc1[nH]nc(n1)[C@H]2CN(CCO2)C(=O)C3CCN(CC3)C(=O)CCl,x2756,x2756,Mpro-x2756,PG-COV-22,OK: Clear:No comment,success,2.38,7 - Analysed & Rejected,None,-6.775009,x0749,,active-covalent,RUN519
+CCCc1[nH]nc(n1)[C@H]2CN(CCO2)C(=O)C3CCN(CC3)C(=O)CCl,x2042,x2042,Mpro-x2042,PG-COV-22,OK: No comment:No comment,success,1.87,7 - Analysed & Rejected,None,-6.775009,x0749,,active-covalent,RUN520
+CS(=O)(=O)NC1CCCC1,x0058,x0058,Mpro-x0058,Z53825479,OK: No comment:No comment,success,1.51,7 - Analysed & Rejected,None,-6.762945,x1382,,active-covalent,RUN521
+CC(C)C(=[NH2+])NO,x1017,x1017,Mpro-x1017,Z1741972444,OK: No comment:No comment,Failed - low resolution,3.82,,None,-6.762265,x0104,,active-noncovalent,RUN522
+C[NH+]1CCN(CC1)C(=O)C2(CCCC2)NC(=O)C=C,x2352,x2352,Mpro-x2352,PCM-0103054-001,OK: Clear:Normal,success,2.75,7 - Analysed & Rejected,None,-6.755926,x1386,,active-covalent,RUN523
+C[NH+]1CCN(CC1)C(=O)C2(CCCC2)NC(=O)C=C,x2775,x2775,Mpro-x2775,PCM-0103054-001,OK: Clear:No comment,success,2.18,7 - Analysed & Rejected,None,-6.755926,x1386,,active-covalent,RUN524
+C[NH+]1CCN(CC1)C(=O)C2(CCCC2)NC(=O)C=C,x2762,x2762,Mpro-x2762,PCM-0103054-001,OK: Clear:No comment,success,1.61,7 - Analysed & Rejected,None,-6.755926,x1386,,active-covalent,RUN525
+C[C@H]1CC[C@H](N1C(=O)C)C(=O)OC,x0851,x0851,Mpro-x0851,POB0050,OK: Clear:Normal,None,None,,None,-6.749095,x0195,,active-noncovalent,RUN526
+CC(C)[N@](C)S(=O)(=O)[N@]1CCNC(=O)C1,x0475,x0475,Mpro-x0475,Z431807512,OK: No comment:No comment,success,2.32,7 - Analysed & Rejected,None,-6.742417,x0107,,active-noncovalent,RUN527
+c1c[nH]c(=O)nc1,x0993,x0993,Mpro-x0993,Z1201023052,OK: No comment:No comment,success,2.17,7 - Analysed & Rejected,None,-6.738823,x0540,,active-noncovalent,RUN528
+c1ccc2c(c1)[C@@H](CCO2)NC(=O)CCl,x0804,x0804,Mpro-x0804,PCM-0102871,OK: Clear:Normal,success,2.13,7 - Analysed & Rejected,None,-6.730571,x1418,,active-covalent,RUN529
+c1ccc2c(c1)[C@@H](CCO2)NC(=O)CCl,x1479,x1479,Mpro-x1479,PCM-0102871,OK: No comment:No comment,success,3.01,7 - Analysed & Rejected,None,-6.730571,x1418,,active-covalent,RUN530
+c1ccc2c(c1)[C@@H](CCO2)NC(=O)CCl,x0730,x0730,Mpro-x0730,PCM-0102871,OK: Clear:Normal,success,1.92,7 - Analysed & Rejected,None,-6.730571,x1418,,active-covalent,RUN531
+CC1(CC1)S(=O)(=O)[N@]2CCC=C(C2)F,x0576,x0576,Mpro-x0576,Z2277255954,OK: No comment:Cracked,Failed - low resolution,3.56,,None,-6.713488,x1311,,active-covalent,RUN532
+CC1(CC1)S(=O)(=O)[N@]2CCC=C(C2)F,x1259,x1259,Mpro-x1259,Z2277255954,OK: No comment:No comment,success,1.57,7 - Analysed & Rejected,None,-6.713488,x1311,,active-covalent,RUN533
+CC(=O)N[C@@](C)(C1CC1)C(=O)[O-],x0081,x0081,Mpro-x0081,Z1259162160,OK: No comment:No comment,success,2.18,7 - Analysed & Rejected,None,-6.676784,x0769,,active-covalent,RUN534
+CC(=O)N[C@@](C)(C1CC1)C(=O)[O-],x1180,x1180,Mpro-x1180,Z1259162160,OK: No comment:No comment,success,3.01,7 - Analysed & Rejected,None,-6.676784,x0769,,active-covalent,RUN535
+c1c(cn[nH]1)I,x0943,x0943,Mpro-x0943,NCL-00023818,OK: No comment:No comment,success,2.92,7 - Analysed & Rejected,None,-6.653956,x1077,,active-noncovalent,RUN536
+CC(C)n1cc(nn1)C(=O)[O-],x0045,x0045,Mpro-x0045,Z2510259379,OK: No comment:No comment,success,2.01,7 - Analysed & Rejected,None,-6.650498,x0195,,active-noncovalent,RUN537
+CNc1ccccc1S(=O)(=O)C,x0138,x0138,Mpro-x0138,Z285782452,OK: Clear:Normal,success,1.88,7 - Analysed & Rejected,None,-6.642445,x0195,,active-noncovalent,RUN538
+COc1ccc(cc1C#N)Br,x0955,x0955,Mpro-x0955,NCL-00024663,OK: No comment:No comment,success,1.84,7 - Analysed & Rejected,None,-6.631884,x0749,,active-covalent,RUN539
+CCNc1c(cccn1)C,x0237,x0237,Mpro-x0237,Z1992316287,OK: Clear:Normal,success,2.64,7 - Analysed & Rejected,None,-6.579196,x0195,,active-noncovalent,RUN540
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Br)C(=O)C=C,x2512,x2512,Mpro-x2512,Z4439011564,OK: Precipitated:Normal,None,None,,None,-6.567985,x0749,,active-covalent,RUN541
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Br)C(=O)C=C,x2680,x2680,Mpro-x2680,Z4439011564,OK: No comment:No comment,success,1.77,7 - Analysed & Rejected,None,-6.567985,x0749,,active-covalent,RUN542
+C=CC(=O)N1CCC(CC1)[NH3+],x2751,x2751,Mpro-x2751,PCM-0102844-001,OK: Clear:No comment,success,2.15,7 - Analysed & Rejected,None,-6.566169,x1311,,active-covalent,RUN543
+C=CC(=O)N1CCC(CC1)[NH3+],x2032,x2032,Mpro-x2032,PCM-0102844-001,OK: No comment:No comment,success,1.79,7 - Analysed & Rejected,None,-6.566169,x1311,,active-covalent,RUN544
+c1cscc1C[NH3+],x1042,x1042,Mpro-x1042,Z1262255347,OK: No comment:No comment,success,3.42,7 - Analysed & Rejected,None,-6.562441,x1093,,active-noncovalent,RUN545
+c1cc(ccc1S(=O)(=O)N)Br,x0946,x0946,Mpro-x0946,NCL-00023830,OK: No comment:No comment,success,1.73,6 - Deposited,5RF1,-6.559289,x0195,,active-noncovalent,RUN546
+CC(C)(CN1CCCC1)[NH3+],x0105,x0105,Mpro-x0105,Z1741966630,OK: No comment:No comment,success,1.48,7 - Analysed & Rejected,None,-6.548748,x1077,,active-noncovalent,RUN547
+CNc1nccc(n1)OC,x0146,x0146,Mpro-x0146,Z281802060,OK: Clear:Cracked,success,1.69,7 - Analysed & Rejected,None,-6.543007,x0540,,active-noncovalent,RUN548
+CC(=O)N1C[C@@H](C[C@@H]1C(=O)[O-])O,x1214,x1214,Mpro-x1214,Z1824511473,OK: No comment:No comment,success,1.9,7 - Analysed & Rejected,None,-6.502400,x0397,,active-noncovalent,RUN549
+CN[C@@H]1CCCC[C@H]1S(=O)(=O)C,x1224,x1224,Mpro-x1224,Z1259161657,OK: No comment:No comment,success,1.77,7 - Analysed & Rejected,None,-6.451448,x0195,,active-noncovalent,RUN550
+CC(=O)NCCCC[C@@H](C(=O)NCc1ccc(cc1)Br)NC(=O)C,x0973,x0973,Mpro-x0973,NCL-00025267,OK: No comment:No comment,success,2.1,7 - Analysed & Rejected,None,-6.431995,x0104,,active-noncovalent,RUN551
+c1c[nH]c(=O)cc1I,x0938,x0938,Mpro-x0938,NCL-00023824,OK: No comment:No comment,Failed - low resolution,3.57,,None,-6.423131,x0107,,active-noncovalent,RUN552
+COc1ccc(cn1)NC(=O)C2CCN(CC2)C(=O)CCl,x2052,x2052,Mpro-x2052,PG-COV-42,OK: No comment:No comment,success,1.56,6 - Deposited,5RHE,-6.409380,x0749,,active-covalent,RUN553
+COc1ccc(cn1)NC(=O)C2CCN(CC2)C(=O)CCl,x2035,x2035,Mpro-x2035,PG-COV-40,OK: No comment:No comment,success,1.84,7 - Analysed & Rejected,None,-6.409380,x0749,,active-covalent,RUN554
+C[C@@H](C(=O)NCC#CBr)NC(=O)C,x0972,x0972,Mpro-x0972,NCL-00025067,OK: No comment:No comment,success,1.52,7 - Analysed & Rejected,None,-6.407586,x0397,,active-noncovalent,RUN555
+CNC(=O)[C@H]1C[NH2+]CCO1,x1292,x1292,Mpro-x1292,Z1636723439,OK: No comment:No comment,Failed - low resolution,3.81,,None,-6.405022,x0397,,active-noncovalent,RUN556
+C[C@@H]1CCN([C@@H]2[C@H]1CCCC2)C(=O)CCl,x1312,x1312,Mpro-x1312,PCM-0102831,OK: No comment:No comment,success,2.71,7 - Analysed & Rejected,None,-6.403834,x0749,,active-covalent,RUN557
+c1cc(c(nc1)Cl)NC(=O)CCl,x1478,x1478,Mpro-x1478,PCM-0102274,OK: No comment:No comment,success,1.68,6 - Deposited,5RFZ,-6.384676,x0749,,active-covalent,RUN558
+C[N@H+]1CCC[C@@H]1CO,x1173,x1173,Mpro-x1173,Z2856434905,OK: No comment:No comment,success,1.73,7 - Analysed & Rejected,None,-6.382343,x0946,,active-noncovalent,RUN559
+C[N@H+]1CCC[C@@H]1CO,x0189,x0189,Mpro-x0189,Z2856434905,OK: Clear:Normal,success,1.98,7 - Analysed & Rejected,None,-6.382343,x0946,,active-noncovalent,RUN560
+C[C@H]1C[N@@](CCO1)S(=O)(=O)[N@@](C)C(C)C,x0443,x0443,Mpro-x0443,Z416341642,OK: No comment:No comment,success,1.71,7 - Analysed & Rejected,None,-6.373279,x0195,,active-noncovalent,RUN561
+c1ccc(cc1)O,x1005,x1005,Mpro-x1005,Z966690946,OK: No comment:No comment,success,1.74,7 - Analysed & Rejected,None,-6.355002,x0678,,active-noncovalent,RUN562
+c1c2c(sc1C(=O)NNC(=O)CCl)CCCC2,x0708,x0708,Mpro-x0708,PCM-0102142,OK: Clear:Normal,success,2.04,6 - Deposited,5RGM,-6.353718,x1348,,active-covalent,RUN563
+CC(C)(C)c1c(sc(n1)NS(=O)(=O)c2ccc(cc2)CF)C(=O)OC,x2847,x2847,Mpro-x2847,VIJ-CYC-1a3-13,OK: Clear:No comment,success,2.8,7 - Analysed & Rejected,None,-6.340725,x0161,,active-noncovalent,RUN564
+Cn1cc(nc1)N,x1021,x1021,Mpro-x1021,Z2692604705,OK: No comment:No comment,success,2.43,7 - Analysed & Rejected,None,-6.333661,x0397,,active-noncovalent,RUN565
+C[C@@H](c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C)OC,x2707,x2707,Mpro-x2707,Z4438424286,OK: No comment:No comment,success,1.87,7 - Analysed & Rejected,None,-6.333134,x0749,,active-covalent,RUN566
+CC(=O)N1CCC[C@]1(C)C(=O)[O-],x0848,x0848,Mpro-x0848,POB0003,OK: Clear:Normal,success,2.14,7 - Analysed & Rejected,None,-6.316975,x0759,,active-covalent,RUN567
+C(C(=O)[O-])[NH3+],x1000,x1000,Mpro-x1000,Z955123660,OK: No comment:Cracked,Failed - low resolution,3.78,,None,-6.288817,x0397,,active-noncovalent,RUN568
+c1c(cn[nH]1)Br,x0935,x0935,Mpro-x0935,NCL-00023819,OK: No comment:No comment,success,3.27,7 - Analysed & Rejected,None,-6.270739,x0107,,active-noncovalent,RUN569
+c1c(cn[nH]1)Br,x1028,x1028,Mpro-x1028,Z275169750,OK: No comment:No comment,Failed - low resolution,6.77,,None,-6.270739,x0107,,active-noncovalent,RUN570
+c1cc[nH]c(=O)c1,x1002,x1002,Mpro-x1002,Z1741982125,OK: No comment:No comment,success,1.61,6 - Deposited,5RF4,-6.261490,x0678,,active-noncovalent,RUN571
+c1ccc(cc1)OCC(=O)N[C@H]2CON(C2=O)[C@@]3(CCC(=O)O3)C(=O)[O-],x2066,x2066,Mpro-x2066,PLTV,OK: No comment:No comment,success,1.65,7 - Analysed & Rejected,None,-6.254964,x0874,,active-noncovalent,RUN572
+CC(=O)N1CC(C1)C(=O)[O-],x0157,x0157,Mpro-x0157,Z1868430535,OK: Precipitated:Normal,success,2.3,7 - Analysed & Rejected,None,-6.249505,x1402,,active-covalent,RUN573
+Cc1c(c(n(n1)C)C)NC(=O)CC#N,x0259,x0259,Mpro-x0259,Z1688504114,OK: No comment:No comment,success,1.47,7 - Analysed & Rejected,None,-6.248705,x1311,,active-covalent,RUN574
+C[C@@H](c1ccc(cc1)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C)OC,x2689,x2689,Mpro-x2689,Z4439011613,OK: No comment:No comment,success,1.87,7 - Analysed & Rejected,None,-6.235109,x0749,,active-covalent,RUN575
+C1CCC(C1)[NH3+],x1014,x1014,Mpro-x1014,Z1741971800,OK: No comment:No comment,None,None,,None,-6.217303,x0678,,active-noncovalent,RUN576
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,x2471,x2471,Mpro-x2471,Z4438424288,OK: Precipitated:Normal,success,2.81,7 - Analysed & Rejected,None,-6.207908,x0749,,active-covalent,RUN577
+CCC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,x2788,x2788,Mpro-x2788,Z4438424288,OK: Precipitated:No comment,success,2.05,7 - Analysed & Rejected,None,-6.207908,x0749,,active-covalent,RUN578
+C1CNC(=[NH+]C1)N,x1024,x1024,Mpro-x1024,Z1954800348,OK: No comment:No comment,success,3.33,7 - Analysed & Rejected,None,-6.175355,x0678,,active-noncovalent,RUN579
+c1cc(c(cc1Br)C#N)[O-],x0953,x0953,Mpro-x0953,NCL-00024661,OK: No comment:No comment,success,2,7 - Analysed & Rejected,None,-6.172769,x1418,,active-covalent,RUN580
+CCC(=[NH2+])N,x0991,x0991,Mpro-x0991,Z1741969146,OK: No comment:No comment,success,1.53,6 - Deposited,5RF2,-6.168726,x0195,,active-noncovalent,RUN581
+C1CC(C1)C(=O)[O-],x1011,x1011,Mpro-x1011,Z1270212509,OK: No comment:No comment,success,2.7,7 - Analysed & Rejected,None,-6.165310,x0397,,active-noncovalent,RUN582
+C[C@@H](CN1CCOCC1)[NH3+],x0516,x0516,Mpro-x0516,Z818732104,OK: No comment:No comment,Failed - low resolution,4.4,,None,-6.148088,x1385,,active-covalent,RUN583
+C[C@@H](CN1CCOCC1)[NH3+],x1253,x1253,Mpro-x1253,Z818732104,OK: No comment:No comment,success,1.39,7 - Analysed & Rejected,None,-6.148088,x1385,,active-covalent,RUN584
+c1c[nH]c(=O)cc1Br,x0945,x0945,Mpro-x0945,NCL-00023825,OK: No comment:No comment,success,1.71,7 - Analysed & Rejected,None,-6.133605,x0678,,active-noncovalent,RUN585
+C[C@@H]1C[NH2+]CC[N@@]1CCO,x1228,x1228,Mpro-x1228,Z1741794237,OK: No comment:No comment,success,1.5,7 - Analysed & Rejected,None,-6.106348,x0708,,active-covalent,RUN586
+c1cscc1C(=O)[O-],x1001,x1001,Mpro-x1001,Z166605460,OK: No comment:No comment,None,None,,None,-6.069356,x0195,,active-noncovalent,RUN587
+c1c([nH][nH]c1=O)N,x0988,x0988,Mpro-x0988,Z1245635875,OK: No comment:No comment,success,2.86,7 - Analysed & Rejected,None,-6.065588,x1077,,active-noncovalent,RUN588
+Cc1n[n-]nn1,x1030,x1030,Mpro-x1030,Z56761437,OK: No comment:No comment,success,2.33,7 - Analysed & Rejected,None,-6.058117,x0678,,active-noncovalent,RUN589
+c1c[nH]nc1,x0992,x0992,Mpro-x0992,Z1741966780,OK: No comment:Cracked,None,None,,None,-6.021192,x0397,,active-noncovalent,RUN590
+COc1ccc(cc1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)SC)C(=O)C=C,x2690,x2690,Mpro-x2690,Z4439011540,OK: No comment:No comment,success,1.96,7 - Analysed & Rejected,None,-6.003866,x0749,,active-covalent,RUN591
+CN(C)C(=O)N1CCOC[C@@]12CCOC2,x0166,x0166,Mpro-x0166,Z1998104358,OK: Clear:Normal,success,1.85,7 - Analysed & Rejected,None,-6.000435,x0195,,active-noncovalent,RUN592
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3cc(on3)C(C)(C)C)C(=O)C=C)C,x2697,x2697,Mpro-x2697,Z4439011581,OK: Precipitated:No comment,success,1.68,7 - Analysed & Rejected,None,-5.954724,x0831,,active-covalent,RUN593
+CC(C)C(=O)Nc1nnn(n1)C,x0595,x0595,Mpro-x0595,Z57292369,OK: No comment:No comment,Failed - low resolution,3.63,,None,-5.926614,x0397,,active-noncovalent,RUN594
+C[C@@]1(CCC[NH2+]1)C(=O)N,x0833,x0833,Mpro-x0833,POB0001,OK: Clear:Normal,success,1.7,7 - Analysed & Rejected,None,-5.894870,x0397,,active-noncovalent,RUN595
+CC(=O)N1CCC(CC1)C#N,x0137,x0137,Mpro-x0137,Z952656810,OK: Clear:Normal,success,2.85,7 - Analysed & Rejected,None,-5.854254,x0759,,active-covalent,RUN596
+CC(=O)N1CCC(CC1)C#N,x1085,x1085,Mpro-x1085,Z952656810,OK: No comment:No comment,success,1.53,7 - Analysed & Rejected,None,-5.854254,x0759,,active-covalent,RUN597
+CC(C)(C)NC(=O)[C@@H](c1cccnc1)N(c2ccc(cc2)SC)C(=O)C=C,x2681,x2681,Mpro-x2681,Z4439011605,OK: No comment:No comment,success,1.99,7 - Analysed & Rejected,None,-5.821193,x0749,,active-covalent,RUN598
+C1CC(C1)C(=O)N,x1006,x1006,Mpro-x1006,Z33546656,OK: No comment:No comment,success,3.24,7 - Analysed & Rejected,None,-5.808318,x0678,,active-noncovalent,RUN599
+CC(C)c1ccc(cn1)N([C@H](c2cccnc2)C(=O)NC(C)(C)C)C(=O)C=C,x2467,x2467,Mpro-x2467,Z4439011614,OK: No comment:Normal,success,2.84,7 - Analysed & Rejected,None,-5.736517,x0749,,active-covalent,RUN600
+COCc1nnc(s1)N,x1056,x1056,Mpro-x1056,Z57478994,OK: Clear:Normal,success,1.75,7 - Analysed & Rejected,None,-5.658806,x0107,,active-noncovalent,RUN601
+COCc1nnc(s1)N,x0129,x0129,Mpro-x0129,Z57478994,OK: Clear:Normal,success,2.56,7 - Analysed & Rejected,None,-5.658806,x0107,,active-noncovalent,RUN602
+C[C@@]1(CCC[NH2+]1)COC,x0840,x0840,Mpro-x0840,POB0002,OK: Clear:Normal,success,1.87,7 - Analysed & Rejected,None,-5.630962,x0678,,active-noncovalent,RUN603
+c1cnc([nH]1)N,x1007,x1007,Mpro-x1007,Z1741961236,OK: No comment:No comment,None,None,,None,-5.620991,x0397,,active-noncovalent,RUN604
+C1COCCN1CCC#N,x0231,x0231,Mpro-x0231,Z2856434767,OK: Clear:Normal,success,1.6,7 - Analysed & Rejected,None,-5.614038,x0749,,active-covalent,RUN605
+c1c(con1)Br,x0936,x0936,Mpro-x0936,NCL-00023820,OK: No comment:No comment,success,1.81,7 - Analysed & Rejected,None,-5.611597,x0540,,active-noncovalent,RUN606
+C1CC1C[NH3+],x1036,x1036,Mpro-x1036,Z1198394159,OK: No comment:No comment,success,2.43,7 - Analysed & Rejected,None,-5.603897,x1093,,active-noncovalent,RUN607
+C[C@@H](c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccccc3Br)C(=O)C=C)OC,x2704,x2704,Mpro-x2704,Z4438424215,OK: No comment:No comment,success,1.81,7 - Analysed & Rejected,None,-5.576895,x0749,,active-covalent,RUN608
+CCC(=O)O[C@H](C(C)C)O[P@@](=O)(CCCCc1ccccc1)CC(=O)N2C[C@@H](C[C@H]2C(=O)[O-])C3CCCCC3,x2673,x2673,Mpro-x2673,Z3207130728,OK: No comment:No comment,success,2.25,7 - Analysed & Rejected,None,-5.570315,x0678,,active-noncovalent,RUN609
+C1CNNC1=O,x1008,x1008,Mpro-x1008,Z2935001239,OK: No comment:No comment,None,None,,None,-5.561816,x0678,,active-noncovalent,RUN610
+CC(C)(C)[NH+]1CC(C1)O,x0098,x0098,Mpro-x0098,Z2856434900,OK: No comment:No comment,success,3.25,7 - Analysed & Rejected,None,-5.541882,x0354,,active-noncovalent,RUN611
+CC(C)(C)[NH+]1CC(C1)O,x1112,x1112,Mpro-x1112,Z2856434900,OK: No comment:No comment,success,1.52,7 - Analysed & Rejected,None,-5.541882,x0354,,active-noncovalent,RUN612
+COc1ccc(cc1)NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C,x2710,x2710,Mpro-x2710,Z4439011543,OK: No comment:No comment,success,2.48,7 - Analysed & Rejected,None,-5.472166,x0759,,active-covalent,RUN613
+CC(=O)C(=O)[O-],x1037,x1037,Mpro-x1037,Z1741977082,OK: No comment:No comment,None,None,,None,-5.448891,x0689,,active-covalent,RUN614
+OP(=O)([O-])[O-],x1025,x1025,Mpro-x1025,Z1954805639,OK: No comment:No comment,success,1.87,7 - Analysed & Rejected,None,-5.408278,x0397,,active-noncovalent,RUN615
+C=CC(=O)N(c1ccc2c(c1)scn2)[C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Cl,x2684,x2684,Mpro-x2684,Z4438424283,OK: Precipitated:No comment,success,2.04,7 - Analysed & Rejected,None,-5.381918,x1392,,active-covalent,RUN616
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C4(CC4)C)C(=O)C=C,x2862,x2862,Mpro-x2862,Z4444602566,OK: Clear:No comment,success,2.26,7 - Analysed & Rejected,None,-5.348599,x1380,,active-covalent,RUN617
+C[C@H](C(=O)NC)[NH3+],x1038,x1038,Mpro-x1038,Z1346385420,OK: No comment:No comment,success,3,7 - Analysed & Rejected,None,-5.331532,x0397,,active-noncovalent,RUN618
+CC(C)NC(=O)N,x1026,x1026,Mpro-x1026,Z56887677,OK: No comment:No comment,None,None,,None,-5.303004,x0354,,active-noncovalent,RUN619
+COc1cccnc1C#N,x0267,x0267,Mpro-x0267,Z1955122823,OK: Precipitated:No comment,success,1.63,7 - Analysed & Rejected,None,-5.295153,x1392,,active-covalent,RUN620
+C[C@@H](CC(=O)N)[NH3+],x1020,x1020,Mpro-x1020,Z1459435569,OK: No comment:No comment,success,2.05,7 - Analysed & Rejected,None,-5.280088,x0397,,active-noncovalent,RUN621
+CC(=O)NC(=O)N,x1010,x1010,Mpro-x1010,Z1262398400,OK: No comment:No comment,success,2.96,7 - Analysed & Rejected,None,-5.225040,x0397,,active-noncovalent,RUN622
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)[C@H](C)OC)C(=O)C=C,x2702,x2702,Mpro-x2702,Z4438424265,OK: Precipitated:No comment,success,2.01,7 - Analysed & Rejected,None,-5.173100,x0831,,active-covalent,RUN623
+C[C@@H](C#C)[NH3+],x1044,x1044,Mpro-x1044,Z1954800314,OK: No comment:No comment,None,None,,None,-5.170494,x1077,,active-noncovalent,RUN624
+C[C@@H]1[C@@H](CCCN1)C#N,x0859,x0859,Mpro-x0859,POB0068,OK: Clear:Normal,success,1.82,7 - Analysed & Rejected,None,-5.168789,x1385,,active-covalent,RUN625
+C1COCC[NH2+]1,x1027,x1027,Mpro-x1027,Z3234810942,OK: No comment:Cracked,None,None,,None,-5.139683,x0354,,active-noncovalent,RUN626
+CCOC(=O)N,x1003,x1003,Mpro-x1003,Z33546369,OK: No comment:Cracked,success,2.15,7 - Analysed & Rejected,None,-5.139531,x1077,,active-noncovalent,RUN627
+CCC(=O)[O-],x1029,x1029,Mpro-x1029,Z955123616,OK: No comment:No comment,success,1.73,7 - Analysed & Rejected,None,-5.135675,x0689,,active-covalent,RUN628
+C[C@]1(CCC[N@]1S(=O)(=O)C)C#N,x0868,x0868,Mpro-x0868,POB0006,OK: Clear:Normal,success,1.98,7 - Analysed & Rejected,None,-5.131271,x1385,,active-covalent,RUN629
+CC(C)(CNC(=O)CCl)O,x0750,x0750,Mpro-x0750,PCM-0102554,OK: Clear:Normal,success,1.82,7 - Analysed & Rejected,None,-5.081408,x1311,,active-covalent,RUN630
+C1C(CS1(=O)=O)O,x1012,x1012,Mpro-x1012,Z3241250482,OK: No comment:Cracked,success,1.74,6 - Deposited,5RF5,-5.052479,x0678,,active-noncovalent,RUN631
+C1CONC1=O,x1013,x1013,Mpro-x1013,Z3235036808,OK: No comment:No comment,success,1.75,7 - Analysed & Rejected,None,-5.015898,x0678,,active-noncovalent,RUN632
+CC1(CC1)c2ccc(cc2)N([C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Cl)C(=O)C=C,x2841,x2841,Mpro-x2841,Z4444602570,OK: Clear:No comment,Failed - low resolution,3.83,,None,-5.000449,x0831,,active-covalent,RUN633
+CC1(CC1)c2ccc(cc2)N([C@H](c3cccnc3)C(=O)Nc4ccc(cc4)Br)C(=O)C=C,x2869,x2869,Mpro-x2869,Z4444602583,OK: Clear:No comment,success,2.51,7 - Analysed & Rejected,None,-4.995249,x0749,,active-covalent,RUN634
+CNc1c(nccn1)C#N,x0277,x0277,Mpro-x0277,Z1896597864,OK: Crystalline:No comment,success,2.67,7 - Analysed & Rejected,None,-4.984582,x1334,,active-covalent,RUN635
+CNc1c(nccn1)C#N,x1286,x1286,Mpro-x1286,Z1896597864,OK: No comment:No comment,success,2.11,7 - Analysed & Rejected,None,-4.984582,x1334,,active-covalent,RUN636
+CNc1c(nccn1)C#N,x1070,x1070,Mpro-x1070,Z1896597864,OK: Clear:Normal,success,1.73,7 - Analysed & Rejected,None,-4.984582,x1334,,active-covalent,RUN637
+C1CNC(=O)N1,x1031,x1031,Mpro-x1031,Z1741976468,OK: No comment:Cracked,success,1.54,7 - Analysed & Rejected,None,-4.983652,x0397,,active-noncovalent,RUN638
+C1CS(=O)(=O)N1,x0998,x0998,Mpro-x0998,Z425449766,OK: No comment:No comment,success,1.73,7 - Analysed & Rejected,None,-4.858508,x0678,,active-noncovalent,RUN639
+C1CC1CO,x1004,x1004,Mpro-x1004,Z1259087003,OK: No comment:No comment,success,3.4,7 - Analysed & Rejected,None,-4.841540,x0678,,active-noncovalent,RUN640
+C1CC[NH2+]C1,x0994,x0994,Mpro-x0994,Z57834050,OK: No comment:No comment,success,2.35,7 - Analysed & Rejected,None,-4.789069,x1392,,active-covalent,RUN641
+C=CC(=O)N(c1ccc(cc1)C(F)(F)F)[C@H](c2cccnc2)C(=O)Nc3ccccc3Br,x2699,x2699,Mpro-x2699,Z4438424211,OK: No comment:No comment,success,2.07,7 - Analysed & Rejected,None,-4.750962,x1380,,active-covalent,RUN642
+C1CNCC[NH2+]1,x0996,x0996,Mpro-x0996,Z1245537944,OK: No comment:No comment,success,1.96,7 - Analysed & Rejected,None,-4.675085,x0354,,active-noncovalent,RUN643
+COc1cc(cc(c1OC)OC)NC(=O)C2CCN(CC2)C(=O)CCl,x2748,x2748,Mpro-x2748,PG-COV-3,OK: Clear:No comment,success,2.45,7 - Analysed & Rejected,None,-4.657787,x0831,,active-covalent,RUN644
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(F)(F)F)C(=O)C=C)C,x2679,x2679,Mpro-x2679,Z4439011578,OK: Precipitated:No comment,success,1.87,7 - Analysed & Rejected,None,-4.642575,x0831,,active-covalent,RUN645
+C1CS(=O)(=O)C1,x1047,x1047,Mpro-x1047,Z3234823734,OK: No comment:No comment,success,2.8,7 - Analysed & Rejected,None,-4.558659,x0195,,active-noncovalent,RUN646
+Cc1c(cccc1F)NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(C)(C)C)C(=O)C=C,x2867,x2867,Mpro-x2867,Z4444602590,OK: Clear:No comment,success,2.69,7 - Analysed & Rejected,None,-4.508196,x1380,,active-covalent,RUN647
+c1ccc2c(c1)c3ccc(cc3[nH]2)NC(=O)C4CCN(CC4)C(=O)CCl,x2043,x2043,Mpro-x2043,PG-COV-6,OK: No comment:No comment,success,1.56,7 - Analysed & Rejected,None,-4.445636,x0749,,active-covalent,RUN648
+c1ccc2c(c1)c3ccc(cc3[nH]2)NC(=O)C4CCN(CC4)C(=O)CCl,x2740,x2740,Mpro-x2740,PG-COV-6,OK: Clear:No comment,success,1.66,6 - Deposited,None,-4.445636,x0749,,active-covalent,RUN649
+c1ccc2c(c1)c3ccc(cc3[nH]2)NC(=O)C4CCN(CC4)C(=O)CCl,x2722,x2722,Mpro-x2722,PG-COV-6,OK: Clear:No comment,success,2.8,7 - Analysed & Rejected,None,-4.445636,x0749,,active-covalent,RUN650
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)SC)C(=O)C=C)OC,x2682,x2682,Mpro-x2682,Z4438424250,OK: Precipitated:No comment,success,1.84,7 - Analysed & Rejected,None,-4.433858,x0831,,active-covalent,RUN651
+c1conc1C#N,x1016,x1016,Mpro-x1016,Z1436620465,OK: No comment:Cracked,Failed - low resolution,4.26,,None,-4.392566,x1382,,active-covalent,RUN652
+c1ccc(cc1)n2ccc(n2)NC(=O)C3CCN(CC3)C(=O)CCl,x2046,x2046,Mpro-x2046,PG-COV-19,OK: No comment:No comment,success,1.73,7 - Analysed & Rejected,None,-4.196924,x1334,,active-covalent,RUN653
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,x2778,x2778,Mpro-x2778,Z4438424285,OK: Clear:No comment,success,2.08,7 - Analysed & Rejected,None,-4.042912,x0831,,active-covalent,RUN654
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,x2691,x2691,Mpro-x2691,Z4438424285,OK: Precipitated:No comment,success,1.88,7 - Analysed & Rejected,None,-4.042912,x0831,,active-covalent,RUN655
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3cc(on3)C(C)(C)C)C(=O)C=C,x2700,x2700,Mpro-x2700,Z4439011525,OK: Precipitated:No comment,success,2.02,7 - Analysed & Rejected,None,-4.035255,x1380,,active-covalent,RUN656
+C(C#N)C(=O)N,x1009,x1009,Mpro-x1009,Z56896153,OK: No comment:Melted,success,1.89,7 - Analysed & Rejected,None,-3.994624,x1382,,active-covalent,RUN657
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccccc3Br)C(=O)C=C,x2696,x2696,Mpro-x2696,Z4438424214,OK: No comment:No comment,success,1.73,7 - Analysed & Rejected,None,-3.970939,x1392,,active-covalent,RUN658
+C1CC1C#N,x1033,x1033,Mpro-x1033,Z1245735215,OK: No comment:No comment,Failed - low resolution,3.89,,None,-3.752737,x0708,,active-covalent,RUN659
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(nc3)C(C)C)C(=O)C=C)C,x2703,x2703,Mpro-x2703,Z4439011588,OK: No comment:No comment,success,1.6,6 - Deposited,5RH6,-3.682618,x1392,,active-covalent,RUN660
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C)C,x2692,x2692,Mpro-x2692,Z4439011582,OK: Precipitated:No comment,success,2.13,7 - Analysed & Rejected,None,-3.652820,x0831,,active-covalent,RUN661
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)[C@H](C)OC)C(=O)C=C)OC,x2687,x2687,Mpro-x2687,Z4438424255,OK: No comment:No comment,success,2.6,7 - Analysed & Rejected,None,-3.603661,x1418,,active-covalent,RUN662
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)[C@H](C)OC)C(=O)C=C)OC,x2776,x2776,Mpro-x2776,Z4438424255,OK: Clear:No comment,success,1.91,6 - Deposited,5RH9,-3.603661,x1418,,active-covalent,RUN663
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc(c(c3)C)N(C)C)C(=O)C=C,x2701,x2701,Mpro-x2701,Z4438424264,OK: No comment:No comment,success,2.04,7 - Analysed & Rejected,None,-3.552167,x1380,,active-covalent,RUN664
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(F)(F)F)C(=O)C=C)OC,x2472,x2472,Mpro-x2472,Z4438424251,OK: Precipitated:Normal,success,2.09,7 - Analysed & Rejected,None,-3.529982,x1380,,active-covalent,RUN665
+CCc1cccc(c1)NC(=O)[C@@H](c2cccnc2)N(c3ccc4c(c3)scn4)C(=O)C=C,x2473,x2473,Mpro-x2473,Z4438424262,OK: Precipitated:Normal,success,2.66,7 - Analysed & Rejected,None,-3.529699,x0749,,active-covalent,RUN666
+Cc1cc(ccc1NC(=O)[C@@H](c2cccnc2)N(c3ccc(nc3)C(C)C)C(=O)C=C)OC,x2711,x2711,Mpro-x2711,Z4439011523,OK: Precipitated:No comment,success,1.95,7 - Analysed & Rejected,None,-3.504733,x1380,,active-covalent,RUN667
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Br)C(=O)C=C,x2763,x2763,Mpro-x2763,Z4439011560,OK: Clear:No comment,success,2.14,7 - Analysed & Rejected,None,-3.499897,x0831,,active-covalent,RUN668
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Br)C(=O)C=C,x2698,x2698,Mpro-x2698,Z4439011560,OK: Precipitated:No comment,success,1.99,7 - Analysed & Rejected,None,-3.499897,x0831,,active-covalent,RUN669
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(c(c3)C)N(C)C)C(=O)C=C)C,x2685,x2685,Mpro-x2685,Z4439011586,OK: Precipitated:No comment,success,1.84,7 - Analysed & Rejected,None,-3.483134,x0749,,active-covalent,RUN670
+CSc1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)Cl)C(=O)C=C,x2709,x2709,Mpro-x2709,Z4438424281,OK: No comment:No comment,success,1.81,7 - Analysed & Rejected,None,-3.232907,x0770,,active-covalent,RUN671
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)OC)C(=O)C=C,x2780,x2780,Mpro-x2780,Z4439011547,OK: Clear:No comment,success,1.85,7 - Analysed & Rejected,None,-3.120221,x1418,,active-covalent,RUN672
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)C(C)(C)C)C(=O)C=C)C,x2868,x2868,Mpro-x2868,Z4444602585,OK: Clear:No comment,success,2.27,7 - Analysed & Rejected,None,-2.927537,x0692,,active-covalent,RUN673
+Cc1cc(ccc1N(C)C)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3C)OC)C(=O)C=C,x2714,x2714,Mpro-x2714,Z4438424254,OK: No comment:No comment,success,2.57,7 - Analysed & Rejected,None,-2.911081,x1392,,active-covalent,RUN674
+Cc1cccc(c1OCC(=O)N[C@@H](Cc2ccccc2)[C@H](C[C@H](Cc3ccccc3)NC(=O)[C@H](C(C)C)N4CCCNC4=O)O)C,x2502,x2502,Mpro-x2502,Z2235801862,OK: Precipitated:Normal,success,3.06,7 - Analysed & Rejected,None,-2.535317,x0104,,active-noncovalent,RUN675
+Cc1cccc(c1OCC(=O)N[C@@H](Cc2ccccc2)[C@H](C[C@H](Cc3ccccc3)NC(=O)[C@H](C(C)C)N4CCCNC4=O)O)C,x2670,x2670,Mpro-x2670,Z2235801862,OK: No comment:No comment,success,1.8,7 - Analysed & Rejected,None,-2.535317,x0104,,active-noncovalent,RUN676
+CCc1cccc(c1NC(=O)[C@@H](c2cccnc2)N(c3ccc(cc3)[C@H](C)OC)C(=O)C=C)C,x2686,x2686,Mpro-x2686,Z4439011587,OK: No comment:No comment,success,2.04,7 - Analysed & Rejected,None,-2.493143,x0692,,active-covalent,RUN677
+CC(C)(C)c1ccc(cc1)N([C@H](c2cccnc2)C(=O)Nc3ccc(cc3)OC)C(=O)C=C,x2864,x2864,Mpro-x2864,Z4444602576,OK: Clear:No comment,success,2.92,7 - Analysed & Rejected,None,-2.073396,x0749,,active-covalent,RUN678
+CC(C)c1nc(cs1)CN(C)C(=O)N[C@@H](C(C)C)C(=O)N[C@@H](Cc2ccccc2)C[C@@H]([C@H](Cc3ccccc3)NC(=O)OCc4cncs4)O,x2668,x2668,Mpro-x2668,Z1521553599,OK: No comment:No comment,success,1.83,7 - Analysed & Rejected,None,0.619766,x0104,,active-noncovalent,RUN679
