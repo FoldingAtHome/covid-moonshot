@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# previously added huge directories
+MS03232020
+MS03262020
