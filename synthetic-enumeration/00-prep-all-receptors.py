@@ -4,11 +4,11 @@ Prepare all receptors for OEDocking in monomer and dimer forms
 """
 
 import glob, os
-fragids = [ 'x2646', 'x10371' ]
+fragids = [ 'x2646' ]
 source_pdb_files = [ f"structures/aligned/Mpro-{fragid}_0/Mpro-{fragid}_0_bound.pdb" for fragid in fragids ]
 
 # Prep all receptors
-#source_pdb_files = glob.glob("structures/aligned/Mpro-*_0/Mpro-*_0_bound.pdb")
+source_pdb_files = glob.glob("structures/aligned/Mpro-*_0/Mpro-*_0_bound.pdb")
 print(source_pdb_files)
 
 def read_pdb_file(pdb_file):

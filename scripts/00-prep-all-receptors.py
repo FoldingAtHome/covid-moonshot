@@ -1,14 +1,27 @@
 """
-Prepare all receptors for OEDocking in monomer and dimer forms
+Prepare all SARS-CoV-2 Mpro structures for docking and simulation in monomer and dimer forms
+
+This should be run from the covid-moonshot/scripts directory
 
 """
 
-import glob, os
-source_pdb_files = glob.glob("../diamond-structures/Mpro_All_PDBs - ver 2020-03-24/*.pdb")
+# If structural data is not present, download and unpack it
+import os
 
-# Read header with crystallographic symmetry operations
-with open('../diamond-structures/header.pdb', 'r') as infile:
-    header = infile.readlines()
+structures_path = '../structures'
+output_basepath = '../receptors'
+
+def download_url(url, save_path, chunk_size=128):
+    import os
+    base_path, filename = os.split(save_path)
+    if not os.path.exists(base_path):
+        os.makedirs(base_path)
+
+    import requests
+    r = requests.get(url, stream=True)
+    with open(save_path, 'wb') as fd:
+        for chunk in r.iter_content(chunk_size=chunk_size):
+            fd.write(chunk)
 
 def read_pdb_file(pdb_file):
     print(f'Reading receptor from {pdb_file}...')
@@ -36,7 +49,7 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
     output_basepath : str
         Base path for output
     dimer : bool, optional, default=False
-        If True, append a header to generate the dimer as a biological unit
+        If True, generate the dimer as the biological unit
     """
     import os
     basepath, filename = os.path.split(complex_pdb_filename)
@@ -51,9 +64,12 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
 
     # Read in PDB file
     pdbfile_lines = [ line for line in open(complex_pdb_filename, 'r') if 'UNK' not in line ]
-    if dimer:
-        # Add header to generate dimer as biological unit
-        pdbfile_lines = header + pdbfile_lines
+
+    # If monomer is specified, drop crystal symmetry lines
+    if not dimer:
+        pdbfile_lines = [ line for line in pdbfile_lines if 'REMARK 350' not in line ]
+
+    # Reconstruct PDBFile contents
     pdbfile_contents = ''.join(pdbfile_lines)
 
     # Read the receptor and identify design units
@@ -111,12 +127,19 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
             atom.SetImplicitHCount(0)
     # Adjust protonation states
     print('Re-optimizing hydrogen positions...')
-    opts = oechem.OEPlaceHydrogensOptions()
-    opts.SetBypassPredicate(pred)
-    describe = oechem.OEPlaceHydrogensDetails()
-    success = oechem.OEPlaceHydrogens(protein, describe, opts)
-    if success:
-        oechem.OEUpdateDesignUnit(design_unit, protein, oechem.OEDesignUnitComponents_Protein)
+    place_hydrogens_opts = oechem.OEPlaceHydrogensOptions()
+    place_hydrogens_opts.SetBypassPredicate(pred)
+    protonate_opts = oespruce.OEProtonateDesignUnitOptions(place_hydrogens_opts)
+    success = oespruce.OEProtonateDesignUnit(design_unit, protonate_opts)
+    design_unit.GetProtein(protein)
+
+    # Old hacky way to adjust protonation states
+    #opts = oechem.OEPlaceHydrogensOptions()
+    #opts.SetBypassPredicate(pred)
+    #describe = oechem.OEPlaceHydrogensDetails()
+    #success = oechem.OEPlaceHydrogens(protein, describe, opts)
+    #if success:
+    #    oechem.OEUpdateDesignUnit(design_unit, protein, oechem.OEDesignUnitComponents_Protein)
 
     # Write thiolate form of receptor
     receptor = oechem.OEGraphMol()
@@ -133,11 +156,30 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
 
 
 if __name__ == '__main__':
+    # Prep all receptors
+    import glob, os
+
+    if not os.path.exists(structures_path):
+        # Download ZIP file
+        url = 'https://fragalysis.diamond.ac.uk/media/targets/Mpro.zip'
+        zip_path = os.path.join(structures_path, 'Mpro.zip')
+        download_url(url, zip_path)
+        # Unpack ZIP file
+        from zipfile import ZipFile
+        with ZipFile(, 'r') as zip_obj:
+           zip_obj.extractall(structures_path)
+
+    # Get list of all PDB files to prep
+    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0/Mpro-*_0_bound.pdb"))
+
+    # Create output directory
+    os.makedirs(output_basepath, exist_ok=True)
+
     for dimer in [False, True]:
         if dimer:
-            output_basepath = '../receptors/dimer'
+            output_basepath = 'receptors/dimer'
         else:
-            output_basepath = '../receptors/monomer'
+            output_basepath = 'receptors/monomer'
 
         os.makedirs(output_basepath, exist_ok=True)
 
