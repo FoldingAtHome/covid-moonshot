@@ -4,6 +4,8 @@ Prepare all SARS-CoV-2 Mpro structures for docking and simulation in monomer and
 This should be run from the covid-moonshot/scripts directory
 
 """
+import rich
+import openeye
 
 structures_path = '../structures'
 output_basepath = '../receptors'
