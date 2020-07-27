@@ -8,7 +8,13 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 * `01-fix-csv-files.sh` - permute columns of input files
 * `02-generate-poses.py` - generate constrained input poses for a single fragment structure: `x10789` (`TRY-UNI-2eddb1ff-7`)
 
-## To generate models
+## Procedure
 
-* Download and unpack latest [Moonshot PDB files](https://fragalysis.diamond.ac.uk/media/targets/Mpro.zip)
-* Prep receptor for x2646 (aminopyridine fragment) with `python 00-prep-all-receptors.py`
+Given a single reference fragment structure (already in `../receptors/` and prepared by `../scripts/00-prep-all-receptors.py`):
+* expand uncertain stereochemistry for all target molecules
+* identify the **common core** shared by the bound fragment structure and all target molecules
+* identify the most likely protonation state in solution for each target molecule
+* densely enumerate conformers with Omega, constraining the common core positions to the bound fragment structure
+* pick the conformer with the least clashes with protein atoms
+
+The SDF file written out contains the protonated fragment as molecule 0 followed by all docked fragments.
