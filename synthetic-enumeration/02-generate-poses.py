@@ -295,9 +295,13 @@ if __name__ == '__main__':
     #fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
     #fragment = 'x10789' # TRY-UNI-2eddb1ff-7 (beta-lactam an chloride)
 
+    from openeye import oechem
+    oechem.OESetMemPoolMode(oechem.OEMemPoolMode_SingleThreaded |
+                            oechem.OEMemPoolMode_UnboundedCache)
+
     for fragment in ['x10789']:
         for prefix in [
                 'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
-                #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
+                'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
         ]:
             generate_poses(fragment, prefix)
