@@ -5,26 +5,28 @@ This should be run from the covid-moonshot/scripts directory
 
 """
 
-# If structural data is not present, download and unpack it
-import os
-
 structures_path = '../structures'
 output_basepath = '../receptors'
 
 def download_url(url, save_path, chunk_size=128):
+    """
+    Download file from the specified URL to the specified file path, creating base dirs if needed.
+    """
+    # Create directory
     import os
-    base_path, filename = os.split(save_path)
-    if not os.path.exists(base_path):
-        os.makedirs(base_path)
-
+    base_path, filename = os.path.split(save_path)
+    os.makedirs(base_path, exist_ok=True)
+    # Download
+    from rich.progress import track
     import requests
     r = requests.get(url, stream=True)
     with open(save_path, 'wb') as fd:
-        for chunk in r.iter_content(chunk_size=chunk_size):
+        nchunks = int(r.headers['Content-Length'])/chunk_size
+        for chunk in track(r.iter_content(chunk_size=chunk_size), 'Downloading ZIP archive of Mpro structures...', total=nchunks):
             fd.write(chunk)
 
 def read_pdb_file(pdb_file):
-    print(f'Reading receptor from {pdb_file}...')
+    #print(f'Reading receptor from {pdb_file}...')
 
     from openeye import oechem
     ifs = oechem.oemolistream()
@@ -81,18 +83,18 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
         complex = read_pdb_file(pdbfile.name)
         # TODO: Clean up
 
-    print('Identifying design units...')
+    #print('Identifying design units...')
     design_units = list(oespruce.OEMakeDesignUnits(complex))
     if len(design_units) == 1:
         design_unit = design_units[0]
     elif len(design_units) > 1:
-        print('More than one design unit found---using first one')
+        #print('More than one design unit found---using first one')
         design_unit = design_units[0]
     elif len(design_units) == 0:
-        raise Exception('No design units found')
+        raise Exception(f' * No design units found for {complex_pdb_filename}')
 
     # Prepare the receptor
-    print('Preparing receptor...')
+    #print('Preparing receptor...')
     from openeye import oedocking
     protein = oechem.OEGraphMol()
     design_unit.GetProtein(protein)
@@ -118,7 +120,7 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
         outfile.write(''.join(pdbfile_lines))
 
     # Adjust protonation state of CYS145 to generate thiolate form
-    print('Deprotonating CYS145...')
+    #print('Deprotonating CYS145...')
     pred = oechem.OEAtomMatchResidue(["CYS:145: :A"])
     for atom in protein.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_SG:
@@ -126,7 +128,7 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
             atom.SetFormalCharge(-1)
             atom.SetImplicitHCount(0)
     # Adjust protonation states
-    print('Re-optimizing hydrogen positions...')
+    #print('Re-optimizing hydrogen positions...')
     place_hydrogens_opts = oechem.OEPlaceHydrogensOptions()
     place_hydrogens_opts.SetBypassPredicate(pred)
     protonate_opts = oespruce.OEProtonateDesignUnitOptions(place_hydrogens_opts)
@@ -159,6 +161,11 @@ if __name__ == '__main__':
     # Prep all receptors
     import glob, os
 
+    # Be quiet
+    from openeye import oechem
+    oechem.OEThrow.SetLevel(oechem.OEErrorLevel_Quiet)
+    #oechem.OEThrow.SetLevel(oechem.OEErrorLevel_Error)
+
     if not os.path.exists(structures_path):
         # Download ZIP file
         url = 'https://fragalysis.diamond.ac.uk/media/targets/Mpro.zip'
@@ -166,7 +173,7 @@ if __name__ == '__main__':
         download_url(url, zip_path)
         # Unpack ZIP file
         from zipfile import ZipFile
-        with ZipFile(, 'r') as zip_obj:
+        with ZipFile(zip_path, 'r') as zip_obj:
            zip_obj.extractall(structures_path)
 
     # Get list of all PDB files to prep
@@ -177,9 +184,9 @@ if __name__ == '__main__':
 
     for dimer in [False, True]:
         if dimer:
-            output_basepath = 'receptors/dimer'
+            output_basepath = '../receptors/dimer'
         else:
-            output_basepath = 'receptors/monomer'
+            output_basepath = '../receptors/monomer'
 
         os.makedirs(output_basepath, exist_ok=True)
 
@@ -191,9 +198,9 @@ if __name__ == '__main__':
 
         # Process all receptors in parallel
         from multiprocessing import Pool
-        from tqdm import tqdm
+        from rich.progress import Progress
         with Pool() as pool:
-            max_ = len(source_pdb_files)
-            with tqdm(total=max_) as pbar:
+            with Progress() as progress:
+                task = progress.add_task('[green]Sprucing structures...', total=len(source_pdb_files))
                 for i, _ in enumerate(pool.imap_unordered(prepare_receptor_wrapper, source_pdb_files)):
-                    pbar.update()
+                    progress.update(task, advance=1)
