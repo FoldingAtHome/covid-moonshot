@@ -6,11 +6,15 @@ import itertools
 ff = 'openff-1.2.0'
 # protein_dict = {'Series5':'protein.pdb'}
 ligand_dict = {
-    'primary_amine_enumeration' : 'primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers.sdf',
-#    'boronic_ester_enumeration' : 'boronic_ester_enumeration_for_chodera_lab_FEP-permuted-conformers.sdf',
+    'primary_amine_enumeration' : 'primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf',
+    'boronic_ester_enumeration' : 'boronic_ester_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf',
 }
-receptors = ['receptors/monomer/Mpro-x2646_0_bound-protein.pdb']
-index = 0 # starting index
+receptors = [
+    '../receptors/monomer/Mpro-x2646_0_bound-protein.pdb',
+    '../receptors/monomer/Mpro-x2646_0_bound-protein-thiolate.pdb'
+]
+
+index = 1686 # starting index
 
 # Count ligands
 print('Counting ligands...')
@@ -37,5 +41,5 @@ for series in ligand_dict:
                                            'directory':f'RUN{index-1}','JOBID':index}
             index += 1
 
-with open(f"2020-07-24.json", "w") as f:
+with open(f"2020-07-27.json", "w") as f:
     json.dump(master_dict, f, sort_keys=True, indent=4, separators=(',', ': '))

@@ -180,8 +180,8 @@ def generate_restricted_conformers(receptor, fixmol, mol):
 
     # Create an Omega instance
     # Generate a dense sampling of conformers
-    #omegaOpts = oeomega.OEOmegaOptions()
-    omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
+    omegaOpts = oeomega.OEOmegaOptions()
+    #omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
     # Set the fixed reference molecule
     omegaFixOpts = oeomega.OEConfFixOptions()
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
@@ -286,7 +286,8 @@ def generate_poses(fragment, prefix):
 
         #from rich.progress import track
         #for mol in track(target_molecules, f'Generating poses for {len(target_molecules)} target molecules'):
-        for mol in target_molecules:
+        from tqdm import tqdm
+        for mol in tqdm(target_molecules):
             pose = generate_restricted_conformers(receptor, core_fragment, mol)            
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
@@ -295,9 +296,10 @@ if __name__ == '__main__':
     #fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
     #fragment = 'x10789' # TRY-UNI-2eddb1ff-7 (beta-lactam an chloride)
 
+    # TODO: Figure out why this single-threading workaround is needed to prevent issues
     from openeye import oechem
-    oechem.OESetMemPoolMode(oechem.OEMemPoolMode_SingleThreaded |
-                            oechem.OEMemPoolMode_UnboundedCache)
+    #oechem.OESetMemPoolMode(oechem.OEMemPoolMode_SingleThreaded |
+    #                        oechem.OEMemPoolMode_UnboundedCache)
 
     for fragment in ['x10789']:
         for prefix in [
