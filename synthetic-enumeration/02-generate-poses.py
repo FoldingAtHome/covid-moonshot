@@ -234,23 +234,18 @@ def generate_restricted_conformers(receptor, fixmol, mol):
 
     return mol
 
-if __name__ == '__main__':
-    fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
-    fragment = 'x10789' # TRY-UNI-2eddb1ff-7 (beta-lactam an chloride)
-
+def generate_poses(fragment, prefix):
     # Read receptor
     print('Reading receptor...')
     from openeye import oechem
     receptor = oechem.OEGraphMol()
-    with oechem.oemolistream(f'receptors/monomer/Mpro-{fragment}_0_bound-receptor.oeb.gz') as infile:
+    with oechem.oemolistream(f'../receptors/monomer/Mpro-{fragment}_0_bound-receptor.oeb.gz') as infile:
         oechem.OEReadMolecule(infile, receptor)
         print(receptor.NumAtoms())
 
     # Read target molecules
     print('Reading target molecules...')
     from openeye import oechem
-    prefix = 'primary_amine_enumeration_for_chodera_lab_FEP-permuted'
-    prefix = 'boronic_ester_enumeration_for_chodera_lab_FEP-permuted'
     targets_filename = prefix + '.csv'
     target_molecules = list()
     with oechem.oemolistream(targets_filename) as ifs:
@@ -264,11 +259,14 @@ if __name__ == '__main__':
     print(f'There are {len(target_molecules)} target molecules')
 
     # Read reference molecule with coordinates
-    refmol_filename = f'receptors/monomer/Mpro-{fragment}_0_bound-ligand.mol2'
+    refmol_filename = f'../receptors/monomer/Mpro-{fragment}_0_bound-ligand.mol2'
+    refmol = None
     with oechem.oemolistream(refmol_filename) as ifs:
         for mol in ifs.GetOEGraphMols():
             refmol = mol
             break
+    if refmol is None:
+        raise Exception(f'Could not read {refmol_filename}')
     print(f'Reference molecule as {refmol.NumAtoms()} atoms')
 
     # Get core fragment
@@ -278,7 +276,7 @@ if __name__ == '__main__':
     print(f'Core fragment has {core_fragment.NumAtoms()} atoms')
 
     # Write core fragment (without modifying it)
-    with oechem.oemolostream(f'core-fragment-{fragment}.mol2') as ofs:
+    with oechem.oemolostream(f'{prefix}-core-{fragment}.mol2') as ofs:
         oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(core_fragment))
 
     # Expand conformers
@@ -291,3 +289,14 @@ if __name__ == '__main__':
             pose = generate_restricted_conformers(receptor, core_fragment, mol)
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
+
+if __name__ == '__main__':
+    fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
+    fragment = 'x10789' # TRY-UNI-2eddb1ff-7 (beta-lactam an chloride)
+
+    for fragment in ['x10789']:
+        for prefix in [
+                'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
+                'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
+        ]:
+            generate_poses(fragment, prefix)
