@@ -58,19 +58,19 @@ def GetCoreFragment(refmol, mols,
                     atomexpr=oechem.OEExprOpts_DefaultAtoms,
                     bondexpr=oechem.OEExprOpts_DefaultBonds):
 
-    print("Number of molecules = %d" % len(mols))
+    #print("Number of molecules = %d" % len(mols))
 
     frags = GetFragments(refmol, minbonds, maxbonds)
     if len(frags) == 0:
         oechem.OEThrow.Error("No fragment is enumerated with bonds %d-%d!" % (minbonds, maxbonds))
 
-    print("Number of fragments = %d" % len(frags))
+    #print("Number of fragments = %d" % len(frags))
 
     commonfrags = GetCommonFragments(mols, frags, atomexpr, bondexpr)
     if len(commonfrags) == 0:
         oechem.OEThrow.Error("No common fragment is found!")
 
-    print("Number of common fragments = %d" % len(commonfrags))
+    #print("Number of common fragments = %d" % len(commonfrags))
 
     core = None
     for frag in commonfrags:
@@ -180,8 +180,8 @@ def generate_restricted_conformers(receptor, fixmol, mol):
 
     # Create an Omega instance
     # Generate a dense sampling of conformers
-    omegaOpts = oeomega.OEOmegaOptions()
-    #omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
+    #omegaOpts = oeomega.OEOmegaOptions()
+    omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
     # Set the fixed reference molecule
     omegaFixOpts = oeomega.OEConfFixOptions()
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
@@ -241,7 +241,7 @@ def generate_poses(fragment, prefix):
     receptor = oechem.OEGraphMol()
     with oechem.oemolistream(f'../receptors/monomer/Mpro-{fragment}_0_bound-receptor.oeb.gz') as infile:
         oechem.OEReadMolecule(infile, receptor)
-        print(receptor.NumAtoms())
+    print(f'  Receptor has {receptor.NumAtoms()} atoms.')
 
     # Read target molecules
     print('Reading target molecules...')
@@ -251,12 +251,12 @@ def generate_poses(fragment, prefix):
     with oechem.oemolistream(targets_filename) as ifs:
         for mol in ifs.GetOEGraphMols():
             target_molecules.append( oechem.OEGraphMol(mol) )
-    print(f'There are {len(target_molecules)} target molecules')
+    print(f'  There are {len(target_molecules)} target molecules')
 
     # Expand uncertain stereochemistry
     print('Expanding uncertain stereochemistry...')
     target_molecules = expand_stereochemistry(target_molecules)
-    print(f'There are {len(target_molecules)} target molecules')
+    print(f'  There are {len(target_molecules)} target molecules')
 
     # Read reference molecule with coordinates
     refmol_filename = f'../receptors/monomer/Mpro-{fragment}_0_bound-ligand.mol2'
@@ -267,13 +267,13 @@ def generate_poses(fragment, prefix):
             break
     if refmol is None:
         raise Exception(f'Could not read {refmol_filename}')
-    print(f'Reference molecule as {refmol.NumAtoms()} atoms')
+    print(f'Reference molecule has {refmol.NumAtoms()} atoms')
 
     # Get core fragment
     print('Identifying core fragment...')
     core_fragment = GetCoreFragment(refmol, target_molecules)
     oechem.OESuppressHydrogens(core_fragment)
-    print(f'Core fragment has {core_fragment.NumAtoms()} atoms')
+    print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
 
     # Write core fragment (without modifying it)
     with oechem.oemolostream(f'{prefix}-core-{fragment}.mol2') as ofs:
@@ -284,19 +284,20 @@ def generate_poses(fragment, prefix):
         # Write reference molecule copy
         oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(refmol))
 
-        from rich.progress import track
-        for mol in track(target_molecules, 'Expanding conformers'):
-            pose = generate_restricted_conformers(receptor, core_fragment, mol)
+        #from rich.progress import track
+        #for mol in track(target_molecules, f'Generating poses for {len(target_molecules)} target molecules'):
+        for mol in target_molecules:
+            pose = generate_restricted_conformers(receptor, core_fragment, mol)            
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
 
 if __name__ == '__main__':
-    fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
-    fragment = 'x10789' # TRY-UNI-2eddb1ff-7 (beta-lactam an chloride)
+    #fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
+    #fragment = 'x10789' # TRY-UNI-2eddb1ff-7 (beta-lactam an chloride)
 
     for fragment in ['x10789']:
         for prefix in [
                 'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
-                'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
+                #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
         ]:
             generate_poses(fragment, prefix)
