@@ -251,6 +251,8 @@ def generate_poses(fragment, prefix):
     with oechem.oemolistream(targets_filename) as ifs:
         for mol in ifs.GetOEGraphMols():
             target_molecules.append( oechem.OEGraphMol(mol) )
+    if len(target_molecules) == 0:
+        raise Exception('No target molecules specified; check filename!')
     print(f'  There are {len(target_molecules)} target molecules')
 
     # Expand uncertain stereochemistry
@@ -280,7 +282,7 @@ def generate_poses(fragment, prefix):
         oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(core_fragment))
 
     # Expand conformers
-    with oechem.oemolostream(prefix + f'-conformers-{fragment}.sdf') as ofs:
+    with oechem.oemolostream(prefix + f'-conformers-{fragment}.sdf.gz') as ofs:
         # Write reference molecule copy
         oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(refmol))
 
@@ -288,7 +290,7 @@ def generate_poses(fragment, prefix):
         #for mol in track(target_molecules, f'Generating poses for {len(target_molecules)} target molecules'):
         from tqdm import tqdm
         for mol in tqdm(target_molecules):
-            pose = generate_restricted_conformers(receptor, core_fragment, mol)            
+            pose = generate_restricted_conformers(receptor, core_fragment, mol)
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
 
@@ -303,7 +305,8 @@ if __name__ == '__main__':
 
     for fragment in ['x10789']:
         for prefix in [
-                'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
-                'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
+                'nucleophilic_displacement_enumeration_for_FEP-permuted',
+                #'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
+                #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
         ]:
             generate_poses(fragment, prefix)

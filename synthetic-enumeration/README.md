@@ -3,10 +3,26 @@
 Modeling of design conformations suggested by this [excellent blog post from Pat Walters](http://practicalcheminformatics.blogspot.com/2020/03/building-on-fragments-from-diamondxchem_30.html) and the [accompanying code](https://github.com/PatWalters/fragment_expansion/tree/master/oechem_eval).
 
 ## Manifest
-* `boronic_ester_enumeration_for_chodera_lab_FEP.csv` - boronic ester series
-* `primary_amine_enumeration_for_chodera_lab_FEP.csv` - primary amine series
+
+### Compound sets
+* `primary_amine_enumeration_for_chodera_lab_FEP.csv` - primary amine series (843 compounds)
+* `boronic_ester_enumeration_for_chodera_lab_FEP.csv` - boronic ester series (122 compounds)
+* `nucleophilic_displacement_enumeration_for_FEP.csv` - nucleophilic displacement series (15918)
+
+### Docked conformers
+
+* `primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf.gz`
+* `boronic_ester_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf.gz`
+* `nucleophilic_displacement_enumeration_for_FEP-permuted-conformers-x10789.sdf.gz` - nucleophilic displacement series ()
+
+### Scripts
 * `01-fix-csv-files.sh` - permute columns of input files
 * `02-generate-poses.py` - generate constrained input poses for a single fragment structure: `x10789` (`TRY-UNI-2eddb1ff-7`)
+
+### Calculation metadata
+* `2020-07-24.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` forward only built from `x2646`
+* `2020-07-27.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` and `boronic_ester_enumeration_for_chodera_lab_FEP.csv` forward only built from `x10789`
+* `2020-07-28.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` and `boronic_ester_enumeration_for_chodera_lab_FEP.csv` backward only built from `x10789`
 
 ## Procedure
 
@@ -18,3 +34,10 @@ Given a single reference fragment structure (already in `../receptors/` and prep
 * pick the conformer with the least clashes with protein atoms
 
 The SDF file written out contains the protonated fragment as molecule 0 followed by all docked fragments.
+
+## TODO
+
+* Don't use MMFF for omega:
+```
+Warning: OEMMFFParams::PrepMol() : unable to type atom 21 N
+```
