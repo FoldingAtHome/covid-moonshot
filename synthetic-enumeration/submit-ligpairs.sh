@@ -2,7 +2,8 @@
 #BSUB -P "testing"
 ##BSUB -J "mpro[1688-4663]" 
 ##BSUB -J "mpro[1686-1687]" 
-#BSUB -J "mpro[4664-7641]" 
+##BSUB -J "mpro[4664-7641]" 
+#BSUB -J "mpro[7642-7801]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
