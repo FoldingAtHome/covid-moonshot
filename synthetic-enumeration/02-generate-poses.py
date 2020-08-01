@@ -65,6 +65,8 @@ def GetCoreFragment(refmol, mols,
         oechem.OEThrow.Error("No fragment is enumerated with bonds %d-%d!" % (minbonds, maxbonds))
 
     #print("Number of fragments = %d" % len(frags))
+    frags = frags[:100] # DEBUG
+
 
     commonfrags = GetCommonFragments(mols, frags, atomexpr, bondexpr)
     if len(commonfrags) == 0:
@@ -179,25 +181,25 @@ def generate_restricted_conformers(receptor, fixmol, mol):
     from openeye import oechem, oeomega
 
     # Create an Omega instance
-    # Generate a dense sampling of conformers
-    omegaOpts = oeomega.OEOmegaOptions()
-    #omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
+    #omegaOpts = oeomega.OEOmegaOptions()
+    omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
+
     # Set the fixed reference molecule
     omegaFixOpts = oeomega.OEConfFixOptions()
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
-
-    #atomexpr = oechem.OEExprOpts_AtomicNumber | oechem.OEExprOpts_Aromaticity | oechem.OEExprOpts_RingMember
-    #bondexpr = oechem.OEExprOpts_BondOrder | oechem.OEExprOpts_RingMember
-    #atomexpr = oechem.OEExprOpts_AtomicNumber | oechem.OEExprOpts_RingMember
-    #bondexpr = oechem.OEExprOpts_BondOrder | oechem.OEExprOpts_RingMember
-    #omegaFixOpts.SetAtomExpr(atomexpr)
-    #omegaFixOpts.SetBondExpr(bondexpr)
     omegaFixOpts.SetFixMol(fixmol)
     omegaOpts.SetConfFixOptions(omegaFixOpts)
+
+    molBuilderOpts = oeomega.OEMolBuilderOptions()
+    molBuilderOpts.SetStrictAtomTypes(False) # don't give up if MMFF types are not found
+    omegaOpts.SetMolBuilderOptions(molBuilderOpts)
+
     omegaOpts.SetWarts(False) # expand molecule title
     omegaOpts.SetStrictStereo(True) # set strict stereochemistry
     omegaOpts.SetIncludeInput(False) # don't include input
+    #omegaOpts.SetMaxConfs(50000) # generate lots of conformers
+    #omegaOpts.SetEnergyWindow(10.0) # allow high energies
     omega = oeomega.OEOmega(omegaOpts)
 
     from openeye import oequacpac
@@ -212,35 +214,104 @@ def generate_restricted_conformers(receptor, fixmol, mol):
         print(f'Omega failure: {mol.GetDimension()} and {oeomega.OEGetOmegaError(ret_code)}')
         return None
 
-    # Select the conformer with the fewest steric clashes
-    bump_check = BumpCheck(receptor)
-    poses = list()
-    for pose in mol.GetConfs():
-        poses.append( (pose, bump_check.count(pose)) )
-    poses = sorted(poses, key=lambda x : x[1])
-    mol.SetActive(poses[0][0])
-    #print([pose[1] for pose in poses])
+    # Extract poses
+    poses = [ pose for pose in mol.GetConfs() ]
 
-    #from openeye import oedocking
-    #score = oedocking.OEScore(oedocking.OEScoreType_Chemgauss4)
-    #score.Initialize(receptor)
-    #scores = list()
-    #for pose in mol.GetConfs():
-    #    scores.append(score.ScoreLigand(pose))
-    #print(scores)
+    # Score clashes
+    bump_check = BumpCheck(receptor)
+    clash_scores = [ bump_check.count(pose) for pose in poses ]
+
+    # Score docking poses
+    from openeye import oedocking
+    score = oedocking.OEScore(oedocking.OEScoreType_Chemgauss4)
+    score.Initialize(receptor)
+    docking_scores = [ score.ScoreLigand(pose) for pose in poses ]
+
+    # Select the best docking score
+    import numpy as np
+    pose_index = np.argmin(docking_scores)
+    mol.SetActive(poses[pose_index])
+    oechem.OESetSDData(mol, 'clash_score', str(clash_scores[pose_index]))
+    oechem.OESetSDData(mol, 'docking_score', str(docking_scores[pose_index]))
 
     # Convert to single-conformer molecule
     mol = oechem.OEGraphMol(mol)
 
     return mol
 
-def generate_poses(fragment, prefix):
+# TODO: import this from https://github.com/postera-ai/COVID_moonshot_submissions/blob/master/lib/utils.py
+def get_series(smi):
+    from rdkit import Chem
+    from rdkit.Chem import AllChem
+    from rdkit.Chem import Descriptors
+    series_SMARTS_dict = {
+        # "3-aminopyridine": "[R1][C,N;R0;!$(NC(=O)CN)]C(=O)[C,N;R0;!$(NC(=O)CN)][c]1cnccc1",
+        "3-aminopyridine-like": "[R1]!@[C,N]C(=O)[C,N]!@[R1]",
+        "3-aminopyridine-strict": "c1ccncc1NC(=O)!@[R1]",
+        "Ugi": "[c,C:1][C](=[O])[N]([c,C,#1:2])[C]([c,C,#1:3])([c,C,#1:4])[C](=[O])[NH1][c,C:5]",
+        "quinolones": "NC(=O)c1cc(=O)[nH]c2ccccc12",
+        "piperazine-chloroacetamide": "O=C(CCl)N1CCNCC1",
+    }
+
+    def check_if_smi_in_series(
+        smi, SMARTS, MW_cutoff=550, num_atoms_cutoff=70, num_rings_cutoff=10
+    ):
+        mol = Chem.MolFromSmiles(smi)
+        MW = Chem.Descriptors.MolWt(mol)
+        num_heavy_atoms = mol.GetNumHeavyAtoms()
+        num_rings = Chem.rdMolDescriptors.CalcNumRings(mol)
+        patt = Chem.MolFromSmarts(SMARTS)
+        if (
+            (
+                len(
+                    Chem.AddHs(Chem.MolFromSmiles(smi)).GetSubstructMatches(
+                        patt
+                    )
+                )
+                > 0
+            )
+            and (MW <= MW_cutoff)
+            and (num_heavy_atoms <= num_atoms_cutoff)
+            and (num_rings <= num_rings_cutoff)
+        ):
+            return True
+        else:
+            return False
+
+    for series in series_SMARTS_dict:
+        series_SMARTS = series_SMARTS_dict[series]
+        if series == "3-amonipyridine-like":
+            if check_if_smi_in_series(
+                smi,
+                series_SMARTS,
+                MW_cutoff=410,
+                num_rings_cutoff=3,
+                num_atoms_cutoff=28,
+            ):
+                return series
+        else:
+            if check_if_smi_in_series(smi, series_SMARTS):
+                return series
+    return None
+
+def generate_poses(fragment, prefix, fragment_title=None, filter_series=None):
+    """
+    Parameters
+    ----------
+    fragment_title : str, optional, default=None
+        If specified, replace the reference X-ray ligand title with this name
+    filter_series : str, optional, default=None
+        If specified, filter out only molecules matching this series name from the loaded molecules
+    """
     # Read receptor
     print('Reading receptor...')
     from openeye import oechem
     receptor = oechem.OEGraphMol()
-    with oechem.oemolistream(f'../receptors/monomer/Mpro-{fragment}_0_bound-receptor.oeb.gz') as infile:
-        oechem.OEReadMolecule(infile, receptor)
+    receptor_filename = f'../receptors/monomer/Mpro-{fragment}_0_bound-receptor.oeb.gz'
+    #with oechem.oemolistream(receptor_filename) as infile:
+    #    oechem.OEReadMolecule(infile, receptor)
+    from openeye import oedocking
+    oedocking.OEReadReceptorFile(receptor, receptor_filename)
     print(f'  Receptor has {receptor.NumAtoms()} atoms.')
 
     # Read target molecules
@@ -255,11 +326,6 @@ def generate_poses(fragment, prefix):
         raise Exception('No target molecules specified; check filename!')
     print(f'  There are {len(target_molecules)} target molecules')
 
-    # Expand uncertain stereochemistry
-    print('Expanding uncertain stereochemistry...')
-    target_molecules = expand_stereochemistry(target_molecules)
-    print(f'  There are {len(target_molecules)} target molecules')
-
     # Read reference molecule with coordinates
     refmol_filename = f'../receptors/monomer/Mpro-{fragment}_0_bound-ligand.mol2'
     refmol = None
@@ -270,9 +336,31 @@ def generate_poses(fragment, prefix):
     if refmol is None:
         raise Exception(f'Could not read {refmol_filename}')
     print(f'Reference molecule has {refmol.NumAtoms()} atoms')
+    if fragment_title is not None:
+        refmol.SetTitle(fragment_title)
+        # Copy data from target molecles if present
+        for mol in target_molecules:
+            if mol.GetTitle() == fragment_title:
+                print(f'{fragment_title} found in target_molecules; copying SDData')
+                oechem.OECopySDData(refmol, mol)
+                break
+
+    if filter_series is not None:
+        print(f'Filtering out series {filter_series}...')
+        target_molecules = [ mol for mol in target_molecules if get_series(oechem.OECreateSmiString(mol)) == filter_series ]
+        print(f'  There are {len(target_molecules)} target molecules')
+        with oechem.oemolostream(f'filtered.mol2') as ofs:
+            for mol in target_molecules:
+                oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(mol))
+
+    # Expand uncertain stereochemistry
+    print('Expanding uncertain stereochemistry...')
+    target_molecules = expand_stereochemistry(target_molecules)
+    print(f'  There are {len(target_molecules)} target molecules')
 
     # Get core fragment
     print('Identifying core fragment...')
+    from openeye import oechem
     core_fragment = GetCoreFragment(refmol, target_molecules)
     oechem.OESuppressHydrogens(core_fragment)
     print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
@@ -282,9 +370,11 @@ def generate_poses(fragment, prefix):
         oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(core_fragment))
 
     # Expand conformers
-    with oechem.oemolostream(prefix + f'-conformers-{fragment}.sdf.gz') as ofs:
+    with oechem.oemolostream(prefix + f'-conformers-{fragment}.sdf') as ofs:
         # Write reference molecule copy
-        oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(refmol))
+        refmol_copy = oechem.OEGraphMol(refmol)
+        oechem.OESetSDData(refmol_copy, 'clash_score', '0.0')
+        oechem.OEWriteMolecule(ofs, refmol_copy)
 
         #from rich.progress import track
         #for mol in track(target_molecules, f'Generating poses for {len(target_molecules)} target molecules'):
@@ -306,7 +396,9 @@ if __name__ == '__main__':
     for fragment in ['x10789']:
         for prefix in [
                 'nucleophilic_displacement_enumeration_for_FEP-permuted',
+                #'activity-data-2020-07-29',
                 #'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
                 #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
         ]:
-            generate_poses(fragment, prefix)
+            #generate_poses(fragment, prefix, fragment_title='TRY-UNI-2eddb1ff-7', filter_series="3-aminopyridine-strict")
+            generate_poses(fragment, prefix, fragment_title='TRY-UNI-2eddb1ff-7')

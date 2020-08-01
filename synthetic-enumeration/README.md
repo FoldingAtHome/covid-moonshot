@@ -23,6 +23,8 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 * `2020-07-24.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` forward only built from `x2646`
 * `2020-07-27.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` and `boronic_ester_enumeration_for_chodera_lab_FEP.csv` forward only built from `x10789`
 * `2020-07-28.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` and `boronic_ester_enumeration_for_chodera_lab_FEP.csv` backward only built from `x10789`
+* `activity-data-2020-07-29.csv`: activity data downloaded from the [COVID Moonshot](https://covid.postera.ai/covid/activity_data.csv) on 2020-07-29
+* `activity-data-2020-07-29-conformers-x10789.sdf.gz`: strictly filtered 3-aminopyridine related set for retrospective testing, with activity data preserved as SD tags (40 compounds)
 
 ## Procedure
 

@@ -5,10 +5,10 @@ import itertools
 from openeye import oechem
 
 ff = 'openff-1.2.0'
-# protein_dict = {'Series5':'protein.pdb'}
 ligand_dict = {
-    'primary_amine_enumeration' : 'primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf',
-    'boronic_ester_enumeration' : 'boronic_ester_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf',
+    #'primary_amine_enumeration' : 'primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf',
+    #'boronic_ester_enumeration' : 'boronic_ester_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf',
+    'retrospective-aminopyridines' : 'activity-data-2020-07-29-conformers-x10789.sdf',
 }
 receptors = [
     '../receptors/monomer/Mpro-x2646_0_bound-protein.pdb',
@@ -16,7 +16,8 @@ receptors = [
 ]
 
 #index = 1686 # starting index
-index = 4664 # starting index
+#index = 4664 # starting index
+index = 7642 # starting index for retrospective-aminopyridines
 
 mol_i = oechem.OEGraphMol()
 mol_j = oechem.OEGraphMol()
@@ -42,7 +43,32 @@ for series in ligand_dict:
             # Get the molecule
             moldb.GetMolecule(mol_j, j)
 
-            # Only include backward directions
+            # Add forwards
+            master_dict[index] = {
+                'JOBID':index,
+                'directory':f'RUN{index-1}',
+
+                'target':'SARS-CoV-2 Mpro',
+
+                'start':i,
+                'start_title':mol_i.GetTitle(),
+                'start_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
+
+                'end':j,
+                'end_title':mol_j.GetTitle(),
+                'end_smiles':oechem.OECreateSmiString(mol_j, smiles_flag),
+
+                'protein':protein,
+                'ligand':ligand_dict[series],
+                'ff':ff,
+            }
+            if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
+                master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
+            if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
+                master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')                
+            index += 1
+
+            # Add backwards
             master_dict[index] = {
                 'JOBID':index,
                 'directory':f'RUN{index-1}',
@@ -61,7 +87,11 @@ for series in ligand_dict:
                 'ligand':ligand_dict[series],
                 'ff':ff,
             }
+            if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
+                master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')                
+            if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
+                master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
             index += 1
 
-with open(f"2020-07-28.json", "w") as f:
+with open(f"2020-07-29-retrospective-aminopyridines.json", "w") as f:
     json.dump(master_dict, f, sort_keys=True, indent=4, separators=(',', ': '))
