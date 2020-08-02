@@ -294,6 +294,9 @@ def get_series(smi):
                 return series
     return None
 
+def generate_restricted_conformers_star(args):
+    return generate_restricted_conformers(*args)
+
 def generate_poses(fragment, prefix, fragment_title=None, filter_series=None):
     """
     Parameters
@@ -376,13 +379,23 @@ def generate_poses(fragment, prefix, fragment_title=None, filter_series=None):
         oechem.OESetSDData(refmol_copy, 'clash_score', '0.0')
         oechem.OEWriteMolecule(ofs, refmol_copy)
 
-        #from rich.progress import track
+        from rich.progress import track
         #for mol in track(target_molecules, f'Generating poses for {len(target_molecules)} target molecules'):
+        from multiprocessing import Pool
         from tqdm import tqdm
-        for mol in tqdm(target_molecules):
-            pose = generate_restricted_conformers(receptor, core_fragment, mol)
+
+        pool = Pool()
+        args = [ (receptor, core_fragment, mol) for mol in target_molecules ]
+        for pose in track(pool.imap_unordered(generate_restricted_conformers_star, args), total=len(args), description='Enumerating conformers...'):
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
+        pool.close()
+        pool.join()
+
+        #for mol in tqdm(target_molecules):
+        #    pose = generate_restricted_conformers(receptor, core_fragment, mol)
+        #    if pose is not None:
+        #        oechem.OEWriteMolecule(ofs, pose)
 
 if __name__ == '__main__':
     #fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
