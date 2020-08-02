@@ -66,7 +66,7 @@ def GetCoreFragment(refmol, mols,
 
     #print("Number of fragments = %d" % len(frags))
     #frags = frags[:20] # DEBUG
-    #mols = mols[:10]
+    mols = mols[:10]
 
 
     commonfrags = GetCommonFragments(mols, frags, atomexpr, bondexpr)
@@ -409,8 +409,8 @@ if __name__ == '__main__':
 
     for fragment in ['x10789']:
         for prefix in [
-                'aminopyridine_compounds_for_FEP_benchmarking',
-                #'nucleophilic_displacement_enumeration_for_FEP-permuted',
+                #'aminopyridine_compounds_for_FEP_benchmarking',
+                'nucleophilic_displacement_enumeration_for_FEP-permuted',
                 #'activity-data-2020-07-29',
                 #'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
                 #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
