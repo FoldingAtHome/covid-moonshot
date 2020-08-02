@@ -65,7 +65,8 @@ def GetCoreFragment(refmol, mols,
         oechem.OEThrow.Error("No fragment is enumerated with bonds %d-%d!" % (minbonds, maxbonds))
 
     #print("Number of fragments = %d" % len(frags))
-    frags = frags[:100] # DEBUG
+    #frags = frags[:20] # DEBUG
+    #mols = mols[:10]
 
 
     commonfrags = GetCommonFragments(mols, frags, atomexpr, bondexpr)
@@ -408,7 +409,8 @@ if __name__ == '__main__':
 
     for fragment in ['x10789']:
         for prefix in [
-                'nucleophilic_displacement_enumeration_for_FEP-permuted',
+                'aminopyridine_compounds_for_FEP_benchmarking',
+                #'nucleophilic_displacement_enumeration_for_FEP-permuted',
                 #'activity-data-2020-07-29',
                 #'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
                 #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
