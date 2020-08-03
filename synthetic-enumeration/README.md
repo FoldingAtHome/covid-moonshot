@@ -8,12 +8,15 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 * `primary_amine_enumeration_for_chodera_lab_FEP.csv` - primary amine series (843 compounds)
 * `boronic_ester_enumeration_for_chodera_lab_FEP.csv` - boronic ester series (122 compounds)
 * `nucleophilic_displacement_enumeration_for_FEP.csv` - nucleophilic displacement series (15918)
+* `activity-data-2020-07-29.csv` - all compounds with activity data for retrospective benchmarking
+* `aminopyridine_compounds_for_FEP_benchmarking.csv` - 3-aminopyridine retrospective benchmarking compounds from Matthew Robinson (70)
 
 ### Docked conformers
 
 * `primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf.gz`
 * `boronic_ester_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf.gz`
 * `nucleophilic_displacement_enumeration_for_FEP-permuted-conformers-x10789.sdf.gz` - nucleophilic displacement series ()
+* `aminopyridine_compounds_for_FEP_benchmarking-dockscores-x10789.sdf` - 3-aminopyridine retrospective benchmarking compounds using individual maximum common fragment enumeration, prioritized by docked scores
 
 ### Scripts
 * `01-fix-csv-files.sh` - permute columns of input files
