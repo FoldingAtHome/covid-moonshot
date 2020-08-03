@@ -41,7 +41,8 @@ def run_relative_perturbation(run, tidy=True):
 # work out which ligand pair to run
 #series = '2020-07-28.json'
 #series = '2020-07-29-retrospective-aminopyridines.json'
-series = '2020-08-02-retrospective-aminopyridines-matt.json'
+#series = '2020-08-02-retrospective-aminopyridines-matt.json'
+series = '2020-08-03-retrospective-aminopyridines-matt-dockscores.json'
 with open(series, 'r') as f:
     data = json.load(f)
 this_run = data[sys.argv[1]]
