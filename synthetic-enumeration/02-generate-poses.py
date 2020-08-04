@@ -33,8 +33,8 @@ def GetCommonFragments(mollist, frags,
     corefrags = []
 
     from rich.progress import track
-    for frag in track(frags, description='Finding common fragments'):
-
+    #for frag in track(frags, description='Finding common fragments'):
+    for frag in frags:
         ss = oechem.OESubSearch(frag, atomexpr, bondexpr)
         if not ss.IsValid():
             print('Is not valid')
@@ -63,8 +63,6 @@ def GetCoreFragment(refmol, mols,
     frags = GetFragments(refmol, minbonds, maxbonds)
     if len(frags) == 0:
         oechem.OEThrow.Error("No fragment is enumerated with bonds %d-%d!" % (minbonds, maxbonds))
-
-    #print("Number of fragments = %d" % len(frags))
 
     commonfrags = GetCommonFragments(mols, frags, atomexpr, bondexpr)
     if len(commonfrags) == 0:
@@ -163,24 +161,35 @@ class BumpCheck:
                 bump_count += np.exp(-0.5 * (nb.GetDist() / self.cutoff)**2)
         return bump_count
 
-def generate_restricted_conformers(receptor, fixmol, mol):
+def generate_restricted_conformers(receptor, refmol, mol):
     """
-    Generate and select a conformer of the specified molecule using the fixedmol
+    Generate and select a conformer of the specified molecule using the reference molecule
 
     Parameters
     ----------
     receptor : openeye.oechem.OEGraphMol
-       Receptor to score poses against
-    fixmol : openeye.oechem.OEGraphMol
-       The reference fixed part of the molecule (common core)
+        Receptor (already prepped for docking) for identifying optimal pose
+    refmol : openeye.oechem.OEGraphMol
+        Reference molecule which shares some part in common with the proposed molecule
     mol : openeye.oechem.OEGraphMol
        The molecule to enumerate conformers for
     """
     from openeye import oechem, oeomega
 
+    # Get core fragment
+    #print('Identifying core fragment...')
+    core_fragment = GetCoreFragment(refmol, [mol])
+    oechem.OESuppressHydrogens(core_fragment)
+    fixmol = core_fragment
+    #print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
+
+    # Write core fragment (without modifying it)
+    #with oechem.oemolostream(f'{prefix}-core-{fragment}.mol2') as ofs:
+    #    oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(core_fragment))
+
     # Create an Omega instance
-    omegaOpts = oeomega.OEOmegaOptions()
-    #omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
+    #omegaOpts = oeomega.OEOmegaOptions()
+    omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
 
     # Set the fixed reference molecule
     omegaFixOpts = oeomega.OEConfFixOptions()
@@ -189,12 +198,12 @@ def generate_restricted_conformers(receptor, fixmol, mol):
     omegaFixOpts.SetFixMol(fixmol)
     omegaOpts.SetConfFixOptions(omegaFixOpts)
 
-    #molBuilderOpts = oeomega.OEMolBuilderOptions()
-    #molBuilderOpts.SetStrictAtomTypes(False) # don't give up if MMFF types are not found
-    #omegaOpts.SetMolBuilderOptions(molBuilderOpts)
+    molBuilderOpts = oeomega.OEMolBuilderOptions()
+    molBuilderOpts.SetStrictAtomTypes(False) # don't give up if MMFF types are not found
+    omegaOpts.SetMolBuilderOptions(molBuilderOpts)
 
     omegaOpts.SetWarts(False) # expand molecule title
-    omegaOpts.SetStrictStereo(True) # set strict stereochemistry
+    omegaOpts.SetStrictStereo(False) # set strict stereochemistry
     omegaOpts.SetIncludeInput(False) # don't include input
     #omegaOpts.SetMaxConfs(50000) # generate lots of conformers
     #omegaOpts.SetEnergyWindow(10.0) # allow high energies
@@ -212,22 +221,25 @@ def generate_restricted_conformers(receptor, fixmol, mol):
         print(f'Omega failure: {mol.GetDimension()} and {oeomega.OEGetOmegaError(ret_code)}')
         return None
 
-    # Select the conformer with the fewest steric clashes
-    bump_check = BumpCheck(receptor)
-    poses = list()
-    for pose in mol.GetConfs():
-        poses.append( (pose, bump_check.count(pose)) )
-    poses = sorted(poses, key=lambda x : x[1])
-    mol.SetActive(poses[0][0])
-    #print([pose[1] for pose in poses])
+    # Extract poses
+    poses = [ pose for pose in mol.GetConfs() ]
 
-    #from openeye import oedocking
-    #score = oedocking.OEScore(oedocking.OEScoreType_Chemgauss4)
-    #score.Initialize(receptor)
-    #scores = list()
-    #for pose in mol.GetConfs():
-    #    scores.append(score.ScoreLigand(pose))
-    #print(scores)
+    # Score clashes
+    bump_check = BumpCheck(receptor)
+    clash_scores = [ bump_check.count(pose) for pose in poses ]
+
+    # Score docking poses
+    from openeye import oedocking
+    score = oedocking.OEScore(oedocking.OEScoreType_Chemgauss4)
+    score.Initialize(receptor)
+    docking_scores = [ score.ScoreLigand(pose) for pose in poses ]
+
+    # Select the best docking score
+    import numpy as np
+    pose_index = np.argmin(docking_scores)
+    mol.SetActive(poses[pose_index])
+    oechem.OESetSDData(mol, 'clash_score', str(clash_scores[pose_index]))
+    oechem.OESetSDData(mol, 'docking_score', str(docking_scores[pose_index]))
 
     # Convert to single-conformer molecule
     mol = oechem.OEGraphMol(mol)
@@ -289,51 +301,34 @@ def get_series(smi):
                 return series
     return None
 
-def generate_poses(fragment, prefix, fragment_title=None, filter_series=None):
+def generate_restricted_conformers_star(args):
+    return generate_restricted_conformers(*args)
+
+def generate_poses(receptor, refmol, target_molecules_filename, output_filename, filter_series=None):
     """
     Parameters
     ----------
-    fragment_title : str, optional, default=None
-        If specified, replace the reference X-ray ligand title with this name
+    receptor : openeye.oechem.OEGraphMol
+        Receptor (already prepped for docking) for identifying optimal pose
+    refmol : openeye.oechem.OEGraphMol
+        Reference molecule which shares some part in common with the proposed molecule
+    target_molecules_filename : str
+        Molecules to build
+    output_filename : str
+        Output filename for generated conformers
     filter_series : str, optional, default=None
         If specified, filter out only molecules matching this series name from the loaded molecules
     """
-    # Read receptor
-    print('Reading receptor...')
-    from openeye import oechem
-    receptor = oechem.OEGraphMol()
-    with oechem.oemolistream(f'../receptors/monomer/Mpro-{fragment}_0_bound-receptor.oeb.gz') as infile:
-        oechem.OEReadMolecule(infile, receptor)
-    print(f'  Receptor has {receptor.NumAtoms()} atoms.')
-
     # Read target molecules
     print('Reading target molecules...')
     from openeye import oechem
-    targets_filename = prefix + '.csv'
     target_molecules = list()
-    with oechem.oemolistream(targets_filename) as ifs:
+    with oechem.oemolistream(target_molecules_filename) as ifs:
         for mol in ifs.GetOEGraphMols():
             target_molecules.append( oechem.OEGraphMol(mol) )
+    if len(target_molecules) == 0:
+        raise Exception('No target molecules specified; check filename!')
     print(f'  There are {len(target_molecules)} target molecules')
-
-    # Read reference molecule with coordinates
-    refmol_filename = f'../receptors/monomer/Mpro-{fragment}_0_bound-ligand.mol2'
-    refmol = None
-    with oechem.oemolistream(refmol_filename) as ifs:
-        for mol in ifs.GetOEGraphMols():
-            refmol = mol
-            break
-    if refmol is None:
-        raise Exception(f'Could not read {refmol_filename}')
-    print(f'Reference molecule has {refmol.NumAtoms()} atoms')
-    if fragment_title is not None:
-        refmol.SetTitle(fragment_title)
-        # Copy data from target molecles if present
-        for mol in target_molecules:
-            if mol.GetTitle() == fragment_title:
-                print(f'{fragment_title} found in target_molecules; copying SDData')
-                oechem.OECopySDData(refmol, mol)
-                break
 
     if filter_series is not None:
         print(f'Filtering out series {filter_series}...')
@@ -348,32 +343,30 @@ def generate_poses(fragment, prefix, fragment_title=None, filter_series=None):
     target_molecules = expand_stereochemistry(target_molecules)
     print(f'  There are {len(target_molecules)} target molecules')
 
-    # Get core fragment
-    print('Identifying core fragment...')
-    from openeye import oechem
-    #atomexpr = oechem.OEExprOpts_AtomicNumber | oechem.OEExprOpts_Aromaticity | oechem.OEExprOpts_Hybridization | oechem.OEExprOpts_RingMember
-    #bondexpr = oechem.OEExprOpts_BondOrder
-    #core_fragment = GetCoreFragment(refmol, target_molecules, atomexpr=atomexpr, bondexpr=bondexpr)
-    core_fragment = GetCoreFragment(refmol, target_molecules)
-    oechem.OESuppressHydrogens(core_fragment)
-    print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
-
-    # Write core fragment (without modifying it)
-    with oechem.oemolostream(f'{prefix}-core-{fragment}.mol2') as ofs:
-        oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(core_fragment))
-
-    # Expand conformers
-    with oechem.oemolostream(prefix + f'-conformers-{fragment}.sdf.gz') as ofs:
+    # Identify optimal conformer for each molecule
+    with oechem.oemolostream(output_filename) as ofs:
         # Write reference molecule copy
-        oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(refmol))
+        refmol_copy = oechem.OEGraphMol(refmol)
+        oechem.OESetSDData(refmol_copy, 'clash_score', '0.0')
+        oechem.OEWriteMolecule(ofs, refmol_copy)
 
-        #from rich.progress import track
+        from rich.progress import track
         #for mol in track(target_molecules, f'Generating poses for {len(target_molecules)} target molecules'):
+        from multiprocessing import Pool
         from tqdm import tqdm
-        for mol in tqdm(target_molecules):
-            pose = generate_restricted_conformers(receptor, core_fragment, mol)
+
+        pool = Pool()
+        args = [ (receptor, refmol, mol) for mol in target_molecules ]
+        for pose in track(pool.imap_unordered(generate_restricted_conformers_star, args), total=len(args), description='Enumerating conformers...'):
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
+        pool.close()
+        pool.join()
+
+        #for mol in tqdm(target_molecules):
+        #    pose = generate_restricted_conformers(receptor, core_fragment, mol)
+        #    if pose is not None:
+        #        oechem.OEWriteMolecule(ofs, pose)
 
 if __name__ == '__main__':
     #fragment = 'x2646' # TRY-UNI-714a760b-6 (the main amino pyridine core)
@@ -384,10 +377,57 @@ if __name__ == '__main__':
     #oechem.OESetMemPoolMode(oechem.OEMemPoolMode_SingleThreaded |
     #                        oechem.OEMemPoolMode_UnboundedCache)
 
-    for fragment in ['x10789']:
-        for prefix in [
-                'activity-data-2020-07-29',
+    assay_data_filename = 'activity-data-2020-07-29.csv'
+    fragments = {
+        'x10789' : 'TRY-UNI-2eddb1ff-7',
+        }
+
+    # Load assay data if available
+    assayed_molecules = list()
+    with oechem.oemolistream(assay_data_filename) as ifs:
+        for mol in ifs.GetOEGraphMols():
+            assayed_molecules.append( oechem.OEGraphMol(mol) )
+    print(f'  There are {len(assayed_molecules)} assayed molecules')
+
+    # Load all fragments
+    for prefix in [
+                'aminopyridine_compounds_for_FEP_benchmarking',
+                #'nucleophilic_displacement_enumeration_for_FEP-permuted',
+                #'activity-data-2020-07-29',
                 #'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
                 #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
         ]:
-            generate_poses(fragment, prefix, fragment_title='TRY-UNI-2eddb1ff-7', filter_series="3-aminopyridine-strict")
+        for fragment in fragments:
+
+            # Read receptor
+            print('Reading receptor...')
+            from openeye import oechem
+            receptor = oechem.OEGraphMol()
+            receptor_filename = f'../receptors/monomer/Mpro-{fragment}_0_bound-receptor.oeb.gz'
+            from openeye import oedocking
+            oedocking.OEReadReceptorFile(receptor, receptor_filename)
+            print(f'  Receptor has {receptor.NumAtoms()} atoms.')
+
+            # Read reference fragment with coordinates
+            refmol_filename = f'../receptors/monomer/Mpro-{fragment}_0_bound-ligand.mol2'
+            refmol = None
+            with oechem.oemolistream(refmol_filename) as ifs:
+                for mol in ifs.GetOEGraphMols():
+                    refmol = mol
+                    break
+            if refmol is None:
+                raise Exception(f'Could not read {refmol_filename}')
+            print(f'Reference molecule has {refmol.NumAtoms()} atoms')
+            # Replace title
+            refmol.SetTitle(fragments[fragment])
+            # Copy data from assayed molecules (if present)
+            for mol in assayed_molecules:
+                if mol.GetTitle() == fragments[fragment]:
+                    print(f'{refmol.GetTitle()} found in target_molecules; copying SDData')
+                    oechem.OECopySDData(refmol, mol)
+                    break
+
+            # Generate poses for all molecules
+            target_molecules_filename = prefix + f'-conformers-{fragment}.sdf'
+            output_filename = f'{prefix}-dockscores-{fragment}.sdf'
+            generate_poses(receptor, refmol, target_molecules_filename, output_filename)
