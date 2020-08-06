@@ -313,7 +313,7 @@ def generate_poses(receptor, refmol, target_molecules_filename, output_filename,
     refmol : openeye.oechem.OEGraphMol
         Reference molecule which shares some part in common with the proposed molecule
     target_molecules_filename : str
-        Molecules to build
+        Input file of molecules to build
     output_filename : str
         Output filename for generated conformers
     filter_series : str, optional, default=None
@@ -391,7 +391,8 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                'aminopyridine_compounds_for_FEP_benchmarking',
+                'fastgrant-table1',
+                #'aminopyridine_compounds_for_FEP_benchmarking',
                 #'nucleophilic_displacement_enumeration_for_FEP-permuted',
                 #'activity-data-2020-07-29',
                 #'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
@@ -428,6 +429,6 @@ if __name__ == '__main__':
                     break
 
             # Generate poses for all molecules
-            target_molecules_filename = prefix + f'-conformers-{fragment}.sdf'
+            target_molecules_filename = prefix + f'.csv'
             output_filename = f'{prefix}-dockscores-{fragment}.sdf'
             generate_poses(receptor, refmol, target_molecules_filename, output_filename)

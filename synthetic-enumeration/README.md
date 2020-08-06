@@ -11,6 +11,7 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 * `nucleophilic_displacement_enumeration_for_FEP.csv` - nucleophilic displacement series (15918)
 * `activity-data-2020-07-29.csv` - all compounds with activity data for retrospective benchmarking (888)
 * `aminopyridine_compounds_for_FEP_benchmarking.csv` - 3-aminopyridine retrospective benchmarking compounds from Matthew Robinson (70)
+* `fastgrant-table1.csv` - sentinel cases from Fast Grant application (Alpha Lee) (11)
 
 ### Docked conformers
 * `primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf.gz`
