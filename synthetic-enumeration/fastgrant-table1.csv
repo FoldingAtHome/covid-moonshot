@@ -1,0 +1,11 @@
+SMILES,CID,IC50_uM
+O=C(Cc1cccc(Cl)c1)Nc1cncc2ccccc12,ADA-UCB-6c2cb422-1,0.72
+Cc1ccncc1NC(=O)Cc1cccc(Cl)c1,TRY-UNI-714a760b-6,24.6
+O=C(Cc1cccc(Cl)c1)Nc1cccnc1,EDG-MED-0da5ad92-2,53.7
+O=C(Cc1cccc(Cl)c1)Nn1cnc2ccccc21,JAN-GHE-5a013bed-2,8.30
+O=C(Cc1cccc(Cl)c1)Nn1cnc2ccccc2c1=O,JAN-GHE-5a013bed-3,8.65
+Cc1nnn(NC(=O)Cc2cccc(Cl)c2)c1C,JAN-GHE-5a013bed-1,14.6
+Cc1ccncc1NC(=O)Cc1cccc(Br)c1,JAN-GHE-83b26c96-12,20.6
+Cc1ccncc1NC(=O)Cc1cccc(C#N)c1,TRY-UNI-714a760b-20,61.3
+Cc1ccncc1NC(=O)Cc1cccc(O)c1,ALP-POS-95b75b4d-2,200
+Cc1ccncc1NC(=O)Cc1cccc(CO)c1,EDJ-MED-e58735b6-2,200
