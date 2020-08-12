@@ -103,6 +103,11 @@ def compute_common_substructure(refmol, newmol):
     # Set up MCSS
     from openeye import oechem
     mcss = oechem.OEMCSSearch(oechem.OEMCSType_Exhaustive)
+
+    # DEBUG
+    #atomexpr = oechem.OEExprOpts_Hybridization
+    #bondexpr = oechem.OEExprOpts_Aromaticity
+
     mcss.Init(refmol, atomexpr, bondexpr)
     mcss.SetMCSFunc(oechem.OEMCSMaxAtomsCompleteCycles())
     unique = True
@@ -191,11 +196,19 @@ def generate_restricted_conformers(receptor, refmol, mol):
     #omegaOpts = oeomega.OEOmegaOptions()
     omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
 
+    # DEBUG
+    atomexpr = oechem.OEExprOpts_DefaultAtoms
+    bondexpr = oechem.OEExprOpts_DefaultBonds
+    #atomexpr = oechem.OEExprOpts_Hybridization
+    #bondexpr = oechem.OEExprOpts_Aromaticity
+
     # Set the fixed reference molecule
     omegaFixOpts = oeomega.OEConfFixOptions()
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
     omegaFixOpts.SetFixMol(fixmol)
+    omegaFixOpts.SetAtomExpr(atomexpr) # DEBUG
+    omegaFixOpts.SetBondExpr(bondexpr) # DEBUG
     omegaOpts.SetConfFixOptions(omegaFixOpts)
 
     molBuilderOpts = oeomega.OEMolBuilderOptions()
@@ -205,7 +218,7 @@ def generate_restricted_conformers(receptor, refmol, mol):
     omegaOpts.SetWarts(False) # expand molecule title
     omegaOpts.SetStrictStereo(False) # set strict stereochemistry
     omegaOpts.SetIncludeInput(False) # don't include input
-    #omegaOpts.SetMaxConfs(50000) # generate lots of conformers
+    omegaOpts.SetMaxConfs(50000) # generate lots of conformers
     #omegaOpts.SetEnergyWindow(10.0) # allow high energies
     omega = oeomega.OEOmega(omegaOpts)
 
@@ -304,7 +317,7 @@ def get_series(smi):
 def generate_restricted_conformers_star(args):
     return generate_restricted_conformers(*args)
 
-def generate_poses(receptor, refmol, target_molecules_filename, output_filename, filter_series=None):
+def generate_poses(receptor, refmol, target_molecules, output_filename):
     """
     Parameters
     ----------
@@ -312,32 +325,11 @@ def generate_poses(receptor, refmol, target_molecules_filename, output_filename,
         Receptor (already prepped for docking) for identifying optimal pose
     refmol : openeye.oechem.OEGraphMol
         Reference molecule which shares some part in common with the proposed molecule
-    target_molecules_filename : str
-        Input file of molecules to build
+    target_molecules : list of OEMol
+        List of molecules to build
     output_filename : str
         Output filename for generated conformers
-    filter_series : str, optional, default=None
-        If specified, filter out only molecules matching this series name from the loaded molecules
     """
-    # Read target molecules
-    print('Reading target molecules...')
-    from openeye import oechem
-    target_molecules = list()
-    with oechem.oemolistream(target_molecules_filename) as ifs:
-        for mol in ifs.GetOEGraphMols():
-            target_molecules.append( oechem.OEGraphMol(mol) )
-    if len(target_molecules) == 0:
-        raise Exception('No target molecules specified; check filename!')
-    print(f'  There are {len(target_molecules)} target molecules')
-
-    if filter_series is not None:
-        print(f'Filtering out series {filter_series}...')
-        target_molecules = [ mol for mol in target_molecules if get_series(oechem.OECreateSmiString(mol)) == filter_series ]
-        print(f'  There are {len(target_molecules)} target molecules')
-        with oechem.oemolostream(f'filtered.mol2') as ofs:
-            for mol in target_molecules:
-                oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(mol))
-
     # Expand uncertain stereochemistry
     print('Expanding uncertain stereochemistry...')
     target_molecules = expand_stereochemistry(target_molecules)
@@ -391,7 +383,9 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                'fastgrant-table1',
+                'activity-data-2020-08-11',
+                #'aminopyridine-retrospective-jdc-2020-08-11',
+                #'fastgrant-table1',
                 #'aminopyridine_compounds_for_FEP_benchmarking',
                 #'nucleophilic_displacement_enumeration_for_FEP-permuted',
                 #'activity-data-2020-07-29',
@@ -428,7 +422,37 @@ if __name__ == '__main__':
                     oechem.OECopySDData(refmol, mol)
                     break
 
-            # Generate poses for all molecules
+            # Read target molecules
             target_molecules_filename = prefix + f'.csv'
+            print('Reading target molecules...')
+            from openeye import oechem
+            target_molecules = list()
+            with oechem.oemolistream(target_molecules_filename) as ifs:
+                for mol in ifs.GetOEGraphMols():
+                    target_molecules.append( oechem.OEGraphMol(mol) )
+            if len(target_molecules) == 0:
+                raise Exception('No target molecules specified; check filename!')
+            print(f'  There are {len(target_molecules)} target molecules')
+
+            # Filter series and include only those that include the required scaffold
+            #filter_series = '3-aminopyridine-like'
+            filter_series = None
+            if filter_series is not None:
+                print(f'Filtering out series {filter_series}...')
+                target_molecules = [ mol for mol in target_molecules if get_series(oechem.OECreateSmiString(mol)) == filter_series ]
+                print(f'  There are {len(target_molecules)} target molecules')
+                with oechem.oemolostream(f'filtered.mol2') as ofs:
+                    for mol in target_molecules:
+                        oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(mol))
+
+            # Filter series to include only those with IC50s
+            filter_IC50 = True
+            if filter_IC50:
+                print(f'Retaining only molecules with IC50s...')
+                target_molecules = [ mol for mol in target_molecules if len(oechem.OEGetSDData(mol, 'f_avg_pIC50'))>0 ]
+                print(f'  There are {len(target_molecules)} target molecules')
+
+
+            # Generate poses for all molecules
             output_filename = f'{prefix}-dockscores-{fragment}.sdf'
-            generate_poses(receptor, refmol, target_molecules_filename, output_filename)
+            generate_poses(receptor, refmol, target_molecules, output_filename)
