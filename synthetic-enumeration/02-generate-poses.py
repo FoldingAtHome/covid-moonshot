@@ -142,11 +142,10 @@ def generate_restricted_conformers(receptor, refmol, mol):
     from openeye import oechem, oeomega
 
     # Get core fragment
-    #print('Identifying core fragment...')
-    atomexpr = oechem.OEExprOpts_Hybridization
-    bondexpr = oechem.OEExprOpts_Aromaticity
-
-    core_fragment = GetCoreFragment(refmol, [mol], atomexpr=atomexpr, bondexpr=bondexpr)
+    #atomexpr = oechem.OEExprOpts_Hybridization
+    #bondexpr = oechem.OEExprOpts_Aromaticity
+    #core_fragment = GetCoreFragment(refmol, [mol], atomexpr=atomexpr, bondexpr=bondexpr)
+    core_fragment = GetCoreFragment(refmol, [mol])
     oechem.OESuppressHydrogens(core_fragment)
     fixmol = core_fragment
     #print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
@@ -163,19 +162,16 @@ def generate_restricted_conformers(receptor, refmol, mol):
     #omegaOpts = oeomega.OEOmegaOptions()
     omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
 
-    # DEBUG
-    atomexpr = oechem.OEExprOpts_DefaultAtoms
-    bondexpr = oechem.OEExprOpts_DefaultBonds
-    atomexpr = oechem.OEExprOpts_Hybridization
-    bondexpr = oechem.OEExprOpts_Aromaticity
-
     # Set the fixed reference molecule
     omegaFixOpts = oeomega.OEConfFixOptions()
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
     omegaFixOpts.SetFixMol(fixmol)
-    omegaFixOpts.SetAtomExpr(atomexpr) # DEBUG
-    omegaFixOpts.SetBondExpr(bondexpr) # DEBUG
+    # DEBUG
+    #atomexpr = oechem.OEExprOpts_Hybridization
+    #bondexpr = oechem.OEExprOpts_Aromaticity
+    #omegaFixOpts.SetAtomExpr(atomexpr)
+    #omegaFixOpts.SetBondExpr(bondexpr)
     omegaOpts.SetConfFixOptions(omegaFixOpts)
 
     molBuilderOpts = oeomega.OEMolBuilderOptions()
@@ -359,7 +355,8 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                'activity-data-2020-08-11',
+                'RAL-THA-6b94ceba'
+                #'activity-data-2020-08-11',
                 #'aminopyridine-retrospective-jdc-2020-08-11',
                 #'fastgrant-table1',
                 #'aminopyridine_compounds_for_FEP_benchmarking',
@@ -411,8 +408,8 @@ if __name__ == '__main__':
             print(f'  There are {len(target_molecules)} target molecules')
 
             # Filter series and include only those that include the required scaffold
-            filter_series = '3-aminopyridine-like'
-            #filter_series = None
+            #filter_series = '3-aminopyridine-like'
+            filter_series = None
             if filter_series is not None:
                 print(f'Filtering out series {filter_series}...')
                 target_molecules = [ mol for mol in target_molecules if get_series(mol) == filter_series ]
@@ -422,7 +419,7 @@ if __name__ == '__main__':
                         oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(mol))
 
             # Filter series to include only those with IC50s
-            filter_IC50 = True
+            filter_IC50 = False
             if filter_IC50:
                 print(f'Retaining only molecules with IC50s...')
                 target_molecules = [ mol for mol in target_molecules if len(oechem.OEGetSDData(mol, 'f_avg_pIC50'))>0 ]
