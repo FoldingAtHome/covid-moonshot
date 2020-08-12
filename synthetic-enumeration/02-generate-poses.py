@@ -85,46 +85,6 @@ def GetFragmentScore(mol):
 
     return score
 
-def compute_common_substructure(refmol, newmol):
-    """Determine the common heavy-atom substructure between reference molecule and new molecule.
-
-    Parameters
-    ----------
-    refmol : openeye.oechem.OEMol
-        The reference molecule
-    newmol : openeye.oechem.OEMol
-        The new molecule
-
-    Returns
-    -------
-    submol : openeye.oechem.OEMol
-        Common substructure containing coordinates from refmol; only one is returned
-    """
-    # Set up MCSS
-    from openeye import oechem
-    mcss = oechem.OEMCSSearch(oechem.OEMCSType_Exhaustive)
-
-    # DEBUG
-    #atomexpr = oechem.OEExprOpts_Hybridization
-    #bondexpr = oechem.OEExprOpts_Aromaticity
-
-    mcss.Init(refmol, atomexpr, bondexpr)
-    mcss.SetMCSFunc(oechem.OEMCSMaxAtomsCompleteCycles())
-    unique = True
-    # Extract the first match
-    match = [m for m in mcss.Match(newmol, unique)][0]
-    # Create a new molecule containing just the matched substructure
-    oemol = oechem.OEMol()
-    oemol.SetTitle(refmol.GetTitle() + ':' + newmol.GetTitle())
-    atoms = list()
-    for matchpair in match.GetAtoms():
-        atom = oemol.NewAtom(matchpair.pattern)
-        atoms.append(atom)
-    for matchpair in match.GetBonds():
-        bond = oemol.NewBond(atoms[matchpair.pattern.GetBgnIdx()], atoms[matchpair.pattern.GetEndIdx()], matchpair.pattern.GetOrder())
-
-    return submol
-
 def expand_stereochemistry(mols):
     """Expand stereochemistry when uncertain
 
@@ -183,10 +143,17 @@ def generate_restricted_conformers(receptor, refmol, mol):
 
     # Get core fragment
     #print('Identifying core fragment...')
-    core_fragment = GetCoreFragment(refmol, [mol])
+    atomexpr = oechem.OEExprOpts_Hybridization
+    bondexpr = oechem.OEExprOpts_Aromaticity
+
+    core_fragment = GetCoreFragment(refmol, [mol], atomexpr=atomexpr, bondexpr=bondexpr)
     oechem.OESuppressHydrogens(core_fragment)
     fixmol = core_fragment
     #print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
+
+    MIN_CORE_ATOMS = 6
+    if core_fragment.NumAtoms() < MIN_CORE_ATOMS:
+        return None
 
     # Write core fragment (without modifying it)
     #with oechem.oemolostream(f'{prefix}-core-{fragment}.mol2') as ofs:
@@ -199,8 +166,8 @@ def generate_restricted_conformers(receptor, refmol, mol):
     # DEBUG
     atomexpr = oechem.OEExprOpts_DefaultAtoms
     bondexpr = oechem.OEExprOpts_DefaultBonds
-    #atomexpr = oechem.OEExprOpts_Hybridization
-    #bondexpr = oechem.OEExprOpts_Aromaticity
+    atomexpr = oechem.OEExprOpts_Hybridization
+    bondexpr = oechem.OEExprOpts_Aromaticity
 
     # Set the fixed reference molecule
     omegaFixOpts = oeomega.OEConfFixOptions()
@@ -218,7 +185,7 @@ def generate_restricted_conformers(receptor, refmol, mol):
     omegaOpts.SetWarts(False) # expand molecule title
     omegaOpts.SetStrictStereo(False) # set strict stereochemistry
     omegaOpts.SetIncludeInput(False) # don't include input
-    omegaOpts.SetMaxConfs(50000) # generate lots of conformers
+    #omegaOpts.SetMaxConfs(50000) # generate lots of conformers
     #omegaOpts.SetEnergyWindow(10.0) # allow high energies
     omega = oeomega.OEOmega(omegaOpts)
 
@@ -260,18 +227,27 @@ def generate_restricted_conformers(receptor, refmol, mol):
     return mol
 
 # TODO: import this from https://github.com/postera-ai/COVID_moonshot_submissions/blob/master/lib/utils.py
-def get_series(smi):
+def get_series(mol):
     from rdkit import Chem
     from rdkit.Chem import AllChem
     from rdkit.Chem import Descriptors
     series_SMARTS_dict = {
-        # "3-aminopyridine": "[R1][C,N;R0;!$(NC(=O)CN)]C(=O)[C,N;R0;!$(NC(=O)CN)][c]1cnccc1",
+        #"3-aminopyridine": "[R1][C,N;R0;!$(NC(=O)CN)]C(=O)[C,N;R0;!$(NC(=O)CN)][c]1cnccc1",
         "3-aminopyridine-like": "[R1]!@[C,N]C(=O)[C,N]!@[R1]",
         "3-aminopyridine-strict": "c1ccncc1NC(=O)!@[R1]",
         "Ugi": "[c,C:1][C](=[O])[N]([c,C,#1:2])[C]([c,C,#1:3])([c,C,#1:4])[C](=[O])[NH1][c,C:5]",
         "quinolones": "NC(=O)c1cc(=O)[nH]c2ccccc12",
         "piperazine-chloroacetamide": "O=C(CCl)N1CCNCC1",
     }
+
+    smi = oechem.OECreateSmiString(mol)
+
+    # Filter out covalent
+    try:
+        if oechem.OEGetSDData(mol,'acrylamide')=='True' or oechem.OEGetSDData(mol,'chloroacetamide')=='True':
+            return None
+    except Exception as e:
+        print(e)
 
     def check_if_smi_in_series(
         smi, SMARTS, MW_cutoff=550, num_atoms_cutoff=70, num_rings_cutoff=10
@@ -435,11 +411,11 @@ if __name__ == '__main__':
             print(f'  There are {len(target_molecules)} target molecules')
 
             # Filter series and include only those that include the required scaffold
-            #filter_series = '3-aminopyridine-like'
-            filter_series = None
+            filter_series = '3-aminopyridine-like'
+            #filter_series = None
             if filter_series is not None:
                 print(f'Filtering out series {filter_series}...')
-                target_molecules = [ mol for mol in target_molecules if get_series(oechem.OECreateSmiString(mol)) == filter_series ]
+                target_molecules = [ mol for mol in target_molecules if get_series(mol) == filter_series ]
                 print(f'  There are {len(target_molecules)} target molecules')
                 with oechem.oemolostream(f'filtered.mol2') as ofs:
                     for mol in target_molecules:
