@@ -355,12 +355,13 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                #'RAL-THA-6b94ceba'
+                'EDG-MED-0da5ad92',
+                #'RAL-THA-6b94ceba',
                 #'activity-data-2020-08-11',
                 #'aminopyridine-retrospective-jdc-2020-08-11',
                 #'fastgrant-table1',
                 #'aminopyridine_compounds_for_FEP_benchmarking',
-                'nucleophilic_displacement_enumeration_for_FEP-permuted',
+                #'nucleophilic_displacement_enumeration_for_FEP-permuted',
                 #'activity-data-2020-07-29',
                 #'primary_amine_enumeration_for_chodera_lab_FEP-permuted',
                 #'boronic_ester_enumeration_for_chodera_lab_FEP-permuted',
