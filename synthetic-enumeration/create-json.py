@@ -11,7 +11,8 @@ ligand_dict = {
     #'retrospective-aminopyridines' : 'activity-data-2020-07-29-conformers-x10789.sdf',
     #'retrospective-aminopyridines-matt' : 'aminopyridine_compounds_for_FEP_benchmarking-conformers-x10789.sdf',
     #'retrospective-aminopyridines-matt-dockscores' : 'aminopyridine_compounds_for_FEP_benchmarking-dockscores-x10789.sdf',
-    'fastgrant-table1' : 'fastgrant-table1-dockscores-x10789.sdf',
+    #'fastgrant-table1' : 'fastgrant-table1-dockscores-x10789.sdf',
+    'RAL-THA-6b94ceba' : 'RAL-THA-6b94ceba-dockscores-x10789.sdf',
 }
 receptors = [
     '../receptors/monomer/Mpro-x2646_0_bound-protein.pdb',
@@ -23,7 +24,8 @@ receptors = [
 #index = 7642 # starting index for retrospective-aminopyridines
 #index = 7802 # starting index for retrospective-aminopyridines-matt
 #index = 8086 # starting index for retrospective-aminopyridines-matt
-index = 8374 # starting index for fastgrant-table1
+#index = 8374 # starting index for fastgrant-table1
+index = 8410 # starting index for RAL-THA-6b94ceba
 
 mol_i = oechem.OEGraphMol()
 mol_j = oechem.OEGraphMol()
@@ -39,7 +41,7 @@ for series in ligand_dict:
     moldb = oechem.OEMolDatabase()
     moldb.Open(lig_file_name)
     num_mols = moldb.NumMols()
-    
+
     moldb.GetMolecule(mol_i, i)
 
     for protein in receptors:
@@ -72,7 +74,7 @@ for series in ligand_dict:
             if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
                 master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
             if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
-                master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')                
+                master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
             index += 1
 
             # Add backwards
@@ -95,10 +97,10 @@ for series in ligand_dict:
                 'ff':ff,
             }
             if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
-                master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')                
+                master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
             if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
                 master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
             index += 1
 
-with open(f"2020-08-06-fastgrant-table1.json", "w") as f:
+with open(f"2020-08-12-RAL-THA-6b94ceba1.json", "w") as f:
     json.dump(master_dict, f, sort_keys=True, indent=4, separators=(',', ': '))

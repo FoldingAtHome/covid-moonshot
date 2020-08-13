@@ -12,6 +12,7 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 * `activity-data-2020-07-29.csv` - all compounds with activity data for retrospective benchmarking (888)
 * `aminopyridine_compounds_for_FEP_benchmarking.csv` - 3-aminopyridine retrospective benchmarking compounds from Matthew Robinson (70)
 * `fastgrant-table1.csv` - sentinel cases from Fast Grant application (Alpha Lee) (11)
+* `RAL-THA-6b94ceba` - Ralph Robinson 3-aminopyridine P4 pocket exploration [`RAL-THA-6b94ceba`](https://postera.ai/covid/submissions/6b94ceba-f352-4275-ad8d-e766e56e6fa4)
 
 ### Docked conformers
 * `primary_amine_enumeration_for_chodera_lab_FEP-permuted-conformers-x10789.sdf.gz`
