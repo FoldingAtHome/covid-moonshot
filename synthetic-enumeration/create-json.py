@@ -12,7 +12,8 @@ ligand_dict = {
     #'retrospective-aminopyridines-matt' : 'aminopyridine_compounds_for_FEP_benchmarking-conformers-x10789.sdf',
     #'retrospective-aminopyridines-matt-dockscores' : 'aminopyridine_compounds_for_FEP_benchmarking-dockscores-x10789.sdf',
     #'fastgrant-table1' : 'fastgrant-table1-dockscores-x10789.sdf',
-    'RAL-THA-6b94ceba' : 'RAL-THA-6b94ceba-dockscores-x10789.sdf',
+    #'RAL-THA-6b94ceba' : 'RAL-THA-6b94ceba-dockscores-x10789.sdf',
+    'EDG-MED-0da5ad92' : 'EDG-MED-0da5ad92-dockscores-x10789.sdf',
 }
 receptors = [
     '../receptors/monomer/Mpro-x2646_0_bound-protein.pdb',
@@ -25,7 +26,8 @@ receptors = [
 #index = 7802 # starting index for retrospective-aminopyridines-matt
 #index = 8086 # starting index for retrospective-aminopyridines-matt
 #index = 8374 # starting index for fastgrant-table1
-index = 8410 # starting index for RAL-THA-6b94ceba
+#index = 8410 # starting index for RAL-THA-6b94ceba
+index = 8474 # starting index for EDG-MED-0da5ad92
 
 mol_i = oechem.OEGraphMol()
 mol_j = oechem.OEGraphMol()
@@ -102,5 +104,5 @@ for series in ligand_dict:
                 master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
             index += 1
 
-with open(f"2020-08-12-RAL-THA-6b94ceba1.json", "w") as f:
+with open(f"2020-08-13-EDG-MED-0da5ad92.json", "w") as f:
     json.dump(master_dict, f, sort_keys=True, indent=4, separators=(',', ': '))
