@@ -1,7 +1,7 @@
 from openeye import oechem
 
 """
-Sort poses by docking score
+Sort poses by docking score, preserving the first (reference) molecule in place
 """
 
 prefix = 'nucleophilic_displacement_enumeration_for_FEP'
@@ -26,8 +26,8 @@ def score(mol):
     except Exception as e:
         return 0
 
-print('Sorting molecules...')
-mols = sorted(mols, key=score)
+print('Sorting molecules, preserving first (reference) molecule...')
+mols = [mols[0]] + sorted(mols[1:], key=score)
 
 print('Writing molecules...')
 with oechem.oemolostream(sorted_filename) as ofs:
