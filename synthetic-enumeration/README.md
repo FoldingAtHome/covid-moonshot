@@ -25,6 +25,7 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 ### Scripts
 * `01-fix-csv-files.sh` - permute columns of input files
 * `02-generate-poses.py` - generate constrained input poses for a single fragment structure: `x10789` (`TRY-UNI-2eddb1ff-7`)
+* `03-sort-poses.py` - sort poses from best to worst to prioritize, filter out empty poses
 
 ### Calculation metadata
 * `2020-07-24.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` forward only built from `x2646`

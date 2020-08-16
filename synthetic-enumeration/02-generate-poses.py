@@ -181,7 +181,7 @@ def generate_restricted_conformers(receptor, refmol, mol):
     omegaOpts.SetWarts(False) # expand molecule title
     omegaOpts.SetStrictStereo(False) # set strict stereochemistry
     omegaOpts.SetIncludeInput(False) # don't include input
-    #omegaOpts.SetMaxConfs(50000) # generate lots of conformers
+    omegaOpts.SetMaxConfs(1000) # generate lots of conformers
     #omegaOpts.SetEnergyWindow(10.0) # allow high energies
     omega = oeomega.OEOmega(omegaOpts)
 
