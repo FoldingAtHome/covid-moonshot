@@ -1,0 +1,4841 @@
+TRY-UNI-2eddb1ff-7
+  -OEChem-08132011583D
+
+ 40 42  0     1  0  0  0  0  0999 V2000
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+   12.7170    2.6360   23.4450 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.0750    4.6580   22.1930 N   0  0  0  0  0  0  0  0  0  0  0  0
+   13.2020    6.6930   21.8710 O   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9780    3.4700   22.3070 C   0  0  1  0  0  0  0  0  0  0  0  0
+   14.0670    4.4610   22.7270 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.1090    5.5190   22.2110 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2146    1.5614   21.2676 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8178   -0.0830   21.6656 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.8767    1.3466   21.9140 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3262   -1.4337   20.9714 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1033    1.9849   18.9767 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0833    4.7693   22.1283 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0381    1.8287   16.7338 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1205   -0.6253   18.0434 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6681   -0.2905   23.3082 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1107   -1.6758   22.2538 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3767   -2.1249   21.7920 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4099    0.7682   22.6357 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.1802    2.9479   21.3601 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.2732    4.5015   23.8067 H   0  0  0  0  0  0  0  0  0  0  0  0
+   15.0151    4.3776   22.1755 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3009    1.6886   23.4119 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1 11  2  0  0  0  0
+  1 12  1  0  0  0  0
+  2  5  1  0  0  0  0
+  3 14  2  0  0  0  0
+  4 18  1  0  0  0  0
+  5  8  2  0  0  0  0
+  5 13  1  0  0  0  0
+  6 13  1  0  0  0  0
+  6 14  1  0  0  0  0
+  7 20  1  0  0  0  0
+  7 21  1  0  0  0  0
+  8 11  1  0  0  0  0
+  9 21  1  0  0  0  0
+  9 23  1  0  0  0  0
+ 10 23  2  0  0  0  0
+ 12 13  2  0  0  0  0
+ 14 15  1  0  0  0  0
+ 15 16  1  0  0  0  0
+ 16 17  2  0  0  0  0
+ 16 24  1  0  0  0  0
+ 17 18  1  0  0  0  0
+ 18 19  2  0  0  0  0
+ 19 20  1  0  0  0  0
+ 20 24  2  0  0  0  0
+ 21 22  1  0  0  0  0
+ 22 23  1  0  0  0  0
+  2 25  1  0  0  0  0
+  2 26  1  0  0  0  0
+  2 27  1  0  0  0  0
+  6 28  1  0  0  0  0
+  8 29  1  0  0  0  0
+  9 30  1  0  0  0  0
+ 11 31  1  0  0  0  0
+ 12 32  1  0  0  0  0
+ 15 33  1  0  0  0  0
+ 15 34  1  0  0  0  0
+ 17 35  1  0  0  0  0
+ 19 36  1  0  0  0  0
+ 21 37  1  0  0  0  0
+ 22 38  1  0  0  0  0
+ 22 39  1  0  0  0  0
+ 24 40  1  0  0  0  0
+M  END
+> <canonical_CID>
+TRY-UNI-2eddb1ff-7
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+87.191315835
+
+> <r_avg_IC50>
+0.940748777754165
+
+> <f_inhibition_at_20_uM>
+94.4703
+
+> <f_inhibition_at_50_uM>
+97.00562
+
+> <f_avg_IC50>
+3.6098563119233
+
+> <f_avg_pIC50>
+5.44251008457101
+
+> <relative_solubility_at_20_uM>
+0.99
+
+> <relative_solubility_at_100_uM>
+1.0
+
+> <trypsin_IC50>
+99.0
+
+> <NMR_std_ratio>
+304.016753887219
+
+> <acrylamide>
+False
+
+> <chloroacetamide>
+False
+
+> <series>
+3-aminopyridine-like
+
+> <clash_score>
+0.0
+
+$$$$
+EDG-MED-0da5ad92-3
+  -OEChem-08132011593D
+
+ 33 34  0     0  0  0  0  0  0999 V2000
+   12.2882    0.1603   24.2591 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.9365    0.0737   23.9258 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.2581   -0.2819   23.3594 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5246   -0.8975   21.7932 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5547   -0.4552   22.6929 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.8763   -0.8108   22.1265 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3013   -1.4232   23.1706 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2023   -0.5423   22.3612 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.0728   -1.3565   21.0162 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.5855    0.5722   25.2192 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.1896    0.4214   24.6352 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.3074   -0.2077   23.6329 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.2232   -1.3091   20.8324 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.4885    1.8218   21.7326 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0020    0.9504   21.2829 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3880    0.0514   21.8977 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.8738   -0.8452   24.0031 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.4894   -1.8022   22.5325 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.8789   -2.2696   23.5706 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3107   -1.4294   20.9543 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  9  1  0  0  0  0
+  3 11  2  0  0  0  0
+  4  6  2  0  0  0  0
+  4  8  1  0  0  0  0
+  5  9  2  0  0  0  0
+  5 11  1  0  0  0  0
+  6 15  1  0  0  0  0
+  7 10  1  0  0  0  0
+  7 15  2  0  0  0  0
+  8 10  2  0  0  0  0
+  8 13  1  0  0  0  0
+  9 17  1  0  0  0  0
+ 10 16  1  0  0  0  0
+ 11 19  1  0  0  0  0
+ 12 16  1  0  0  0  0
+ 12 17  1  0  0  0  0
+ 12 18  2  0  0  0  0
+ 14 17  1  0  0  0  0
+  1 20  1  0  0  0  0
+  2 21  1  0  0  0  0
+  3 22  1  0  0  0  0
+  4 23  1  0  0  0  0
+  5 24  1  0  0  0  0
+  6 25  1  0  0  0  0
+  7 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 13 29  1  0  0  0  0
+ 14 30  1  0  0  0  0
+ 14 31  1  0  0  0  0
+ 14 32  1  0  0  0  0
+ 16 33  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-3
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/3
+
+> <InChIKey>
+PXCFXKRZYHKUTH-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+275.08
+
+> <cLogP>
+3.71
+
+> <TPSA>
+45.23
+
+> <Rotatable Bonds>
+2
+
+> <Fraction sp3>
+0.14
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0004779
+
+> <CDD_mol_ID>
+76369642.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-07-29
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-8.305610656738281
+
+$$$$
+EDG-MED-0da5ad92-2
+  -OEChem-08132011593D
+
+ 28 29  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0901    1.9925   18.9832 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2377    0.8192   20.8600 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0713    1.8136   16.6999 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1161   -0.6121   17.9926 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0901   -1.6664   22.2639 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6579   -0.3097   23.2977 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3129   -1.4300   20.9567 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  3  2  0  0  0  0
+  1  5  1  0  0  0  0
+  2  4  2  0  0  0  0
+  2  7  1  0  0  0  0
+  3  9  1  0  0  0  0
+  4 10  1  0  0  0  0
+  5 11  2  0  0  0  0
+  6  9  2  0  0  0  0
+  6 11  1  0  0  0  0
+  7 14  2  0  0  0  0
+  8 10  2  0  0  0  0
+  8 14  1  0  0  0  0
+  9 13  1  0  0  0  0
+ 10 15  1  0  0  0  0
+ 11 17  1  0  0  0  0
+ 12 13  1  0  0  0  0
+ 12 15  1  0  0  0  0
+ 12 16  2  0  0  0  0
+  1 18  1  0  0  0  0
+  2 19  1  0  0  0  0
+  3 20  1  0  0  0  0
+  4 21  1  0  0  0  0
+  5 22  1  0  0  0  0
+  6 23  1  0  0  0  0
+  7 24  1  0  0  0  0
+  8 25  1  0  0  0  0
+ 13 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 15 28  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-2
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/2
+
+> <InChIKey>
+JXVSAHMJMLDNGG-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+x10201
+
+> <Fragalysis Link>
+https://fragalysis.diamond.ac.uk/viewer/react/preview/target/Mpro
+
+> <Enamine - REAL Space>
+Z1079621790
+
+> <Enamine - Extended REAL Space>
+s_22____57778____3020518
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+MCULE-6287436710
+
+> <Mcule Ultimate>
+JXVSAHMJMLDNGG-UHFFFAOYSA-N
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+246.06
+
+> <cLogP>
+2.92
+
+> <TPSA>
+41.99
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.08
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-05-26
+
+> <CDD_name>
+CVD-0004776
+
+> <CDD_mol_ID>
+76369639.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+52.368289247986176
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+24.074975000000002
+
+> <f_inhibition_at_50_uM>
+40.890465
+
+> <f_avg_IC50>
+53.71730677823199
+
+> <f_avg_pIC50>
+4.269885769656957
+
+> <f_curve_IC50>
+[53.71730677823199]
+
+> <f_max_inhibition_reading>
+[65.777815]
+
+> <f_min_inhibition_reading>
+[-1.333277225]
+
+> <f_hill_slope>
+[1.2883182327549483]
+
+> <f_R2>
+[0.983838474740441]
+
+> <f_concentration_uM>
+[[99.0, 49.5, 24.8, 12.4, 7.43, 2.48, 1.55, 0.773, 99.0, 49.5, 24.8, 12.4, 7.43, 2.48, 1.55, 0.773]]
+
+> <f_inhibition_list>
+[[63.78349, 49.72119, 29.75557, 17.74489, 5.465878, 1.983145, -0.8063953, -2.603664, 67.77214, 50.86719, 25.06813, 11.16795, 0.9601275, -1.725993, -0.8930444, -0.06289045]]
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+99.0
+
+> <NMR_std_ratio>
+309.41481103157815
+
+> <structure_ID>
+x10201
+
+> <structure_LINK>
+https://fragalysis.diamond.ac.uk/viewer/react/preview/target/Mpro
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-05-26
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-9.777795791625977
+
+$$$$
+EDG-MED-0da5ad92-13
+  -OEChem-08132011593D
+
+ 31 32  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8717    2.0159   16.4066 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2381    0.8198   20.8601 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0898    1.9904   18.9935 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6126   17.9930 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2857    3.0252   16.2957 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0140    1.4750   15.4624 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7889    2.0987   16.5658 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0901   -1.6664   22.2639 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6579   -0.3097   23.2977 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3129   -1.4300   20.9567 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  4  1  0  0  0  0
+  2  8  1  0  0  0  0
+  3  5  2  0  0  0  0
+  3  9  1  0  0  0  0
+  4 10  2  0  0  0  0
+  5 11  1  0  0  0  0
+  6  8  2  0  0  0  0
+  6 10  1  0  0  0  0
+  7  9  2  0  0  0  0
+  7 15  1  0  0  0  0
+  8 14  1  0  0  0  0
+  9 16  1  0  0  0  0
+ 10 18  1  0  0  0  0
+ 11 13  1  0  0  0  0
+ 11 15  2  0  0  0  0
+ 12 14  1  0  0  0  0
+ 12 16  1  0  0  0  0
+ 12 17  2  0  0  0  0
+  1 19  1  0  0  0  0
+  2 20  1  0  0  0  0
+  3 21  1  0  0  0  0
+  4 22  1  0  0  0  0
+  5 23  1  0  0  0  0
+  6 24  1  0  0  0  0
+  7 25  1  0  0  0  0
+ 13 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 14 29  1  0  0  0  0
+ 14 30  1  0  0  0  0
+ 16 31  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-13
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/13
+
+> <InChIKey>
+VUGSAYYOVNIWTI-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+Z1460846673
+
+> <Enamine - Extended REAL Space>
+s_22____7425960____3020518
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+MCULE-7053803831
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+True
+
+> <In eMolecules>
+True
+
+> <MW>
+260.07
+
+> <cLogP>
+3.22
+
+> <TPSA>
+41.99
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.14
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-06-01
+
+> <CDD_name>
+CVD-0004769
+
+> <CDD_mol_ID>
+76369632.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+0.0
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+0.35968310000000003
+
+> <f_inhibition_at_50_uM>
+3.352639
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+0.99
+
+> <relative_solubility_at_100_uM>
+1.0
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+0.0
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-06-01
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-8.77070426940918
+
+$$$$
+EDG-MED-0da5ad92-5
+  -OEChem-08132011593D
+
+ 35 36  0     1  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9485   -2.1064   22.2825 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  1  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5770   -2.3815   22.5503 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9147    0.8091   21.9987 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6177    1.8818   21.4168 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3418    0.1425   21.4950 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1575   -2.4602   21.2671 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5567   -2.6813   22.9895 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6846   -0.2412   23.3067 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2943   -1.4262   20.9502 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.4641   -3.3407   22.4608 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  8  1  0  0  0  0
+  3 11  2  0  0  0  0
+  4  6  2  0  0  0  0
+  4  9  1  0  0  0  0
+  5  8  2  0  0  0  0
+  5 11  1  0  0  0  0
+  6 16  1  0  0  0  0
+  7 10  1  0  0  0  0
+  7 16  2  0  0  0  0
+  8 15  1  0  0  0  0
+  9 10  2  0  0  0  0
+  9 13  1  0  0  0  0
+ 10 17  1  0  0  0  0
+ 11 20  1  0  0  0  0
+ 12 15  1  1  0  0  0
+ 12 17  1  0  0  0  0
+ 12 18  2  0  0  0  0
+ 14 15  1  0  0  0  0
+ 14 19  1  0  0  0  0
+  1 21  1  0  0  0  0
+  2 22  1  0  0  0  0
+  3 23  1  0  0  0  0
+  4 24  1  0  0  0  0
+  5 25  1  0  0  0  0
+  6 26  1  0  0  0  0
+  7 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 13 29  1  0  0  0  0
+ 13 30  1  0  0  0  0
+ 14 31  1  0  0  0  0
+ 14 32  1  0  0  0  0
+ 15 33  1  0  0  0  0
+ 17 34  1  0  0  0  0
+ 19 35  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-5
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/5
+
+> <InChIKey>
+YUJIYWCEKJSKBQ-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+290.08
+
+> <cLogP>
+2.76
+
+> <TPSA>
+62.22
+
+> <Rotatable Bonds>
+4
+
+> <Fraction sp3>
+0.2
+
+> <HBA>
+3
+
+> <HBD>
+2
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0004780
+
+> <CDD_mol_ID>
+76369643.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+FALSE
+
+> <SHIPMENT_DATE>
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-10.569881439208984
+
+$$$$
+EDG-MED-0da5ad92-10
+  -OEChem-08132011593D
+
+ 37 38  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0999   -2.1317   22.2006 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3255   -0.2627   23.6402 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1514    1.4586   21.2681 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.9283   -0.0733   21.7381 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.8120    1.4421   21.9115 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.0565   -2.4477   22.0823 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5198   -2.6945   23.0427 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.6474   -2.4450   21.3035 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2740   -0.5316   23.4894 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3622    0.8069   23.8781 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6692   -0.8067   24.5286 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2889   -1.4241   20.9494 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  8  1  0  0  0  0
+  3 11  2  0  0  0  0
+  4  6  2  0  0  0  0
+  4  9  1  0  0  0  0
+  5  8  2  0  0  0  0
+  5 11  1  0  0  0  0
+  6 17  1  0  0  0  0
+  7 10  1  0  0  0  0
+  7 17  2  0  0  0  0
+  8 16  1  0  0  0  0
+  9 10  2  0  0  0  0
+  9 13  1  0  0  0  0
+ 10 18  1  0  0  0  0
+ 11 20  1  0  0  0  0
+ 12 16  1  0  0  0  0
+ 12 18  1  0  0  0  0
+ 12 19  2  0  0  0  0
+ 14 16  1  0  0  0  0
+ 15 16  1  0  0  0  0
+  1 21  1  0  0  0  0
+  2 22  1  0  0  0  0
+  3 23  1  0  0  0  0
+  4 24  1  0  0  0  0
+  5 25  1  0  0  0  0
+  6 26  1  0  0  0  0
+  7 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 13 29  1  0  0  0  0
+ 13 30  1  0  0  0  0
+ 14 31  1  0  0  0  0
+ 14 32  1  0  0  0  0
+ 14 33  1  0  0  0  0
+ 15 34  1  0  0  0  0
+ 15 35  1  0  0  0  0
+ 15 36  1  0  0  0  0
+ 18 37  1  0  0  0  0
+M  END
+> <CID (canonical)>
+JAN-GHE-83b26c96-22
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/10
+
+> <InChIKey>
+QOWQEKIGADCHLL-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+x10422
+
+> <Fragalysis Link>
+https://fragalysis.diamond.ac.uk/viewer/react/preview/target/Mpro
+
+> <Enamine - REAL Space>
+Z1233377555
+
+> <Enamine - Extended REAL Space>
+s_22____3391102____5183200
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+MCULE-9013689716
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+True
+
+> <In eMolecules>
+False
+
+> <MW>
+288.1
+
+> <cLogP>
+3.96
+
+> <TPSA>
+41.99
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.25
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-06-10
+
+> <CDD_name>
+CVD-0004634
+
+> <CDD_mol_ID>
+76346453.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+66.91403689
+
+> <r_avg_IC50>
+24.52280885811704
+
+> <r_curve_IC50>
+[24.52280885811704]
+
+> <r_max_inhibition_reading>
+[100.0]
+
+> <r_min_inhibition_reading>
+[0.0]
+
+> <r_hill_slope>
+[2.478325839501523]
+
+> <r_R2>
+[0.9569970382732865]
+
+> <r_concentration_uM>
+[[100.0, 33.333, 11.111, 3.704, 1.235, 0.412, 0.137, 0.046, 0.015, 0.005, 0.002, 100.0, 33.333, 11.111, 3.704, 1.235, 0.412, 0.137, 0.046, 0.015, 0.005, 0.002]]
+
+> <r_inhibition_list>
+[[100.38715992861171, 65.35596972974044, 12.680585192210101, 2.1210610299414787, -6.317036934360757, -9.031822790262584, -6.808904775786474, -12.333013905473852, -10.0943648792314, -6.482471256209038, -3.371620616543769, 100.38715992861171, 69.15003548507225, 13.649011792808718, 2.6987928252606763, -14.397207309547873, -9.524999896686563, -14.79324159778336, -8.878757872874504, -8.21035996167574, -2.3724876291405192, 2.774748778601513]]
+
+> <f_inhibition_at_20_uM>
+49.325525
+
+> <f_inhibition_at_50_uM>
+67.95416
+
+> <f_avg_IC50>
+96.9383202483582
+
+> <f_avg_pIC50>
+4.013504510022682
+
+> <f_curve_IC50>
+[95.81098673002681, 98.07891822523378]
+
+> <f_max_inhibition_reading>
+[49.11207, 52.866209999999995]
+
+> <f_min_inhibition_reading>
+[-11.5603425, -2.9444644500000003]
+
+> <f_hill_slope>
+[1.744850621940716, 0.5912350201708094]
+
+> <f_R2>
+[0.7324373458759215, 0.628261732269572]
+
+> <f_concentration_uM>
+[[99.5, 7.46, 49.8, 2.49, 24.9, 1.55, 12.4, 0.776, 7.46, 0.388, 2.49, 0.194, 1.55, 0.1, 0.776, 0.05, 0.388, 0.194, 0.1, 0.05, 99.5, 49.8, 24.9, 12.4], [99.5, 7.46, 49.8, 2.49, 24.9, 1.55, 12.4, 0.776, 7.46, 0.388, 2.49, 0.194, 1.55, 0.1, 0.776, 0.05, 0.388, 0.194, 0.1, 0.05, 99.5, 49.8, 24.9, 12.4]]
+
+> <f_inhibition_list>
+[[52.90517, -1.008621, 29.62931, -16.78448, 9.646552, -19.68103, 4.474138, -12.12931, -7.189655, -19.43966, -5.267241, -8.293103, -3.439655, -6.827586, 3.75, 3.068965, 2.551724, 1.258621, -13.94828, -22.53448, 45.31897, 29.84483, 1.336207, -1.939655], [56.16703, 9.966741, 39.13469, 7.716817, 32.11381, 35.65779, 15.29948, 1.853042, 6.990134, 0.5729618, 1.159898, -2.314207, 0.5506023, -0.9167389, 1.93689, 0.1257721, -1.428212, 22.11353, -4.97219, -4.491461, 49.56539, 33.01657, 17.74225, 64.16334]]
+
+> <relative_solubility_at_20_uM>
+1.0
+
+> <relative_solubility_at_100_uM>
+1.0
+
+> <trypsin_IC50>
+99.0
+
+> <NMR_std_ratio>
+268.0555496857791
+
+> <structure_ID>
+x10422
+
+> <structure_LINK>
+https://fragalysis.diamond.ac.uk/viewer/react/preview/target/Mpro
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-06-10
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-10.642889022827148
+
+$$$$
+EDG-MED-0da5ad92-5
+  -OEChem-08132011593D
+
+ 35 36  0     1  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3750   -0.3035   23.6651 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  2  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+    7.1774   -1.0738   23.6355 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0257    1.1326   21.2550 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2510   -0.0130   21.8531 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6161    1.7110   21.8098 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9190   -0.5853   24.5732 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.0991    0.7546   23.7321 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1437   -1.6775   22.2120 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2943   -1.4262   20.9502 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6878   -0.8563   24.4442 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  8  1  0  0  0  0
+  3 11  2  0  0  0  0
+  4  6  2  0  0  0  0
+  4  9  1  0  0  0  0
+  5  8  2  0  0  0  0
+  5 11  1  0  0  0  0
+  6 16  1  0  0  0  0
+  7 10  1  0  0  0  0
+  7 16  2  0  0  0  0
+  8 15  1  0  0  0  0
+  9 10  2  0  0  0  0
+  9 13  1  0  0  0  0
+ 10 17  1  0  0  0  0
+ 11 20  1  0  0  0  0
+ 12 15  1  6  0  0  0
+ 12 17  1  0  0  0  0
+ 12 18  2  0  0  0  0
+ 14 15  1  0  0  0  0
+ 14 19  1  0  0  0  0
+  1 21  1  0  0  0  0
+  2 22  1  0  0  0  0
+  3 23  1  0  0  0  0
+  4 24  1  0  0  0  0
+  5 25  1  0  0  0  0
+  6 26  1  0  0  0  0
+  7 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 13 29  1  0  0  0  0
+ 13 30  1  0  0  0  0
+ 14 31  1  0  0  0  0
+ 14 32  1  0  0  0  0
+ 15 33  1  0  0  0  0
+ 17 34  1  0  0  0  0
+ 19 35  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-5
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/5
+
+> <InChIKey>
+YUJIYWCEKJSKBQ-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+290.08
+
+> <cLogP>
+2.76
+
+> <TPSA>
+62.22
+
+> <Rotatable Bonds>
+4
+
+> <Fraction sp3>
+0.2
+
+> <HBA>
+3
+
+> <HBD>
+2
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0004780
+
+> <CDD_mol_ID>
+76369643.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+FALSE
+
+> <SHIPMENT_DATE>
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-10.107316017150879
+
+$$$$
+EDG-MED-0da5ad92-14
+  -OEChem-08132011593D
+
+ 31 32  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4511   -0.8326   17.9115 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0900    1.9922   18.9838 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2375    0.8206   20.8600 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0700    1.8125   16.6998 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1699   -1.8611   17.6587 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9736   -0.3913   17.0543 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1655   -0.8587   18.7431 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0901   -1.6664   22.2639 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6579   -0.3097   23.2977 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3129   -1.4300   20.9567 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  3  2  0  0  0  0
+  1  5  1  0  0  0  0
+  2  4  2  0  0  0  0
+  2  7  1  0  0  0  0
+  3  8  1  0  0  0  0
+  4  9  1  0  0  0  0
+  5 10  2  0  0  0  0
+  6  8  2  0  0  0  0
+  6 10  1  0  0  0  0
+  7 15  2  0  0  0  0
+  8 14  1  0  0  0  0
+  9 11  2  0  0  0  0
+  9 16  1  0  0  0  0
+ 10 18  1  0  0  0  0
+ 11 13  1  0  0  0  0
+ 11 15  1  0  0  0  0
+ 12 14  1  0  0  0  0
+ 12 16  1  0  0  0  0
+ 12 17  2  0  0  0  0
+  1 19  1  0  0  0  0
+  2 20  1  0  0  0  0
+  3 21  1  0  0  0  0
+  4 22  1  0  0  0  0
+  5 23  1  0  0  0  0
+  6 24  1  0  0  0  0
+  7 25  1  0  0  0  0
+ 13 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 14 29  1  0  0  0  0
+ 14 30  1  0  0  0  0
+ 16 31  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-14
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/14
+
+> <InChIKey>
+GMLRSXPWHMPMTM-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+Z1303530476
+
+> <Enamine - Extended REAL Space>
+s_22____6391392____3020518
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+MCULE-5141198828
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+True
+
+> <In eMolecules>
+False
+
+> <MW>
+260.07
+
+> <cLogP>
+3.22
+
+> <TPSA>
+41.99
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.14
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-05-26
+
+> <CDD_name>
+CVD-0004770
+
+> <CDD_mol_ID>
+76369633.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+0.0
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+-4.5913685
+
+> <f_inhibition_at_50_uM>
+-3.8985493
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+184.72202212694927
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-05-26
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-8.914957046508789
+
+$$$$
+EDG-MED-0da5ad92-4
+  -OEChem-08132011593D
+
+ 37 38  0     0  0  0  0  0  0999 V2000
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.2455    2.4824   23.0321 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6935    1.1185   22.5160 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.1224    2.3534   24.0564 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5206    0.3126   21.9624 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9469    1.5493   23.5055 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3923    0.1730   22.9933 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.0973    3.0041   23.4827 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.9021    3.0959   22.1900 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.4510    1.2514   21.7352 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.1691    0.5580   23.3303 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5066    1.8649   24.9603 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.7797    3.3509   24.3541 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.1410    0.8045   21.0576 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.8749   -0.6798   21.6586 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1907    1.4299   24.2906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.4734    2.1150   22.6926 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.7730   -0.4056   23.8456 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.4126    0.0838   21.5101 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9144    0.9020   22.0066 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.5618    1.8550   21.3985 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4426   -0.7124   23.1676 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5472   -1.5811   22.0848 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3007   -1.4305   20.9461 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  4  1  0  0  0  0
+  2 15  1  0  0  0  0
+  3  5  1  0  0  0  0
+  3 15  2  0  0  0  0
+  4  5  2  0  0  0  0
+  4 13  1  0  0  0  0
+  5 16  1  0  0  0  0
+  6 14  1  0  0  0  0
+  6 16  1  0  0  0  0
+  6 17  2  0  0  0  0
+  7  8  1  0  0  0  0
+  7  9  1  0  0  0  0
+  8 10  1  0  0  0  0
+  9 11  1  0  0  0  0
+ 10 12  1  0  0  0  0
+ 11 12  1  0  0  0  0
+ 12 14  1  0  0  0  0
+  1 18  1  0  0  0  0
+  2 19  1  0  0  0  0
+  3 20  1  0  0  0  0
+  7 21  1  0  0  0  0
+  7 22  1  0  0  0  0
+  8 23  1  0  0  0  0
+  8 24  1  0  0  0  0
+  9 25  1  0  0  0  0
+  9 26  1  0  0  0  0
+ 10 27  1  0  0  0  0
+ 10 28  1  0  0  0  0
+ 11 29  1  0  0  0  0
+ 11 30  1  0  0  0  0
+ 12 31  1  0  0  0  0
+ 13 32  1  0  0  0  0
+ 13 33  1  0  0  0  0
+ 13 34  1  0  0  0  0
+ 14 35  1  0  0  0  0
+ 14 36  1  0  0  0  0
+ 16 37  1  0  0  0  0
+M  END
+> <CID (canonical)>
+ALE-HEI-f28a35b5-6
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/4
+
+> <InChIKey>
+PPFPAWYBPNGJHZ-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+Z1129284100
+
+> <Enamine - Extended REAL Space>
+s_22____3391102____59992
+
+> <Enamine - SCR>
+Z1129284100
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+PPFPAWYBPNGJHZ-UHFFFAOYSA-N
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+232.16
+
+> <cLogP>
+3.3
+
+> <TPSA>
+41.99
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.57
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0000081
+
+> <CDD_mol_ID>
+75708223.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+FALSE
+
+> <SHIPMENT_DATE>
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-8.325763702392578
+
+$$$$
+EDG-MED-0da5ad92-20
+  -OEChem-08132011593D
+
+ 43 45  0     0  0  0  0  0  0999 V2000
+   11.6754    3.5665   23.5417 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6121    2.6929   22.9894 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3793    3.1236   23.8056 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.4476   -1.6039   24.6996 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.2527    1.3764   22.7010 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.0199    1.8070   23.5171 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2653   -0.8259   23.8801 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6831   -2.9733   24.8217 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.5540   -2.7868   23.3045 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.9566    0.9334   22.9648 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3185   -1.4173   23.1825 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.7363   -3.5647   24.1241 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5716   -0.4742   22.6565 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1758   -0.5993   22.3213 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+    8.0271   -5.2544   24.2747 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   11.9558    4.5912   23.7674 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.6217    3.0373   22.7849 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.6501    3.8031   24.2365 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6274   -1.1433   25.2428 H   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9891    0.7028   22.2706 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0078    1.4708   23.7260 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.0719    0.2404   23.7926 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0378   -3.5665   25.4642 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.3765   -3.2446   22.7593 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0110    0.7656   21.2878 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5542    0.1704   21.9478 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3277    1.8982   21.6818 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.1509   -0.8666   21.8090 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.7648   -1.1405   23.5083 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3107   -1.4294   20.9543 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  1  0  0  0  0
+  1  3  2  0  0  0  0
+  2  5  2  0  0  0  0
+  3  6  1  0  0  0  0
+  4  7  2  0  0  0  0
+  4  8  1  0  0  0  0
+  5 13  1  0  0  0  0
+  6 13  2  0  0  0  0
+  7 15  1  0  0  0  0
+  8 17  2  0  0  0  0
+  9 11  2  0  0  0  0
+  9 14  1  0  0  0  0
+ 10 15  2  0  0  0  0
+ 10 17  1  0  0  0  0
+ 11 21  1  0  0  0  0
+ 12 16  1  0  0  0  0
+ 12 21  2  0  0  0  0
+ 13 20  1  0  0  0  0
+ 14 16  2  0  0  0  0
+ 14 19  1  0  0  0  0
+ 15 23  1  0  0  0  0
+ 16 22  1  0  0  0  0
+ 17 25  1  0  0  0  0
+ 18 22  1  0  0  0  0
+ 18 23  1  0  0  0  0
+ 18 24  2  0  0  0  0
+ 20 23  1  0  0  0  0
+  1 26  1  0  0  0  0
+  2 27  1  0  0  0  0
+  3 28  1  0  0  0  0
+  4 29  1  0  0  0  0
+  5 30  1  0  0  0  0
+  6 31  1  0  0  0  0
+  7 32  1  0  0  0  0
+  8 33  1  0  0  0  0
+  9 34  1  0  0  0  0
+ 10 35  1  0  0  0  0
+ 11 36  1  0  0  0  0
+ 12 37  1  0  0  0  0
+ 19 38  1  0  0  0  0
+ 19 39  1  0  0  0  0
+ 19 40  1  0  0  0  0
+ 20 41  1  0  0  0  0
+ 20 42  1  0  0  0  0
+ 22 43  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-20
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/20
+
+> <InChIKey>
+YMFZNLWSSHHIRN-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+351.11
+
+> <cLogP>
+5.28
+
+> <TPSA>
+45.23
+
+> <Rotatable Bonds>
+4
+
+> <Fraction sp3>
+0.1
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0004777
+
+> <CDD_mol_ID>
+76369640.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+FALSE
+
+> <SHIPMENT_DATE>
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-10.287233352661133
+
+$$$$
+EDG-MED-0da5ad92-19
+  -OEChem-08132011593D
+
+ 40 42  0     0  0  0  0  0  0999 V2000
+    6.5871   -2.1492   24.2733 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.5978    0.7004   23.4713 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2654   -1.2499   23.4506 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.2201    0.5414   23.3222 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2412   -3.2826   24.7561 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.4755   -0.0998   22.7397 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2519   -2.6175   23.5935 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5976   -1.2180   21.7101 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.5978   -1.4840   23.1107 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.7200   -0.4178   22.4416 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.5736   -3.5168   24.4162 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9754   -1.0590   21.8591 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2749   -0.5842   22.2870 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+    9.3808   -4.9152   25.0119 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   14.0581   -2.0463   20.9563 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+    5.5495   -1.9668   24.5379 H   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9872    1.4474   24.1571 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7452   -0.3699   23.0802 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5458    1.1708   23.8978 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6998   -3.9742   25.3963 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.5464    0.0359   22.8662 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2912   -2.7968   23.3268 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.2041   -1.9648   21.0239 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2749    1.9233   21.6417 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0212    0.7013   21.3161 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5846    0.1979   21.9563 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3105   -1.4287   20.9537 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  3  2  0  0  0  0
+  1  5  1  0  0  0  0
+  2  4  2  0  0  0  0
+  2  6  1  0  0  0  0
+  3 13  1  0  0  0  0
+  4 14  1  0  0  0  0
+  5 16  2  0  0  0  0
+  6 17  2  0  0  0  0
+  7 10  2  0  0  0  0
+  7 12  1  0  0  0  0
+  8 13  2  0  0  0  0
+  8 16  1  0  0  0  0
+  9 14  2  0  0  0  0
+  9 17  1  0  0  0  0
+ 10 20  1  0  0  0  0
+ 11 15  1  0  0  0  0
+ 11 20  2  0  0  0  0
+ 12 15  2  0  0  0  0
+ 12 19  1  0  0  0  0
+ 13 22  1  0  0  0  0
+ 14 22  1  0  0  0  0
+ 15 21  1  0  0  0  0
+ 16 24  1  0  0  0  0
+ 17 25  1  0  0  0  0
+ 18 21  1  0  0  0  0
+ 18 22  1  0  0  0  0
+ 18 23  2  0  0  0  0
+  1 26  1  0  0  0  0
+  2 27  1  0  0  0  0
+  3 28  1  0  0  0  0
+  4 29  1  0  0  0  0
+  5 30  1  0  0  0  0
+  6 31  1  0  0  0  0
+  7 32  1  0  0  0  0
+  8 33  1  0  0  0  0
+  9 34  1  0  0  0  0
+ 10 35  1  0  0  0  0
+ 11 36  1  0  0  0  0
+ 19 37  1  0  0  0  0
+ 19 38  1  0  0  0  0
+ 19 39  1  0  0  0  0
+ 21 40  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-19
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/19
+
+> <InChIKey>
+HMSJLHSVPCHVSS-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+371.06
+
+> <cLogP>
+6.07
+
+> <TPSA>
+45.23
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.05
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0004775
+
+> <CDD_mol_ID>
+76369638.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+FALSE
+
+> <SHIPMENT_DATE>
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-11.527215003967285
+
+$$$$
+EDG-MED-0da5ad92-9
+  -OEChem-08132011593D
+
+ 37 38  0     1  0  0  0  0  0999 V2000
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.6827    1.1370   22.5140 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5218    0.3114   21.9622 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.2147    2.4890   23.0277 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9444    1.5428   23.4998 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3924    0.1720   22.9930 C   0  0  1  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+   11.1286    2.2835   24.0310 N   0  3  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.1725    0.5829   23.3244 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.4342    1.2827   21.7300 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.1392    0.7910   21.0520 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.8875   -0.6799   21.6692 H   0  0  0  0  0  0  0  0  0  0  0  0
+   13.0211    3.0272   23.5344 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.8063    3.1160   22.2285 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5050    2.1598   22.7083 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2310    1.4566   24.3254 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.7711   -0.4087   23.8451 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0304   -0.0747   21.7589 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.7499    1.5500   21.8770 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.1025    1.3670   21.2770 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4422   -0.7122   23.1675 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.5462   -1.5815   22.0846 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3007   -1.4305   20.9461 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.5059    1.7843   24.8488 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.8202    3.1995   24.3848 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  4  1  0  0  0  0
+  2 14  1  0  0  0  0
+  3  5  1  0  0  0  0
+  3 14  2  0  0  0  0
+  4  5  2  0  0  0  0
+  4 12  1  0  0  0  0
+  5 15  1  0  0  0  0
+  6 13  1  0  0  0  0
+  6 15  1  0  0  0  0
+  6 17  2  0  0  0  0
+  7  8  1  0  0  0  0
+  7  9  1  0  0  0  0
+  8 11  1  0  0  0  0
+  9 16  1  0  0  0  0
+ 10 11  1  0  0  0  0
+ 10 16  1  0  0  0  0
+ 11 13  1  6  0  0  0
+  1 18  1  0  0  0  0
+  2 19  1  0  0  0  0
+  3 20  1  0  0  0  0
+  7 21  1  0  0  0  0
+  7 22  1  0  0  0  0
+  8 23  1  0  0  0  0
+  8 24  1  0  0  0  0
+  9 25  1  0  0  0  0
+  9 26  1  0  0  0  0
+ 10 27  1  0  0  0  0
+ 10 28  1  0  0  0  0
+ 11 29  1  0  0  0  0
+ 12 30  1  0  0  0  0
+ 12 31  1  0  0  0  0
+ 12 32  1  0  0  0  0
+ 13 33  1  0  0  0  0
+ 13 34  1  0  0  0  0
+ 15 35  1  0  0  0  0
+ 16 36  1  0  0  0  0
+ 16 37  1  0  0  0  0
+M  CHG  1  16   1
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-9
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/9
+
+> <InChIKey>
+RMJGRRRPIDPPAR-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+Z2503845719
+
+> <Enamine - Extended REAL Space>
+s_240690____7400680____11768802
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+233.15
+
+> <cLogP>
+1.72
+
+> <TPSA>
+54.02
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.54
+
+> <HBA>
+3
+
+> <HBD>
+2
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-06-16
+
+> <CDD_name>
+CVD-0004783
+
+> <CDD_mol_ID>
+76369646.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+0.0
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+-1.90836
+
+> <f_inhibition_at_50_uM>
+16.688875
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+1.0
+
+> <relative_solubility_at_100_uM>
+1.0
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+0.0
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-06-16
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-7.606249809265137
+
+$$$$
+EDG-MED-0da5ad92-12
+  -OEChem-08132011593D
+
+ 31 32  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    3.7552    2.2081   19.0465 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2445    0.8151   20.8640 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0770    1.8105   16.6942 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1166   -0.6116   17.9931 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0065    3.2513   19.2809 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.0990    2.2017   18.1647 H   0  0  0  0  0  0  0  0  0  0  0  0
+    3.1657    1.8000   19.8798 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0901   -1.6664   22.2639 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6579   -0.3097   23.2977 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3129   -1.4300   20.9567 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  8  1  0  0  0  0
+  3 11  2  0  0  0  0
+  4  9  2  0  0  0  0
+  4 10  1  0  0  0  0
+  5  8  2  0  0  0  0
+  5 11  1  0  0  0  0
+  6  9  1  0  0  0  0
+  6 15  2  0  0  0  0
+  7 10  2  0  0  0  0
+  7 15  1  0  0  0  0
+  8 14  1  0  0  0  0
+  9 13  1  0  0  0  0
+ 10 16  1  0  0  0  0
+ 11 18  1  0  0  0  0
+ 12 14  1  0  0  0  0
+ 12 16  1  0  0  0  0
+ 12 17  2  0  0  0  0
+  1 19  1  0  0  0  0
+  2 20  1  0  0  0  0
+  3 21  1  0  0  0  0
+  4 22  1  0  0  0  0
+  5 23  1  0  0  0  0
+  6 24  1  0  0  0  0
+  7 25  1  0  0  0  0
+ 13 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 14 29  1  0  0  0  0
+ 14 30  1  0  0  0  0
+ 16 31  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-12
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/12
+
+> <InChIKey>
+BMYRQBMWNFDONV-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+Z1354993587
+
+> <Enamine - Extended REAL Space>
+s_22____6725666____3020518
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+MCULE-5462790075
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+True
+
+> <In eMolecules>
+True
+
+> <MW>
+260.07
+
+> <cLogP>
+3.22
+
+> <TPSA>
+41.99
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.14
+
+> <HBA>
+2
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-06-01
+
+> <CDD_name>
+CVD-0004768
+
+> <CDD_mol_ID>
+76369631.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+38.63234517589564
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+19.840895
+
+> <f_inhibition_at_50_uM>
+42.669205
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+1.0
+
+> <relative_solubility_at_100_uM>
+1.0
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-06-01
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-10.338769912719727
+
+$$$$
+EDG-MED-0da5ad92-7
+  -OEChem-08132011593D
+
+ 44 45  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5696    6.1171   23.9022 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.8440    5.3304   24.9819 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.4039    3.9599   24.4751 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5859    3.1362   23.9838 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   10.1084    1.8832   23.5136 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6786    2.3599   23.4040 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4031    0.7826   22.6431 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1301   21.7912 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3516    1.8947   21.6735 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0080    0.7864   21.3023 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5204    0.1416   21.9380 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9338    6.2531   23.0215 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.8654    7.1053   24.2687 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.4741    5.5861   23.5895 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0909   -1.6663   22.2641 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6586   -0.3096   23.2979 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.5064    5.2122   25.8473 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.9707    5.9017   25.3174 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.8833    3.4103   25.2692 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6760    4.0716   23.6617 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.1006    3.6434   23.1616 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.2996    2.9549   24.7938 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3129   -1.4300   20.9567 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1 10  1  0  0  0  0
+  2 11  1  0  0  0  0
+  3  5  2  0  0  0  0
+  3  7  1  0  0  0  0
+  4  8  1  0  0  0  0
+  4 11  2  0  0  0  0
+  5 19  1  0  0  0  0
+  6  9  1  0  0  0  0
+  6 19  2  0  0  0  0
+  7  9  2  0  0  0  0
+  7 13  1  0  0  0  0
+  8 10  2  0  0  0  0
+  8 15  1  0  0  0  0
+  9 20  1  0  0  0  0
+ 10 22  1  0  0  0  0
+ 11 23  1  0  0  0  0
+ 12 15  1  0  0  0  0
+ 12 20  1  0  0  0  0
+ 12 21  2  0  0  0  0
+ 14 16  1  0  0  0  0
+ 16 17  1  0  0  0  0
+ 17 18  1  0  0  0  0
+ 18 22  1  0  0  0  0
+  1 24  1  0  0  0  0
+  2 25  1  0  0  0  0
+  3 26  1  0  0  0  0
+  4 27  1  0  0  0  0
+  5 28  1  0  0  0  0
+  6 29  1  0  0  0  0
+ 13 30  1  0  0  0  0
+ 13 31  1  0  0  0  0
+ 13 32  1  0  0  0  0
+ 14 33  1  0  0  0  0
+ 14 34  1  0  0  0  0
+ 14 35  1  0  0  0  0
+ 15 36  1  0  0  0  0
+ 15 37  1  0  0  0  0
+ 16 38  1  0  0  0  0
+ 16 39  1  0  0  0  0
+ 17 40  1  0  0  0  0
+ 17 41  1  0  0  0  0
+ 18 42  1  0  0  0  0
+ 18 43  1  0  0  0  0
+ 20 44  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-7
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/7
+
+> <InChIKey>
+BNLQGZVZNCOJKF-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+332.13
+
+> <cLogP>
+4.4
+
+> <TPSA>
+51.22
+
+> <Rotatable Bonds>
+7
+
+> <Fraction sp3>
+0.33
+
+> <HBA>
+3
+
+> <HBD>
+1
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0004782
+
+> <CDD_mol_ID>
+76369645.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+FALSE
+
+> <SHIPMENT_DATE>
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-11.261600494384766
+
+$$$$
+EDG-MED-0da5ad92-17
+  -OEChem-08132011593D
+
+ 33 34  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    4.8691    1.9978   16.4970 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0890    1.9928   18.9883 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1144   -0.6143   17.9920 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5967    0.1955   21.9434 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2636    1.9211   21.6554 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0170    0.7229   21.3122 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0901   -1.6664   22.2639 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6579   -0.3097   23.2977 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0257    2.4872   16.7035 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.2084    1.9012   15.5647 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3129   -1.4300   20.9567 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  7  1  0  0  0  0
+  3 10  2  0  0  0  0
+  4  7  2  0  0  0  0
+  4 10  1  0  0  0  0
+  5  8  1  0  0  0  0
+  5 11  2  0  0  0  0
+  6  9  1  0  0  0  0
+  6 15  2  0  0  0  0
+  7 14  1  0  0  0  0
+  8  9  2  0  0  0  0
+  8 13  1  0  0  0  0
+  9 17  1  0  0  0  0
+ 10 19  1  0  0  0  0
+ 11 15  1  0  0  0  0
+ 11 16  1  0  0  0  0
+ 12 14  1  0  0  0  0
+ 12 17  1  0  0  0  0
+ 12 18  2  0  0  0  0
+  1 20  1  0  0  0  0
+  2 21  1  0  0  0  0
+  3 22  1  0  0  0  0
+  4 23  1  0  0  0  0
+  5 24  1  0  0  0  0
+  6 25  1  0  0  0  0
+ 13 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 14 29  1  0  0  0  0
+ 14 30  1  0  0  0  0
+ 16 31  1  0  0  0  0
+ 16 32  1  0  0  0  0
+ 17 33  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-17
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/17
+
+> <InChIKey>
+WIFKVMYETJFXHA-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+275.08
+
+> <cLogP>
+2.81
+
+> <TPSA>
+68.01
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.14
+
+> <HBA>
+3
+
+> <HBD>
+2
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+
+> <CDD_name>
+CVD-0004773
+
+> <CDD_mol_ID>
+76369636.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+
+> <f_inhibition_at_50_uM>
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+
+> <relative_solubility_at_100_uM>
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+FALSE
+
+> <SHIPMENT_DATE>
+
+> <ASSAYED>
+FALSE
+
+> <clash_score>
+0
+
+> <docking_score>
+-9.935342788696289
+
+$$$$
+EDG-MED-0da5ad92-18
+  -OEChem-08132011593D
+
+ 33 34  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    8.3920   -0.8068   17.9780 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0885    1.9944   18.9725 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0711    1.8136   16.6999 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.3185    1.9081   21.6592 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0130    0.7490   21.3076 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5491    0.1655   21.9458 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0901   -1.6664   22.2639 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6579   -0.3097   23.2977 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.8800   -1.2441   18.7285 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.7415   -0.8136   17.0449 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3129   -1.4300   20.9567 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  7  1  0  0  0  0
+  3 10  2  0  0  0  0
+  4  6  2  0  0  0  0
+  4  8  1  0  0  0  0
+  5  7  2  0  0  0  0
+  5 10  1  0  0  0  0
+  6 15  1  0  0  0  0
+  7 14  1  0  0  0  0
+  8  9  2  0  0  0  0
+  8 13  1  0  0  0  0
+  9 11  1  0  0  0  0
+  9 17  1  0  0  0  0
+ 10 19  1  0  0  0  0
+ 11 15  2  0  0  0  0
+ 11 16  1  0  0  0  0
+ 12 14  1  0  0  0  0
+ 12 17  1  0  0  0  0
+ 12 18  2  0  0  0  0
+  1 20  1  0  0  0  0
+  2 21  1  0  0  0  0
+  3 22  1  0  0  0  0
+  4 23  1  0  0  0  0
+  5 24  1  0  0  0  0
+  6 25  1  0  0  0  0
+ 13 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 14 29  1  0  0  0  0
+ 14 30  1  0  0  0  0
+ 16 31  1  0  0  0  0
+ 16 32  1  0  0  0  0
+ 17 33  1  0  0  0  0
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-18
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/18
+
+> <InChIKey>
+HMBNRINOSXPSCN-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+False
+
+> <Enamine - Extended REAL Space>
+False
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+275.08
+
+> <cLogP>
+2.81
+
+> <TPSA>
+68.01
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.14
+
+> <HBA>
+3
+
+> <HBD>
+2
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-06-16
+
+> <CDD_name>
+CVD-0004774
+
+> <CDD_mol_ID>
+76369637.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+0.0
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+6.437589
+
+> <f_inhibition_at_50_uM>
+20.066200000000002
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+1.0
+
+> <relative_solubility_at_100_uM>
+0.99
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+384.0204237
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-06-16
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-9.422473907470703
+
+$$$$
+EDG-MED-0da5ad92-9
+  -OEChem-08132011593D
+
+ 37 38  0     1  0  0  0  0  0999 V2000
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.8663   -1.5108   25.3772 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2194   -0.1906   24.6922 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4723   -1.4751   25.9824 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.7636    0.2457   24.3074 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1572    0.2554   23.6753 C   0  0  2  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.4857   -1.0825   24.9332 N   0  3  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.9300   -2.3288   24.6506 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6045   -1.7244   26.1606 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.3556    0.5902   25.4583 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.1953   -0.2969   24.1885 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1648   -2.4531   26.3696 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.4010   -0.7320   26.7832 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.6767    0.9942   25.1071 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.9680    0.4285   23.5701 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.3913    1.3030   23.3851 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.3310    0.1486   21.4727 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.9008    0.7929   22.0129 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.6579    1.8987   21.4301 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6672   -1.5239   22.5672 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2522   -0.8310   22.1734 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.3007   -1.4305   20.9461 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.4717   -1.8031   24.1985 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.5381   -1.0796   25.3358 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  4  1  0  0  0  0
+  2 14  1  0  0  0  0
+  3  5  1  0  0  0  0
+  3 14  2  0  0  0  0
+  4  5  2  0  0  0  0
+  4 12  1  0  0  0  0
+  5 15  1  0  0  0  0
+  6 13  1  0  0  0  0
+  6 15  1  0  0  0  0
+  6 17  2  0  0  0  0
+  7  8  1  0  0  0  0
+  7  9  1  0  0  0  0
+  8 11  1  0  0  0  0
+  9 16  1  0  0  0  0
+ 10 11  1  0  0  0  0
+ 10 16  1  0  0  0  0
+ 11 13  1  1  0  0  0
+  1 18  1  0  0  0  0
+  2 19  1  0  0  0  0
+  3 20  1  0  0  0  0
+  7 21  1  0  0  0  0
+  7 22  1  0  0  0  0
+  8 23  1  0  0  0  0
+  8 24  1  0  0  0  0
+  9 25  1  0  0  0  0
+  9 26  1  0  0  0  0
+ 10 27  1  0  0  0  0
+ 10 28  1  0  0  0  0
+ 11 29  1  0  0  0  0
+ 12 30  1  0  0  0  0
+ 12 31  1  0  0  0  0
+ 12 32  1  0  0  0  0
+ 13 33  1  0  0  0  0
+ 13 34  1  0  0  0  0
+ 15 35  1  0  0  0  0
+ 16 36  1  0  0  0  0
+ 16 37  1  0  0  0  0
+M  CHG  1  16   1
+M  END
+> <CID (canonical)>
+EDG-MED-0da5ad92-9
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/9
+
+> <InChIKey>
+RMJGRRRPIDPPAR-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+Z2503845719
+
+> <Enamine - Extended REAL Space>
+s_240690____7400680____11768802
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+233.15
+
+> <cLogP>
+1.72
+
+> <TPSA>
+54.02
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.54
+
+> <HBA>
+3
+
+> <HBD>
+2
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-06-16
+
+> <CDD_name>
+CVD-0004783
+
+> <CDD_mol_ID>
+76369646.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+0.0
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+-1.90836
+
+> <f_inhibition_at_50_uM>
+16.688875
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+1.0
+
+> <relative_solubility_at_100_uM>
+1.0
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+0.0
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-06-16
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-7.458736896514893
+
+$$$$
+EDG-MED-0da5ad92-1
+  -OEChem-08132011593D
+
+ 34 35  0     0  0  0  0  0  0999 V2000
+   12.3850    1.3610   23.0530 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.0490    1.0010   23.0460 C   0  0  0  0  0  0  0  0  0  0  0  0
+   13.3680    0.4840   22.6240 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0000    1.4070   18.8080 C   0  0  0  0  0  0  0  0  0  0  0  0
+   11.6520   -1.1420   22.1450 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.5330    1.3060   17.5390 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.2400   -0.0390   18.2610 C   0  0  0  0  0  0  0  0  0  0  0  0
+   10.6720   -0.2500   22.5660 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.6260    0.7590   19.8690 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.7930    0.0210   19.5790 C   0  0  0  0  0  0  0  0  0  0  0  0
+   12.9770   -0.7640   22.1810 C   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6020    0.1230   21.2070 C   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0980    0.9060   21.2740 C   0  0  0  0  0  0  0  0  0  0  0  0
+    7.1620   -1.9094   21.1103 C   0  0  0  0  0  0  0  0  0  0  0  0
+    9.2100   -0.5900   22.3990 C   0  0  0  0  0  0  0  0  0  0  0  0
+    6.6320    0.5940   17.2520 N   0  0  0  0  0  0  0  0  0  0  0  0
+    7.5630   -0.5230   20.6330 N   0  0  0  0  0  0  0  0  0  0  0  0
+    9.0150    1.2120   20.8220 O   0  0  0  0  0  0  0  0  0  0  0  0
+   14.1940   -1.9100   21.6990 Cl  0  0  0  0  0  0  0  0  0  0  0  0
+   12.6720    2.3610   23.4053 H   0  0  0  0  0  0  0  0  0  0  0  0
+   10.2994    1.6973   23.4158 H   0  0  0  0  0  0  0  0  0  0  0  0
+   14.4033    0.7831   22.6425 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.0894    1.9955   18.9731 H   0  0  0  0  0  0  0  0  0  0  0  0
+   11.3638   -2.1297   21.7906 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.0712    1.8129   16.6995 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.1159   -0.6122   17.9919 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.2608    0.2179   21.4390 H   0  0  0  0  0  0  0  0  0  0  0  0
+    5.8780    0.6918   22.0149 H   0  0  0  0  0  0  0  0  0  0  0  0
+    4.7516    1.9298   21.4620 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.7124   -2.6690   20.5358 H   0  0  0  0  0  0  0  0  0  0  0  0
+    7.4063   -2.0092   22.1782 H   0  0  0  0  0  0  0  0  0  0  0  0
+    6.0810   -2.0531   20.9665 H   0  0  0  0  0  0  0  0  0  0  0  0
+    9.1114   -1.6687   22.2602 H   0  0  0  0  0  0  0  0  0  0  0  0
+    8.6679   -0.3054   23.3032 H   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0  0  0  0
+  1  3  1  0  0  0  0
+  2  8  1  0  0  0  0
+  3 11  2  0  0  0  0
+  4  6  2  0  0  0  0
+  4  9  1  0  0  0  0
+  5  8  2  0  0  0  0
+  5 11  1  0  0  0  0
+  6 16  1  0  0  0  0
+  7 10  1  0  0  0  0
+  7 16  2  0  0  0  0
+  8 15  1  0  0  0  0
+  9 10  2  0  0  0  0
+  9 13  1  0  0  0  0
+ 10 17  1  0  0  0  0
+ 11 19  1  0  0  0  0
+ 12 15  1  0  0  0  0
+ 12 17  1  0  0  0  0
+ 12 18  2  0  0  0  0
+ 14 17  1  0  0  0  0
+  1 20  1  0  0  0  0
+  2 21  1  0  0  0  0
+  3 22  1  0  0  0  0
+  4 23  1  0  0  0  0
+  5 24  1  0  0  0  0
+  6 25  1  0  0  0  0
+  7 26  1  0  0  0  0
+ 13 27  1  0  0  0  0
+ 13 28  1  0  0  0  0
+ 13 29  1  0  0  0  0
+ 14 30  1  0  0  0  0
+ 14 31  1  0  0  0  0
+ 14 32  1  0  0  0  0
+ 15 33  1  0  0  0  0
+ 15 34  1  0  0  0  0
+M  END
+> <CID (canonical)>
+JAN-GHE-83b26c96-15
+
+> <CID (old format)>
+
+> <Postera Link>
+https://covid.postera.ai/covid/submissions/0da5ad92-2252-46c0-8428-da7b3552d800/1
+
+> <InChIKey>
+KTTFDHLIVPVQIE-UHFFFAOYSA-N
+
+> <creator>
+Ed Griffen, MedChemica
+
+> <rationale>
+Straightforward medicinal chemistry pairs based on compound TRY-UNI-714-6 and it's crystal structure.  Selection of approaches: methyl scans, testing H-bond points , additional substituents where there looks to be space, conformational biasing with gem dimethyl and cyclopropyl as opposite biases.
+
+> <Submission Notes>
+
+> <fragments>
+x0434
+
+> <Structure ID>
+
+> <Fragalysis Link>
+
+> <Enamine - REAL Space>
+Z1698063916
+
+> <Enamine - Extended REAL Space>
+s_11____8852370____3020516
+
+> <Enamine - SCR>
+False
+
+> <Enamine - BB>
+False
+
+> <Mcule>
+False
+
+> <Mcule Ultimate>
+False
+
+> <In Molport or Mcule>
+False
+
+> <In eMolecules>
+False
+
+> <MW>
+274.09
+
+> <cLogP>
+3.25
+
+> <TPSA>
+33.2
+
+> <Rotatable Bonds>
+3
+
+> <Fraction sp3>
+0.2
+
+> <HBA>
+2
+
+> <HBD>
+0
+
+> <Covalent Fragment>
+False
+
+> <covalent_warhead>
+False
+
+> <Acrylamide>
+False
+
+> <Acrylamide Adduct>
+False
+
+> <Chloroacetamide>
+False
+
+> <Chloroacetamide Adduct>
+False
+
+> <Vinylsulfonamide>
+False
+
+> <Vinylsulfonamide Adduct>
+False
+
+> <Nitrile>
+
+> <Nitrile Adduct>
+
+> <series>
+3-aminopyridine-like
+
+> <Order Date>
+2020-05-17
+
+> <Maker>
+enamine
+
+> <Shipment Date>
+2020-06-01
+
+> <CDD_name>
+CVD-0004627
+
+> <CDD_mol_ID>
+76346446.0
+
+> <r_inhibition_at_20_uM>
+
+> <r_inhibition_at_50_uM>
+0.0
+
+> <r_avg_IC50>
+
+> <r_curve_IC50>
+
+> <r_max_inhibition_reading>
+
+> <r_min_inhibition_reading>
+
+> <r_hill_slope>
+
+> <r_R2>
+
+> <r_concentration_uM>
+
+> <r_inhibition_list>
+
+> <f_inhibition_at_20_uM>
+5.9736555
+
+> <f_inhibition_at_50_uM>
+15.100114999999999
+
+> <f_avg_IC50>
+
+> <f_avg_pIC50>
+
+> <f_curve_IC50>
+
+> <f_max_inhibition_reading>
+
+> <f_min_inhibition_reading>
+
+> <f_hill_slope>
+
+> <f_R2>
+
+> <f_concentration_uM>
+
+> <f_inhibition_list>
+
+> <relative_solubility_at_20_uM>
+1.0
+
+> <relative_solubility_at_100_uM>
+1.0
+
+> <trypsin_IC50>
+
+> <NMR_std_ratio>
+0.0
+
+> <structure_ID>
+
+> <structure_LINK>
+
+> <ORDERED>
+TRUE
+
+> <MAKER>
+enamine
+
+> <ORDER_DATE>
+2020-05-17
+
+> <MADE>
+TRUE
+
+> <SHIPMENT_DATE>
+2020-06-01
+
+> <ASSAYED>
+TRUE
+
+> <clash_score>
+0
+
+> <docking_score>
+-10.0827054977417
+
+$$$$

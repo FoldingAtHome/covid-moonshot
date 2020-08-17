@@ -17,7 +17,7 @@ def run_relative_perturbation(run, tidy=True):
     new_yaml = f'fah_{outputdir}.yaml'
     
     # rewrite yaml file
-    with open('backtesting.yaml', "r") as yaml_file:
+    with open('sprint2.yaml', "r") as yaml_file:
         options = yaml.load(yaml_file, Loader=yaml.FullLoader)
     options['old_ligand_index'] = ligA
     options['new_ligand_index'] = ligB
@@ -43,7 +43,10 @@ def run_relative_perturbation(run, tidy=True):
 #series = '2020-07-29-retrospective-aminopyridines.json'
 #series = '2020-08-02-retrospective-aminopyridines-matt.json'
 #series = '2020-08-03-retrospective-aminopyridines-matt-dockscores.json'
-series = '2020-08-06-fastgrant-table1.json'
+#series = '2020-08-06-fastgrant-table1.json'
+#series = '2020-08-12-RAL-THA-6b94ceba1.json'
+#series = '2020-08-13-EDG-MED-0da5ad92.json'
+series = '2020-08-14-nucleophilic-displacement.json'
 with open(series, 'r') as f:
     data = json.load(f)
 this_run = data[sys.argv[1]]
