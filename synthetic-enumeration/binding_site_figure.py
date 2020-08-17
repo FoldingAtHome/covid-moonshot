@@ -87,6 +87,7 @@ if show_conformers:
 
 # DEBUG
 cmd.load('nucleophilic_displacement_enumeration_for_FEP-sorted-x10789.mol2')
+#cmd.load('sprint1-winners.mol2')
 cmd.viewport(720,720)
 
 cmd.orient('N3-ligand')
@@ -115,6 +116,8 @@ if show_conformers:
     cmd.enable('aminopyridines-x10789-*')
     util.cbaw('aminopyridines-x10789-*')
 
+
+cmd.hide('sticks', 'hydrogen')
 
 #P1'
 #show lines, (byres fragment-* within 2.5 of resi 25) and not hydrogen
