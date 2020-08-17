@@ -25,16 +25,25 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 ### Scripts
 * `01-fix-csv-files.sh` - permute columns of input files
 * `02-generate-poses.py` - generate constrained input poses for a single fragment structure: `x10789` (`TRY-UNI-2eddb1ff-7`)
-* `03-sort-poses.py` - sort poses from best to worst to prioritize, filter out empty poses
+* `03-sort-poses.py` - sort ligands from best to worst docking score to prioritize (retaining reference ligand first), filter out ligands without poses
 
 ### Calculation metadata
+
+#### Sprint 1
 * `2020-07-24.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` forward only built from `x2646`
 * `2020-07-27.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` and `boronic_ester_enumeration_for_chodera_lab_FEP.csv` forward only built from `x10789`
 * `2020-07-28.json`: `primary_amine_enumeration_for_chodera_lab_FEP.csv` and `boronic_ester_enumeration_for_chodera_lab_FEP.csv` backward only built from `x10789`
 * `2020-07-29-retrospective-aminopyridines.json`: retrospective 3-aminopyridine compounds that JDC fished out automatically, single common scaffold, sparse conformers ranked by steric clashes
 * `2020-08-02-retrospective-aminopyridines-matt.json`: retrospective 3-aminopyridine compounds from Matthew Robinson, using a single common scaffold based on x10789, dense conformers ranked by dock scores (-Cl in wrong pocket)
 * `2020-08-03-retrospective-aminopyridines-matt-dockscores.json`: retrospective 3-aminopyridine compounds from Matthew Robinson, using a individually selected common scaffolds based on x10789, dense conformers ranked by dock scores (-Cl in right pocket)
+* `2020-08-06-fastgrant-table1.json`: sentinel cases from the FastGrant
+* `2020-08-12-RAL-THA-6b94ceba1.json`: Ralph 3-aminopyridine designs
+* `2020-08-13-EDG-MED-0da5ad92.json`: Compounds that are in process, but we may want to terminate
 
+#### Sprint 2
+* `2020-08-14-nucleophilic-displacement.json`: nucelophilic displacement for 3-aminopyridine scaffold, backward only His41(+) Cys145(-)
+
+## Misc
 * `activity-data-2020-07-29.csv`: activity data downloaded from the [COVID Moonshot](https://covid.postera.ai/covid/activity_data.csv) on 2020-07-29
 * `activity-data-2020-07-29-conformers-x10789.sdf.gz`: strictly filtered 3-aminopyridine related set for retrospective testing, with activity data preserved as SD tags (40 compounds)
 
