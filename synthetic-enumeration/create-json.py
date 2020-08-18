@@ -69,7 +69,7 @@ for series in ligand_dict:
             if forwards:
                 master_dict[index] = {
                     'JOBID':index,
-                    'directory':f'RUN{index-1}',
+                    'directory':f'RUN{index}',
                     'series':series,
 
                     'target':'SARS-CoV-2 Mpro',
