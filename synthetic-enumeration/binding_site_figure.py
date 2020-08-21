@@ -86,7 +86,7 @@ if show_conformers:
     cmd.set('all_states', 1)
 
 # DEBUG
-cmd.load('nucleophilic_displacement_enumeration_for_FEP-sorted-x10789.mol2')
+#cmd.load('nucleophilic_displacement_enumeration_for_FEP-sorted-x10789.mol2')
 #cmd.load('sprint1-winners.mol2')
 cmd.viewport(720,720)
 

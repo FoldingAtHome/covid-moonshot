@@ -355,7 +355,9 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                'EDG-MED-0da5ad92',
+                '2020-08-16-benzotriazoles.csv',
+                #'BEN-DND-93268d01',
+                #'EDG-MED-0da5ad92',
                 #'RAL-THA-6b94ceba',
                 #'activity-data-2020-08-11',
                 #'aminopyridine-retrospective-jdc-2020-08-11',
