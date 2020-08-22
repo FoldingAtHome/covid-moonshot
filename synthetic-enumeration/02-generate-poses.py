@@ -106,7 +106,7 @@ def expand_stereochemistry(mols):
     maxcenters = 12
     forceFlip = False
     enumNitrogen = True
-    warts = False
+    warts = True # add suffix for stereoisomers
     for mol in mols:
         for enantiomer in oeomega.OEFlipper(mol, maxcenters, forceFlip, enumNitrogen, warts):
             enantiomer = oechem.OEMol(enantiomer)
@@ -142,9 +142,6 @@ def generate_restricted_conformers(receptor, refmol, mol):
     from openeye import oechem, oeomega
 
     # Get core fragment
-    #atomexpr = oechem.OEExprOpts_Hybridization
-    #bondexpr = oechem.OEExprOpts_Aromaticity
-    #core_fragment = GetCoreFragment(refmol, [mol], atomexpr=atomexpr, bondexpr=bondexpr)
     core_fragment = GetCoreFragment(refmol, [mol])
     oechem.OESuppressHydrogens(core_fragment)
     fixmol = core_fragment
@@ -167,6 +164,16 @@ def generate_restricted_conformers(receptor, refmol, mol):
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
     omegaFixOpts.SetFixMol(fixmol)
+
+    # DEBUG
+    atomexpr = oechem.OEExprOpts_Hybridization
+    bondexpr = oechem.OEExprOpts_Aromaticity
+    omegaFixOpts.SetAtomExpr(atomexpr)
+    omegaFixOpts.SetBondExpr(bondexpr)
+    omegaFixOpts.SetFixMol(refmol)
+    smarts = 'c1ccc(N(C)C(=O)[C,N]n2nnc3ccccc32)cc1'
+    omegaFixOpts.SetFixSmarts(smarts)
+
     # DEBUG
     #atomexpr = oechem.OEExprOpts_Hybridization
     #bondexpr = oechem.OEExprOpts_Aromaticity
@@ -343,7 +350,11 @@ if __name__ == '__main__':
 
     assay_data_filename = 'activity-data-2020-07-29.csv'
     fragments = {
-        'x10789' : 'TRY-UNI-2eddb1ff-7',
+        #'x10789' : 'TRY-UNI-2eddb1ff-7',
+        # Benzotriazoles
+        'x10876' : 'ALP-POS-d2866bdf-1',
+        #'x10820' : 'ALP-POS-c59291d4-4',
+        #'x10871' : 'ALP-POS-c59291d4-2',
         }
 
     # Load assay data if available
@@ -355,7 +366,7 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                '2020-08-16-benzotriazoles.csv',
+                '2020-08-20-benzotriazoles',
                 #'BEN-DND-93268d01',
                 #'EDG-MED-0da5ad92',
                 #'RAL-THA-6b94ceba',
