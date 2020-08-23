@@ -17,10 +17,12 @@ ligand_dict = {
     # 'RAL-THA-6b94ceba' : 'RAL-THA-6b94ceba-dockscores-x10789.sdf',
 
     # Sprint 2
-    'nucleophilic-displacement' : 'nucleophilic_displacement_enumeration_for_FEP-sorted-x10789.sdf',
+    'nucleophilic-displacement-x10876' : '2020-08-20-benzotriazoles-dockscores-x10876.sdf',
+    'nucleophilic-displacement-x10871' : '2020-08-20-benzotriazoles-dockscores-x10871.sdf',
+    #'nucleophilic-displacement-x10820' : '2020-08-20-benzotriazoles-dockscores-x10820.sdf',
 }
 
-json_filename = '2020-08-14-nucleophilic-displacement.json'
+json_filename = '2020-08-20-benzotriazoles.json'
 
 receptors = [
     #'../receptors/monomer/Mpro-x2646_0_bound-protein.pdb',
@@ -36,7 +38,10 @@ receptors = [
 #index = 8410 # starting index for RAL-THA-6b94ceba
 
 # Sprint 2
-index = 0 # starting index for nucleophilic displacement series
+#index = 0 # starting index for nucleophilic displacement series
+
+# Sprint 3
+index = 0 # starting index for benzotriazoles
 
 mol_i = oechem.OEGraphMol()
 mol_j = oechem.OEGraphMol()
@@ -96,7 +101,7 @@ for series in ligand_dict:
             if backwards:
                 master_dict[index] = {
                     'JOBID':index,
-                    'directory':f'RUN{index-1}',
+                    'directory':f'RUN{index}',
                     
                     'target':'SARS-CoV-2 Mpro',
 

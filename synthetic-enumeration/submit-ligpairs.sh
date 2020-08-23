@@ -1,6 +1,6 @@
 #!/bin/bash
 #BSUB -P "testing"
-#BSUB -J "mpro[1-8428]" 
+#BSUB -J "mpro[1-1]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -26,4 +26,5 @@ conda activate perses-0.7.1
 # Launch my program.
 module load cuda/10.1
 env | sort | grep 'CUDA'
-python run.py $LSB_JOBINDEX 
+let RUN=$LSB_JOBINDEX-1
+python run.py $RUN
