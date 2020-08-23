@@ -144,13 +144,14 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     from openeye import oechem, oeomega
 
     # DEBUG: For benzotriazoles, truncate refmol
-    refmol_smarts = 'c1ccc(N(C)C(=O)[C,N]n2nnc3ccccc32)cc1'
+    core_smarts = 'c1ccc(N(C)C(=O)[C,N]n2nnc3ccccc32)cc1'
+    core_smarts = 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1'
 
     # Get core fragment
-    if refmol_smarts:
+    if core_smarts:
         # Truncate refmol to SMARTS if specified
         #print(f'Trunctating using SMARTS {refmol_smarts}')
-        ss = oechem.OESubSearch(refmol_smarts)
+        ss = oechem.OESubSearch(core_smarts)
         oechem.OEPrepareSearch(refmol, ss)
         for match in ss.Match(refmol):
             core_fragment = oechem.OEGraphMol()
@@ -177,7 +178,7 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     #omegaFixOpts.SetFixSmarts(smarts)
     omegaFixOpts.SetFixRMS(0.5)
 
-    atomexpr = oechem.OEExprOpts_Aromaticity | oechem.OEExprOpts_FormalCharge
+    atomexpr = oechem.OEExprOpts_Aromaticity | oechem.OEExprOpts_Hybridization
     bondexpr = oechem.OEExprOpts_BondOrder | oechem.OEExprOpts_Aromaticity
     omegaFixOpts.SetAtomExpr(atomexpr)
     omegaFixOpts.SetBondExpr(bondexpr)
@@ -382,7 +383,7 @@ if __name__ == '__main__':
     fragments = {
         #'x10789' : 'TRY-UNI-2eddb1ff-7',
         # Benzotriazoles
-        #'x10876' : 'ALP-POS-d2866bdf-1',
+        'x10876' : 'ALP-POS-d2866bdf-1',
         'x10820' : 'ALP-POS-c59291d4-4',
         'x10871' : 'ALP-POS-c59291d4-2',
         }
