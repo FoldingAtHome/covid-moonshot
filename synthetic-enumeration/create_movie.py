@@ -6,7 +6,7 @@ import re
 
 #cmd.load('nucleophilic.pse')
 
-nloop = 2
+nloop = 5
 seconds = 4
 fps = 30
 degrees = 30

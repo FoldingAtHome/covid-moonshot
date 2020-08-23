@@ -126,7 +126,7 @@ class BumpCheck:
                 bump_count += np.exp(-0.5 * (nb.GetDist() / self.cutoff)**2)
         return bump_count
 
-def generate_restricted_conformers(receptor, refmol, mol):
+def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     """
     Generate and select a conformer of the specified molecule using the reference molecule
 
@@ -137,23 +137,33 @@ def generate_restricted_conformers(receptor, refmol, mol):
     refmol : openeye.oechem.OEGraphMol
         Reference molecule which shares some part in common with the proposed molecule
     mol : openeye.oechem.OEGraphMol
-       The molecule to enumerate conformers for
+        Molecule whose conformers are to be enumerated
+    core_smarts : str, optional, default=None
+        If core_smarts is specified, substructure will be extracted using SMARTS.
     """
     from openeye import oechem, oeomega
 
+    # DEBUG: For benzotriazoles, truncate refmol
+    refmol_smarts = 'c1ccc(N(C)C(=O)[C,N]n2nnc3ccccc32)cc1'
+
     # Get core fragment
-    core_fragment = GetCoreFragment(refmol, [mol])
-    oechem.OESuppressHydrogens(core_fragment)
-    fixmol = core_fragment
-    #print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
-
-    MIN_CORE_ATOMS = 6
-    if core_fragment.NumAtoms() < MIN_CORE_ATOMS:
-        return None
-
-    # Write core fragment (without modifying it)
-    #with oechem.oemolostream(f'{prefix}-core-{fragment}.mol2') as ofs:
-    #    oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(core_fragment))
+    if refmol_smarts:
+        # Truncate refmol to SMARTS if specified
+        #print(f'Trunctating using SMARTS {refmol_smarts}')
+        ss = oechem.OESubSearch(refmol_smarts)
+        oechem.OEPrepareSearch(refmol, ss)
+        for match in ss.Match(refmol):
+            core_fragment = oechem.OEGraphMol()
+            oechem.OESubsetMol(core_fragment, match)
+            break
+        #print(f'refmol has {refmol.NumAtoms()} atoms')
+    else:
+        core_fragment = GetCoreFragment(refmol, [mol])
+        oechem.OESuppressHydrogens(core_fragment)
+        #print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
+        MIN_CORE_ATOMS = 6
+        if core_fragment.NumAtoms() < MIN_CORE_ATOMS:
+            return None
 
     # Create an Omega instance
     #omegaOpts = oeomega.OEOmegaOptions()
@@ -163,22 +173,14 @@ def generate_restricted_conformers(receptor, refmol, mol):
     omegaFixOpts = oeomega.OEConfFixOptions()
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
-    omegaFixOpts.SetFixMol(fixmol)
+    omegaFixOpts.SetFixMol(core_fragment)
+    #omegaFixOpts.SetFixSmarts(smarts)
+    omegaFixOpts.SetFixRMS(0.5)
 
-    # DEBUG
-    atomexpr = oechem.OEExprOpts_Hybridization
-    bondexpr = oechem.OEExprOpts_Aromaticity
+    atomexpr = oechem.OEExprOpts_Aromaticity | oechem.OEExprOpts_FormalCharge
+    bondexpr = oechem.OEExprOpts_BondOrder | oechem.OEExprOpts_Aromaticity
     omegaFixOpts.SetAtomExpr(atomexpr)
     omegaFixOpts.SetBondExpr(bondexpr)
-    omegaFixOpts.SetFixMol(refmol)
-    smarts = 'c1ccc(N(C)C(=O)[C,N]n2nnc3ccccc32)cc1'
-    omegaFixOpts.SetFixSmarts(smarts)
-
-    # DEBUG
-    #atomexpr = oechem.OEExprOpts_Hybridization
-    #bondexpr = oechem.OEExprOpts_Aromaticity
-    #omegaFixOpts.SetAtomExpr(atomexpr)
-    #omegaFixOpts.SetBondExpr(bondexpr)
     omegaOpts.SetConfFixOptions(omegaFixOpts)
 
     molBuilderOpts = oeomega.OEMolBuilderOptions()
@@ -205,24 +207,52 @@ def generate_restricted_conformers(receptor, refmol, mol):
         return None
 
     # Extract poses
-    poses = [ pose for pose in mol.GetConfs() ]
+    class Pose(object):
+        def __init__(self, conformer):
+            self.conformer = conformer
+            self.clash_score = None
+            self.docking_score = None
+            self.overlap_score = None
+
+    poses = [ Pose(conf) for conf in mol.GetConfs() ]
 
     # Score clashes
     bump_check = BumpCheck(receptor)
-    clash_scores = [ bump_check.count(pose) for pose in poses ]
+    for pose in poses:
+        pose.clash_score = bump_check.count(pose.conformer)
 
     # Score docking poses
     from openeye import oedocking
     score = oedocking.OEScore(oedocking.OEScoreType_Chemgauss4)
     score.Initialize(receptor)
-    docking_scores = [ score.ScoreLigand(pose) for pose in poses ]
+    for pose in poses:
+        pose.docking_score = score.ScoreLigand(pose.conformer)
+
+    # Compute overlap scores
+    from openeye import oeshape
+    overlap_prep = oeshape.OEOverlapPrep()
+    overlap_prep.Prep(refmol)
+    shapeFunc = oeshape.OEExactShapeFunc()
+    shapeFunc.SetupRef(refmol)
+    oeshape_result = oeshape.OEOverlapResults()
+    for pose in poses:
+        tmpmol = oechem.OEGraphMol(pose.conformer)
+        overlap_prep.Prep(tmpmol)
+        shapeFunc.Overlap(tmpmol, oeshape_result)
+        pose.overlap_score = oeshape_result.GetRefTversky()
+
+    # Filter poses based on top 10% of overlap
+    poses = sorted(poses, key= lambda pose : pose.overlap_score)
+    poses = poses[int(0.9*len(poses)):]
 
     # Select the best docking score
     import numpy as np
-    pose_index = np.argmin(docking_scores)
-    mol.SetActive(poses[pose_index])
-    oechem.OESetSDData(mol, 'clash_score', str(clash_scores[pose_index]))
-    oechem.OESetSDData(mol, 'docking_score', str(docking_scores[pose_index]))
+    poses = sorted(poses, key=lambda pose : pose.docking_score)
+    pose = poses[0]
+    mol.SetActive(pose.conformer)
+    oechem.OESetSDData(mol, 'clash_score', str(pose.clash_score))
+    oechem.OESetSDData(mol, 'docking_score', str(pose.docking_score))
+    oechem.OESetSDData(mol, 'overlap_score', str(pose.overlap_score))
 
     # Convert to single-conformer molecule
     mol = oechem.OEGraphMol(mol)
@@ -247,7 +277,7 @@ def get_series(mol):
 
     # Filter out covalent
     try:
-        if oechem.OEGetSDData(mol,'acrylamide')=='True' or oechem.OEGetSDData(mol,'chloroacetamide')=='True':
+        if oechem.OEGetSDData(mol,'acrylamide')=='True' or oechem.OEGfreetSDData(mol,'chloroacetamide')=='True':
             return None
     except Exception as e:
         print(e)
@@ -352,9 +382,9 @@ if __name__ == '__main__':
     fragments = {
         #'x10789' : 'TRY-UNI-2eddb1ff-7',
         # Benzotriazoles
-        'x10876' : 'ALP-POS-d2866bdf-1',
-        #'x10820' : 'ALP-POS-c59291d4-4',
-        #'x10871' : 'ALP-POS-c59291d4-2',
+        #'x10876' : 'ALP-POS-d2866bdf-1',
+        'x10820' : 'ALP-POS-c59291d4-4',
+        'x10871' : 'ALP-POS-c59291d4-2',
         }
 
     # Load assay data if available
