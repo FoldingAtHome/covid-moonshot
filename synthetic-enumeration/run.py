@@ -54,4 +54,7 @@ with open(series, 'r') as f:
     data = json.load(f)
 this_run = data[sys.argv[1]]
 
+print(sys.argv[1])
+print(this_run)
+
 run_relative_perturbation(this_run)
