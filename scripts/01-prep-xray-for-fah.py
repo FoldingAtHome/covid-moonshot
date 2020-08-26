@@ -245,7 +245,7 @@ if __name__ == '__main__':
     # Extract relevant metadata
     if args.run not in metadata:
         raise Exception(f'RUN {args.run} not found in metadata.csv')
-    metadata = metadata[run]
+    metadata = metadata[args.run]
 
     # Extract crystal_name
     crystal_name = metadata['crystal_name']
