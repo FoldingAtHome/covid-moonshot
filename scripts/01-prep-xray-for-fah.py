@@ -62,7 +62,6 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     timestep = 4.0 * unit.femtoseconds
     iterations = 1000 # 10 ns equilibration
     nsteps_per_iteration = 250
-    nsteps_per_iteration = 1
     restrain_rmsd = False # if True, restrain RMSD during equilibration
 
     # Prepare phases
@@ -83,10 +82,12 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     os.makedirs(destination_path, exist_ok=True)
 
     # Load any molecule(s)
-    molecules = None
+    molecule = None
     if oemol is not None:
         from openforcefield.topology import Molecule
-        molecules = [Molecule.from_openeye(oemol, allow_undefined_stereo=True)]
+        molecule = Molecule.from_openeye(oemol, allow_undefined_stereo=True)
+        molecule.name = 'MOL' # Ensure residue is MOL
+        print([res for res in molecule.to_topology().to_openmm().residues()])
 
     # Create SystemGenerator
     import os
@@ -97,7 +98,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     from openmmforcefields.generators import SystemGenerator
     openmm_system_generator = SystemGenerator(
                                 forcefields=forcefields,
-                                molecules=molecules, small_molecule_forcefield=small_molecule_forcefield, cache=cache,
+                                molecules=molecule, small_molecule_forcefield=small_molecule_forcefield, cache=cache,
                                 barostat=barostat,
                                 forcefield_kwargs=forcefield_kwargs, periodic_forcefield_kwargs=periodic_kwargs)
 
@@ -106,13 +107,12 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     pdbfile = app.PDBFile(protein_pdb_filename)
     modeller = app.Modeller(pdbfile.topology, pdbfile.positions)
 
-    if oemol:
+    if oemol is not None:
         # Add small molecule to the system
-        modeller.add(off_molecule.to_topology().to_openmm(), off_molecule.conformers[0])
-
-    # DEBUG : Check residue name
-    with open(os.path.join(destination_path, 'initial-complex.pdb'), 'wt') as outfile:
-        app.PDBFile.writeFile(modeller.topology, modeller.positions, outfile)
+        modeller.add(molecule.to_topology().to_openmm(), molecule.conformers[0])
+        # DEBUG : Check residue name
+        with open(os.path.join(destination_path, 'initial-complex.pdb'), 'wt') as outfile:
+            app.PDBFile.writeFile(modeller.topology, modeller.positions, outfile)
 
     # Add solvent
     print('Adding solvent...')
@@ -148,7 +148,8 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
 
     # Store snapshots in MDTraj trajectory to examine RMSD
     import mdtraj as md
-    mdtop = md.Topology.from_openmm(modeller.pdbfile)
+    import numpy as np
+    mdtop = md.Topology.from_openmm(pdbfile.topology)
     atom_indices = mdtop.select('all') # all solute atoms
     protein_atom_indices = mdtop.select('protein and (mass > 1)') # heavy solute atoms
     if oemol is not None:
@@ -174,18 +175,19 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     modeller.topology.setPeriodicBoxVectors(state.getPeriodicBoxVectors())
     print(f'Final potential energy is {state.getPotentialEnergy()/unit.kilocalories_per_mole:.3f} kcal/mol')
 
-    if rmsd_restraint:
+    if restrain_rmsd:
         print('Removing RMSD restraint...')
         system.removeForce(force_index)
 
-    if oemol is not None:
-        # Check final RMSD
-        trajectory.superpose(trajectory[0], atom_indices=protein_atom_indices)
-        protein_rmsd = md.rmsd(trajectory[0], trajectory[-1], atom_indices=protein_atom_indices) * 10 # Angstroms
-        oechem.OESetSDData(oemol, 'equil_protein_rmsd', f'{protein_rmsd:.2f} A')
-        ligand_rmsd = md.rmsd(trajectory[0], trajectory[-1], atom_indices=ligand_atom_indices) * 10 # Angstroms
-        oechem.OESetSDData(oemol, 'equil_ligand_rmsd', f'{ligand_rmsd:.2f} A')
-        print('RMSD after equilibration: protein {protein_rmsd:8.2f} A | ligand {ligand_rmsd:8.3f} A')
+    #if oemol is not None:
+    #    # Check final RMSD
+    #    print('checking RMSD...')
+    #    trajectory.superpose(trajectory, atom_indices=protein_atom_indices)
+    #    protein_rmsd = md.rmsd(trajectory, trajectory[-1], atom_indices=protein_atom_indices)[-1] * 10 # Angstroms
+    #    oechem.OESetSDData(oemol, 'equil_protein_rmsd', f'{protein_rmsd:.2f} A')
+    #    ligand_rmsd = md.rmsd(trajectory, trajectory[-1], atom_indices=ligand_atom_indices)[-1] * 10 # Angstroms
+    #    oechem.OESetSDData(oemol, 'equil_ligand_rmsd', f'{ligand_rmsd:.2f} A')
+    #    print('RMSD after equilibration: protein {protein_rmsd:8.2f} A | ligand {ligand_rmsd:8.3f} A')
 
     # Save as OpenMM
     print('Exporting for OpenMM FAH simulation...')
@@ -196,9 +198,9 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
         f.write(openmm.XmlSerializer.serialize(state))
     with bz2.open(system_xml_filename,'wt') as f:
         f.write(openmm.XmlSerializer.serialize(system))
-    with bz2.open(os.path.join(destination_path, phase_name+'-explicit.pdb.gz'), 'wt') as f:
+    with bz2.open(os.path.join(destination_path, 'equilibrated-all.pdb.gz'), 'wt') as f:
         app.PDBFile.writeFile(modeller.topology, state.getPositions(), f)
-    with open(os.path.join(destination_path, phase_name+'-solute.pdb'), 'wt') as f:
+    with open(os.path.join(destination_path, 'equilibrated-solute.pdb'), 'wt') as f:
         import mdtraj
         mdtraj_topology = mdtraj.Topology.from_openmm(modeller.topology)
         mdtraj_trajectory = mdtraj.Trajectory([state.getPositions(asNumpy=True) / unit.nanometers], mdtraj_topology)
@@ -207,7 +209,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
         app.PDBFile.writeFile(mdtraj_trajectory.topology.to_openmm(), mdtraj_trajectory.openmm_positions(0), f)
     if oemol is not None:
         # Write molecule as SDF, SMILES, and mol2
-        for extension in ['sdf', 'mol2', 'smi']:
+        for extension in ['sdf', 'mol2', 'smi', 'csv']:
             filename = os.path.join(destination_path, f'molecule.{extension}')
             with oechem.oemolostream(filename) as ofs:
                 oechem.OEWriteMolecule(ofs, oemol)
@@ -250,12 +252,14 @@ if __name__ == '__main__':
 
     # Read molecule in the appropriate protonation state
     from openeye import oechem
-    oemol = oechem.OEGraphMol()
+    oemol = oechem.OEMol()
     molecule_filename = os.path.join(args.receptors_path, 'monomer', f'{crystal_name}_bound-ligand.mol2')
     with oechem.oemolistream(molecule_filename) as ifs:
         oechem.OEReadMolecule(ifs, oemol)
     # Rename the molecule
-    oemol.SetTitle(metadata['alternate_name'])
+    title = metadata['alternate_name']
+    print(f'Setting title to {title}')
+    oemol.SetTitle(title)
 
     # Attach all structure metadata to the molecule
     for key in metadata:
@@ -271,6 +275,9 @@ if __name__ == '__main__':
         def prepare_variant(project, run, crystal_name, biounit, dyad_state, oemol):
             assert biounit in ['monomer', 'dimer']
 
+            print('')
+            print(f'PROJ{project}')
+
             if dyad_state == 'His41(0) Cys145(0)':
                 protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
             elif dyad_state == 'His41(+) Cys145(-)':
@@ -279,11 +286,10 @@ if __name__ == '__main__':
                 raise Exception("dyad_state must be one of ['His41(0) Cys145(0)', 'His41(+) Cys145(-)']")
             destination_path = os.path.join(args.output_path, project, 'RUNS', f'RUN{run}')
             setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache)
-
-            crystal_name = metadata['crystal_name']
-
-        prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
-        prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
+            print('')
+            
+        #prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
+        #prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
         prepare_variant('13432', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', oemol)
         prepare_variant('13433', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', oemol)
         prepare_variant('13434', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', None)
