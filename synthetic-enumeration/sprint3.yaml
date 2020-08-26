@@ -7,6 +7,8 @@ forcefield_files:
     - amber/tip3p_standard.xml # TIP3P and recommended monovalent ion parameters
     - amber/tip3p_HFE_multivalent.xml # for divalent ions
     - amber/phosaa10.xml # HANDLES THE TPO
+# don't constrain bonds to hydrogen to work around pathological slowdown with CCMA
+remove_constraints: not water 
 atom_expression:
     - IntType
 bond_expression:
@@ -15,3 +17,4 @@ small_molecule_forcefield:
     - openff-1.2.0
 complex_projid: 13424
 solvent_projid: 13425
+ionic_strength: 0.150 # molar

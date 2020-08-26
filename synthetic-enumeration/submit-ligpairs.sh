@@ -1,6 +1,7 @@
 #!/bin/bash
 #BSUB -P "testing"
-#BSUB -J "mpro[1-1344]" 
+##BSUB -J "mpro[1-1344]" 
+#BSUB -J "mpro[1-2]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -21,7 +22,7 @@ source ~/.bashrc
 OPENMM_CPU_THREADS=1
 
 cd $LS_SUBCWD
-conda activate perses-0.7.1
+conda activate perses
 
 # Launch my program.
 module load cuda/10.1
