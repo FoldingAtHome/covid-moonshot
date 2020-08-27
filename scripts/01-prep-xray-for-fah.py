@@ -219,10 +219,10 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Prepare the specified RUN for FAH by preparing all X-ray structure variants of a specific fragment')
-    parser.add_argument('--structures', dest='structures_path', type=str, default='../structures',
-                        help='directory of receptor conformations (default: ../structures)')
     parser.add_argument('--receptors', dest='receptors_path', type=str, default='../receptors',
                         help='directory of receptor conformations (default: ../receptors)')
+    parser.add_argument('--metadata', dest='metadata_filename', type=str, default='../fah-xray/fah-metadata.csv',
+                        help='metadata (default: ../fah-xray/fah-metadata.csv)')
     parser.add_argument('--run', dest='run', type=str, required=True,
                         help='RUN index to prepare (indexes first column contents in Mpro.zip metadata.csv)')
     parser.add_argument('--output', dest='output_path', type=str, default='projects',
@@ -231,21 +231,21 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     # Read DiamondMX/XChem structure medatadata
-    import os
-    structure_metadata_filename = os.path.join(args.structures_path, 'metadata.csv')
-    import csv
-    metadata = dict()
-    with open(structure_metadata_filename, newline='') as csvfile:
+    import os, csv
+    from collections import OrderedDict
+    metadata = OrderedDict()
+    with open(args.metadata_filename, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            run = row['']
-            row.pop('')
+            run = row['RUN']
             metadata[run] = row
 
     # Extract relevant metadata
-    if args.run not in metadata:
-        raise Exception(f'RUN {args.run} not found in metadata.csv')
-    metadata = metadata[args.run]
+    run = f'RUN{args.run}'
+    if run not in metadata:
+        raise Exception(f'{run} not found in metadata.csv')
+    print(f'Preparing {run}')
+    metadata = metadata[run]
 
     # Extract crystal_name
     crystal_name = metadata['crystal_name']
@@ -254,6 +254,8 @@ if __name__ == '__main__':
     from openeye import oechem
     oemol = oechem.OEMol()
     molecule_filename = os.path.join(args.receptors_path, 'monomer', f'{crystal_name}_bound-ligand.mol2')
+    if not os.path.exists(molecule_filename):
+        raise Exception(f'{molecule_filename} does not exist')
     with oechem.oemolistream(molecule_filename) as ifs:
         oechem.OEReadMolecule(ifs, oemol)
     # Rename the molecule
@@ -287,7 +289,7 @@ if __name__ == '__main__':
             destination_path = os.path.join(args.output_path, project, 'RUNS', f'RUN{run}')
             setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache)
             print('')
-            
+
         #prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
         #prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
         prepare_variant('13432', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', oemol)

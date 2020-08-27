@@ -1,6 +1,6 @@
 #!/bin/bash
 #BSUB -P "testing"
-#BSUB -J "mpro[1-297]" 
+#BSUB -J "mpro[1-297]"
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -9,7 +9,7 @@
 #BSUB -gpu num=1:j_exclusive=yes:mode=shared
 #BSUB -W  05:59
 #BSUB -m "ls-gpu lg-gpu lt-gpu lp-gpu lg-gpu lu-gpu ld-gpu"
-#BSUB -o output/out_%I.stdout 
+#BSUB -o output/out_%I.stdout
 #BSUB -eo output/out_%I.stderr
 ##BSUB -cwd "/scratch/%U/%J"
 #BSUB -L /bin/bash
