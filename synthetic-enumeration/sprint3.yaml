@@ -20,3 +20,4 @@ phase_project_ids:
     solvent: 13425
     vacuum: vacuum-sprint3
 ionic_strength: 0.070 # molar, to match experimental conditions
+timestep: 2.0 # fs
