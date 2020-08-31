@@ -9,6 +9,7 @@ forcefield_files:
     - amber/phosaa10.xml # HANDLES THE TPO
 # don't constrain bonds to hydrogen to work around pathological slowdown with CCMA
 remove_constraints: not water 
+#remove_constraints: false
 atom_expression:
     - IntType
 bond_expression:

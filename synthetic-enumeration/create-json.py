@@ -24,6 +24,9 @@ ligand_dict = {
 
 json_filename = '2020-08-20-benzotriazoles.json'
 
+# SMARTS for common core scaffold
+smarts = 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1'
+
 receptors = [
     #'../receptors/monomer/Mpro-x2646_0_bound-protein.pdb',
     '../receptors/monomer/Mpro-x2646_0_bound-protein-thiolate.pdb'
@@ -46,82 +49,87 @@ index = 0 # starting index for benzotriazoles
 mol_i = oechem.OEGraphMol()
 mol_j = oechem.OEGraphMol()
 
-forwards = False
-backwards = True
+directions = ['backwards', 'forwards']
 
 i = 0 # reference molecule
 master_dict = dict()
 smiles_flag = oechem.OESMILESFlag_Canonical | oechem.OESMILESFlag_ISOMERIC
-for series in ligand_dict:
-    print(series)
+for direction in directions:
+    for series in ligand_dict:
+        print(series)
 
-    # Open ligands as OEMolDatabase
-    lig_file_name = ligand_dict[series]
-    moldb = oechem.OEMolDatabase()
-    moldb.Open(lig_file_name)
-    num_mols = moldb.NumMols()
+        # Open ligands as OEMolDatabase
+        lig_file_name = ligand_dict[series]
+        moldb = oechem.OEMolDatabase()
+        moldb.Open(lig_file_name)
+        num_mols = moldb.NumMols()
 
-    moldb.GetMolecule(mol_i, i)
+        moldb.GetMolecule(mol_i, i)
 
-    for protein in receptors:
-        print(protein)
+        for protein in receptors:
+            print(protein)
 
-        for j in range(1, num_mols):
-            # Get the molecule
-            moldb.GetMolecule(mol_j, j)
+            for j in range(1, num_mols):
+                # Get the molecule
+                moldb.GetMolecule(mol_j, j)
 
-            # Add forwards
-            if forwards:
-                master_dict[index] = {
-                    'JOBID':index,
-                    'directory':f'RUN{index}',
-                    'series':series,
+                if direction == 'forwards':
+                    master_dict[index] = {
+                        'JOBID':index,
+                        'directory':f'RUN{index}',
+                        'series':series,
+                        'direction':direction,
 
-                    'target':'SARS-CoV-2 Mpro',
+                        'smarts':smarts,
 
-                    'start':i,
-                    'start_title':mol_i.GetTitle(),
-                    'start_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
+                        'target':'SARS-CoV-2 Mpro',
 
-                    'end':j,
-                    'end_title':mol_j.GetTitle(),
-                    'end_smiles':oechem.OECreateSmiString(mol_j, smiles_flag),
-
-                    'protein':protein,
-                    'ligand':ligand_dict[series],
-                    'ff':ff,
+                        'start':i,
+                        'start_title':mol_i.GetTitle(),
+                        'start_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
+                        
+                        'end':j,
+                        'end_title':mol_j.GetTitle(),
+                        'end_smiles':oechem.OECreateSmiString(mol_j, smiles_flag),
+                        
+                        'protein':protein,
+                        'ligand':ligand_dict[series],
+                        'ff':ff,
                     }
-                if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
-                    master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
-                if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
-                    master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
-                index += 1
+                    if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
+                        master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
+                    if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
+                        master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
+                    index += 1
 
-            # Add backwards
-            if backwards:
-                master_dict[index] = {
-                    'JOBID':index,
-                    'directory':f'RUN{index}',
+                if direction == 'backwards':
+                    master_dict[index] = {
+                        'JOBID':index,
+                        'directory':f'RUN{index}',
+                        'series':series,
+                        'direction':direction,
+
+                        'smarts':smarts,
                     
-                    'target':'SARS-CoV-2 Mpro',
+                        'target':'SARS-CoV-2 Mpro',
 
-                    'start':j,
-                    'start_title':mol_j.GetTitle(),
-                    'start_smiles':oechem.OECreateSmiString(mol_j, smiles_flag),
+                        'start':j,
+                        'start_title':mol_j.GetTitle(),
+                        'start_smiles':oechem.OECreateSmiString(mol_j, smiles_flag),
 
-                    'end':i,
-                    'end_title':mol_i.GetTitle(),
-                    'end_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
-
-                    'protein':protein,
-                    'ligand':ligand_dict[series],
-                    'ff':ff,
-                 }
-                if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
-                    master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
-                if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
-                    master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
-                index += 1
+                        'end':i,
+                        'end_title':mol_i.GetTitle(),
+                        'end_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
+                        
+                        'protein':protein,
+                        'ligand':ligand_dict[series],
+                        'ff':ff,
+                    }
+                    if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
+                        master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
+                    if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
+                        master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
+                    index += 1
 
 with open(json_filename, "w") as f:
     json.dump(master_dict, f, sort_keys=True, indent=4, separators=(',', ': '))

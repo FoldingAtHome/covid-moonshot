@@ -1,7 +1,7 @@
 #!/bin/bash
 #BSUB -P "testing"
-##BSUB -J "mpro[1-1344]" 
-#BSUB -J "mpro[1-20]" 
+#BSUB -J "mpro[1-1344]" 
+##BSUB -J "mpro[1-20]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
