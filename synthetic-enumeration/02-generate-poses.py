@@ -144,8 +144,8 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     from openeye import oechem, oeomega
 
     # DEBUG: For benzotriazoles, truncate refmol
-    core_smarts = 'c1ccc(N(C)C(=O)[C,N]n2nnc3ccccc32)cc1'
-    core_smarts = 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1'
+    core_smarts = 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1' # prospective
+    core_smarts = 'NC(=O)[C,N]n2nnc3ccccc32' # retrospective
 
     # Get core fragment
     if core_smarts:
@@ -260,6 +260,16 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
 
     return mol
 
+def has_ic50(mol):
+    """Return True if this molecule has fluorescence IC50 data"""
+    from openeye import oechem
+    try:
+        pIC50 = oechem.OEGetSDData(mol, 'f_avg_pIC50')
+        pIC50 = float(pIC50)
+        return True
+    except Exception as e:
+        return False
+
 # TODO: import this from https://github.com/postera-ai/COVID_moonshot_submissions/blob/master/lib/utils.py
 def get_series(mol):
     from rdkit import Chem
@@ -272,13 +282,16 @@ def get_series(mol):
         "Ugi": "[c,C:1][C](=[O])[N]([c,C,#1:2])[C]([c,C,#1:3])([c,C,#1:4])[C](=[O])[NH1][c,C:5]",
         "quinolones": "NC(=O)c1cc(=O)[nH]c2ccccc12",
         "piperazine-chloroacetamide": "O=C(CCl)N1CCNCC1",
+        #'benzotriazoles': 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1',
+        #'benzotriazoles': 'a1aaa([C,N]C(=O)[C,N]a2aaa3aaaaa32)aa1',
+        'benzotriazoles': 'a2aaa3aaaaa32',
     }
 
     smi = oechem.OECreateSmiString(mol)
 
     # Filter out covalent
     try:
-        if oechem.OEGetSDData(mol,'acrylamide')=='True' or oechem.OEGfreetSDData(mol,'chloroacetamide')=='True':
+        if oechem.OEGetSDData(mol,'acrylamide')=='True' or oechem.OEGetSDData(mol,'chloroacetamide')=='True':
             return None
     except Exception as e:
         print(e)
@@ -379,7 +392,7 @@ if __name__ == '__main__':
     #oechem.OESetMemPoolMode(oechem.OEMemPoolMode_SingleThreaded |
     #                        oechem.OEMemPoolMode_UnboundedCache)
 
-    assay_data_filename = 'activity-data-2020-07-29.csv'
+    assay_data_filename = 'activity-data-2020-09-01.csv'
     fragments = {
         #'x10789' : 'TRY-UNI-2eddb1ff-7',
         # Benzotriazoles
@@ -397,7 +410,8 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                '2020-08-20-benzotriazoles',
+                '2020-09-01-benzotriazoles-retrospective',
+                #'2020-08-20-benzotriazoles',
                 #'BEN-DND-93268d01',
                 #'EDG-MED-0da5ad92',
                 #'RAL-THA-6b94ceba',
@@ -447,17 +461,26 @@ if __name__ == '__main__':
             target_molecules = list()
             with oechem.oemolistream(target_molecules_filename) as ifs:
                 for mol in ifs.GetOEGraphMols():
-                    target_molecules.append( oechem.OEGraphMol(mol) )
+                    # Copy data from assayed molecules (if present)
+                    for assayed_mol in assayed_molecules:
+                        if assayed_mol.GetTitle() == mol.GetTitle():
+                            print(f'{mol.GetTitle()} found in assayed data; copying SDData')
+                            oechem.OECopySDData(refmol, mol)
+                            break
+                    # Store a copy
+                    target_molecules.append( oechem.OEGraphMol(mol) )                    
+
             if len(target_molecules) == 0:
                 raise Exception('No target molecules specified; check filename!')
             print(f'  There are {len(target_molecules)} target molecules')
 
             # Filter series and include only those that include the required scaffold
             #filter_series = '3-aminopyridine-like'
+            #filter_series = 'benzotriazoles'
             filter_series = None
             if filter_series is not None:
                 print(f'Filtering out series {filter_series}...')
-                target_molecules = [ mol for mol in target_molecules if get_series(mol) == filter_series ]
+                target_molecules = [ mol for mol in target_molecules if (get_series(mol) == filter_series) ]
                 print(f'  There are {len(target_molecules)} target molecules')
                 with oechem.oemolostream(f'filtered.mol2') as ofs:
                     for mol in target_molecules:
@@ -467,7 +490,7 @@ if __name__ == '__main__':
             filter_IC50 = False
             if filter_IC50:
                 print(f'Retaining only molecules with IC50s...')
-                target_molecules = [ mol for mol in target_molecules if len(oechem.OEGetSDData(mol, 'f_avg_pIC50'))>0 ]
+                target_molecules = [ mol for mol in target_molecules if has_ic50(mol) ]
                 print(f'  There are {len(target_molecules)} target molecules')
 
 
