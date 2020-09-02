@@ -43,93 +43,78 @@ receptors = [
 # Sprint 2
 #index = 0 # starting index for nucleophilic displacement series
 
-# Sprint 3
-index = 0 # starting index for benzotriazoles
+moldbs = dict()
+for series in ligand_dict:
+    # Open ligands as OEMolDatabase
+    lig_file_name = ligand_dict[series]
+    moldbs[series] = oechem.OEMolDatabase()
+    moldb.Open(lig_file_name)    
 
-mol_i = oechem.OEGraphMol()
-mol_j = oechem.OEGraphMol()
+def add_run(master_dict, i, mol_i, j, mol_j, **kwargs):
+    index = len(master_dict)
 
-directions = ['backwards', 'forwards']
+    smiles_flag = oechem.OESMILESFlag_Canonical | oechem.OESMILESFlag_ISOMERIC
 
-i = 0 # reference molecule
-master_dict = dict()
-smiles_flag = oechem.OESMILESFlag_Canonical | oechem.OESMILESFlag_ISOMERIC
-for direction in directions:
+    master_dict[index] = {
+        'JOBID':index,
+        'directory':f'RUN{index}',
+        
+        'start':i,
+        'start_title':mol_i.GetTitle(),
+        'start_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
+
+        'end':j,
+        'end_title':mol_j.GetTitle(),
+        'end_smiles':oechem.OECreateSmiString(mol_j,  smiles_flag),                        
+
+        **kwargs
+    }
+    if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
+        master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
+    if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
+        master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
+
+def add_direction(master_dict, direction, ligand_dict, moldbs, reference_molecule_index=0, starting_index=0):
+    i = reference_molecule_index
+    mol_i = oechem.OEGraphMol()
+    mol_j = oechem.OEGraphMol()
+
     for series in ligand_dict:
         print(series)
 
-        # Open ligands as OEMolDatabase
-        lig_file_name = ligand_dict[series]
-        moldb = oechem.OEMolDatabase()
-        moldb.Open(lig_file_name)
+        moldb = moldbs[series]
         num_mols = moldb.NumMols()
-
-        moldb.GetMolecule(mol_i, i)
+        moldb.GetMolecule(mol_i, reference_molecule_index)
 
         for protein in receptors:
             print(protein)
 
+            kwargs = { 
+                'series':series,
+                'direction':direction,
+                'smarts':smarts,
+                'target':'SARS-CoV-2 Mpro',
+                'protein':protein,
+                'ligand':ligand_dict[series],
+                'ff':ff,
+            }
+
             for j in range(1, num_mols):
                 # Get the molecule
                 moldb.GetMolecule(mol_j, j)
+                index = len(master_dict) + starting_index
 
                 if direction == 'forwards':
-                    master_dict[index] = {
-                        'JOBID':index,
-                        'directory':f'RUN{index}',
-                        'series':series,
-                        'direction':direction,
+                    add_run(master_dict, i, mol_i, j, mol_j, **kwargs)
 
-                        'smarts':smarts,
+                if direction == 'backwards':                    
+                    add_run(master_dict, j, mol_j, i, mol_i, **kwargs)
 
-                        'target':'SARS-CoV-2 Mpro',
-
-                        'start':i,
-                        'start_title':mol_i.GetTitle(),
-                        'start_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
-                        
-                        'end':j,
-                        'end_title':mol_j.GetTitle(),
-                        'end_smiles':oechem.OECreateSmiString(mol_j, smiles_flag),
-                        
-                        'protein':protein,
-                        'ligand':ligand_dict[series],
-                        'ff':ff,
-                    }
-                    if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
-                        master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
-                    if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
-                        master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
-                    index += 1
-
-                if direction == 'backwards':
-                    master_dict[index] = {
-                        'JOBID':index,
-                        'directory':f'RUN{index}',
-                        'series':series,
-                        'direction':direction,
-
-                        'smarts':smarts,
-                    
-                        'target':'SARS-CoV-2 Mpro',
-
-                        'start':j,
-                        'start_title':mol_j.GetTitle(),
-                        'start_smiles':oechem.OECreateSmiString(mol_j, smiles_flag),
-
-                        'end':i,
-                        'end_title':mol_i.GetTitle(),
-                        'end_smiles':oechem.OECreateSmiString(mol_i, smiles_flag),
-                        
-                        'protein':protein,
-                        'ligand':ligand_dict[series],
-                        'ff':ff,
-                    }
-                    if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
-                        master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
-                    if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
-                        master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
-                    index += 1
+# Sprint 3
+index = 0 # starting index for benzotriazoles
+master_dict = dict()
+add_direction(master_dict, 'backwards', ligand_dict, moldbs)
+add_direction(master_dict, 'forwards', ligand_dict, moldbs)
 
 with open(json_filename, "w") as f:
     json.dump(master_dict, f, sort_keys=True, indent=4, separators=(',', ': '))

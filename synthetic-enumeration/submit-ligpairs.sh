@@ -1,6 +1,6 @@
 #!/bin/bash
 #BSUB -P "testing"
-#BSUB -J "mpro[1-1344]" 
+#BSUB -J "mpro[1344-2688]" 
 ##BSUB -J "mpro[1-20]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
@@ -27,5 +27,5 @@ conda activate perses
 # Launch my program.
 module load cuda/10.1
 env | sort | grep 'CUDA'
-export RUN=$(expr $LSB_JOBINDEX - 1)
+export RUN=$(expr $LSB_JOBINDEX)
 python run.py $RUN
