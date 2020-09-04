@@ -49,7 +49,10 @@ def run_relative_perturbation(run, tidy=True):
 #series = '2020-08-12-RAL-THA-6b94ceba1.json'
 #series = '2020-08-13-EDG-MED-0da5ad92.json'
 #series = '2020-08-14-nucleophilic-displacement.json'
+
+# Sprint 3
 series = '2020-08-20-benzotriazoles.json'
+series = '2020-09-01-benzotriazoles-retrospective.json'
 with open(series, 'r') as f:
     data = json.load(f)
 this_run = data[sys.argv[1]]
