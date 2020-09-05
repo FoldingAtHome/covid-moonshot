@@ -290,8 +290,8 @@ if __name__ == '__main__':
             setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache)
             print('')
 
-        #prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
-        #prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
+        prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
+        prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
         prepare_variant('13432', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', oemol)
         prepare_variant('13433', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', oemol)
         prepare_variant('13434', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', None)
