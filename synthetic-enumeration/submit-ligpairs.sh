@@ -21,6 +21,8 @@ set -e
 
 source ~/.bashrc
 OPENMM_CPU_THREADS=1
+module load cuda/10.2
+unset OPENMM_CUDA_COMPILER
 
 cd $LS_SUBCWD
 conda activate perses
