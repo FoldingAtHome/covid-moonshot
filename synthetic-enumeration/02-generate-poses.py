@@ -159,7 +159,9 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts):
         for match in ss.Match(refmol):
             oechem.OESubsetMol(core_fragment, match)
             break
-        print(f'core_fragment has {core_fragment.NumAtoms()} atoms')
+        #print(f'core_fragment has {core_fragment.NumAtoms()} atoms')
+        if core_fragment.NumAtoms() == 0:
+            return None
     else:
         core_fragment = GetCoreFragment(refmol, [mol])
         oechem.OESuppressHydrogens(core_fragment)
@@ -177,7 +179,8 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts):
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
     omegaFixOpts.SetFixMol(core_fragment)
-    #omegaFixOpts.SetFixSmarts(smarts)
+
+    omegaFixOpts.SetFixSmarts(core_smarts)
     omegaFixOpts.SetFixRMS(0.5)
 
     atomexpr = oechem.OEExprOpts_Aromaticity | oechem.OEExprOpts_Hybridization
@@ -190,11 +193,11 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts):
     molBuilderOpts.SetStrictAtomTypes(False) # don't give up if MMFF types are not found
     omegaOpts.SetMolBuilderOptions(molBuilderOpts)
 
-    omegaOpts.SetWarts(False) # expand molecule title
+    omegaOpts.SetWarts(True) # expand molecule title
     omegaOpts.SetStrictStereo(False) # set strict stereochemistry
     omegaOpts.SetIncludeInput(False) # don't include input
-    omegaOpts.SetMaxConfs(1000) # generate lots of conformers
-    #omegaOpts.SetEnergyWindow(10.0) # allow high energies
+    omegaOpts.SetMaxConfs(10000) # generate lots of conformers
+    omegaOpts.SetEnergyWindow(10.0) # allow high energies
     omega = oeomega.OEOmega(omegaOpts)
 
     from openeye import oequacpac
@@ -206,7 +209,7 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts):
 
     ret_code = omega.Build(mol)
     if (mol.GetDimension() != 3) or (ret_code != oeomega.OEOmegaReturnCode_Success):
-        print(f'Omega failure: {mol.GetDimension()} and {oeomega.OEGetOmegaError(ret_code)}')
+        print(f'Omega failure: {mol.GetDimension()} and {oeomega.OEGetOmegaError(ret_code)} for {mol.GetTitle()}')
         return None
 
     # Extract poses
@@ -244,7 +247,7 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts):
         shapeFunc.Overlap(tmpmol, oeshape_result)
         pose.overlap_score = oeshape_result.GetRefTversky()
 
-    # Filter poses based on top 10% of overlap
+    # Filter poses based on top 60% of overlap
     poses = sorted(poses, key= lambda pose : pose.overlap_score)
     poses = poses[int(0.9*len(poses)):]
 
