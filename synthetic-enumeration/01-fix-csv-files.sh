@@ -2,7 +2,8 @@
 
 # Fix CSV files so that SMILES and then CID occur first
 
-for prefix in "primary_amine_enumeration_for_chodera_lab_FEP" "boronic_ester_enumeration_for_chodera_lab_FEP" "nucleophilic_displacement_enumeration_for_FEP"; do
+#for prefix in "primary_amine_enumeration_for_chodera_lab_FEP" "boronic_ester_enumeration_for_chodera_lab_FEP" "nucleophilic_displacement_enumeration_for_FEP"; do
+for prefix in "2020-09-03-ugi"; do
   echo "Generating $prefix-permuted.csv"
   awk -F',' '{ print $4 "," $1 "," $2 "," $3 }' $prefix.csv > $prefix-permuted.csv
   echo "Generating $prefix.pdf"
