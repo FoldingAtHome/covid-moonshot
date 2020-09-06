@@ -18,6 +18,7 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 ### Compound sets
 * `sprint-1/` : Retrospective and prospective 3-aminopyridine
 * `sprint-2/` : Nucleophilic displacement for 3-aminopyridine
+  * `results/` : results and ordered compounds
 * `sprint-3/` : Benzotriazoles
 
 #### Sprint 1 : Retrospective and prospective 3-aminopyridine
