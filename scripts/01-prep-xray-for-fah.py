@@ -60,9 +60,9 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     collision_rate = 1.0 / unit.picoseconds
     temperature = 300.0 * unit.kelvin
     timestep = 4.0 * unit.femtoseconds
-    iterations = 1000 # 10 ns equilibration
+    iterations = 1000 # 1 ns equilibration
     nsteps_per_iteration = 250
-    restrain_rmsd = False # if True, restrain RMSD during equilibration
+    restrain_rmsd = True # if True, restrain RMSD during equilibration
 
     # Prepare phases
     import os
@@ -93,7 +93,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     import os
     from simtk.openmm import app
     forcefield_kwargs = {'removeCMMotion': False, 'hydrogenMass': 3.0*unit.amu, 'constraints': app.HBonds, 'rigidWater': True}
-    periodic_kwargs = {'nonbondedMethod': app.PME, 'ewaldErrorTolerance': 5e-04}
+    periodic_kwargs = {'nonbondedMethod': app.PME, 'ewaldErrorTolerance': 2.5e-04}
     forcefields = [protein_forcefield, solvent_forcefield]
     from openmmforcefields.generators import SystemGenerator
     openmm_system_generator = SystemGenerator(
@@ -103,7 +103,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
                                 forcefield_kwargs=forcefield_kwargs, periodic_forcefield_kwargs=periodic_kwargs)
 
     # Read protein
-    print('Reading protein...')
+    print(f'Reading protein from {protein_pdb_filename}...')
     pdbfile = app.PDBFile(protein_pdb_filename)
     modeller = app.Modeller(pdbfile.topology, pdbfile.positions)
 
@@ -126,19 +126,24 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     # Add RMSD restraints if requested
     if restrain_rmsd:
         print('Adding RMSD restraint...')
+        kB = unit.AVOGADRO_CONSTANT_NA * unit.BOLTZMANN_CONSTANT_kB 
+        kT = kB * temperature     
         import mdtraj as md
         mdtop = md.Topology.from_openmm(pdbfile.topology) # excludes solvent and ions
-        heavy_atom_indices = mdtop.select('mass > 1') # heavy solute atoms
-        custom_cv_force = openmm.CustomCVForce('(K/2)*RMSD^2')
-        rmsd_force = openmm.CustomRMSDForce(heavy_atom_indices)
-        rmsd_force.setUsesPeriodicBoundaryConditions(True)
+        #heavy_atom_indices = mdtop.select('mass > 1') # heavy solute atoms
+        rmsd_atom_indices = mdtop.select('(protein and (name CA)) or ((resname MOL) and (mass > 1))') # CA atoms and ligand heavy atoms
+        rmsd_atom_indices = [ int(index) for index in rmsd_atom_indices ]
+        custom_cv_force = openmm.CustomCVForce('(K_RMSD/2)*RMSD^2')
+        custom_cv_force.addGlobalParameter('K_RMSD', kT / unit.angstrom**2)
+        rmsd_force = openmm.RMSDForce(modeller.positions, rmsd_atom_indices)
         custom_cv_force.addCollectiveVariable('RMSD', rmsd_force)
         force_index = system.addForce(custom_cv_force)
 
     # Create OpenM Context
     platform = openmm.Platform.getPlatformByName('OpenCL')
     platform.setPropertyDefaultValue('Precision', 'mixed')
-    integrator = openmm.LangevinIntegrator(temperature, collision_rate, timestep)
+    from openmmtools import integrators
+    integrator = integrators.LangevinIntegrator(temperature, collision_rate, timestep)
     context = openmm.Context(system, integrator, platform)
     context.setPositions(modeller.positions)
 
@@ -161,13 +166,27 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     print('Minimizing...')
     openmm.LocalEnergyMinimizer.minimize(context)
 
-    # Equilibrate
+    # Equilibrate (with RMSD restraint if needed)
     import numpy as np
     from rich.progress import track
-    rmsd_timeseries = np.zeros([iterations], np.float32)
+    import time
+    initial_time = time.time()
     for iteration in track(range(iterations), 'Equilibrating...'):
         integrator.step(nsteps_per_iteration)
-        trajectory.xyz[iteration+1,:,:] = context.getState(getPositions=True).getPositions(asNumpy=True)[atom_indices] / unit.nanometers
+        #trajectory.xyz[iteration+1,:,:] = context.getState(getPositions=True).getPositions(asNumpy=True)[atom_indices] / unit.nanometers
+    elapsed_time = (time.time() - initial_time) * unit.seconds
+    ns_per_day = (context.getState().getTime() / elapsed_time) / (unit.nanoseconds / unit.day)
+    print(f'Performance: {ns_per_day:8.3f} ns/day')
+    
+    if restrain_rmsd:
+        # Disable RMSD restraint
+        context.setParameter('K_RMSD', 0.0)
+        
+        print('Minimizing...')        
+        openmm.LocalEnergyMinimizer.minimize(context)        
+
+        for iteration in track(range(iterations), 'Equilibrating without RMSD restraint...'):
+            integrator.step(nsteps_per_iteration)
 
     # Retrieve state
     state = context.getState(getPositions=True, getVelocities=True, getEnergy=True, getForces=True)
@@ -175,8 +194,9 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     modeller.topology.setPeriodicBoxVectors(state.getPeriodicBoxVectors())
     print(f'Final potential energy is {state.getPotentialEnergy()/unit.kilocalories_per_mole:.3f} kcal/mol')
 
+    # Equilibrate again if we restrained the RMSD
     if restrain_rmsd:
-        print('Removing RMSD restraint...')
+        print('Removing RMSD restraint from system...')
         system.removeForce(force_index)
 
     #if oemol is not None:
@@ -213,6 +233,9 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
             filename = os.path.join(destination_path, f'molecule.{extension}')
             with oechem.oemolostream(filename) as ofs:
                 oechem.OEWriteMolecule(ofs, oemol)
+
+    # Clean up
+    del context, integrator
 
 if __name__ == '__main__':
     # Parse arguments
@@ -263,6 +286,12 @@ if __name__ == '__main__':
     print(f'Setting title to {title}')
     oemol.SetTitle(title)
 
+    # Remove dummy atoms
+    for atom in oemol.GetAtoms():
+        if atom.GetName().startswith('Du'):
+            print('Removing dummy atom.')
+            oemol.DeleteAtom(atom)
+
     # Attach all structure metadata to the molecule
     for key in metadata:
         oechem.OESetSDData(oemol, key, metadata[key])
@@ -277,18 +306,21 @@ if __name__ == '__main__':
         def prepare_variant(project, run, crystal_name, biounit, dyad_state, oemol):
             assert biounit in ['monomer', 'dimer']
 
-            print('')
-            print(f'PROJ{project}')
+            try:
+                print('')
+                print(f'PROJ{project}')
 
-            if dyad_state == 'His41(0) Cys145(0)':
-                protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
-            elif dyad_state == 'His41(+) Cys145(-)':
-                protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
-            else:
-                raise Exception("dyad_state must be one of ['His41(0) Cys145(0)', 'His41(+) Cys145(-)']")
-            destination_path = os.path.join(args.output_path, project, 'RUNS', f'RUN{run}')
-            setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache)
-            print('')
+                if dyad_state == 'His41(0) Cys145(0)':
+                    protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
+                elif dyad_state == 'His41(+) Cys145(-)':
+                    protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
+                else:
+                    raise Exception("dyad_state must be one of ['His41(0) Cys145(0)', 'His41(+) Cys145(-)']")
+                destination_path = os.path.join(args.output_path, project, 'RUNS', f'RUN{run}')
+                setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache)
+                print('')
+            except Exception as e:
+                print(e)
 
         prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
         prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
