@@ -247,9 +247,9 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts):
         shapeFunc.Overlap(tmpmol, oeshape_result)
         pose.overlap_score = oeshape_result.GetRefTversky()
 
-    # Filter poses based on top 60% of overlap
+    # Filter poses based on top fraction of overlap
     poses = sorted(poses, key= lambda pose : pose.overlap_score)
-    poses = poses[int(0.9*len(poses)):]
+    poses = poses[int(0.8*len(poses)):]
 
     # Select the best docking score
     import numpy as np
@@ -445,7 +445,8 @@ if __name__ == '__main__':
     # Load all fragments
     sprint_path = 'sprint-4' # location of target molecule sets
     for prefix in [
-                '2020-09-03-ugi', # Ugi P2 enumeration
+                '2020-09-06-ugi-tBu', # Ugi P2 enumeration; tBu in P4
+                #'2020-09-03-ugi-fluorobenzene', # Ugi P2 enumeration; fluorobenzene in P4
         ]:
         for reference_ligand_fragment in reference_ligand_fragments:
             reference_ligand_name = reference_ligand_fragments[reference_ligand_fragment]
