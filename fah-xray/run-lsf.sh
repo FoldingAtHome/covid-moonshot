@@ -24,10 +24,12 @@ conda activate perses
 
 # Launch my program.
 module load cuda/10.2
+OPENMM_CPU_THREADS=1
 unset CUDA_OPENMM_COMPILER
 
 nvidia-smi
 
 # Launch my program.
 env | sort | grep 'CUDA'
-python ../scripts/01-prep-xray-for-fah.py --run $LSB_JOBINDEX 
+export RUN=$(expr $LSB_JOBINDEX)
+python ../scripts/01-prep-xray-for-fah.py --run $RUN

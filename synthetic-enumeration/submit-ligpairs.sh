@@ -22,6 +22,7 @@ OPENMM_CPU_THREADS=1
 
 cd $LS_SUBCWD
 conda activate perses-0.7.1
+unset CUDA_OPENMM_COMPILER
 
 # Launch my program.
 module load cuda/10.1

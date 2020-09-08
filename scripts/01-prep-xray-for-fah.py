@@ -34,7 +34,7 @@ First column is used to identify RUN:
 
 """
 
-def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None):
+def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None, restrain_rmsd=False):
     """
     Prepare simulation
 
@@ -47,6 +47,8 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     oemol : openeye.oechem.OEMol, optional, default=None
         The molecule to parameterize, with SDData attached
         If None, don't include the small molecule
+    restrain_rmsd : bool, optional, default=False
+        If True, restrain RMSD during first equilibration phase
     """
     # Parameters
     from simtk import unit, openmm
@@ -62,7 +64,6 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     timestep = 4.0 * unit.femtoseconds
     iterations = 1000 # 1 ns equilibration
     nsteps_per_iteration = 250
-    restrain_rmsd = True # if True, restrain RMSD during equilibration
 
     # Prepare phases
     import os
@@ -123,6 +124,20 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     print('Creating OpenMM system...')
     system = openmm_system_generator.create_system(modeller.topology)
 
+    # Add a virtual bond between protein and ligand to make sure they are not imaged separately
+    if oemol is not None:
+        import mdtraj as md
+        mdtop = md.Topology.from_openmm(modeller.topology) # excludes solvent and ions
+        for res in mdtop.residues:
+            print(res)
+        protein_atom_indices = mdtop.select('(protein and name CA)') # protein CA atoms
+        ligand_atom_indices = mdtop.select('((resname MOL) and (mass > 1))') # ligand heavy atoms
+        protein_atom_index = int(protein_atom_indices[0])
+        ligand_atom_index = int(ligand_atom_indices[0])
+        force = openmm.CustomBondForce('0')
+        force.addBond(protein_atom_index, ligand_atom_index, [])
+        system.addForce(force)
+
     # Add RMSD restraints if requested
     if restrain_rmsd:
         print('Adding RMSD restraint...')
@@ -173,7 +188,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     initial_time = time.time()
     for iteration in track(range(iterations), 'Equilibrating...'):
         integrator.step(nsteps_per_iteration)
-        #trajectory.xyz[iteration+1,:,:] = context.getState(getPositions=True).getPositions(asNumpy=True)[atom_indices] / unit.nanometers
+        trajectory.xyz[iteration+1,:,:] = context.getState(getPositions=True).getPositions(asNumpy=True)[atom_indices] / unit.nanometers
     elapsed_time = (time.time() - initial_time) * unit.seconds
     ns_per_day = (context.getState().getTime() / elapsed_time) / (unit.nanoseconds / unit.day)
     print(f'Performance: {ns_per_day:8.3f} ns/day')
@@ -247,7 +262,7 @@ if __name__ == '__main__':
     parser.add_argument('--metadata', dest='metadata_filename', type=str, default='../fah-xray/fah-metadata.csv',
                         help='metadata (default: ../fah-xray/fah-metadata.csv)')
     parser.add_argument('--run', dest='run', type=str, required=True,
-                        help='RUN index to prepare (indexes first column contents in Mpro.zip metadata.csv)')
+                        help='RUN index to prepare (zero-indexes first column contents in Mpro.zip metadata.csv)')
     parser.add_argument('--output', dest='output_path', type=str, default='projects',
                         help='base directory for produced output (default: projects/)')
 
@@ -300,6 +315,7 @@ if __name__ == '__main__':
     # TODO: Generalize this to just use just one protonation state
     # and maybe constant-pH simulations?
     import tempfile
+    import traceback, sys
     with tempfile.TemporaryDirectory() as tmpdir:
         cache = os.path.join(tmpdir, 'cache.json')
 
@@ -320,6 +336,7 @@ if __name__ == '__main__':
                 setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache)
                 print('')
             except Exception as e:
+                traceback.print_exc(file=sys.stdout)
                 print(e)
 
         prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
