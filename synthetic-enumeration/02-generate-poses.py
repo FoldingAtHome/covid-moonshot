@@ -106,7 +106,7 @@ def expand_stereochemistry(mols):
     maxcenters = 12
     forceFlip = False
     enumNitrogen = True
-    warts = False
+    warts = True # add suffix for stereoisomers
     for mol in mols:
         for enantiomer in oeomega.OEFlipper(mol, maxcenters, forceFlip, enumNitrogen, warts):
             enantiomer = oechem.OEMol(enantiomer)
@@ -126,7 +126,7 @@ class BumpCheck:
                 bump_count += np.exp(-0.5 * (nb.GetDist() / self.cutoff)**2)
         return bump_count
 
-def generate_restricted_conformers(receptor, refmol, mol):
+def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     """
     Generate and select a conformer of the specified molecule using the reference molecule
 
@@ -137,26 +137,34 @@ def generate_restricted_conformers(receptor, refmol, mol):
     refmol : openeye.oechem.OEGraphMol
         Reference molecule which shares some part in common with the proposed molecule
     mol : openeye.oechem.OEGraphMol
-       The molecule to enumerate conformers for
+        Molecule whose conformers are to be enumerated
+    core_smarts : str, optional, default=None
+        If core_smarts is specified, substructure will be extracted using SMARTS.
     """
     from openeye import oechem, oeomega
 
+    # DEBUG: For benzotriazoles, truncate refmol
+    core_smarts = 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1' # prospective
+    core_smarts = 'NC(=O)[C,N]n2nnc3ccccc32' # retrospective
+
     # Get core fragment
-    #atomexpr = oechem.OEExprOpts_Hybridization
-    #bondexpr = oechem.OEExprOpts_Aromaticity
-    #core_fragment = GetCoreFragment(refmol, [mol], atomexpr=atomexpr, bondexpr=bondexpr)
-    core_fragment = GetCoreFragment(refmol, [mol])
-    oechem.OESuppressHydrogens(core_fragment)
-    fixmol = core_fragment
-    #print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
-
-    MIN_CORE_ATOMS = 6
-    if core_fragment.NumAtoms() < MIN_CORE_ATOMS:
-        return None
-
-    # Write core fragment (without modifying it)
-    #with oechem.oemolostream(f'{prefix}-core-{fragment}.mol2') as ofs:
-    #    oechem.OEWriteMolecule(ofs, oechem.OEGraphMol(core_fragment))
+    if core_smarts:
+        # Truncate refmol to SMARTS if specified
+        #print(f'Trunctating using SMARTS {refmol_smarts}')
+        ss = oechem.OESubSearch(core_smarts)
+        oechem.OEPrepareSearch(refmol, ss)
+        for match in ss.Match(refmol):
+            core_fragment = oechem.OEGraphMol()
+            oechem.OESubsetMol(core_fragment, match)
+            break
+        #print(f'refmol has {refmol.NumAtoms()} atoms')
+    else:
+        core_fragment = GetCoreFragment(refmol, [mol])
+        oechem.OESuppressHydrogens(core_fragment)
+        #print(f'  Core fragment has {core_fragment.NumAtoms()} heavy atoms')
+        MIN_CORE_ATOMS = 6
+        if core_fragment.NumAtoms() < MIN_CORE_ATOMS:
+            return None
 
     # Create an Omega instance
     #omegaOpts = oeomega.OEOmegaOptions()
@@ -166,12 +174,14 @@ def generate_restricted_conformers(receptor, refmol, mol):
     omegaFixOpts = oeomega.OEConfFixOptions()
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
-    omegaFixOpts.SetFixMol(fixmol)
-    # DEBUG
-    #atomexpr = oechem.OEExprOpts_Hybridization
-    #bondexpr = oechem.OEExprOpts_Aromaticity
-    #omegaFixOpts.SetAtomExpr(atomexpr)
-    #omegaFixOpts.SetBondExpr(bondexpr)
+    omegaFixOpts.SetFixMol(core_fragment)
+    #omegaFixOpts.SetFixSmarts(smarts)
+    omegaFixOpts.SetFixRMS(0.5)
+
+    atomexpr = oechem.OEExprOpts_Aromaticity | oechem.OEExprOpts_Hybridization
+    bondexpr = oechem.OEExprOpts_BondOrder | oechem.OEExprOpts_Aromaticity
+    omegaFixOpts.SetAtomExpr(atomexpr)
+    omegaFixOpts.SetBondExpr(bondexpr)
     omegaOpts.SetConfFixOptions(omegaFixOpts)
 
     molBuilderOpts = oeomega.OEMolBuilderOptions()
@@ -198,29 +208,67 @@ def generate_restricted_conformers(receptor, refmol, mol):
         return None
 
     # Extract poses
-    poses = [ pose for pose in mol.GetConfs() ]
+    class Pose(object):
+        def __init__(self, conformer):
+            self.conformer = conformer
+            self.clash_score = None
+            self.docking_score = None
+            self.overlap_score = None
+
+    poses = [ Pose(conf) for conf in mol.GetConfs() ]
 
     # Score clashes
     bump_check = BumpCheck(receptor)
-    clash_scores = [ bump_check.count(pose) for pose in poses ]
+    for pose in poses:
+        pose.clash_score = bump_check.count(pose.conformer)
 
     # Score docking poses
     from openeye import oedocking
     score = oedocking.OEScore(oedocking.OEScoreType_Chemgauss4)
     score.Initialize(receptor)
-    docking_scores = [ score.ScoreLigand(pose) for pose in poses ]
+    for pose in poses:
+        pose.docking_score = score.ScoreLigand(pose.conformer)
+
+    # Compute overlap scores
+    from openeye import oeshape
+    overlap_prep = oeshape.OEOverlapPrep()
+    overlap_prep.Prep(refmol)
+    shapeFunc = oeshape.OEExactShapeFunc()
+    shapeFunc.SetupRef(refmol)
+    oeshape_result = oeshape.OEOverlapResults()
+    for pose in poses:
+        tmpmol = oechem.OEGraphMol(pose.conformer)
+        overlap_prep.Prep(tmpmol)
+        shapeFunc.Overlap(tmpmol, oeshape_result)
+        pose.overlap_score = oeshape_result.GetRefTversky()
+
+    # Filter poses based on top 10% of overlap
+    poses = sorted(poses, key= lambda pose : pose.overlap_score)
+    poses = poses[int(0.9*len(poses)):]
 
     # Select the best docking score
     import numpy as np
-    pose_index = np.argmin(docking_scores)
-    mol.SetActive(poses[pose_index])
-    oechem.OESetSDData(mol, 'clash_score', str(clash_scores[pose_index]))
-    oechem.OESetSDData(mol, 'docking_score', str(docking_scores[pose_index]))
+    poses = sorted(poses, key=lambda pose : pose.docking_score)
+    pose = poses[0]
+    mol.SetActive(pose.conformer)
+    oechem.OESetSDData(mol, 'clash_score', str(pose.clash_score))
+    oechem.OESetSDData(mol, 'docking_score', str(pose.docking_score))
+    oechem.OESetSDData(mol, 'overlap_score', str(pose.overlap_score))
 
     # Convert to single-conformer molecule
     mol = oechem.OEGraphMol(mol)
 
     return mol
+
+def has_ic50(mol):
+    """Return True if this molecule has fluorescence IC50 data"""
+    from openeye import oechem
+    try:
+        pIC50 = oechem.OEGetSDData(mol, 'f_avg_pIC50')
+        pIC50 = float(pIC50)
+        return True
+    except Exception as e:
+        return False
 
 # TODO: import this from https://github.com/postera-ai/COVID_moonshot_submissions/blob/master/lib/utils.py
 def get_series(mol):
@@ -234,6 +282,9 @@ def get_series(mol):
         "Ugi": "[c,C:1][C](=[O])[N]([c,C,#1:2])[C]([c,C,#1:3])([c,C,#1:4])[C](=[O])[NH1][c,C:5]",
         "quinolones": "NC(=O)c1cc(=O)[nH]c2ccccc12",
         "piperazine-chloroacetamide": "O=C(CCl)N1CCNCC1",
+        #'benzotriazoles': 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1',
+        #'benzotriazoles': 'a1aaa([C,N]C(=O)[C,N]a2aaa3aaaaa32)aa1',
+        'benzotriazoles': 'a2aaa3aaaaa32',
     }
 
     smi = oechem.OECreateSmiString(mol)
@@ -341,9 +392,13 @@ if __name__ == '__main__':
     #oechem.OESetMemPoolMode(oechem.OEMemPoolMode_SingleThreaded |
     #                        oechem.OEMemPoolMode_UnboundedCache)
 
-    assay_data_filename = 'activity-data-2020-07-29.csv'
+    assay_data_filename = 'activity-data-2020-09-01.csv'
     fragments = {
-        'x10789' : 'TRY-UNI-2eddb1ff-7',
+        #'x10789' : 'TRY-UNI-2eddb1ff-7',
+        # Benzotriazoles
+        'x10876' : 'ALP-POS-d2866bdf-1',
+        'x10820' : 'ALP-POS-c59291d4-4',
+        'x10871' : 'ALP-POS-c59291d4-2',
         }
 
     # Load assay data if available
@@ -355,7 +410,10 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                'EDG-MED-0da5ad92',
+                '2020-09-01-benzotriazoles-retrospective',
+                #'2020-08-20-benzotriazoles',
+                #'BEN-DND-93268d01',
+                #'EDG-MED-0da5ad92',
                 #'RAL-THA-6b94ceba',
                 #'activity-data-2020-08-11',
                 #'aminopyridine-retrospective-jdc-2020-08-11',
@@ -403,17 +461,26 @@ if __name__ == '__main__':
             target_molecules = list()
             with oechem.oemolistream(target_molecules_filename) as ifs:
                 for mol in ifs.GetOEGraphMols():
-                    target_molecules.append( oechem.OEGraphMol(mol) )
+                    # Copy data from assayed molecules (if present)
+                    for assayed_mol in assayed_molecules:
+                        if assayed_mol.GetTitle() == mol.GetTitle():
+                            print(f'{mol.GetTitle()} found in assayed data; copying SDData')
+                            oechem.OECopySDData(refmol, mol)
+                            break
+                    # Store a copy
+                    target_molecules.append( oechem.OEGraphMol(mol) )                    
+
             if len(target_molecules) == 0:
                 raise Exception('No target molecules specified; check filename!')
             print(f'  There are {len(target_molecules)} target molecules')
 
             # Filter series and include only those that include the required scaffold
             #filter_series = '3-aminopyridine-like'
+            #filter_series = 'benzotriazoles'
             filter_series = None
             if filter_series is not None:
                 print(f'Filtering out series {filter_series}...')
-                target_molecules = [ mol for mol in target_molecules if get_series(mol) == filter_series ]
+                target_molecules = [ mol for mol in target_molecules if (get_series(mol) == filter_series) ]
                 print(f'  There are {len(target_molecules)} target molecules')
                 with oechem.oemolostream(f'filtered.mol2') as ofs:
                     for mol in target_molecules:
@@ -423,7 +490,7 @@ if __name__ == '__main__':
             filter_IC50 = False
             if filter_IC50:
                 print(f'Retaining only molecules with IC50s...')
-                target_molecules = [ mol for mol in target_molecules if len(oechem.OEGetSDData(mol, 'f_avg_pIC50'))>0 ]
+                target_molecules = [ mol for mol in target_molecules if has_ic50(mol) ]
                 print(f'  There are {len(target_molecules)} target molecules')
 
 

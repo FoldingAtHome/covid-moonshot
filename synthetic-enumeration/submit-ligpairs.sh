@@ -1,6 +1,8 @@
 #!/bin/bash
 #BSUB -P "testing"
-#BSUB -J "mpro[1-8428]" 
+##BSUB -J "mpro[1344-2688]" 
+##BSUB -J "mpro[1-20]" 
+#BSUB -J "mpro[2688-3359]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -19,12 +21,16 @@ set -e
 
 source ~/.bashrc
 OPENMM_CPU_THREADS=1
+module load cuda/10.2
+unset OPENMM_CUDA_COMPILER
 
 cd $LS_SUBCWD
-conda activate perses-0.7.1
+
 unset CUDA_OPENMM_COMPILER
+conda activate perses
 
 # Launch my program.
 module load cuda/10.1
 env | sort | grep 'CUDA'
-python run.py $LSB_JOBINDEX 
+export RUN=$(expr $LSB_JOBINDEX)
+python run.py $RUN

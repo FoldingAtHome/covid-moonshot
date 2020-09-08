@@ -4,6 +4,8 @@ import itertools
 import os
 import json
 
+yaml_filename = 'sprint3.yaml'
+
 def run_relative_perturbation(run, tidy=True):
     print(f'run details : {run}')
     ligA = run['start']
@@ -17,7 +19,7 @@ def run_relative_perturbation(run, tidy=True):
     new_yaml = f'fah_{outputdir}.yaml'
     
     # rewrite yaml file
-    with open('sprint2.yaml', "r") as yaml_file:
+    with open(yaml_filename, "r") as yaml_file:
         options = yaml.load(yaml_file, Loader=yaml.FullLoader)
     options['old_ligand_index'] = ligA
     options['new_ligand_index'] = ligB
@@ -46,9 +48,16 @@ def run_relative_perturbation(run, tidy=True):
 #series = '2020-08-06-fastgrant-table1.json'
 #series = '2020-08-12-RAL-THA-6b94ceba1.json'
 #series = '2020-08-13-EDG-MED-0da5ad92.json'
-series = '2020-08-14-nucleophilic-displacement.json'
+#series = '2020-08-14-nucleophilic-displacement.json'
+
+# Sprint 3
+series = '2020-08-20-benzotriazoles.json'
+series = '2020-09-01-benzotriazoles-retrospective.json'
 with open(series, 'r') as f:
     data = json.load(f)
 this_run = data[sys.argv[1]]
+
+print(sys.argv[1])
+print(this_run)
 
 run_relative_perturbation(this_run)
