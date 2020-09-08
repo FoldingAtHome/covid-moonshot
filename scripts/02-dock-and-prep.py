@@ -120,7 +120,7 @@ def dock_molecule_to_receptor(molecule, receptor_filename, covalent=False):
 
         # Initialize covalent constraints
         customConstraints = oedocking.OEReceptorGetCustomConstraints(receptor)
-        
+
         # Find CYS145 SG atom
         hv = oechem.OEHierView(receptor)
         hres = hv.GetResidue("A", "CYS", 145)
@@ -230,7 +230,7 @@ def get_covalent_warhead_atom(molecule, covalent_warhead_type):
         The molecule to search
     covalent_warhead : str
         Covalent warhead name
-    
+
     Returns
     -------
     index : int or None
@@ -248,7 +248,7 @@ def get_covalent_warhead_atom(molecule, covalent_warhead_type):
         # Compile list of atom indices that match the pattern tags
         for matched_atom in match.GetAtoms():
             if(matched_atom.pattern.GetMapIdx()==1):
-                return matched_atom.target.GetIdx() 
+                return matched_atom.target.GetIdx()
 
     return None
 
@@ -334,10 +334,10 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
         system_xml_filename = os.path.join(openmm_basedir, phase_name+'.system.xml.gz')
         integrator_xml_filename = os.path.join(openmm_basedir, phase_name+'.integrator.xml.gz')
         state_xml_filename = os.path.join(openmm_basedir, phase_name+'.state.xml.gz')
-        
+
         # Check if we can skip setup
         gromacs_files_exist = os.path.exists(gro_filename) and os.path.exists(top_filename)
-        openmm_files_exist = os.path.exists(system_xml_filename) and os.path.exists(state_xml_filename) and os.path.exists(integrator_xml_filename)        
+        openmm_files_exist = os.path.exists(system_xml_filename) and os.path.exists(state_xml_filename) and os.path.exists(integrator_xml_filename)
         if gromacs_files_exist and (not save_openmm or openmm_files_exist):
             continue
 
@@ -424,7 +424,7 @@ def prepare_simulation(molecule, basedir, save_openmm=False):
             system.removeForce(force_index)
             from pymbar.timeseries import detectEquilibration
             t0, g, Neff = detectEquilibration(distances)
-            distances = distances[t0:]            
+            distances = distances[t0:]
             distance_min = distances.min()
             distance_mean = distances.mean()
             distance_stddev = distances.std()
@@ -626,7 +626,7 @@ if __name__ == '__main__':
             fragments_to_dock_to = all_fragments
 
         if args.userfrags:
-            if oechem.OEHasSDData(molecule, 'fragments'):                
+            if oechem.OEHasSDData(molecule, 'fragments'):
                 fragments_to_dock_to = oechem.OEGetSDData(molecule, 'fragments').split(',')
         # Dock the molecule
         docked_molecule = ensemble_dock(molecule, fragments_to_dock_to, covalent=is_covalent)
@@ -735,4 +735,3 @@ if __name__ == '__main__':
         output_filename = os.path.join(docking_basedir, f'{molecule.GetTitle()} - ligand.sdf')
         with oechem.oemolostream(output_filename) as ofs:
             oechem.OEWriteMolecule(ofs, docked_molecule)
-

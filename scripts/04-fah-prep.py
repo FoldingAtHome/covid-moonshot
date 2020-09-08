@@ -81,7 +81,7 @@ if __name__ == '__main__':
                         files_missing = True
             if files_missing:
                 continue
-            
+
             # Add RUN number
             oechem.OESetSDData(molecule, 'run', f'RUN{run_index}')
 
@@ -101,5 +101,5 @@ if __name__ == '__main__':
                     shutil.copyfile(src, dst)
 
             oechem.OEWriteMolecule(ofs, molecule)
-            
+
             run_index += 1
