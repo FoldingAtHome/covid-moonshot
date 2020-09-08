@@ -24190,5 +24190,5 @@
         "start_smiles": "Cn1cc(cn1)CN(c2ccc(cc2)N3CCOCC3)C(=O)Cc4nnc5n4cccc5",
         "start_title": "BENZO_503_1",
         "target": "SARS-CoV-2 Mpro"
-    },
+    }
 }

@@ -22,27 +22,24 @@ ligand_dict = {
     ##'nucleophilic-displacement-x10820' : '2020-08-20-benzotriazoles-dockscores-x10820.sdf',
 
     # retrospective
-    'benzotriazoles-retrospective-x10876' : '2020-09-01-benzotriazoles-retrospective-dockscores-x10876.sdf',
-    'benzotriazoles-retrospective-x10871' : '2020-09-01-benzotriazoles-retrospective-dockscores-x10871.sdf',
-    'benzotriazoles-retrospective-x10820' : '2020-09-01-benzotriazoles-retrospective-dockscores-x10820.sdf',
+    #'benzotriazoles-retrospective-x10876' : '2020-09-01-benzotriazoles-retrospective-dockscores-x10876.sdf',
+    #'benzotriazoles-retrospective-x10871' : '2020-09-01-benzotriazoles-retrospective-dockscores-x10871.sdf',
+    #'benzotriazoles-retrospective-x10820' : '2020-09-01-benzotriazoles-retrospective-dockscores-x10820.sdf',
+
+    # Sprint 4
+    '2020-09-06-ugi-tBu-x3110-3v3m-2020-04-Jacobs' : 'sprint-4/2020-09-06-ugi-tBu-x3110-3v3m-2020-04-Jacobs.sdf',
 }
 
 # Sprint 2
 #json_filename = '2020-08-20-benzotriazoles.json'
-json_filename = '2020-09-01-benzotriazoles-retrospective.json'
+#json_filename = '2020-09-01-benzotriazoles-retrospective.json'
+json_filename = 'sprint-4/2020-09-06-ugi-tBu-x3110-3v3m-2020-04-Jacobs.json'
 
 # SMARTS for common core scaffold
-smarts = 'c1ccc(NC(=O)[C,N]n2nnc3ccccc32)cc1'
+smarts = 'N(C(=O)c2ccco2)C(C(=O)NC)c2cccnc2'
 
 receptors = [
-    '../receptors/monomer/Mpro-x2646_0_bound-protein.pdb',
-    '../receptors/monomer/Mpro-x2646_0_bound-protein-thiolate.pdb',
-    '../receptors/monomer/Mpro-x10876_0_bound-protein.pdb',
-    '../receptors/monomer/Mpro-x10876_0_bound-protein-thiolate.pdb',
-    '../receptors/monomer/Mpro-x10871_0_bound-protein.pdb',
-    '../receptors/monomer/Mpro-x10871_0_bound-protein-thiolate.pdb',
-    '../receptors/monomer/Mpro-x10820_0_bound-protein.pdb',
-    '../receptors/monomer/Mpro-x10820_0_bound-protein-thiolate.pdb',
+    '../receptors/monomer/Mpro-x3110_0_bound-protein-thiolate.pdb',
 ]
 
 def get_moldb(series):
@@ -70,10 +67,11 @@ def add_run(master_dict, i, mol_i, j, mol_j, starting_index=0, **kwargs):
 
         **kwargs
     }
-    if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
-        master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
+
     if oechem.OEHasSDData(mol_i,'f_avg_pIC50'):
-        master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
+        master_dict[index]['start_pIC50'] = oechem.OEGetSDData(mol_i, 'f_avg_pIC50')
+    if oechem.OEHasSDData(mol_j,'f_avg_pIC50'):
+        master_dict[index]['end_pIC50'] = oechem.OEGetSDData(mol_j, 'f_avg_pIC50')
 
 def add_direction(master_dict, direction, ligand_dict, reference_molecule_index=0, starting_index=0):
     i = reference_molecule_index
@@ -111,10 +109,10 @@ def add_direction(master_dict, direction, ligand_dict, reference_molecule_index=
                     add_run(master_dict, j, mol_j, i, mol_i, starting_index=starting_index, **kwargs)
 
 # Sprint 3
-starting_index = 2688 # retrospective start
+starting_index = 0 # retrospective start
 master_dict = dict()
 add_direction(master_dict, 'backwards', ligand_dict, starting_index=starting_index)
-add_direction(master_dict, 'forwards', ligand_dict, starting_index=starting_index)
+#add_direction(master_dict, 'forwards', ligand_dict, starting_index=starting_index)
 
 with open(json_filename, "w") as f:
     json.dump(master_dict, f, sort_keys=True, indent=4, separators=(',', ': '))
