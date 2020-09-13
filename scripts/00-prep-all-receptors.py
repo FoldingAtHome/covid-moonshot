@@ -146,6 +146,7 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 
     opts = oespruce.OEMakeDesignUnitOptions()
     #print(f'ligand atoms: min {opts.GetSplitOptions().GetMinLigAtoms()}, max {opts.GetSplitOptions().GetMaxLigAtoms()}')
+    opts.GetSplitOptions().SetMinLigAtoms(7) # minimum fragment size (in heavy atoms)
 
     mdata = oespruce.OEStructureMetadata();
     opts.GetPrepOptions().SetStrictProtonationMode(True);
