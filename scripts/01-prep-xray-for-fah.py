@@ -233,7 +233,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
         f.write(openmm.XmlSerializer.serialize(state))
     with bz2.open(system_xml_filename,'wt') as f:
         f.write(openmm.XmlSerializer.serialize(system))
-    with bz2.open(os.path.join(destination_path, 'equilibrated-all.pdb.gz'), 'wt') as f:
+    with bz2.open(os.path.join(destination_path, 'equilibrated-all.pdb.bz2'), 'wt') as f:
         app.PDBFile.writeFile(modeller.topology, state.getPositions(), f)
     with open(os.path.join(destination_path, 'equilibrated-solute.pdb'), 'wt') as f:
         import mdtraj
