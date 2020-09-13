@@ -44,7 +44,7 @@ def read_pdb_file(pdb_file):
 
     return (mol)
 
-def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
+def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False, retain_water=False):
     """
     Parameters
     ----------
@@ -54,7 +54,13 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
         Base path for output
     dimer : bool, optional, default=False
         If True, generate the dimer as the biological unit
+    retain_water : bool, optional, default=False
+        If True, will retain waters
     """
+    # Check whether this is a diamond SARS-CoV-2 Mpro structure or not
+    import re
+    is_diamond_structure = (re.search('-x\d+_', complex_pdb_filename) is not None)
+
     import os
     basepath, filename = os.path.split(complex_pdb_filename)
     prefix, extension = os.path.splitext(filename)
@@ -73,8 +79,46 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
     if not dimer:
         pdbfile_lines = [ line for line in pdbfile_lines if 'REMARK 350' not in line ]
 
+    # Filter out waters
+    if not retain_water:
+        pdbfile_lines = [ line for line in pdbfile_lines if 'HOH' not in line ]
+
+    # Filter out LINK records to covalent inhibitors so we can model non-covalent complex
+    pdbfile_lines = [ line for line in pdbfile_lines if 'LINK' not in line ]
+
     # Reconstruct PDBFile contents
     pdbfile_contents = ''.join(pdbfile_lines)
+
+    # Append SEQRES to fragment structures if this is a Diamond SARS-CoV-2 Mpro structure
+    seqres = """\
+SEQRES   1 A  306  SER GLY PHE ARG LYS MET ALA PHE PRO SER GLY LYS VAL
+SEQRES   2 A  306  GLU GLY CYS MET VAL GLN VAL THR CYS GLY THR THR THR
+SEQRES   3 A  306  LEU ASN GLY LEU TRP LEU ASP ASP VAL VAL TYR CYS PRO
+SEQRES   4 A  306  ARG HIS VAL ILE CYS THR SER GLU ASP MET LEU ASN PRO
+SEQRES   5 A  306  ASN TYR GLU ASP LEU LEU ILE ARG LYS SER ASN HIS ASN
+SEQRES   6 A  306  PHE LEU VAL GLN ALA GLY ASN VAL GLN LEU ARG VAL ILE
+SEQRES   7 A  306  GLY HIS SER MET GLN ASN CYS VAL LEU LYS LEU LYS VAL
+SEQRES   8 A  306  ASP THR ALA ASN PRO LYS THR PRO LYS TYR LYS PHE VAL
+SEQRES   9 A  306  ARG ILE GLN PRO GLY GLN THR PHE SER VAL LEU ALA CYS
+SEQRES  10 A  306  TYR ASN GLY SER PRO SER GLY VAL TYR GLN CYS ALA MET
+SEQRES  11 A  306  ARG PRO ASN PHE THR ILE LYS GLY SER PHE LEU ASN GLY
+SEQRES  12 A  306  SER CYS GLY SER VAL GLY PHE ASN ILE ASP TYR ASP CYS
+SEQRES  13 A  306  VAL SER PHE CYS TYR MET HIS HIS MET GLU LEU PRO THR
+SEQRES  14 A  306  GLY VAL HIS ALA GLY THR ASP LEU GLU GLY ASN PHE TYR
+SEQRES  15 A  306  GLY PRO PHE VAL ASP ARG GLN THR ALA GLN ALA ALA GLY
+SEQRES  16 A  306  THR ASP THR THR ILE THR VAL ASN VAL LEU ALA TRP LEU
+SEQRES  17 A  306  TYR ALA ALA VAL ILE ASN GLY ASP ARG TRP PHE LEU ASN
+SEQRES  18 A  306  ARG PHE THR THR THR LEU ASN ASP PHE ASN LEU VAL ALA
+SEQRES  19 A  306  MET LYS TYR ASN TYR GLU PRO LEU THR GLN ASP HIS VAL
+SEQRES  20 A  306  ASP ILE LEU GLY PRO LEU SER ALA GLN THR GLY ILE ALA
+SEQRES  21 A  306  VAL LEU ASP MET CYS ALA SER LEU LYS GLU LEU LEU GLN
+SEQRES  22 A  306  ASN GLY MET ASN GLY ARG THR ILE LEU GLY SER ALA LEU
+SEQRES  23 A  306  LEU GLU ASP GLU PHE THR PRO PHE ASP VAL VAL ARG GLN
+SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
+"""
+    if is_diamond_structure:
+        #print('Prepending SEQRES')
+        pdbfile_contents = seqres + pdbfile_contents
 
     # Read the receptor and identify design units
     from openeye import oespruce, oechem
@@ -85,15 +129,53 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False):
         complex = read_pdb_file(pdbfile.name)
         # TODO: Clean up
 
+    #het = oespruce.OEHeterogenMetadata()
+    #het.SetTitle("LIG")  # real ligand 3 letter code
+    #het.SetID("CovMoonShot1234")  # in case you have corporate IDs
+    #het.SetType(oespruce.OEHeterogenType_Ligand)
+    #   mdata.AddHeterogenMetadata(het)
+
     #print('Identifying design units...')
-    design_units = list(oespruce.OEMakeDesignUnits(complex))
-    if len(design_units) == 1:
+    # Produce zero design units if we fail to protonate
+
+    # Log warnings
+    errfs = oechem.oeosstream() # create a stream that writes internally to a stream
+    oechem.OEThrow.SetOutputStream(errfs)
+    oechem.OEThrow.Clear()
+    oechem.OEThrow.SetLevel(oechem.OEErrorLevel_Verbose) # capture verbose error output
+
+    opts = oespruce.OEMakeDesignUnitOptions()
+    #print(f'ligand atoms: min {opts.GetSplitOptions().GetMinLigAtoms()}, max {opts.GetSplitOptions().GetMaxLigAtoms()}')
+
+    mdata = oespruce.OEStructureMetadata();
+    opts.GetPrepOptions().SetStrictProtonationMode(True);
+    if is_diamond_structure:
+        # Only cap C-terminus, since N-terminus is biological
+        opts.GetPrepOptions().GetBuildOptions().SetCapNTermini(False);
+        opts.GetPrepOptions().GetBuildOptions().SetCapCTermini(True);
+    design_units = list(oespruce.OEMakeDesignUnits(complex, mdata, opts))
+
+    # Restore error stream
+    oechem.OEThrow.SetOutputStream(oechem.oeerr)
+
+    # Capture the warnings to a string
+    warnings = errfs.str().decode("utf-8")
+
+    if len(design_units) >= 1:
         design_unit = design_units[0]
-    elif len(design_units) > 1:
-        #print('More than one design unit found---using first one')
-        design_unit = design_units[0]
+        print('')
+        print('')
+        print(f'{complex_pdb_filename} : SUCCESS')
+        print(warnings)
     elif len(design_units) == 0:
-        raise Exception(f' * No design units found for {complex_pdb_filename}')
+        print('')
+        print('')
+        print(f'{complex_pdb_filename} : FAILURE')
+        print(warnings)
+        msg = f'No design units found for {complex_pdb_filename}\n'
+        msg += warnings
+        msg += '\n'
+        raise Exception(msg)
 
     # Prepare the receptor
     #print('Preparing receptor...')
@@ -184,7 +266,7 @@ if __name__ == '__main__':
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
 
-    for dimer in [False, True]:
+    for dimer in [True, False]:
         if dimer:
             output_basepath = '../receptors/dimer'
         else:
@@ -196,7 +278,15 @@ if __name__ == '__main__':
             try:
                 prepare_receptor(complex_pdb_file, output_basepath, dimer=dimer)
             except Exception as e:
-                print(e)
+                #print(e)
+                pass
+
+        # DEBUG:
+        #for source_pdb_file in source_pdb_files:
+        #    print(source_pdb_file)
+        #    prepare_receptor_wrapper(source_pdb_file)
+        #    print('')
+        #stop
 
         # Process all receptors in parallel
         from multiprocessing import Pool
