@@ -94,7 +94,7 @@ for molecule_index in track(range(nmols), description='Processing molecules...')
         experimental_data['pIC50'] = oechem.OEGetSDData(oemol, 'f_avg_pIC50')
     # Extract information about the compound
     compound_metadata = CompoundMetadata(
-        compound_id=oemol.GetTitle(),
+        compound_id=compound_id,
         smiles=oechem.OECreateSmiString(oemol, smiles_flag),
         experimental_data=experimental_data,
     )
