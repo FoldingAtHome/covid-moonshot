@@ -20,6 +20,7 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 * `sprint-2/` : Nucleophilic displacement for 3-aminopyridine
   * `results/` : results and ordered compounds
 * `sprint-3/` : Benzotriazoles
+* `sprint-4/` : Ugi enumeration toward P2
 
 #### Sprint 1 : Retrospective and prospective 3-aminopyridine
 
@@ -56,6 +57,9 @@ Modeling of design conformations suggested by this [excellent blog post from Pat
 
 * `2020-08-20-benzotriazoles.csv` - benzotriazole derivatives
 * `2020-08-20-benzotriazoles-dockscores-x10876.sdf` - docked to x10876
+
+#### Sprint 4 : Ugi enumeration toward P4
+
 
 ## Misc
 * `activity-data-2020-07-29.csv`: activity data downloaded from the [COVID Moonshot](https://covid.postera.ai/covid/activity_data.csv) on 2020-07-29

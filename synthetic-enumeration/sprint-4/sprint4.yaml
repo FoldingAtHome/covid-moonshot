@@ -1,0 +1,24 @@
+protein_pdb: protein.pdb
+ligand_file: DOCKING_4MDS_POSES.sdf
+old_ligand_index: 0
+new_ligand_index: 1
+forcefield_files:
+    - amber/ff14SB.xml # ff14SB protein force field
+    - amber/tip3p_standard.xml # TIP3P and recommended monovalent ion parameters
+    - amber/tip3p_HFE_multivalent.xml # for divalent ions
+    - amber/phosaa10.xml # HANDLES THE TPO
+# don't constrain bonds to hydrogen to work around pathological slowdown with CCMA
+remove_constraints: not water 
+#remove_constraints: false
+atom_expression:
+    - IntType
+bond_expression:
+    - DefaultBonds
+small_molecule_forcefield:
+    - openff-1.2.0
+phase_project_ids:
+    complex: 13426
+    solvent: 13427
+    vacuum: vacuum-sprint4
+ionic_strength: 0.070 # molar, to match experimental conditions
+timestep: 2.0 # fs

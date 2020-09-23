@@ -4,7 +4,7 @@ import itertools
 import os
 import json
 
-yaml_filename = 'sprint3.yaml'
+yaml_filename = 'sprint-4/sprint4.yaml'
 
 def run_relative_perturbation(run, tidy=True):
     print(f'run details : {run}')
@@ -50,9 +50,9 @@ def run_relative_perturbation(run, tidy=True):
 #series = '2020-08-13-EDG-MED-0da5ad92.json'
 #series = '2020-08-14-nucleophilic-displacement.json'
 
-# Sprint 3
-series = '2020-08-20-benzotriazoles.json'
-series = '2020-09-01-benzotriazoles-retrospective.json'
+#series = '2020-08-20-benzotriazoles.json'
+#series = '2020-09-01-benzotriazoles-retrospective.json'
+series = 'sprint-4/2020-09-06-ugi-tBu-x3110-3v3m-2020-04-Jacobs.json'
 with open(series, 'r') as f:
     data = json.load(f)
 this_run = data[sys.argv[1]]

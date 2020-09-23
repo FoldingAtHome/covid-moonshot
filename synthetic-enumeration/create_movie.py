@@ -8,7 +8,7 @@ import re
 
 cmd.mset()
 cmd.rewind()
-nloop = 4
+nloop = 2
 seconds = 4
 fps = 30
 degrees = 30
@@ -17,9 +17,9 @@ nframes = seconds * fps
 for loop in range(nloop):
     cmd.movie.add_nutate(seconds,degrees)
 
-objname = '2020-08-20-benzotriazoles-dockscores-x10876'
-cmd.load(objname + '.sdf')
-cmd.hide('sticks', 'hydrogen')
+objname = '2020-09-06-ugi-tBu-x3110-3v3m-2020-04-Jacobs'
+#cmd.load(objname + '.sdf')
+#cmd.hide('sticks', 'hydrogen')
 cmd.mview('store', 1, object=objname, state=1)
 cmd.mview('store', nloop*seconds*fps, object=objname, state=nloop*seconds*fps)
 
