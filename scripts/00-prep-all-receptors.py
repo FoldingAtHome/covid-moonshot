@@ -262,7 +262,7 @@ if __name__ == '__main__':
            zip_obj.extractall(structures_path)
 
     # Get list of all PDB files to prep
-    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0/Mpro-*_0_bound.pdb"))
+    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
 
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
