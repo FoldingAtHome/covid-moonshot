@@ -108,8 +108,8 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False, retain_
             break
 
     # Prepend REMARK 350 (biological symmetry) header lines for Mpro (from 5RGG) if not present
-    if not has_biological_symmetry_header:
-        pdbfile_lines = [ line for line in BIOLOGICAL_SYMMETRY_HEADER.split() ] + pdbfile_lines
+    if is_diamond_structure and (not has_biological_symmetry_header):
+        pdbfile_lines = [ line+'\n' for line in BIOLOGICAL_SYMMETRY_HEADER.split('\n') ] + pdbfile_lines
 
     # If monomer is specified, drop crystal symmetry lines
     if not dimer:
@@ -192,7 +192,8 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
         opts.GetPrepOptions().GetBuildOptions().SetCapCTermini(True);
 
     # Don't flip Gln189
-    pred = oechem.OEAtomMatchResidue(["GLN:189: :A"])
+    #pred = oechem.OEAtomMatchResidue(["GLN:189: :A"])
+    pred = oechem.OEAtomMatchResidue(["GLN:189:.*:.*:.*"])
     protonate_opts = opts.GetPrepOptions().GetProtonateOptions();
     place_hydrogens_opts = protonate_opts.GetPlaceHydrogensOptions()
     #place_hydrogens_opts.SetBypassPredicate(pred)
@@ -254,7 +255,8 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 
     # Adjust protonation state of CYS145 to generate thiolate form
     print('Deprotonating CYS145...') # DEBUG
-    pred = oechem.OEAtomMatchResidue(["CYS:145: :A"])
+    #pred = oechem.OEAtomMatchResidue(["CYS:145: :A"])
+    pred = oechem.OEAtomMatchResidue(["CYS:145:.*:.*:.*"])
     place_hydrogens_opts.SetBypassPredicate(pred)
     for atom in protein.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_SG:
@@ -263,7 +265,8 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
             atom.SetFormalCharge(-1)
             atom.SetImplicitHCount(0)
     print('Protonating HIS41...') # DEBUG
-    pred = oechem.OEAtomMatchResidue(["HIS:41: :A"])
+    #pred = oechem.OEAtomMatchResidue(["HIS:41: :A"])
+    pred = oechem.OEAtomMatchResidue(["HIS:41:.*:.*:.*"])
     place_hydrogens_opts.SetBypassPredicate(pred)
     for atom in protein.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_ND1:
@@ -322,16 +325,18 @@ if __name__ == '__main__':
 
     # Get list of all PDB files to prep
     source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
-    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x12073_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x12073_0?/Mpro-*_0?_bound.pdb")) # DEBUG
 
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
 
-    for dimer in [True, False]:
+    for dimer in [False, True]:
         if dimer:
             output_basepath = '../receptors/dimer'
+            print('dimer') # DEBUG
         else:
             output_basepath = '../receptors/monomer'
+            print('monomer') # DEBUG
 
         os.makedirs(output_basepath, exist_ok=True)
 
