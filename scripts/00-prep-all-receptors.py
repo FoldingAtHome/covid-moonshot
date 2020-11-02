@@ -254,23 +254,23 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
         outfile.write(''.join(pdbfile_lines))
 
     # Adjust protonation state of CYS145 to generate thiolate form
-    print('Deprotonating CYS145...') # DEBUG
+    #print('Deprotonating CYS145...') # DEBUG
     #pred = oechem.OEAtomMatchResidue(["CYS:145: :A"])
     pred = oechem.OEAtomMatchResidue(["CYS:145:.*:.*:.*"])
     place_hydrogens_opts.SetBypassPredicate(pred)
     for atom in protein.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_SG:
-            print('Modifying CYS 145 SG')
+            #print('Modifying CYS 145 SG')
             oechem.OESuppressHydrogens(atom)
             atom.SetFormalCharge(-1)
             atom.SetImplicitHCount(0)
-    print('Protonating HIS41...') # DEBUG
+    #print('Protonating HIS41...') # DEBUG
     #pred = oechem.OEAtomMatchResidue(["HIS:41: :A"])
     pred = oechem.OEAtomMatchResidue(["HIS:41:.*:.*:.*"])
     place_hydrogens_opts.SetBypassPredicate(pred)
     for atom in protein.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_ND1:
-            print('Protonating HIS 41 ND1')
+            #print('Protonating HIS 41 ND1')
             atom.SetFormalCharge(+1)
             atom.SetImplicitHCount(1)
     # Update the design unit with the modified formal charge for CYS 145 SG
@@ -283,7 +283,7 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
     #place_hydrogens_opts.SetNoFlipPredicate(pred)
 
     # Adjust protonation states
-    print('Re-optimizing hydrogen positions...') # DEBUG
+    #print('Re-optimizing hydrogen positions...') # DEBUG
     #place_hydrogens_opts = oechem.OEPlaceHydrogensOptions()
     #place_hydrogens_opts.SetBypassPredicate(pred)
     #protonate_opts = oespruce.OEProtonateDesignUnitOptions(place_hydrogens_opts)
@@ -325,7 +325,7 @@ if __name__ == '__main__':
 
     # Get list of all PDB files to prep
     source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
-    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x12073_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x12073_0?/Mpro-*_0?_bound.pdb")) # DEBUG
 
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
@@ -333,10 +333,8 @@ if __name__ == '__main__':
     for dimer in [False, True]:
         if dimer:
             output_basepath = '../receptors/dimer'
-            print('dimer') # DEBUG
         else:
             output_basepath = '../receptors/monomer'
-            print('monomer') # DEBUG
 
         os.makedirs(output_basepath, exist_ok=True)
 
