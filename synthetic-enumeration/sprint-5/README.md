@@ -87,13 +87,25 @@ Synthetic intermediates:
 
 ## Manifest
 
+Scripts
+* `01-aggregate-compounds.py` - generate the initial sorted list to dock
+* `02-generate-poses.py` - generate poses
+
 SMARTS strings to label compounds by source intermediates
 * `intermediates/benzopyran_sprint_5_intermediates.csv`
 
-Filtered for liabilities:
+Filtered for liabilities using Eli Lilly rules:
 * `filtered/filtered_alkyl_halide_bb_ether_synthesis_for_FEP.smi`
 * `filtered/filtered_amine_bb_amide_couplings_for_FEP.smi`
 * `filtered/filtered_cooh_bb_amide_couplings_for_FEP.smi`
+
+Submitted designs
+* `submissions/submissions-2020-11-02.csv` - all submitted designs as of 2020-11-02
+
+Sorted, compiled, annotated molecules
+* `sorted/sprint-5.csv` - molecules to be docked
+
+## Misc notes on filtering
 
 Here are the filtered lists with a unique ID for every compound. Since there were so many molecules, I used Lilly's rules, which are easier to run in high-throughput (since I couldn't do all these by hand). You'll notice that the number of "demerits": "D()" is still included in the final files, which you can use if you want to shorten the list further. Of those that were not filtered out, the main demerit is simply having many atoms. Not sure, but could be a decent predictor of FEP challenges.
 
