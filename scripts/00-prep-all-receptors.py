@@ -125,7 +125,8 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False, retain_
     # Reconstruct PDBFile contents
     pdbfile_contents = ''.join(pdbfile_lines)
 
-    # Append SEQRES to fragment structures if this is a Diamond SARS-CoV-2 Mpro structure
+    # Append SEQRES to all structures, since the 'aligned' files had removed them
+    # TODO: Remove this when REMARK 350 is restored
     seqres = """\
 SEQRES   1 A  306  SER GLY PHE ARG LYS MET ALA PHE PRO SER GLY LYS VAL
 SEQRES   2 A  306  GLU GLY CYS MET VAL GLN VAL THR CYS GLY THR THR THR
@@ -152,9 +153,7 @@ SEQRES  22 A  306  ASN GLY MET ASN GLY ARG THR ILE LEU GLY SER ALA LEU
 SEQRES  23 A  306  LEU GLU ASP GLU PHE THR PRO PHE ASP VAL VAL ARG GLN
 SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 """
-    if is_diamond_structure:
-        #print('Prepending SEQRES')
-        pdbfile_contents = seqres + pdbfile_contents
+    pdbfile_contents = seqres + pdbfile_contents
 
     # Read the receptor and identify design units
     from openeye import oespruce, oechem
@@ -164,6 +163,12 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
         pdbfile.close()
         complex = read_pdb_file(pdbfile.name)
         # TODO: Clean up
+
+    # Strip protons from structure since SpruceTK won't correctly add protons if they are present
+    # See: 6wnp, 6wtj, 6wtk, 6xb2, 6xqs, 6xqt, 6xqu, 6m2n
+    for atom in complex.GetAtoms():
+        if atom.GetAtomicNum() > 1:
+            oechem.OESuppressHydrogens(atom)
 
     #het = oespruce.OEHeterogenMetadata()
     #het.SetTitle("LIG")  # real ligand 3 letter code
@@ -325,7 +330,7 @@ if __name__ == '__main__':
 
     # Get list of all PDB files to prep
     source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
-    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x12073_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-6wnp_0?/Mpro-*_0?_bound.pdb")) # DEBUG
 
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
