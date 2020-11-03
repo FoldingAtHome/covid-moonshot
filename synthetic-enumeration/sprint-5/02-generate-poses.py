@@ -407,7 +407,7 @@ if __name__ == '__main__':
 
     # Load all fragments
     for prefix in [
-                'sorted/sprint-5',
+                'sprint-5',
         ]:
         for fragment in fragments:
 
@@ -440,7 +440,7 @@ if __name__ == '__main__':
                     break
 
             # Read target molecules
-            target_molecules_filename = prefix + f'.csv'
+            target_molecules_filename = 'sorted/' + prefix + f'.csv'
             print('Reading target molecules...')
             from openeye import oechem
             target_molecules = list()
@@ -480,6 +480,6 @@ if __name__ == '__main__':
 
 
             # Generate poses for all molecules
-            output_filename = f'{prefix}-dockscores-{fragment}.sdf'
+            output_filename = f'docked/{prefix}-dockscores-{fragment}.sdf'
             print(f'Writing poses to {output_filename}...')
             generate_poses(receptor, refmol, target_molecules, output_filename)
