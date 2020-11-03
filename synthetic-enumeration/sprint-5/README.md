@@ -1,8 +1,8 @@
-# Folding@home Sprint 5 for the COVID Moonshot
+# Sprint 5 : P1' substituents optimization for isoquinoline / benzopyran series
 
 ## Objectives
 
-This sprint evaluates potential P1' substituents building on the isoquinoline series (formerly 3-the aminopyridine series) to attempt to pick up more affinity for this lead series.
+This sprint evaluates potential P1' substituents building on the isoquinoline series (formerly 3-the aminopyridine series) to attempt to further optimize lead compound [MAT-POS-b3e365b9-1](http://postera.ai/covid/submissions/MAT-POS-b3e365b9-1).
 
 ### Relevant compounds
 

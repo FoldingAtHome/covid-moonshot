@@ -1,4 +1,4 @@
-SMILES,CID
+C1(CCOc2ccccc12)C(=O)Nc1cncc2ccccc12,benzopyran-isoquinoline-scaffold
 N[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C0_amine
 O[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C0_alcohol
 NC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C1_amine
