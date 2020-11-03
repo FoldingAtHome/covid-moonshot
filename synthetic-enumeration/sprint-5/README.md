@@ -65,7 +65,11 @@ Our initial goal is to determine which of the 10 distinct intermediates we shoul
 
 We aim to cluster related compounds to reduce the variance in our estimates.
 
-## List of transformations to generate
+## Experiment design
+
+The design of this experiment is intended to help us quickly identify which intermediates are worth pursuing at scale.
+We therefore sort the molecules we could generate by number of atoms and interleave molecules from every series,
+working from small to large.
 
 * Transformations between X-ray structures
 * Transformations from X-ray structures to all compounds that have been assayed or queued for synthesis
@@ -83,11 +87,10 @@ Synthetic intermediates:
 
 ## Manifest
 
-
-Intermediates
+SMARTS strings to label compounds by source intermediates
 * `intermediates/benzopyran_sprint_5_intermediates.csv`
 
-Filtered for
+Filtered for liabilities:
 * `filtered/filtered_alkyl_halide_bb_ether_synthesis_for_FEP.smi`
 * `filtered/filtered_amine_bb_amide_couplings_for_FEP.smi`
 * `filtered/filtered_cooh_bb_amide_couplings_for_FEP.smi`

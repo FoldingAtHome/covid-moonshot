@@ -82,6 +82,26 @@ while (nmols_to_assign > 0):
             mols.append(mols_by_label[label].pop(0))
             nmols_to_assign -= 1
 
+# Move important molecules to the beginning
+print('Moving important molecules to the beginning...')
+important_molecules_titles = [
+    # X-ray molecules
+    'ALP-POS-477dc5b7-3',
+    'EDJ-MED-e4b030d8-13'
+    # Lead compounds
+    'MAT-POS-b3e365b9-1',
+    'EDJ-MED-e4b030d8-11',
+    'MAT-POS-0c8fa4a7-1',
+    'ALP-POS-477dc5b7-2',
+    'ALP-POS-3b848b35-2',
+    'ALP-POS-477dc5b7-3',
+    'EDJ-MED-e4b030d8-13',
+    ]
+
+important_molecules = [ mol for mol in mols if mol.GetTitle() in important_molecules_titles ]
+less_important_molecules = [ mol for mol in mols if mol.GetTitle() not in important_molecules_titles ]
+mols = important_molecules + less_important_molecules
+
 # Write molecules
 output_filename = 'sprint-5.csv'
 with oechem.oemolostream(output_filename) as ofs:

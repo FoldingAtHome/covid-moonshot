@@ -1,4 +1,7 @@
 SMILES,TITLE,intermediate
+C[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EDJ-MED-e4b030d8-13,benzopyran-isoquinoline-scaffold
+C[C@H]1COc2ccc(cc2[C@@H]1C(=O)Nc3cncc4c3cccc4)Cl,EDJ-MED-e4b030d8-11,benzopyran-isoquinoline-scaffold
+c1ccc2c(c1)cncc2NC(=O)C3(CCOc4c3cc(cc4)Cl)CCC5CC5,ALP-POS-477dc5b7-3,benzopyran-isoquinoline-scaffold
 c1ccc2c(c1)cncc2NC(=O)C3CCOc4c3cc(cc4)Cl,VLA-UCB-1dbca3b4-15,benzopyran-isoquinoline-scaffold
 c1ccc2c(c1)cncc2N3C(=O)[C@@]4(CCOc5c4cc(cc5)Cl)NC3=O,VLA-UCB-34f3ed0c-11,C0_amine
 CO[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,PET-UNK-29afea89-2,C0_alcohol
@@ -64,7 +67,6 @@ c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CC(=O)NCCCO,EN300-16772_1,C2_amine
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CCOCCCO,EN300-221518_3,C2_alcohol
 CN(CCO)C(=O)CC[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EN300-19342_2,C3_amine
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CCCOCCCO,EN300-221518_4,C3_alcohol
-C[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EDJ-MED-e4b030d8-13,benzopyran-isoquinoline-scaffold
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)NC(=O)C(=O)N,EN300-113507_1,C0_amine
 CC(CO[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4)O,EN300-185378_1,C0_alcohol
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CNC(=O)C(=O)N,EN300-113507_2,C1_amine
@@ -442,7 +444,6 @@ CC(C)(CNC(=O)C[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4)O,EN300-68225_1,C2_ami
 CN1CCC(C1=O)OCC[C@]2(CCOc3c2cc(cc3)Cl)C(=O)Nc4cncc5c4cccc5,EN300-98648_3,C2_alcohol
 C[C@@H](CO)NC(=O)CC[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EN300-86282_2,C3_amine
 CN1CCC(C1=O)OCCC[C@]2(CCOc3c2cc(cc3)Cl)C(=O)Nc4cncc5c4cccc5,EN300-98648_4,C3_alcohol
-C[C@H]1COc2ccc(cc2[C@@H]1C(=O)Nc3cncc4c3cccc4)Cl,EDJ-MED-e4b030d8-11,benzopyran-isoquinoline-scaffold
 COC1(CC1)C(=O)N[C@]2(CCOc3c2cc(cc3)Cl)C(=O)Nc4cncc5c4cccc5,EN300-182124_1,C0_amine
 C#CCNC(=O)CO[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EN300-1659582_1,C0_alcohol
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CNC(=O)C5CC(=O)N5,EN300-101505_2,C1_amine
@@ -811,7 +812,6 @@ CN(C)CC(=O)NCC[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EN300-66975_3,C2_amine
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CCO[C@@H]5COC[C@H]5O,EN300-331828_3,C2_alcohol
 COCCC(=O)NCCC[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EN300-64536_4,C3_amine
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CCCO[C@@H]5COC[C@H]5O,EN300-331828_4,C3_alcohol
-c1ccc2c(c1)cncc2NC(=O)C3(CCOc4c3cc(cc4)Cl)CCC5CC5,ALP-POS-477dc5b7-3,benzopyran-isoquinoline-scaffold
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)NC(=O)C5CCNC5=O,EN300-94945_1,C0_amine
 CS(=O)(=O)CCCO[C@]1(CCOc2c1cc(cc2)Cl)C(=O)Nc3cncc4c3cccc4,EN300-68794_1,C0_alcohol
 c1ccc2c(c1)cncc2NC(=O)[C@@]3(CCOc4c3cc(cc4)Cl)CNC(=O)Cn5cncn5,EN300-06654_2,C1_amine
