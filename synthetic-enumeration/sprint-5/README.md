@@ -21,6 +21,7 @@ Molecules with data in CDD that has not yet been posted to https://covid.postera
 
 These structures appear to contain the common isoquinoline-based scaffold:
 
+11424
 * [VLA-UCB-1dbca3b4-15](https://covid.postera.ai/covid/submissions/1dbca3b4-ea20-473e-b578-99bed7ee3628/15) - [x11498](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x11498/L/P/C) -
 * [MAT-POS-8a69d52e-7](https://covid.postera.ai/covid/submissions/8a69d52e-e503-4d6a-bb9e-08aaacc98466/7) - [x12073](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x12073/L/P/C)
 
@@ -77,16 +78,19 @@ We aim to cluster related compounds to reduce the variance in our estimates.
 
 We just got data for these, and should be sure to include them:
 
+Synthetic intermediates:
+![Sprint 5 synthetic routes](sprint-5-synthetic-routes.jpg)
 
 ## Manifest
 
-Intermediates
-* `benzopyran_sprint_5_intermediates.csv`
 
-Synthetic
-* `filtered_alkyl_halide_bb_ether_synthesis_for_FEP.smi`
-* `filtered_amine_bb_amide_couplings_for_FEP.smi`
-* `filtered_cooh_bb_amide_couplings_for_FEP.smi`
+Intermediates
+* `intermediates/benzopyran_sprint_5_intermediates.csv`
+
+Filtered for
+* `filtered/filtered_alkyl_halide_bb_ether_synthesis_for_FEP.smi`
+* `filtered/filtered_amine_bb_amide_couplings_for_FEP.smi`
+* `filtered/filtered_cooh_bb_amide_couplings_for_FEP.smi`
 
 Here are the filtered lists with a unique ID for every compound. Since there were so many molecules, I used Lilly's rules, which are easier to run in high-throughput (since I couldn't do all these by hand). You'll notice that the number of "demerits": "D()" is still included in the final files, which you can use if you want to shorten the list further. Of those that were not filtered out, the main demerit is simply having many atoms. Not sure, but could be a decent predictor of FEP challenges.
 
