@@ -374,7 +374,6 @@ def generate_restricted_conformers_star(args):
         'C(=O)Nc1cncc2ccccc12', # linker-isoquinoline
     ]
 
-    print('====================================')
     mols = [ generate_restricted_conformers(*args, core_smarts=core_smarts) for core_smarts in core_smarts_list ]
 
     # Sprint 5 special: Select unproblematic enantiomers by energy
@@ -415,26 +414,16 @@ def generate_poses(receptor, refmol, target_molecules, output_filename):
 
     # Identify optimal conformer for each molecule
     with oechem.oemolostream(output_filename) as ofs:
-        # Write reference molecule copy
-        refmol_copy = oechem.OEGraphMol(refmol)
-        oechem.OESetSDData(refmol_copy, 'clash_score', '0.0')
-        oechem.OEWriteMolecule(ofs, refmol_copy)
-
         from rich.progress import track
-        #for mol in track(target_molecules, f'Generating poses for {len(target_molecules)} target molecules'):
         from multiprocessing import Pool
         from tqdm import tqdm
 
-        frame_index = 0
         pool = Pool()
         args = [ (receptor, refmol, mol) for mol in target_molecules ]
-        #for pose in track(pool.imap_unordered(generate_restricted_conformers_star, args), total=len(args), description='Enumerating conformers...'):
-        for pose in map(generate_restricted_conformers_star, args):
+        for pose in track(pool.imap_unordered(generate_restricted_conformers_star, args), total=len(args), description='Enumerating conformers...'):
+        #for pose in map(generate_restricted_conformers_star, args): # DEBUG
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
-                # DEBUG
-                print(f'Writing frame {frame_index}')
-                frame_index += 1
         pool.close()
         pool.join()
 
@@ -651,7 +640,7 @@ if __name__ == '__main__':
         annotate_with_assay_data(target_molecules, assay_data_filename)
 
         # Generate list of all compounds
-        output_filename = f'docked/{prefix}-compounds.csv'
+        output_filename = f'docked/{prefix}-compounds.sdf'
         print(f'Writing annotated molecules to {output_filename}...')
         write_molecules(target_molecules, output_filename)
 
@@ -665,6 +654,6 @@ if __name__ == '__main__':
             refmol = load_fragment(fragment, title=fragments[fragment])
 
             # Generate poses for all molecules
-            output_filename = f'docked/{prefix}-dockscores-{fragment}.sdf'
+            output_filename = f'docked/{prefix}-microstates-{fragment}.sdf'
             print(f'Writing poses to {output_filename}...')
             generate_poses(receptor, refmol, target_molecules, output_filename)
