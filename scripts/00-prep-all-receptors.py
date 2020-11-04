@@ -177,13 +177,20 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
     #print(f' Final: {sum([1 for atom in complex.GetAtoms()])} atoms')
 
     # Delete and rebuild C-terminal residue because Spruce causes issues with this
-    # See: 6m2n
+    # See: 6m2n 6lze
     #print('Deleting C-terminal residue O')
-    pred = oechem.OEAtomMatchResidue(["GLN:306:.*:.*:.*"])
-    for atom in complex.GetAtoms(pred):
-        if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_O:
-            print('Deleting O')
-            complex.DeleteAtom(atom)
+    pred = oechem.OEIsCTerminalAtom()
+    for atom in complex.GetAtoms():
+        if pred(atom):
+            for nbor in atom.GetAtoms():
+                if oechem.OEGetPDBAtomIndex(nbor) == oechem.OEPDBAtomName_O:
+                    complex.DeleteAtom(nbor)
+
+    #pred = oechem.OEAtomMatchResidue(["GLN:306:.*:.*:.*"])
+    #for atom in complex.GetAtoms(pred):
+    #    if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_O:
+    #        print('Deleting O')
+    #        complex.DeleteAtom(atom)
 
     #het = oespruce.OEHeterogenMetadata()
     #het.SetTitle("LIG")  # real ligand 3 letter code
@@ -353,7 +360,7 @@ if __name__ == '__main__':
 
     # Get list of all PDB files to prep
     source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
-    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-6m2n_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-6lze_0?/Mpro-*_0?_bound.pdb")) # DEBUG
     #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x11498_0?/Mpro-*_0?_bound.pdb")) # DEBUG
 
     # Create output directory
