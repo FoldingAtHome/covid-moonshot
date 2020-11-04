@@ -359,8 +359,7 @@ if __name__ == '__main__':
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
 
-    #for dimer in [False, True]:
-    for dimer in [False]: # DEBUG
+    for dimer in [False, True]:
         if dimer:
             output_basepath = '../receptors/dimer'
         else:
