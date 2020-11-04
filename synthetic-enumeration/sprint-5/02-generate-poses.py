@@ -640,6 +640,8 @@ if __name__ == '__main__':
         annotate_with_assay_data(target_molecules, assay_data_filename)
 
         # Generate list of all compounds
+        import os
+        os.makedirs('docked', exist_ok=True)
         output_filename = f'docked/{prefix}-compounds.sdf'
         print(f'Writing annotated molecules to {output_filename}...')
         write_molecules(target_molecules, output_filename)
