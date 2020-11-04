@@ -155,7 +155,7 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 """
     has_seqres = 'SEQRES' in pdbfile_contents
     if not has_seqres:
-        print('Adding SEQRES')
+        #print('Adding SEQRES')
         pdbfile_contents = seqres + pdbfile_contents
 
     # Read the receptor and identify design units
@@ -169,7 +169,7 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 
     # Strip protons from structure to allow SpruceTK to add these back
     # See: 6wnp, 6wtj, 6wtk, 6xb2, 6xqs, 6xqt, 6xqu, 6m2n
-    print('Suppressing hydrogens')
+    #print('Suppressing hydrogens')
     #print(f' Initial: {sum([1 for atom in complex.GetAtoms()])} atoms')
     for atom in complex.GetAtoms():
         if atom.GetAtomicNum() > 1:
@@ -178,7 +178,7 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 
     # Delete and rebuild C-terminal residue because Spruce causes issues with this
     # See: 6m2n
-    print('Deleting C-terminal residue')
+    #print('Deleting C-terminal residue O')
     pred = oechem.OEAtomMatchResidue(["GLN:306:.*:.*:.*"])
     for atom in complex.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_O:
@@ -354,7 +354,7 @@ if __name__ == '__main__':
     # Get list of all PDB files to prep
     source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
     #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-6m2n_0?/Mpro-*_0?_bound.pdb")) # DEBUG
-    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x11498_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x11498_0?/Mpro-*_0?_bound.pdb")) # DEBUG
 
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
