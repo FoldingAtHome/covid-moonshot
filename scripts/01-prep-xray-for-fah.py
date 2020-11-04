@@ -134,6 +134,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
         ligand_atom_indices = mdtop.select('((resname MOL) and (mass > 1))') # ligand heavy atoms
         protein_atom_index = int(protein_atom_indices[0])
         ligand_atom_index = int(ligand_atom_indices[0])
+        print(f'Creating virtual bond between atoms {protein_atom_index} and {ligand_atom_index}')
         force = openmm.CustomBondForce('0')
         force.addBond(protein_atom_index, ligand_atom_index, [])
         system.addForce(force)
