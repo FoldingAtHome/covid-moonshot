@@ -360,7 +360,7 @@ if __name__ == '__main__':
 
     # Get list of all PDB files to prep
     source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
-    source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-6lze_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-6lze_0?/Mpro-*_0?_bound.pdb")) # DEBUG
     #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x11498_0?/Mpro-*_0?_bound.pdb")) # DEBUG
 
     # Create output directory
