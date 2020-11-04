@@ -65,8 +65,10 @@ mols = [ mol for mol in mols if oechem.OEHasSDData(mol, 'intermediate') ]
 print(f'{len(mols)} molecules remain after discarding unlabeled molecules')
 
 # Sort molecules by size
-print('Sorting molecules by size...')
-mols.sort(key=lambda mol : mol.NumAtoms())
+#print('Sorting molecules by number of atoms...')
+#mols.sort(key=lambda mol : mol.NumAtoms())
+print('Sorting molecules by molecular weight...')
+mols.sort(key=lambda mol : oechem.OECalculateMolecularWeight(mol))
 
 # Interleave molecules by intermediate category
 print('Interleaving molecules by intermediate...')
@@ -103,7 +105,7 @@ less_important_molecules = [ mol for mol in mols if mol.GetTitle() not in import
 mols = important_molecules + less_important_molecules
 
 # Write molecules
-output_filename = 'sprint-5.csv'
+output_filename = 'sorted/sprint-5.csv'
 with oechem.oemolostream(output_filename) as ofs:
     for mol in track(mols, description='Writing molecules...'):
         oechem.OEWriteMolecule(ofs, mol)
