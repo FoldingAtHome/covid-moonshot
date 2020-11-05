@@ -4,7 +4,7 @@
 #
 
 #BSUB -P "testing"
-#BSUB -J "mpro[1-20]" 
+#BSUB -J "mpro[1-1000]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -26,6 +26,7 @@ set -e
 
 source ~/.bashrc
 OPENMM_CPU_THREADS=1
+NUMEXPR_MAX_THREADS=1
 
 cd $LS_SUBCWD
 

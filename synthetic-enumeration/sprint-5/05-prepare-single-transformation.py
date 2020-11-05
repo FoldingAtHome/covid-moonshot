@@ -14,9 +14,8 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     transformation = compound_series.transformations[transformation_index]
 
     from openeye import oechem
-    moldb = oechem.OEMolDatabase()
-    moldb.Open(microstate_sdf_filename)
-    microstate_ids = moldb.GetTitles()
+    with oechem.oemolistream(microstate_sdf_filename) as ifs:
+        microstate_ids = [ mol.GetTitle() for mol in ifs.GetOEGraphMols() ]
 
     # TODO : Handle monomer vs dimer
     protein_pdb_filename = f'../../receptors/monomer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
@@ -31,14 +30,16 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     # rewrite yaml file
     with open(yaml_filename, "r") as yaml_file:
         options = yaml.load(yaml_file, Loader=yaml.FullLoader)
-    options['old_ligand_index'] = microstate_ids.index(transformation.initial_microstate)
-    options['new_ligand_index'] = microstate_ids.index(transformation.final_microstate)
+    options['old_ligand_index'] = microstate_ids.index(transformation.initial_microstate.microstate_id)
+    options['new_ligand_index'] = microstate_ids.index(transformation.final_microstate.microstate_id)
     options['trajectory_directory'] = outputdir
     options['protein_pdb'] = protein_pdb_filename
     options['ligand_file'] = microstate_sdf_filename
     options['small_molecule_forcefield'] = forcefield
+    options['use_given_geometries'] = True
 
     # Write options YAML file
+    print(options)
     with open(new_yaml, 'w') as outfile:
         yaml.dump(options, outfile)
     
@@ -72,7 +73,7 @@ def load_json(filename):
 
 # Sprint 5
 json_filename = 'json/sprint-5-x12073-monomer-neutral.json'
-microstate_sdf_filename = 'sprint-5-microstates-x12073-sorted.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
+microstate_sdf_filename = 'docked/sprint-5-microstates-x12073-sorted.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
 json_data = load_json(json_filename)
 from fah_xchem.schema import CompoundSeries
 compound_series = CompoundSeries.parse_obj(json_data)
