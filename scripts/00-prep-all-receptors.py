@@ -11,6 +11,7 @@ structures_path = '../structures'
 output_basepath = '../receptors'
 
 # REMARK 350 (biological multimer symmetry operations) from 5RGG
+# TODO: Remove this when REMARK 350 is restored
 BIOLOGICAL_SYMMETRY_HEADER = """\
 REMARK 350
 REMARK 350 COORDINATES FOR A COMPLETE MULTIMER REPRESENTING THE KNOWN
@@ -125,7 +126,7 @@ def prepare_receptor(complex_pdb_filename, output_basepath, dimer=False, retain_
     # Reconstruct PDBFile contents
     pdbfile_contents = ''.join(pdbfile_lines)
 
-    # Append SEQRES to fragment structures if this is a Diamond SARS-CoV-2 Mpro structure
+    # Append SEQRES to all structures if they do not have it
     seqres = """\
 SEQRES   1 A  306  SER GLY PHE ARG LYS MET ALA PHE PRO SER GLY LYS VAL
 SEQRES   2 A  306  GLU GLY CYS MET VAL GLN VAL THR CYS GLY THR THR THR
@@ -152,8 +153,9 @@ SEQRES  22 A  306  ASN GLY MET ASN GLY ARG THR ILE LEU GLY SER ALA LEU
 SEQRES  23 A  306  LEU GLU ASP GLU PHE THR PRO PHE ASP VAL VAL ARG GLN
 SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 """
-    if is_diamond_structure:
-        #print('Prepending SEQRES')
+    has_seqres = 'SEQRES' in pdbfile_contents
+    if not has_seqres:
+        #print('Adding SEQRES')
         pdbfile_contents = seqres + pdbfile_contents
 
     # Read the receptor and identify design units
@@ -164,6 +166,31 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
         pdbfile.close()
         complex = read_pdb_file(pdbfile.name)
         # TODO: Clean up
+
+    # Strip protons from structure to allow SpruceTK to add these back
+    # See: 6wnp, 6wtj, 6wtk, 6xb2, 6xqs, 6xqt, 6xqu, 6m2n
+    #print('Suppressing hydrogens')
+    #print(f' Initial: {sum([1 for atom in complex.GetAtoms()])} atoms')
+    for atom in complex.GetAtoms():
+        if atom.GetAtomicNum() > 1:
+            oechem.OESuppressHydrogens(atom)
+    #print(f' Final: {sum([1 for atom in complex.GetAtoms()])} atoms')
+
+    # Delete and rebuild C-terminal residue because Spruce causes issues with this
+    # See: 6m2n 6lze
+    #print('Deleting C-terminal residue O')
+    pred = oechem.OEIsCTerminalAtom()
+    for atom in complex.GetAtoms():
+        if pred(atom):
+            for nbor in atom.GetAtoms():
+                if oechem.OEGetPDBAtomIndex(nbor) == oechem.OEPDBAtomName_O:
+                    complex.DeleteAtom(nbor)
+
+    #pred = oechem.OEAtomMatchResidue(["GLN:306:.*:.*:.*"])
+    #for atom in complex.GetAtoms(pred):
+    #    if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_O:
+    #        print('Deleting O')
+    #        complex.DeleteAtom(atom)
 
     #het = oespruce.OEHeterogenMetadata()
     #het.SetTitle("LIG")  # real ligand 3 letter code
@@ -186,10 +213,17 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
 
     mdata = oespruce.OEStructureMetadata();
     opts.GetPrepOptions().SetStrictProtonationMode(True);
-    if is_diamond_structure:
-        # Only cap C-terminus, since N-terminus is biological
-        opts.GetPrepOptions().GetBuildOptions().SetCapNTermini(False);
-        opts.GetPrepOptions().GetBuildOptions().SetCapCTermini(True);
+
+    # Both N- and C-termini should be zwitterionic
+    # Mpro cleaves its own N- and C-termini
+    # See https://www.pnas.org/content/113/46/12997
+    opts.GetPrepOptions().GetBuildOptions().SetCapNTermini(False);
+    opts.GetPrepOptions().GetBuildOptions().SetCapCTermini(False);
+    # Don't allow truncation of termini, since force fields don't have parameters for this
+    opts.GetPrepOptions().GetBuildOptions().GetCapBuilderOptions().SetAllowTruncate(False);
+    # Build loops and sidechains
+    opts.GetPrepOptions().GetBuildOptions().SetBuildLoops(True);
+    opts.GetPrepOptions().GetBuildOptions().SetBuildSidechains(True);
 
     # Don't flip Gln189
     #pred = oechem.OEAtomMatchResidue(["GLN:189: :A"])
@@ -271,6 +305,7 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
     for atom in protein.GetAtoms(pred):
         if oechem.OEGetPDBAtomIndex(atom) == oechem.OEPDBAtomName_ND1:
             #print('Protonating HIS 41 ND1')
+            oechem.OESuppressHydrogens(atom) # strip hydrogens from residue
             atom.SetFormalCharge(+1)
             atom.SetImplicitHCount(1)
     # Update the design unit with the modified formal charge for CYS 145 SG
@@ -325,7 +360,8 @@ if __name__ == '__main__':
 
     # Get list of all PDB files to prep
     source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-*_0?/Mpro-*_0?_bound.pdb"))
-    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x12073_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-6lze_0?/Mpro-*_0?_bound.pdb")) # DEBUG
+    #source_pdb_files = glob.glob(os.path.join(structures_path, "aligned/Mpro-x11498_0?/Mpro-*_0?_bound.pdb")) # DEBUG
 
     # Create output directory
     os.makedirs(output_basepath, exist_ok=True)
