@@ -21,8 +21,7 @@ Molecules with data in CDD that has not yet been posted to https://covid.postera
 
 These structures appear to contain the common isoquinoline-based scaffold:
 
-11424
-* [VLA-UCB-1dbca3b4-15](https://covid.postera.ai/covid/submissions/1dbca3b4-ea20-473e-b578-99bed7ee3628/15) - [x11498](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x11498/L/P/C) -
+* [MAT-POS-b3e365b9-1](https://covid.postera.ai/covid/submissions/MAT-POS-b3e365b9-1), the chirally-separated enantiomer of [VLA-UCB-1dbca3b4-15](https://covid.postera.ai/covid/submissions/1dbca3b4-ea20-473e-b578-99bed7ee3628/15) responsible for the dominant observe activity - [x11498](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x11498/L/P/C) -
 * [MAT-POS-8a69d52e-7](https://covid.postera.ai/covid/submissions/8a69d52e-e503-4d6a-bb9e-08aaacc98466/7) - [x12073](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x12073/L/P/C)
 
 A superposition of these structures can be viewed on Fragalysis [here](https://fragalysis.diamond.ac.uk/viewer/react/projects/295/235).
