@@ -25,9 +25,9 @@ reference_compound_id  = 'MAT-POS-8a69d52e-7'
 
 series_name = f'sprint-5-{xchem_fragment_id}-monomer-neutral'
 description = f"COVID Moonshot Sprint 5 to prioritize benzopyran-isoquinoline series based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1' pocket with Mpro monomer and neutral Cys145:His41"
-microstates_sdf_filename = f'docked/sprint-5-microstates-{xchem_fragment_id}-sorted.sdf' # microstates with docked geometries
-compounds_sdf_filename = f'docked/sprint-5-compounds.sdf' # compounds with annotation
-json_filename = f'json/{series_name}.json' # output filename
+microstates_sdf_filename = f'docked/sprint-5-microstates-{xchem_fragment_id}-sorted.sdf.gz' # microstates with docked geometries
+compounds_sdf_filename = f'docked/sprint-5-compounds.sdf.gz' # compounds with annotation
+json_filename = f'json/{series_name}.json.bz2' # output filename
 smarts = 'C(=O)Nc1cncc2ccccc12' # SMARTS for common core scaffold : linker:isoquinoline
 receptors = f'../receptors/monomer/Mpro-{xchem_fragment_id}_0_bound-protein-thiolate.pdb'
 receptor_variant = {'catalytic-dyad' : 'His41(0) Cys145(0)'}
@@ -102,8 +102,9 @@ for compound_index in track(range(ncompounds), description='Processing compounds
     experimental_data = dict()
     if oechem.OEHasSDData(oemol,'f_avg_pIC50'):
         pIC50 = oechem.OEGetSDData(oemol, 'f_avg_pIC50')
-        if len(pIC50) > 0:
-            experimental_data['pIC50'] = oechem.OEGetSDData(oemol, 'f_avg_pIC50')
+        if pIC50 != '':
+            pIC50 = float(pIC50)
+            experimental_data['pIC50'] = pIC50
     # Extract information about the compound
     compound_metadata = CompoundMetadata(
         compound_id=compound_id,
@@ -194,5 +195,14 @@ compound_series = CompoundSeries(
 
 # Write JSON
 print(f'Writing JSON to {json_filename}')
-with open(json_filename, "w") as f:
-    f.write(compound_series.json())
+if '.bz2' in json_filename:
+    import bz2
+    with bz2.open(json_filename, "wt") as f:
+        f.write(compound_series.json())
+elif '.gz' in json_filename:
+    import gzip
+    with gzip.open(json_filename, "wt") as f:
+        f.write(compound_series.json())
+else:
+    with open(json_filename, "wt") as f:
+        f.write(compound_series.json())
