@@ -25,9 +25,9 @@ reference_compound_id  = 'MAT-POS-8a69d52e-7'
 
 series_name = f'sprint-5-{xchem_fragment_id}-monomer-neutral'
 description = f"COVID Moonshot Sprint 5 to prioritize benzopyran-isoquinoline series based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1' pocket with Mpro monomer and neutral Cys145:His41"
-microstates_sdf_filename = f'docked/sprint-5-microstates-{xchem_fragment_id}-sorted.sdf.gz' # microstates with docked geometries
-compounds_sdf_filename = f'docked/sprint-5-compounds.sdf.gz' # compounds with annotation
-json_filename = f'json/{series_name}.json.bz2' # output filename
+microstates_sdf_filename = f'docked/sprint-5-microstates-{xchem_fragment_id}-sorted.sdf' # microstates with docked geometries
+compounds_sdf_filename = f'docked/sprint-5-compounds.sdf' # compounds with annotation
+json_filename = f'json/{series_name}.json' # output filename
 smarts = 'C(=O)Nc1cncc2ccccc12' # SMARTS for common core scaffold : linker:isoquinoline
 receptors = f'../receptors/monomer/Mpro-{xchem_fragment_id}_0_bound-protein-thiolate.pdb'
 receptor_variant = {'catalytic-dyad' : 'His41(0) Cys145(0)'}

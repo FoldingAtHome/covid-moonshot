@@ -89,6 +89,18 @@ Synthetic intermediates:
 Scripts
 * `01-aggregate-compounds.py` - generate the initial sorted list to dock
 * `02-generate-poses.py` - generate poses
+* `03-sort-poses-key-interactions.py` - sort poses by key interactions (used for Sprint 5)
+* `03-sort-poses-docking-score.py` - sort poses by docking score
+* `04-create-json.py` - create JSON for setting up perses calculations
+
+Docked compounds
+* `sprint-5-compounds.sdf` - compounds metadata with annotations
+* `sprint-5-microstates-x11498.sdf` - docked microstates to frag x11498 structure
+* `sprint-5-microstates-x12073.sdf` - docked microstates to frag x12073 structure
+* `sprint-5-microstates-x11498-inters.sdf` - annotations from Tim Dudgeon
+* `sprint-5-microstates-x12073-inters.sdf` - annotations from Tim Dudgeon
+* `sprint-5-microstates-x11498-sorted.sdf` - sorted by number of fragment interactions and clashes
+* `sprint-5-microstates-x12073-sorted.sdf` - sorted by number of fragment interactions and clashes
 
 SMARTS strings to label compounds by source intermediates
 * `intermediates/benzopyran_sprint_5_intermediates.csv`
