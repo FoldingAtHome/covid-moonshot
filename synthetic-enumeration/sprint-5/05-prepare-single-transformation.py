@@ -46,7 +46,7 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     # run the simulation
     os.system(f'perses-fah {new_yaml}')
 
-    print('Relative calcluation of ligand {} to {} complete'.format(ligA,ligB))
+    print('Relative calcluation of ligand {} to {} complete'.format(transformation.initial_microstate.microstate_id, transformation.final_microstate.microstate_id))
 
     if tidy:
         os.remove(new_yaml)

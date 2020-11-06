@@ -4,7 +4,7 @@
 #
 
 #BSUB -P "testing"
-#BSUB -J "mpro[1-1000]" 
+#BSUB -J "sprint[1-10]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -18,11 +18,8 @@
 ##BSUB -cwd "/scratch/%U/%J"
 #BSUB -L /bin/bash
 
-# Make output directory if it doesn't exist
-[ ! -d "/path/to/dir" ] && mkdir output
-
 # quit on first error
-set -e
+#set -e
 
 source ~/.bashrc
 OPENMM_CPU_THREADS=1
@@ -33,9 +30,16 @@ cd $LS_SUBCWD
 unset CUDA_OPENMM_COMPILER
 conda activate perses
 
-# Launch my program.
+module unload
 module load cuda/10.1
+
+# Launch my program.
 env | sort | grep 'CUDA'
-env | sort | grep 'OPENMM'y
-export RUN=$(expr $LSB_JOBINDEX-1)
+env | sort | grep 'OPENMM'
+export RUN=$(expr $LSB_JOBINDEX - 1) # RUN is zero-indexed
+echo $RUN
+
+date
+echo python 05-prepare-single-transformation.py $RUN
 python 05-prepare-single-transformation.py $RUN
+date
