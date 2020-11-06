@@ -37,6 +37,7 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     options['ligand_file'] = microstate_sdf_filename
     options['small_molecule_forcefield'] = forcefield
     options['use_given_geometries'] = True
+    options['rmsd_restraint'] = True
 
     # Write options YAML file
     print(options)
