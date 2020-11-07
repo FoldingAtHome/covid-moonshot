@@ -176,11 +176,11 @@ for microstate_index in track(range(nmicrostates), description='Creating transfo
         xchem_fragment_id=xchem_fragment_id,
         initial_microstate=CompoundMicrostate(
             compound_id=get_compound_id(microstates[reference_microstate_index].microstate_id),
-            microstate_id=microstates[microstate_index].microstate_id
+            microstate_id=microstates[reference_microstate_index].microstate_id
         ),
         final_microstate=CompoundMicrostate(
             compound_id=get_compound_id(microstates[microstate_index].microstate_id),
-            microstate_id=microstates[reference_microstate_index].microstate_id
+            microstate_id=microstates[microstate_index].microstate_id
         )
     )
     transformations.append(transformation)
