@@ -159,6 +159,7 @@ for reference_microstate_index, microstate in enumerate(microstates):
         break
 if not reference_microstate_found:
     raise Exception(f'Could not find reference microstate id {reference_microstate_id} among microstates')
+print(f'Reference microstate is ligand index {reference_microstate_index}')
 
 # Create transformations
 from fah_xchem.schema import Transformation, CompoundMicrostate
@@ -174,11 +175,11 @@ for microstate_index in track(range(nmicrostates), description='Creating transfo
         run_id=run_id,
         xchem_fragment_id=xchem_fragment_id,
         initial_microstate=CompoundMicrostate(
-            compound_id=get_compound_id(microstates[microstate_index].microstate_id),
+            compound_id=get_compound_id(microstates[reference_microstate_index].microstate_id),
             microstate_id=microstates[microstate_index].microstate_id
         ),
         final_microstate=CompoundMicrostate(
-            compound_id=get_compound_id(microstates[reference_microstate_index].microstate_id),
+            compound_id=get_compound_id(microstates[microstate_index].microstate_id),
             microstate_id=microstates[reference_microstate_index].microstate_id
         )
     )
