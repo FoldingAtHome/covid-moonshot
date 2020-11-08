@@ -17,11 +17,11 @@ creator = 'John Chodera <john.chodera@choderalab.org>'
 ff = 'openff-1.2.0'
 creation_date = datetime.datetime.now() # TODO : Use Sep  7 02:07
 
-#xchem_fragment_id = 'x11498'
-#reference_compound_id = 'MAT-POS-b3e365b9-1'
+xchem_fragment_id = 'x11498'
+reference_compound_id = 'MAT-POS-b3e365b9-1'
 
-xchem_fragment_id = 'x12073'
-reference_compound_id  = 'MAT-POS-8a69d52e-7'
+#xchem_fragment_id = 'x12073'
+#reference_compound_id  = 'MAT-POS-8a69d52e-7'
 
 series_name = f'sprint-5-{xchem_fragment_id}-monomer-neutral'
 description = f"COVID Moonshot Sprint 5 to prioritize benzopyran-isoquinoline series based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1' pocket with Mpro monomer and neutral Cys145:His41"
@@ -87,85 +87,76 @@ from fah_xchem.schema import Compound, CompoundMetadata
 smiles_flag = oechem.OESMILESFlag_Canonical | oechem.OESMILESFlag_ISOMERIC
 
 from openeye import oechem
-compounds_moldb = oechem.OEMolDatabase()
-compounds_moldb.Open(compounds_sdf_filename)
+print('Processing compounds...')
 compounds = dict()
-ncompounds = compounds_moldb.NumMols()
-oemol = oechem.OEGraphMol()
-for compound_index in track(range(ncompounds), description='Processing compounds...'):
-    # Get compound
-    compounds_moldb.GetMolecule(oemol, compound_index)
-    # Set ID and SMILES
-    compound_id = oemol.GetTitle()
-    smiles = oechem.OECreateSmiString(oemol, smiles_flag)
-    # Extract experimental data, if present
-    experimental_data = dict()
-    if oechem.OEHasSDData(oemol,'f_avg_pIC50'):
-        pIC50 = oechem.OEGetSDData(oemol, 'f_avg_pIC50')
-        if pIC50 != '':
-            pIC50 = float(pIC50)
-            experimental_data['pIC50'] = pIC50
-    # Extract information about the compound
-    compound_metadata = CompoundMetadata(
-        compound_id=compound_id,
-        smiles=oechem.OECreateSmiString(oemol, smiles_flag),
-        experimental_data=experimental_data,
-    )
-    # Create new compound
-    compound = Compound(
-        metadata=compound_metadata,
-        microstates=list()
-    )
-    # Store compound
-    compounds[compound_id] = compound
+with oechem.oemolistream(compounds_sdf_filename) as ifs:
+    for oemol in ifs.GetOEGraphMols():
+        # Set ID and SMILES
+        compound_id = oemol.GetTitle()
+        smiles = oechem.OECreateSmiString(oemol, smiles_flag)
+        # Extract experimental data, if present
+        experimental_data = dict()
+        if oechem.OEHasSDData(oemol,'f_avg_pIC50'):
+            pIC50 = oechem.OEGetSDData(oemol, 'f_avg_pIC50')
+            if pIC50 != '':
+                pIC50 = float(pIC50)
+                experimental_data['pIC50'] = pIC50
+        # Extract information about the compound
+        compound_metadata = CompoundMetadata(
+            compound_id=compound_id,
+            smiles=oechem.OECreateSmiString(oemol, smiles_flag),
+            experimental_data=experimental_data,
+        )
+        # Create new compound
+        compound = Compound(
+            metadata=compound_metadata,
+            microstates=list()
+        )
+        # Store compound
+        compounds[compound_id] = compound
 
 # Microstates
+print('Processing microstates...')
 from fah_xchem.schema import CompoundMicrostate, Microstate
-microstates_moldb = oechem.OEMolDatabase()
-microstates_moldb.Open(microstates_sdf_filename)
 microstates = list()
-
-nmicrostates = microstates_moldb.NumMols()
-oemol = oechem.OEGraphMol()
-for microstate_index in track(range(nmicrostates), description='Processing microstates...'):
-    microstates_moldb.GetMolecule(oemol, microstate_index)
-    microstate_id = oemol.GetTitle()
-    smiles = oechem.OECreateSmiString(oemol, smiles_flag)
-    # Determine if our molecule has warts
-    compound_id = oechem.OEGetSDData(oemol, 'compound')
-    # Compile information about the microstate
-    microstate = Microstate(microstate_id=microstate_id, smiles=smiles)
-    microstates.append(microstate)
-    # Add microstate to compound if it already exists
-    compound_microstates = list() # previous compound microstates
-    if compound_id in compounds:
-        compound_microstates = compounds[compound_id].microstates
-    else:
-        raise Exception(f'Microstate {microstate_id} supposedly belongs to compound {compound_id}, but compound not found')
-    # Create new (version of) compound
-    compound = Compound(
-        metadata=compound_metadata,
-        microstates=compound_microstates + [microstate]
-    )
-    # Store compound
-    compounds[compound_id] = compound
+with oechem.oemolistream(microstates_sdf_filename) as ifs:
+    for oemol in ifs.GetOEGraphMols():
+        microstate_id = oemol.GetTitle()
+        smiles = oechem.OECreateSmiString(oemol, smiles_flag)
+        # Determine if our molecule has warts
+        compound_id = oechem.OEGetSDData(oemol, 'compound')
+        # Compile information about the microstate
+        microstate = Microstate(microstate_id=microstate_id, smiles=smiles)
+        microstates.append(microstate)
+        # Add microstate to compound if it already exists
+        compound_microstates = list() # previous compound microstates
+        if not compound_id in compounds:
+            raise Exception(f'Microstate {microstate_id} supposedly belongs to compound {compound_id}, but compound not found')
+        compound = compounds[compound_id]
+        compound = Compound(
+            metadata=compound.metadata,
+            microstates=compound.microstates + [microstate]
+        )
+        # Store compound
+        compounds[compound_id] = compound
 
 # Find reference molecule index for transformations
 print(f'Identifying reference microstate {reference_microstate_id} for transformations...')
-reference_microstate_found = False
+reference_microstate = None
 for reference_microstate_index, microstate in enumerate(microstates):
     if microstate.microstate_id == reference_microstate_id:
-        reference_microstate_found = True
-        break
-if not reference_microstate_found:
+        reference_microstate = microstate
+if reference_microstate is None:
     raise Exception(f'Could not find reference microstate id {reference_microstate_id} among microstates')
 print(f'Reference microstate is ligand index {reference_microstate_index}')
+print(reference_microstate)
 
 # Create transformations
 from fah_xchem.schema import Transformation, CompoundMicrostate
 run_id = 0
 transformations = list()
-for microstate_index in track(range(nmicrostates), description='Creating transformations to reference microstate...'):
+print('Creating transformations to reference microstate...')
+for microstate_index, microstate in enumerate(microstates):
     # Skip the self-transformation
     if microstate_index == reference_microstate_index:
         continue
@@ -175,12 +166,12 @@ for microstate_index in track(range(nmicrostates), description='Creating transfo
         run_id=run_id,
         xchem_fragment_id=xchem_fragment_id,
         initial_microstate=CompoundMicrostate(
-            compound_id=get_compound_id(microstates[reference_microstate_index].microstate_id),
-            microstate_id=microstates[reference_microstate_index].microstate_id
+            compound_id=get_compound_id(reference_microstate.microstate_id),
+            microstate_id=reference_microstate.microstate_id
         ),
         final_microstate=CompoundMicrostate(
-            compound_id=get_compound_id(microstates[microstate_index].microstate_id),
-            microstate_id=microstates[microstate_index].microstate_id
+            compound_id=get_compound_id(microstate.microstate_id),
+            microstate_id=microstate.microstate_id
         )
     )
     transformations.append(transformation)
