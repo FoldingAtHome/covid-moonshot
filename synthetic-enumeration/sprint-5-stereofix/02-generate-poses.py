@@ -122,7 +122,7 @@ def expand_stereochemistry(mols):
         msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
         for index, m in enumerate(enantiomers):
             msg += f'{index:5d} : ' +oechem.OEMolToSmiles(m) + '\n'
-        print(msg)
+        #print(msg)
 
     return expanded_mols
 
@@ -222,10 +222,10 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     omegaOpts.SetMolBuilderOptions(molBuilderOpts)
 
     omegaOpts.SetWarts(False) # expand molecule title
-    omegaOpts.SetStrictStereo(False) # set strict stereochemistry
+    omegaOpts.SetStrictStereo(True) # set strict stereochemistry
     omegaOpts.SetIncludeInput(False) # don't include input
     omegaOpts.SetMaxConfs(1000) # generate lots of conformers
-    #omegaOpts.SetEnergyWindow(10.0) # allow high energies
+    omegaOpts.SetEnergyWindow(20.0) # allow high energies
     omega = oeomega.OEOmega(omegaOpts)
 
     # TODO: Expand protonation states and tautomers
