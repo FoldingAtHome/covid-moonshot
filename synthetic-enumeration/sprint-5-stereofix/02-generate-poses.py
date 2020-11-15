@@ -105,14 +105,24 @@ def expand_stereochemistry(mols):
     omega = oeomega.OEOmega(omegaOpts)
     maxcenters = 12
     forceFlip = False
-    enumNitrogen = True
+    enumNitrogen = False
     warts = True # add suffix for stereoisomers
     for mol in mols:
         compound_title = mol.GetTitle()
+        enantiomers = list()
         for enantiomer in oeomega.OEFlipper(mol, maxcenters, forceFlip, enumNitrogen, warts):
             enantiomer = oechem.OEMol(enantiomer)
             oechem.OESetSDData(enantiomer, 'compound', compound_title)
-            expanded_mols.append(enantiomer)
+            enantiomers.append(enantiomer)
+
+        expanded_mols += enantiomers
+
+        # DEBUG
+        msg = mol.GetTitle() + '\n'
+        msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
+        for index, m in enumerate(enantiomers):
+            msg += f'{index:5d} : ' +oechem.OEMolToSmiles(m) + '\n'
+        print(msg)
 
     return expanded_mols
 

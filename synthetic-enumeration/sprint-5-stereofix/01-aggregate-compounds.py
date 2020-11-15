@@ -11,6 +11,10 @@ Prepare list of annotated compounds for docking
 
 """
 
+# Latest submissions downloaded from PostEra site
+# TODO: Auto-download and timestamp
+submissions_csv_filename = 'submissions/submissions-2020-11-14.csv'
+
 # Aggregate all compound designs
 source_filenames = [
     # Filtered synthetic designs
@@ -33,13 +37,22 @@ print(f'{len(mols)} molecules read')
 
 # Read all submitted designs: Compounds with the key substructure will be retained
 print('Reading submitted designs...')
-with oechem.oemolistream('submissions/submissions-2020-11-14.csv') as ifs:
-    mol = oechem.OEGraphMol()
-    while oechem.OEReadMolecule(ifs, mol):
-        # Clear SD tags
-        oechem.OEClearSDData(mol)
-        # Store the molecule
-        mols.append(mol.CreateCopy())
+# Drop columns that cause trouble for OpenEye
+import pandas as pd
+drop_columns = ['Submission Rationale', 'Submission Notes']
+df = pd.read_csv(submissions_csv_filename)
+df.drop(columns=drop_columns, inplace=True)
+import tempfile
+with tempfile.NamedTemporaryFile(suffix='.csv') as csv_file:
+    df.to_csv(csv_file.name, header=True, index=False)
+    # Read file
+    with oechem.oemolistream(csv_file.name) as ifs:
+        mol = oechem.OEGraphMol()
+        while oechem.OEReadMolecule(ifs, mol):
+            # Clear SD tags
+            oechem.OEClearSDData(mol)
+            # Store the molecule
+            mols.append(mol.CreateCopy())
 print(f'{len(mols)} molecules read')
 
 # Annotate molecules with SMARTS labels
