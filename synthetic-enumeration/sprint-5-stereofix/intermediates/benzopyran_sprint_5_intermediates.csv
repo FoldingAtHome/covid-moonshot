@@ -1,0 +1,11 @@
+C1(CCOc2ccccc12)C(=O)Nc1cncc2ccccc12,benzopyran-isoquinoline-scaffold
+N[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C0_amine
+O[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C0_alcohol
+NC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C1_amine
+OC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C1_alcohol
+NCC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C2_amine
+OCC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C2_alcohol
+NCCC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C3_amine
+OCCC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C3_alcohol
+OC(=O)C[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C2_acid
+OC(=O)CC[C@]1(CCOc2ccc(Cl)cc12)C(=O)Nc1cncc2ccccc12,C3_acid
