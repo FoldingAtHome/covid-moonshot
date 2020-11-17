@@ -7,22 +7,22 @@ This sprint evaluates potential P1' substituents building on the isoquinoline se
 ### Relevant compounds
 
 Current best designs in the isoquinoline series with activity data posted to https://covid.postera.ai/covid/activity_data
-* [MAT-POS-b3e365b9-1](https://covid.postera.ai/covid/submissions/b3e365b9-9ba1-48cb-bc05-132b14d906ad/1) - P2 chromane substituent
-* [EDJ-MED-e4b030d8-11](https://covid.postera.ai/covid/submissions/e4b030d8-07e5-493e-9d39-08cc0d13fe2a/11) - P2 chromane
-* [MAT-POS-0c8fa4a7-1](https://covid.postera.ai/covid/submissions/0c8fa4a7-61d8-4922-a497-31702c6fe8d9/1) - P2 pocket dihydronaphtalene
-* [ALP-POS-477dc5b7-2](https://covid.postera.ai/covid/submissions/477dc5b7-c3e5-450b-9b3b-95b8e2489337/2) - P2 pocket tetrahydroquinoline
-* [ALP-POS-3b848b35-2](https://covid.postera.ai/covid/submissions/3b848b35-7bf7-4558-b8ed-d87c25240d91/2) - P4 beta-lactam (suspected liability)
+* [MAT-POS-b3e365b9-1](https://postera.ai/covid/submissions/MAT-POS-b3e365b9-1) - P2 chromane substituent
+* [EDJ-MED-e4b030d8-11](https://postera.ai/covid/submissions/EDJ-MED-e4b030d8-11) - P2 chromane
+* [MAT-POS-0c8fa4a7-1](https://postera.ai/covid/submissions/MAT-POS-0c8fa4a7-1) - P2 pocket dihydronaphtalene
+* [ALP-POS-477dc5b7-2](https://postera.ai/covid/submissions/MAT-POS-0c8fa4a7-1) - P2 pocket tetrahydroquinoline
+* [ALP-POS-3b848b35-2](https://postera.ai/covid/submissions/ALP-POS-3b848b35-2) - P4 beta-lactam (suspected liability)
 
-Molecules with data in CDD that has not yet been posted to https://covid.postera.ai/covid/activity_data
-* [ALP-POS-477dc5b7-3](https://covid.postera.ai/covid/submissions/ALP-POS-477dc5b7-3) - chromane with possible P1 substituent
-* [EDJ-MED-e4b030d8-13](https://covid.postera.ai/covid/submissions/EDJ-MED-e4b030d8-13) - chromane with methyl group pointing at P1
+Molecules with data in CDD that has not yet been posted to https://postera.ai/covid/activity_data
+* [ALP-POS-477dc5b7-3](https://postera.ai/covid/submissions/ALP-POS-477dc5b7-3) - chromane with possible P1 substituent
+* [EDJ-MED-e4b030d8-13](https://postera.ai/covid/submissions/EDJ-MED-e4b030d8-13) - chromane with methyl group pointing at P1
 
 ### Relevant X-ray structures
 
 These structures appear to contain the common isoquinoline-based scaffold:
 
-* [MAT-POS-b3e365b9-1](https://covid.postera.ai/covid/submissions/MAT-POS-b3e365b9-1), the chirally-separated enantiomer of [VLA-UCB-1dbca3b4-15](https://covid.postera.ai/covid/submissions/1dbca3b4-ea20-473e-b578-99bed7ee3628/15) responsible for the dominant observe activity - [x11498](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x11498/L/P/C) -
-* [MAT-POS-8a69d52e-7](https://covid.postera.ai/covid/submissions/8a69d52e-e503-4d6a-bb9e-08aaacc98466/7) - [x12073](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x12073/L/P/C)
+* [MAT-POS-b3e365b9-1](https://postera.ai/covid/submissions/MAT-POS-b3e365b9-1), the chirally-separated enantiomer of [VLA-UCB-1dbca3b4-15](https://postera.ai/covid/submissions/VLA-UCB-1dbca3b4-15) responsible for the dominant observe activity - [x11498](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x11498/L/P/C)
+* [MAT-POS-8a69d52e-7](https://covid.postera.ai/covid/submissions/MAT-POS-8a69d52e-7) - [x12073](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x12073/L/P/C)
 
 A superposition of these structures can be viewed on Fragalysis [here](https://fragalysis.diamond.ac.uk/viewer/react/projects/295/235).
 
@@ -129,3 +129,18 @@ df = df.drop(columns=2)
 ```
 
 Larger D() score is indeed worse. According to Lilly's rules, everything >= D(100) is filtered out.
+
+## Methodology
+
+**Compounds evaluated:** Enumeration of new compound designs based was performed based on synthetic routes proposed by the med chem design team. In addition, all compound designs manually submitted in the COVID Moonshot website as of 2020-11-02 containing the amide linker with isoquinoline scaffold (SMARTS match `C(=O)Nc1cncc2ccccc12`) were included.
+
+**Microstate enumeration:** Any atoms with undefined stereochemistry were enumerated with `OEOmega.Flipper` from the OpenEye Toolkit 2020.1.0, creating multiple enantiomers that are associated with each racemic design. A single reasonable tautomer was selected for each molecule using `OEGetReasonableProtomer`.
+
+**Initial pose generation:** `OEOmega` was used with dense sampling to generate a dense set of conformations with fixed scaffold (either the benzopyran-linker-isoquinoline, `C1(CCOc2ccccc12)C(=O)Nc1cncc2ccccc12`, or if that fails, the liker-isoquinoline, `C(=O)Nc1cncc2ccccc12`) from the following X-ray structures where the protein and reference ligand were prepared with OpenEye SpruceTK in the monomeric form of Mpro using neutral His41 and Cys145. This structure had His163 was protonated to hydrogen bond with the isoquinoline scaffold N.
+* [MAT-POS-b3e365b9-1](https://postera.ai/covid/submissions/MAT-POS-b3e365b9-1), the chirally-separated enantiomer of [VLA-UCB-1dbca3b4-15](https://postera.ai/covid/submissions/VLA-UCB-1dbca3b4-15) responsible for the dominant observe activity - [x11498](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x11498/L/P/C)
+* [MAT-POS-8a69d52e-7](https://covid.postera.ai/covid/submissions/MAT-POS-8a69d52e-7) - [x12073](https://fragalysis.diamond.ac.uk/viewer/react/preview/direct/target/Mpro/mols/x12073/L/P/C)
+Relative alchemical free energy network: A star map was used to create a map from the reference X-ray structure to all proposed designs.
+
+**Alchemical free energy calculations:** Nonequilibrium relative alchemical free energy calculations were prepared with [`perses`](http://github.com/choderalab/perses) 0.8.1 (based on OpenMM) was used with an addition of an RMSD restraint to keep the “core” ligand heavy atoms in the atom map and protein alpha carbons within 6.5A of ligand heavy atoms that turns on after the RMSD exceeds 2 A (with force constant K_RMSD ~ 1 kT/A^2) (see [this PR](https://github.com/choderalab/perses/pull/748)). The AMBER14SB force field was used the protein, TIP3P with AMBER-recommended counterion parameters for solvent, and the Open Force Field Initiative `openff-1.2.0` (“Parsley”) small molecule force field. Na+ and Cl- ions were added to achieve an effective ionic strength of 70 mM to match experimental conditions. No bond constraints were used for non-water molecules (due to a performance issue with constraints in certain alchemical transformations in [OpenMM](http://openmm.org) 7.4.2), and hydrogen mass repartitioning was used (hydrogen mass 4 amu) with timestep of 2 fs. A Monte Carlo barostat was employed with temperature of 300 K and pressure of 1 atm, and the BAOAB Langevin integrator was used, with an initial equilibration of 500 ps. Nonequilibrium free energy calculations were run on Folding@home, executing cycles of 500 ps equilibration in ligand A, 500 ps nonequilibrium switching from ligand A to ligand B, 500 ps equilibration in B, and 500 ps switching from B to A. The nonequilibrium protocol work is accumulated for forward (A->B) and backward (B->A) nonequilibrium switches. The Bennett acceptance ratio (BAR) is used to estimate the free energy difference between molecules. 40 independent trajectories of 2 nonequilibrium cycles/trajectory were used to collect work values for the ligand transformations in complex, and 25 trajectories of 2 cycles/trajectory for the ligand in solvent.
+
+**Known issues:** For some `compounds` with defined stereochemistry, it appears that the single generated `microstate` sometimes has inverted stereochemistry for reasons we don't understand. See, for example, `ALP-POS-d3acb8cc-1` in `json/sprint-5-x12073-monomer-neutral.json`.
