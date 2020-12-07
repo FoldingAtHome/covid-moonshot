@@ -5,7 +5,6 @@ import os
 import json
 
 yaml_filename = 'sprint-5.yaml'
-forcefield = 'openff-1.2.0'
 
 def run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename, tidy=True):
     """
@@ -35,7 +34,6 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     options['trajectory_directory'] = outputdir
     options['protein_pdb'] = protein_pdb_filename
     options['ligand_file'] = microstate_sdf_filename
-    options['small_molecule_forcefield'] = forcefield
     options['use_given_geometries'] = True
     options['rmsd_restraint'] = True
 
@@ -73,8 +71,8 @@ def load_json(filename):
             return json.load(infile)
 
 # Sprint 5
-json_filename = 'json/sprint-5-x12073-monomer-neutral.json'
-microstate_sdf_filename = 'docked/sprint-5-microstates-x12073-sorted.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
+json_filename = 'json/sprint-5-stereofix-x11498-monomer-neutral.json'
+microstate_sdf_filename = 'docked/sprint-5-microstates-x11498-sorted.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
 json_data = load_json(json_filename)
 from fah_xchem.schema import CompoundSeries
 compound_series = CompoundSeries.parse_obj(json_data)

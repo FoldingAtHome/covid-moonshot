@@ -4,7 +4,7 @@
 #
 
 #BSUB -P "testing"
-#BSUB -J "sprint[15001-15719]" 
+#BSUB -J "sprint[1-8000]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -28,7 +28,7 @@ NUMEXPR_MAX_THREADS=1
 cd $LS_SUBCWD
 
 unset CUDA_OPENMM_COMPILER
-conda activate perses
+conda activate perses-new
 
 module unload
 module load cuda/10.1

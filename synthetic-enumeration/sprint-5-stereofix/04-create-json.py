@@ -2,6 +2,8 @@
 
 """
 Create fah-xchem compound set JSON for Sprint 5 file using new schema
+
+DO NOT USE - it uses the compounds SDF 2D file which may screw up stereochemistryx
 """
 
 import numpy as np
@@ -14,16 +16,16 @@ from openeye import oechem
 
 xchem_project = 'Mpro'
 creator = 'John Chodera <john.chodera@choderalab.org>'
-ff = 'openff-1.2.0'
-creation_date = datetime.datetime.now() # TODO : Use Sep  7 02:07
+ff = 'openff-1.3.0'
+creation_date = datetime.datetime.now() 
 
-#xchem_fragment_id = 'x11498'
-#reference_compound_id = 'MAT-POS-b3e365b9-1'
+xchem_fragment_id = 'x11498'
+reference_compound_id = 'MAT-POS-b3e365b9-1'
 
-xchem_fragment_id = 'x12073'
-reference_compound_id  = 'MAT-POS-8a69d52e-7'
+#xchem_fragment_id = 'x12073'
+#reference_compound_id  = 'MAT-POS-8a69d52e-7'
 
-series_name = f'sprint-5-{xchem_fragment_id}-monomer-neutral'
+series_name = f'sprint-5-stereofix-{xchem_fragment_id}-monomer-neutral'
 description = f"COVID Moonshot Sprint 5 to prioritize benzopyran-isoquinoline series based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1' pocket with Mpro monomer and neutral Cys145:His41"
 microstates_sdf_filename = f'docked/sprint-5-microstates-{xchem_fragment_id}-sorted.sdf' # microstates with docked geometries
 compounds_sdf_filename = f'docked/sprint-5-compounds.sdf' # compounds with annotation
@@ -63,8 +65,8 @@ def get_compound_id(microstate_id):
 # Project pair
 from fah_xchem.schema import ProjectPair
 fah_projects = ProjectPair(
-    complex_phase=13428,
-    solvent_phase=13429
+    complex_phase=13438,
+    solvent_phase=13439
 )
 
 # Compound series metadata
@@ -83,17 +85,19 @@ series_metadata = CompoundSeriesMetadata(
 )
 
 # Compounds
+from openforcefield.topology import Molecule
 from fah_xchem.schema import Compound, CompoundMetadata
-smiles_flag = oechem.OESMILESFlag_Canonical | oechem.OESMILESFlag_ISOMERIC
 
 from openeye import oechem
 print('Processing compounds...')
 compounds = dict()
+from openeye import oechem
 with oechem.oemolistream(compounds_sdf_filename) as ifs:
     for oemol in ifs.GetOEGraphMols():
         # Set ID and SMILES
         compound_id = oemol.GetTitle()
-        smiles = oechem.OECreateSmiString(oemol, smiles_flag)
+        #smiles = Molecule.from_openeye(oemol, allow_undefined_stereo=True).to_smiles()
+        smiles = oechem.OEMolToSmiles(oemol)
         # Extract experimental data, if present
         experimental_data = dict()
         if oechem.OEHasSDData(oemol,'f_avg_pIC50'):
@@ -104,7 +108,7 @@ with oechem.oemolistream(compounds_sdf_filename) as ifs:
         # Extract information about the compound
         compound_metadata = CompoundMetadata(
             compound_id=compound_id,
-            smiles=oechem.OECreateSmiString(oemol, smiles_flag),
+            smiles=smiles,
             experimental_data=experimental_data,
         )
         # Create new compound
@@ -122,7 +126,8 @@ microstates = list()
 with oechem.oemolistream(microstates_sdf_filename) as ifs:
     for oemol in ifs.GetOEGraphMols():
         microstate_id = oemol.GetTitle()
-        smiles = oechem.OECreateSmiString(oemol, smiles_flag)
+        #smiles = Molecule.from_openeye(oemol, allow_undefined_stereo=True).to_smiles()
+        smiles = oechem.OEMolToSmiles(oemol)
         # Determine if our molecule has warts
         compound_id = oechem.OEGetSDData(oemol, 'compound')
         # Compile information about the microstate

@@ -109,20 +109,27 @@ def expand_stereochemistry(mols):
     warts = True # add suffix for stereoisomers
     for mol in mols:
         compound_title = mol.GetTitle()
+        compound_smiles = oechem.OEMolToSmiles(mol)
+
         enantiomers = list()
         for enantiomer in oeomega.OEFlipper(mol, maxcenters, forceFlip, enumNitrogen, warts):
             enantiomer = oechem.OEMol(enantiomer)
+            enantiomer_smiles =  oechem.OEMolToSmiles(enantiomer)
             oechem.OESetSDData(enantiomer, 'compound', compound_title)
+            oechem.OESetSDData(enantiomer, 'compound_smiles', compound_smiles)
+            oechem.OESetSDData(enantiomer, 'enantiomer_smiles', enantiomer_smiles)
             enantiomers.append(enantiomer)
 
         expanded_mols += enantiomers
 
         # DEBUG
-        msg = mol.GetTitle() + '\n'
-        msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
-        for index, m in enumerate(enantiomers):
-            msg += f'{index:5d} : ' +oechem.OEMolToSmiles(m) + '\n'
-        #print(msg)
+        if 'EDJ-MED-e4b030d8-2' in mol.GetTitle():
+            msg = 'Enumerated microstates for compound: '
+            msg += mol.GetTitle() + '\n'
+            msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
+            for index, m in enumerate(enantiomers):
+                msg += f'{index:5d} : ' +oechem.OEMolToSmiles(m) + '\n'
+            print(msg)
 
     return expanded_mols
 
@@ -195,6 +202,13 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
         if core_fragment.NumAtoms() < MIN_CORE_ATOMS:
             return None
 
+    # DEBUG
+    if 'EDJ-MED-e4b030d8-2' in mol.GetTitle():
+        msg = 'Generating docked pose for:'  
+        msg += mol.GetTitle() + '\n'
+        msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
+        print(msg)
+
     # Create an Omega instance
     #omegaOpts = oeomega.OEOmegaOptions()
     omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
@@ -238,8 +252,12 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
 
     ret_code = omega.Build(mol)
     if (mol.GetDimension() != 3) or (ret_code != oeomega.OEOmegaReturnCode_Success):
-        print(f'Omega failure: {mol.GetDimension()} and {oeomega.OEGetOmegaError(ret_code)}')
+        msg = f'\nOmega failure for {mol.GetTitle()} : SMILES {oechem.OEMolToSmiles(mol)} : core_smarts {core_smarts} : {oeomega.OEGetOmegaError(ret_code)}\n'
+        print(msg)        
         return None
+        # Return the molecule with an error code
+        #oechem.OESetSDData(mol, 'error', '{oeomega.OEGetOmegaError(ret_code)}')
+        #return mol
 
     # Extract poses
     class Pose(object):
@@ -296,11 +314,25 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     energy = mmff_energy(mol)
     oechem.OESetSDData(mol, 'MMFF_internal_energy', str(energy))
 
+    # Store SMILES
+    docked_smiles = oechem.OEMolToSmiles(mol)
+    oechem.OESetSDData(mol, 'docked_smiles', docked_smiles)
+
+    # DEBUG
+    if 'EDJ-MED-e4b030d8-2' in mol.GetTitle():
+        msg = 'Generated docked pose for: ' 
+        msg += mol.GetTitle() + '\n'
+        msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
+        print(msg)
+
     return mol
 
 def has_ic50(mol):
     """Return True if this molecule has fluorescence IC50 data"""
     from openeye import oechem
+    if not oechem.OEHasSDData(mol, 'f_avg_pIC50'):
+        return False
+
     try:
         pIC50 = oechem.OEGetSDData(mol, 'f_avg_pIC50')
         pIC50 = float(pIC50)
@@ -433,7 +465,21 @@ def generate_poses(receptor, refmol, target_molecules, output_filename):
         for pose in track(pool.imap_unordered(generate_restricted_conformers_star, args), total=len(args), description='Enumerating conformers...'):
         #for pose in map(generate_restricted_conformers_star, args): # DEBUG
             if pose is not None:
+                # DEBUG
+                if 'EDJ-MED-e4b030d8-2' in pose.GetTitle():
+                    msg = 'Writing docked pose for: ' 
+                    msg += pose.GetTitle() + '\n'
+                    msg += f'{"":5s}   ' + oechem.OEMolToSmiles(pose) + '\n'
+                    print(msg)
+
                 oechem.OEWriteMolecule(ofs, pose)
+
+                if 'EDJ-MED-e4b030d8-2' in pose.GetTitle():
+                    msg = 'Wrote docked pose for: ' 
+                    msg += pose.GetTitle() + '\n'
+                    msg += f'{"":5s}   ' + oechem.OEMolToSmiles(pose) + '\n'
+                    print(msg)
+
         pool.close()
         pool.join()
 
@@ -619,7 +665,7 @@ if __name__ == '__main__':
     #                        oechem.OEMemPoolMode_UnboundedCache)
 
     # Assay data
-    assay_data_filename = 'activity-data/activity-data-2020-11-14.csv'
+    assay_data_filename = 'activity-data/activity-data-2020-12-04.csv'
 
     # XChem fragment structures to dock to
     # XChem FragID : PostEra CID

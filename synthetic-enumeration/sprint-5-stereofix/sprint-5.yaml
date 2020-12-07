@@ -13,11 +13,10 @@ atom_expression:
     - IntType
 bond_expression:
     - DefaultBonds
-small_molecule_forcefield:
-    - openff-1.3.0
+small_molecule_forcefield: openff-1.3.0
 phase_project_ids:
-    complex: 13440
-    solvent: 13441
+    complex: 13438
+    solvent: 13439
     vacuum: vacuum-sprint-5
 ionic_strength: 0.070 # molar, to match experimental conditions
 timestep: 2.0 # fs
