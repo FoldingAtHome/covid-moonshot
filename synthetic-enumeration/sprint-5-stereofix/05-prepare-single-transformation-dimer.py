@@ -4,7 +4,7 @@ import itertools
 import os
 import json
 
-yaml_filename = 'sprint-5.yaml'
+yaml_filename = 'sprint-5-dimer.yaml'
 
 def run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename, tidy=True):
     """
@@ -17,10 +17,10 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
         microstate_ids = [ mol.GetTitle() for mol in ifs.GetOEGraphMols() ]
 
     # TODO : Handle monomer vs dimer
-    protein_pdb_filename = f'../../receptors/monomer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
+    #protein_pdb_filename = f'../../receptors/monomer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
 
     # dimer
-    #protein_pdb_filename = f'../../receptors/dimer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
+    protein_pdb_filename = f'../../receptors/dimer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
 
     outputdir = f'RUN{transformation.run_id}'
 
@@ -76,8 +76,8 @@ def load_json(filename):
             return json.load(infile)
 
 # Sprint 5
-json_filename = 'json/sprint-5-stereofix-x11498-monomer-neutral.json' # monomer
-#json_filename = 'json/sprint-5-stereofix-x11498-dimer-neutral.json' # dimer
+#json_filename = 'json/sprint-5-stereofix-x11498-monomer-neutral.json' # monomer
+json_filename = 'json/sprint-5-stereofix-x11498-dimer-neutral.json' # dimer
 microstate_sdf_filename = 'docked/sprint-5-microstates-x11498-sorted.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
 json_data = load_json(json_filename)
 from fah_xchem.schema import CompoundSeries

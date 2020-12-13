@@ -25,11 +25,17 @@ reference_compound_id = 'MAT-POS-b3e365b9-1'
 #xchem_fragment_id = 'x12073'
 #reference_compound_id  = 'MAT-POS-8a69d52e-7'
 
+# monomer
 series_name = f'sprint-5-stereofix-{xchem_fragment_id}-monomer-neutral'
 description = f"COVID Moonshot Sprint 5 to prioritize benzopyran-isoquinoline series based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1' pocket with Mpro monomer and neutral Cys145:His41"
+
+# dimer
+series_name = f'sprint-5-stereofix-{xchem_fragment_id}-dimer-neutral'
+description = f"COVID Moonshot Sprint 5 to prioritize benzopyran-isoquinoline series based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1' pocket with Mpro dimer and neutral Cys145:His41"
+
+json_filename = f'json/{series_name}.json' # output filename
 microstates_sdf_filename = f'docked/sprint-5-microstates-{xchem_fragment_id}-sorted.sdf' # microstates with docked geometries
 compounds_sdf_filename = f'docked/sprint-5-compounds.sdf' # compounds with annotation
-json_filename = f'json/{series_name}.json' # output filename
 smarts = 'C(=O)Nc1cncc2ccccc12' # SMARTS for common core scaffold : linker:isoquinoline
 receptors = f'../receptors/monomer/Mpro-{xchem_fragment_id}_0_bound-protein-thiolate.pdb'
 receptor_variant = {'catalytic-dyad' : 'His41(0) Cys145(0)'}
@@ -65,8 +71,10 @@ def get_compound_id(microstate_id):
 # Project pair
 from fah_xchem.schema import ProjectPair
 fah_projects = ProjectPair(
-    complex_phase=13438,
-    solvent_phase=13439
+    #complex_phase=13438, # monmer complex
+    #solvent_phase=13439 # monomer solvent
+    complex_phase=13440, # dimer complex
+    solvent_phase=13441 # dimer solvent
 )
 
 # Compound series metadata

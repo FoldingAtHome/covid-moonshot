@@ -4,14 +4,15 @@
 #
 
 #BSUB -P "testing"
-#BSUB -J "sprint[1-8000]" 
+#BSUB -J "dimer[1-8000]" 
+##BSUB -J "dimer[8001-14189]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
 #BSUB -q gpuqueue
 #BSUB -sp 1 # low priority. default is 12, max is 25
 #BSUB -gpu num=1:j_exclusive=yes:mode=shared
-#BSUB -W  02:00
+#BSUB -W  05:00
 #BSUB -m "ls-gpu lg-gpu lt-gpu lp-gpu lg-gpu lu-gpu ld-gpu"
 #BSUB -o output/out_%I.stdout 
 #BSUB -eo output/out_%I.stderr
@@ -40,6 +41,6 @@ export RUN=$(expr $LSB_JOBINDEX - 1) # RUN is zero-indexed
 echo $RUN
 
 date
-echo python 05-prepare-single-transformation.py $RUN
-python 05-prepare-single-transformation.py $RUN
+echo python 05-prepare-single-transformation-dimer.py $RUN
+python 05-prepare-single-transformation-dimer.py $RUN
 date

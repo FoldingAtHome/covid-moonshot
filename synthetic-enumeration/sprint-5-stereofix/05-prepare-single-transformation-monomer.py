@@ -4,7 +4,7 @@ import itertools
 import os
 import json
 
-yaml_filename = 'sprint-5.yaml'
+yaml_filename = 'sprint-5-monomer.yaml'
 
 def run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename, tidy=True):
     """
