@@ -54,7 +54,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     from simtk import unit, openmm
     protein_forcefield = 'amber14/protein.ff14SB.xml'
     solvent_forcefield = 'amber14/tip3p.xml'
-    small_molecule_forcefield='openff-1.2.0'
+    small_molecule_forcefield='openff-1.3.0'
     water_model = 'tip3p'
     solvent_padding = 10.0 * unit.angstrom
     ionic_strength = 70 * unit.millimolar # assay buffer: 20 mM HEPES pH 7.3, 1 mM TCEP, 50 mM NaCl, 0.01% Tween-20, 10% glycerol
@@ -64,6 +64,8 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     timestep = 4.0 * unit.femtoseconds
     iterations = 1000 # 1 ns equilibration
     nsteps_per_iteration = 250
+    nsteps_per_snapshot = 250000 # 1 ns
+    nsnapshots_per_wu = 20 # number of snapshots per WU
 
     # Prepare phases
     import os
@@ -84,11 +86,13 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
 
     # Load any molecule(s)
     molecule = None
+    molecules = []
     if oemol is not None:
         from openforcefield.topology import Molecule
         molecule = Molecule.from_openeye(oemol, allow_undefined_stereo=True)
         molecule.name = 'MOL' # Ensure residue is MOL
         print([res for res in molecule.to_topology().to_openmm().residues()])
+        molecules = [molecule]
 
     # Create SystemGenerator
     import os
@@ -99,7 +103,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     from openmmforcefields.generators import SystemGenerator
     openmm_system_generator = SystemGenerator(
                                 forcefields=forcefields,
-                                molecules=molecule, small_molecule_forcefield=small_molecule_forcefield, cache=cache,
+                                molecules=molecules, small_molecule_forcefield=small_molecule_forcefield, cache=cache,
                                 barostat=barostat,
                                 forcefield_kwargs=forcefield_kwargs, periodic_forcefield_kwargs=periodic_kwargs)
 
@@ -128,8 +132,6 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     if oemol is not None:
         import mdtraj as md
         mdtop = md.Topology.from_openmm(modeller.topology) # excludes solvent and ions
-        for res in mdtop.residues:
-            print(res)
         protein_atom_indices = mdtop.select('(protein and name CA)') # protein CA atoms
         ligand_atom_indices = mdtop.select('((resname MOL) and (mass > 1))') # ligand heavy atoms
         protein_atom_index = int(protein_atom_indices[0])
@@ -243,6 +245,13 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
         selection = mdtraj_topology.select('not water')
         mdtraj_trajectory = mdtraj_trajectory.atom_slice(selection)
         app.PDBFile.writeFile(mdtraj_trajectory.topology.to_openmm(), mdtraj_trajectory.openmm_positions(0), f)
+    with bz2.open(os.path.join(destination_path, 'core.xml.bz2'), 'wt') as f:
+        f.write(f'<config>\n')
+        f.write(f'  <numSteps>{nsteps_per_snapshot * nsnapshots_per_wu}</numSteps>\n')
+        f.write(f'  <xtcFreq>{nsteps_per_snapshot}</xtcFreq>\n')
+        f.write(f'  <precision>mixed</precision>\n')
+        f.write(f'  <xtcAtoms>{",".join([str(index) for index in selection])}</xtcAtoms>\n')
+        f.write(f'</config>\n')
     if oemol is not None:
         # Write molecule as SDF, SMILES, and mol2
         for extension in ['sdf', 'mol2', 'smi', 'csv']:
@@ -290,27 +299,32 @@ if __name__ == '__main__':
     crystal_name = metadata['crystal_name']
 
     # Read molecule in the appropriate protonation state
-    from openeye import oechem
-    oemol = oechem.OEMol()
-    molecule_filename = os.path.join(args.receptors_path, 'monomer', f'{crystal_name}_bound-ligand.mol2')
-    if not os.path.exists(molecule_filename):
-        raise Exception(f'{molecule_filename} does not exist')
-    with oechem.oemolistream(molecule_filename) as ifs:
-        oechem.OEReadMolecule(ifs, oemol)
-    # Rename the molecule
-    title = metadata['alternate_name']
-    print(f'Setting title to {title}')
-    oemol.SetTitle(title)
+    try:
+        from openeye import oechem
+        oemol = oechem.OEMol()
+        molecule_filename = os.path.join(args.receptors_path, 'monomer', f'{crystal_name}_bound-ligand.mol2')
+        if not os.path.exists(molecule_filename):
+            msg = f'{molecule_filename} does not exist'
+            print(msg)
+        with oechem.oemolistream(molecule_filename) as ifs:
+            oechem.OEReadMolecule(ifs, oemol)
+        # Rename the molecule
+        title = metadata['alternate_name']
+        print(f'Setting title to {title}')
+        oemol.SetTitle(title)
 
-    # Remove dummy atoms
-    for atom in oemol.GetAtoms():
-        if atom.GetName().startswith('Du'):
-            print('Removing dummy atom.')
-            oemol.DeleteAtom(atom)
+        # Remove dummy atoms
+        for atom in oemol.GetAtoms():
+            if atom.GetName().startswith('Du'):
+                print('Removing dummy atom.')
+                oemol.DeleteAtom(atom)
 
-    # Attach all structure metadata to the molecule
-    for key in metadata:
-        oechem.OESetSDData(oemol, key, metadata[key])
+        # Attach all structure metadata to the molecule
+        for key in metadata:
+            oechem.OESetSDData(oemol, key, metadata[key])
+    except Exception as e:
+        print(e)
+        oemol = None
 
     # Set up all variants
     # TODO: Generalize this to just use just one protonation state
@@ -342,9 +356,11 @@ if __name__ == '__main__':
 
         prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
         prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
-        prepare_variant('13432', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', oemol)
-        prepare_variant('13433', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', oemol)
+        if oemol is not None: 
+            prepare_variant('13432', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', oemol)
+            prepare_variant('13433', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', oemol)
         prepare_variant('13434', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', None)
         prepare_variant('13435', args.run, crystal_name, 'dimer',   'His41(+) Cys145(-)', None)
-        prepare_variant('13436', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', oemol)
-        prepare_variant('13437', args.run, crystal_name, 'dimer',   'His41(+) Cys145(-)', oemol)
+        if oemol is not None:
+            prepare_variant('13436', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', oemol)
+            prepare_variant('13437', args.run, crystal_name, 'dimer',   'His41(+) Cys145(-)', oemol)
