@@ -245,7 +245,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
         selection = mdtraj_topology.select('not water')
         mdtraj_trajectory = mdtraj_trajectory.atom_slice(selection)
         app.PDBFile.writeFile(mdtraj_trajectory.topology.to_openmm(), mdtraj_trajectory.openmm_positions(0), f)
-    with bz2.open(os.path.join(destination_path, 'core.xml.bz2'), 'wt') as f:
+    with open(os.path.join(destination_path, 'core.xml'), 'wt') as f:
         f.write(f'<config>\n')
         f.write(f'  <numSteps>{nsteps_per_snapshot * nsnapshots_per_wu}</numSteps>\n')
         f.write(f'  <xtcFreq>{nsteps_per_snapshot}</xtcFreq>\n')
