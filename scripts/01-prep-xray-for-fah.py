@@ -34,7 +34,7 @@ First column is used to identify RUN:
 
 """
 
-def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None, restrain_rmsd=False):
+def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None, restrain_rmsd=False, biounit='monomer'):
     """
     Prepare simulation
 
@@ -49,6 +49,8 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
         If None, don't include the small molecule
     restrain_rmsd : bool, optional, default=False
         If True, restrain RMSD during first equilibration phase
+    biounit : str, optional, default='monomer'
+        'monomer' or 'dimer'
     """
     # Parameters
     from simtk import unit, openmm
@@ -63,6 +65,7 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     temperature = 300.0 * unit.kelvin
     timestep = 4.0 * unit.femtoseconds
     iterations = 1000 # 1 ns equilibration
+    iterations = 10 # DEBUG
     nsteps_per_iteration = 250
     nsteps_per_snapshot = 250000 # 1 ns
     nsnapshots_per_wu = 20 # number of snapshots per WU
@@ -115,40 +118,61 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     if oemol is not None:
         # Add small molecule to the system
         modeller.add(molecule.to_topology().to_openmm(), molecule.conformers[0])
-        # DEBUG : Check residue name
-        with open(os.path.join(destination_path, 'initial-complex.pdb'), 'wt') as outfile:
-            app.PDBFile.writeFile(modeller.topology, modeller.positions, outfile)
+
+    # Extract protein and molecule chains and indices before adding solvent
+    import mdtraj as md
+    mdtop = md.Topology.from_openmm(modeller.topology) # excludes solvent and ions
+    protein_atom_indices = mdtop.select('protein and (mass > 1)')
+    molecule_atom_indices = mdtop.select('(not protein) and (not water) and (mass > 1)') 
+    protein_chainids = list(set([atom.residue.chain.index for atom in mdtop.atoms if atom.index in protein_atom_indices]))
+    n_protein_chains = len(protein_chainids)
+    protein_chain_atom_indices = dict()
+    for chainid in protein_chainids:
+        protein_chain_atom_indices[chainid] = mdtop.select(f'protein and chainid {chainid}')
 
     # Add solvent
     print('Adding solvent...')
     kwargs = {'padding' : solvent_padding}
     modeller.addSolvent(openmm_system_generator.forcefield, model='tip3p', ionicStrength=ionic_strength, **kwargs)
 
+    # Write initial model and select atom subsets and chains
+    import bz2
+    with bz2.open(os.path.join(destination_path, 'initial-model.pdb.bz2'), 'wt') as outfile:
+        app.PDBFile.writeFile(modeller.topology, modeller.positions, outfile, keepIds=True)
+
     # Create an OpenMM system
     print('Creating OpenMM system...')
     system = openmm_system_generator.create_system(modeller.topology)
+    
+    #
+    # Add virtual bonds to ensure protein subunits and ligand are imaged together
+    #
+
+    virtual_bond_force = openmm.CustomBondForce('0')
+    system.addForce(virtual_bond_force)
+
+    # Add a virtual bond between protein chains
+    if (n_protein_chains > 1):
+        chainid = protein_chainids[0]
+        iatom = protein_chain_atom_indices[chainid][0]
+        for chainid in protein_chainids[1:]:
+            jatom = protein_chain_atom_indices[chainid][0]
+            print(f'Creating virtual bond between atoms {iatom} and {jatom}')
+            virtual_bond_force.addBond(int(iatom), int(jatom), [])
 
     # Add a virtual bond between protein and ligand to make sure they are not imaged separately
     if oemol is not None:
-        import mdtraj as md
-        mdtop = md.Topology.from_openmm(modeller.topology) # excludes solvent and ions
-        protein_atom_indices = mdtop.select('(protein and name CA)') # protein CA atoms
         ligand_atom_indices = mdtop.select('((resname MOL) and (mass > 1))') # ligand heavy atoms
         protein_atom_index = int(protein_atom_indices[0])
         ligand_atom_index = int(ligand_atom_indices[0])
         print(f'Creating virtual bond between atoms {protein_atom_index} and {ligand_atom_index}')
-        force = openmm.CustomBondForce('0')
-        force.addBond(protein_atom_index, ligand_atom_index, [])
-        system.addForce(force)
+        virtual_bond_force.addBond(int(protein_atom_index), int(ligand_atom_index), [])
 
     # Add RMSD restraints if requested
     if restrain_rmsd:
         print('Adding RMSD restraint...')
         kB = unit.AVOGADRO_CONSTANT_NA * unit.BOLTZMANN_CONSTANT_kB 
         kT = kB * temperature     
-        import mdtraj as md
-        mdtop = md.Topology.from_openmm(pdbfile.topology) # excludes solvent and ions
-        #heavy_atom_indices = mdtop.select('mass > 1') # heavy solute atoms
         rmsd_atom_indices = mdtop.select('(protein and (name CA)) or ((resname MOL) and (mass > 1))') # CA atoms and ligand heavy atoms
         rmsd_atom_indices = [ int(index) for index in rmsd_atom_indices ]
         custom_cv_force = openmm.CustomCVForce('(K_RMSD/2)*RMSD^2')
@@ -237,14 +261,14 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     with bz2.open(system_xml_filename,'wt') as f:
         f.write(openmm.XmlSerializer.serialize(system))
     with bz2.open(os.path.join(destination_path, 'equilibrated-all.pdb.bz2'), 'wt') as f:
-        app.PDBFile.writeFile(modeller.topology, state.getPositions(), f)
+        app.PDBFile.writeFile(modeller.topology, state.getPositions(), f, keepIds=True)
     with open(os.path.join(destination_path, 'equilibrated-solute.pdb'), 'wt') as f:
         import mdtraj
         mdtraj_topology = mdtraj.Topology.from_openmm(modeller.topology)
         mdtraj_trajectory = mdtraj.Trajectory([state.getPositions(asNumpy=True) / unit.nanometers], mdtraj_topology)
         selection = mdtraj_topology.select('not water')
         mdtraj_trajectory = mdtraj_trajectory.atom_slice(selection)
-        app.PDBFile.writeFile(mdtraj_trajectory.topology.to_openmm(), mdtraj_trajectory.openmm_positions(0), f)
+        app.PDBFile.writeFile(mdtraj_trajectory.topology.to_openmm(), mdtraj_trajectory.openmm_positions(0), f, keepIds=True)
     with open(os.path.join(destination_path, 'core.xml'), 'wt') as f:
         f.write(f'<config>\n')
         f.write(f'  <numSteps>{nsteps_per_snapshot * nsnapshots_per_wu}</numSteps>\n')
@@ -347,8 +371,19 @@ if __name__ == '__main__':
                     protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
                 else:
                     raise Exception("dyad_state must be one of ['His41(0) Cys145(0)', 'His41(+) Cys145(-)']")
+
                 destination_path = os.path.join(args.output_path, project, 'RUNS', f'RUN{run}')
-                setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache)
+
+                # Create RUN directory if it does not yet exist
+                os.makedirs(destination_path, exist_ok=True)
+        
+                # Write metadata
+                import yaml
+                with open(os.path.join(destination_path, 'metadata.yaml'), 'wt') as outfile:
+                    yaml.dump(dict(metadata), outfile)
+                
+                # Set up RUN
+                setup_fah_run(destination_path, protein_pdb_filename, oemol=oemol, cache=cache, biounit=biounit)
                 print('')
             except Exception as e:
                 traceback.print_exc(file=sys.stdout)

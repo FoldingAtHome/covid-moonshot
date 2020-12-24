@@ -58,7 +58,8 @@ def read_pdb_file(pdb_file):
 
     from openeye import oechem
     ifs = oechem.oemolistream()
-    ifs.SetFlavor(oechem.OEFormat_PDB, oechem.OEIFlavor_PDB_Default | oechem.OEIFlavor_PDB_DATA | oechem.OEIFlavor_PDB_ALTLOC)  # noqa
+    #ifs.SetFlavor(oechem.OEFormat_PDB, oechem.OEIFlavor_PDB_Default | oechem.OEIFlavor_PDB_DATA | oechem.OEIFlavor_PDB_ALTLOC)  # Causes extra protons on VAL73 for x1425
+    ifs.SetFlavor(oechem.OEFormat_PDB, oechem.OEIFlavor_PDB_Default | oechem.OEIFlavor_PDB_DATA )
 
     if not ifs.open(pdb_file):
         oechem.OEThrow.Fatal("Unable to open %s for reading." % pdb_file)
