@@ -6,7 +6,7 @@ Generate poses for relative free energy calculations using fragment structures
 """
 from openeye import oechem
 import numpy as np
-
+import logging
 
 def GetFragments(mol, minbonds, maxbonds):
     from openeye import oegraphsim
@@ -37,7 +37,7 @@ def GetCommonFragments(mollist, frags,
     for frag in frags:
         ss = oechem.OESubSearch(frag, atomexpr, bondexpr)
         if not ss.IsValid():
-            print('Is not valid')
+            logging.warning('Is not valid')
             continue
 
         validcore = True
@@ -105,7 +105,7 @@ def expand_stereochemistry(mols):
     omega = oeomega.OEOmega(omegaOpts)
     maxcenters = 12
     forceFlip = False
-    enumNitrogen = False
+    enumNitrogen = True
     warts = True # add suffix for stereoisomers
     for mol in mols:
         compound_title = mol.GetTitle()
@@ -121,15 +121,6 @@ def expand_stereochemistry(mols):
             enantiomers.append(enantiomer)
 
         expanded_mols += enantiomers
-
-        # DEBUG
-        if 'EDJ-MED-e4b030d8-2' in mol.GetTitle():
-            msg = 'Enumerated microstates for compound: '
-            msg += mol.GetTitle() + '\n'
-            msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
-            for index, m in enumerate(enantiomers):
-                msg += f'{index:5d} : ' +oechem.OEMolToSmiles(m) + '\n'
-            print(msg)
 
     return expanded_mols
 
@@ -179,11 +170,13 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     """
     from openeye import oechem, oeomega
 
-    print(f'mol: {oechem.OEMolToSmiles(mol)} | core_smarts: {core_smarts}') # DEBUG
+    logging.debug(f'mol: {oechem.OEMolToSmiles(mol)} | core_smarts: {core_smarts}')
 
-    # DEBUG
-    #core_smarts = 'C1(CCOc2ccccc12)C(=O)Nc1cncc2ccccc12' # benzopyran-linker-isoquinoline
-    #core_smarts = 'C(=O)Nc1cncc2ccccc12' # linker-isoquinoline
+
+    # Be quiet
+    from openeye import oechem
+    oechem.OEThrow.SetLevel(oechem.OEErrorLevel_Quiet)
+    #oechem.OEThrow.SetLevel(oechem.OEErrorLevel_Error)
 
     # Get core fragment
     if core_smarts:
@@ -194,6 +187,7 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
         for match in ss.Match(refmol):
             core_fragment = oechem.OEGraphMol()
             oechem.OESubsetMol(core_fragment, match)
+            logging.debug(f'Truncated refmol to generate core_fragment: {oechem.OEMolToSmiles(core_fragment)}')
             break
         #print(f'refmol has {refmol.NumAtoms()} atoms')
     else:
@@ -204,13 +198,6 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
         if core_fragment.NumAtoms() < MIN_CORE_ATOMS:
             return None
 
-    # DEBUG
-    if 'EDJ-MED-e4b030d8-2' in mol.GetTitle():
-        msg = 'Generating docked pose for:'  
-        msg += mol.GetTitle() + '\n'
-        msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
-        print(msg)
-
     # Create an Omega instance
     #omegaOpts = oeomega.OEOmegaOptions()
     omegaOpts = oeomega.OEOmegaOptions(oeomega.OEOmegaSampling_Dense)
@@ -220,7 +207,7 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     omegaFixOpts.SetFixMaxMatch(10) # allow multiple MCSS matches
     omegaFixOpts.SetFixDeleteH(True) # only use heavy atoms
     omegaFixOpts.SetFixMol(core_fragment)
-    #omegaFixOpts.SetFixSmarts(smarts)
+    #omegaFixOpts.SetFixSmarts(core_smarts) # DEBUG
     omegaFixOpts.SetFixRMS(0.5)
 
     # This causes a warning:
@@ -247,7 +234,7 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     # TODO: Expand protonation states and tautomers
     from openeye import oequacpac
     if not oequacpac.OEGetReasonableProtomer(mol):
-        print('No reasonable protomer found')
+        logging.warning('No reasonable protomer found')
         return None
 
     mol = oechem.OEMol(mol) # multi-conformer molecule
@@ -255,7 +242,7 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     ret_code = omega.Build(mol)
     if (mol.GetDimension() != 3) or (ret_code != oeomega.OEOmegaReturnCode_Success):
         msg = f'\nOmega failure for {mol.GetTitle()} : SMILES {oechem.OEMolToSmiles(mol)} : core_smarts {core_smarts} : {oeomega.OEGetOmegaError(ret_code)}\n'
-        print(msg)        
+        logging.warning(msg)
         return None
         # Return the molecule with an error code
         #oechem.OESetSDData(mol, 'error', '{oeomega.OEGetOmegaError(ret_code)}')
@@ -320,13 +307,6 @@ def generate_restricted_conformers(receptor, refmol, mol, core_smarts=None):
     docked_smiles = oechem.OEMolToSmiles(mol)
     oechem.OESetSDData(mol, 'docked_smiles', docked_smiles)
 
-    # DEBUG
-    if 'EDJ-MED-e4b030d8-2' in mol.GetTitle():
-        msg = 'Generated docked pose for: ' 
-        msg += mol.GetTitle() + '\n'
-        msg += f'{"":5s}   ' + oechem.OEMolToSmiles(mol) + '\n'
-        print(msg)
-
     return mol
 
 def has_ic50(mol):
@@ -336,9 +316,12 @@ def has_ic50(mol):
         return False
 
     try:
-        pIC50 = oechem.OEGetSDData(mol, 'f_avg_pIC50')
-        pIC50 = float(pIC50)
-        return True
+        if oechem.OEHasSDData(mol, 'f_avg_pIC50'):
+            pIC50 = oechem.OEGetSDData(mol, 'f_avg_pIC50')
+            pIC50 = float(pIC50)
+            return True
+        else:
+            return False
     except Exception as e:
         return False
 
@@ -363,10 +346,12 @@ def get_series(mol):
 
     # Filter out covalent
     try:
-        if oechem.OEGetSDData(mol,'acrylamide')=='True' or oechem.OEGetSDData(mol,'chloroacetamide')=='True':
-            return None
+        covalent_warheads = ['acrylamide', 'chloroacetamide']
+        for warhead in covalent_warheads:
+            if oechem.OEHasSDData(mol, warhead) and oechem.OEGetSDData(mol, warhead)=='True':
+                return None
     except Exception as e:
-        print(e)
+        logging.warning(e)
 
     def check_if_smi_in_series(
         smi, SMARTS, MW_cutoff=550, num_atoms_cutoff=70, num_rings_cutoff=10
@@ -415,17 +400,28 @@ def get_series(mol):
 def generate_restricted_conformers_star(args):
     core_smarts_list = [
         'C1(CCOc2ccccc12)C(=O)Nc1cncc2ccccc12', # benzopyran-linker-isoquinoline
-        'C(=O)Nc1cncc2ccccc12', # linker-isoquinoline
-        'Nc1cncc2ccccc12', # isoquinoline
+        'CNc1cncc2ccccc12', # linker-isoquinoline
+        'c1cncc2ccccc12', # isoquinoline
     ]
 
+    # Build with all core_smarts options
     mols = [ generate_restricted_conformers(*args, core_smarts=core_smarts) for core_smarts in core_smarts_list ]
 
-    # Sprint 5 special: Select unproblematic enantiomers by energy
-    if mols[1] is None:
+    # Prune unsuccessful builds
+    mols = [ mol for mol in mols if mol!=None ]
+
+    # DEBUG
+    if len(mols) == 0:
+        #  No options available
+        logger.warning('No core_smarts variations succeeded.')
+        return None
+
+    if len(mols) == 1:
+        # Return the only choice
         return mols[0]
 
     try:
+        # Prefer the second option if strain energy of first option is poor
         from openeye import oechem
         energies = [ float(oechem.OEGetSDData(mol, 'MMFF_internal_energy')) for mol in mols ]
         if energies[0] > energies[1] + 100:
@@ -433,7 +429,7 @@ def generate_restricted_conformers_star(args):
         else:
             return mols[0]
     except Exception as e:
-        print(e)
+        logging.warning(e)
         return None
 
 
@@ -451,9 +447,9 @@ def generate_poses(receptor, refmol, target_molecules, output_filename):
         Output filename for generated conformers
     """
     # Expand uncertain stereochemistry
-    print('Expanding uncertain stereochemistry...')
+    logging.info('Expanding uncertain stereochemistry...')
     target_molecules = expand_stereochemistry(target_molecules)
-    print(f'  There are {len(target_molecules)} target molecules')
+    logging.info(f'  There are {len(target_molecules)} target molecules')
 
     # TODO: Expand protonation states
 
@@ -463,10 +459,8 @@ def generate_poses(receptor, refmol, target_molecules, output_filename):
         from multiprocessing import Pool
         from tqdm import tqdm
 
-        #pool = Pool()
-        pool = Pool(1) # DEBUG
+        pool = Pool()
         args = [ (receptor, refmol, mol) for mol in target_molecules ]
-        args = args[:1] # DEBUG
         for pose in track(pool.imap_unordered(generate_restricted_conformers_star, args), total=len(args), description='Enumerating conformers...'):
             if pose is not None:
                 oechem.OEWriteMolecule(ofs, pose)
@@ -495,7 +489,7 @@ def annotate_with_assay_data(mols, assay_data_filename):
     with oechem.oemolistream(assay_data_filename) as ifs:
         for mol in ifs.GetOEGraphMols():
             assayed_molecules[mol.GetTitle()] = oechem.OEGraphMol(mol)
-    print(f'Loaded data for {len(assayed_molecules)} assayed molecules')
+    logging.info(f'Loaded data for {len(assayed_molecules)} assayed molecules')
 
     # Copy all SDData from assayed molecules that match title
     nmols_with_assay_data = 0
@@ -505,7 +499,7 @@ def annotate_with_assay_data(mols, assay_data_filename):
             oechem.OECopySDData(mol, assayed_molecule)
             nmols_with_assay_data += 1
 
-    print(f'Found assay data for {nmols_with_assay_data} / {len(mols)} molecules')
+    logging.info(f'Found assay data for {nmols_with_assay_data} / {len(mols)} molecules')
 
 def filter_by_series(mols, filter_series='3-aminopyridine-like'):
     """
@@ -522,7 +516,7 @@ def filter_by_series(mols, filter_series='3-aminopyridine-like'):
         Filtered list of molecules that match series
     """
     filtered_mols = [ mol for mol in mols if (get_series(mol) == filter_series) ]
-    print(f'Filtering by series {filter_series} retains {len(filtered_mols)} / {len(mols)} molecules.')
+    logging.info(f'Filtering by series {filter_series} retains {len(filtered_mols)} / {len(mols)} molecules.')
     return filtered_mols
 
 def filter_by_IC50s(mols):
@@ -530,7 +524,7 @@ def filter_by_IC50s(mols):
     Retain only molecules with IC50s
     """
     filtered_mols = [ mol for mol in mols if has_ic50(mol) ]
-    print(f'Filtering only molecules with IC50s retains {len(filtered_mols)} / {len(mols)} molecules.')
+    logging.info(f'Filtering only molecules with IC50s retains {len(filtered_mols)} / {len(mols)} molecules.')
     return filtered_mols
 
 def load_molecules(filename):
@@ -581,7 +575,7 @@ def load_fragment(fragid, title=None):
             break
     if refmol is None:
         raise Exception(f'Could not read {refmol_filename}')
-    print(f'Reference molecule has {refmol.NumAtoms()} atoms')
+    logging.info(f'Reference molecule has {refmol.NumAtoms()} atoms')
 
     if title is not None:
         # Replace title
@@ -651,7 +645,7 @@ def read_receptor(fragid, assembly_state, protonation_state):
     receptor_filename = f'../../receptors/{assembly_state}/Mpro-{fragment}_0A_bound-receptor{suffix}.oeb.gz'
     from openeye import oedocking
     oedocking.OEReadReceptorFile(receptor, receptor_filename)
-    print(f'  Receptor has {receptor.NumAtoms()} atoms.')
+    logging.info(f'  Receptor has {receptor.NumAtoms()} atoms.')
     return receptor
 
 if __name__ == '__main__':
@@ -679,7 +673,7 @@ if __name__ == '__main__':
     for prefix in molecule_sets_to_dock:
         # Read molecules to dock
         target_molecules_filename = 'sorted/' + prefix + f'.csv'
-        print(f'Reading molecules to be docked from {target_molecules_filename}...')
+        logging.info(f'Reading molecules to be docked from {target_molecules_filename}...')
         target_molecules = load_molecules(target_molecules_filename)
 
         # Ensure fragment molecules are contained in set
@@ -692,7 +686,7 @@ if __name__ == '__main__':
         import os
         os.makedirs('docked', exist_ok=True)
         output_filename = f'docked/{prefix}-compounds.smi'
-        print(f'Writing annotated molecules to {output_filename}...')
+        logging.info(f'Writing annotated molecules to {output_filename}...')
         write_molecules(target_molecules, output_filename)
 
         # Generate docked poses from each fragment:receptor pair
@@ -701,14 +695,13 @@ if __name__ == '__main__':
             for assembly_state in ['monomer', 'dimer']:
                 for protonation_state in ['neutral', 'charged']:
                     # Read receptor
-                    print('Reading receptor...')
+                    logging.info('Reading receptor...')
                     receptor = read_receptor(fragment, assembly_state, protonation_state)
 
                     # Read reference fragment with coordinates
                     refmol = load_fragment(fragment, title=fragments[fragment])
-                    
+
                     # Generate poses for all molecules
                     output_filename = f'docked/{prefix}-microstates-{fragment}-{assembly_state}-{protonation_state}.sdf'
-                    print(f'Writing poses to {output_filename}...')
+                    logging.info(f'Writing poses to {output_filename}...')
                     generate_poses(receptor, refmol, target_molecules, output_filename)
-                    
