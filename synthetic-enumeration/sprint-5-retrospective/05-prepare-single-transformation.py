@@ -16,17 +16,13 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     with oechem.oemolistream(microstate_sdf_filename) as ifs:
         microstate_ids = [ mol.GetTitle() for mol in ifs.GetOEGraphMols() ]
 
-    # TODO : Handle monomer vs dimer
+    # TODO : Decode assembly and charge states from microstate_sdf_filename prefix
     protein_pdb_filename = f'../../receptors/monomer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
-
-    # dimer
-    #protein_pdb_filename = f'../../receptors/dimer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
 
     outputdir = f'RUN{transformation.run_id}'
 
     print(f'Starting relative calcluation')
     print(transformation)
-
     
     # rewrite yaml file
     with open(yaml_filename, "r") as yaml_file:
@@ -76,13 +72,21 @@ def load_json(filename):
             return json.load(infile)
 
 # Sprint 5
-json_filename = 'json/sprint-5-stereofix-x11498-monomer-neutral.json' # monomer
-#json_filename = 'json/sprint-5-stereofix-x11498-dimer-neutral.json' # dimer
-microstate_sdf_filename = 'docked/sprint-5-microstates-x11498-sorted.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
-json_data = load_json(json_filename)
-from fah_xchem.schema import CompoundSeries
-compound_series = CompoundSeries.parse_obj(json_data)
+import os
+from glob import glob
+json_filenames = glob('json/*.json')
+json_filenames = ['json/sprint-5-retrospective-x11498-monomer-neutral.json'] # DEBUG
+# TODO : select appropriate  run index from entire set of JSON filenames
+for json_filename in json_filenames:
+    head, tail = os.path.split(json_filename)
+    prefix, ext = os.path.splitext(tail)
+    # TODO Fix SDF filename
+    prefix = 'sprint-5-retrospective-microstates-x11498-monomer-neutral'
+    microstate_sdf_filename = f'docked/{prefix}.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
+    json_data = load_json(json_filename)
+    from fah_xchem.schema import CompoundSeries
+    compound_series = CompoundSeries.parse_obj(json_data)
 
-# Process 0-indexed transformation index
-transformation_index = int(sys.argv[1])
-run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename)
+    # Process 0-indexed transformation index
+    transformation_index = int(sys.argv[1])
+    run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename)
