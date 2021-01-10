@@ -702,6 +702,6 @@ if __name__ == '__main__':
                     refmol = load_fragment(fragment, title=fragments[fragment])
 
                     # Generate poses for all molecules
-                    output_filename = f'docked/{prefix}-microstates-{fragment}-{assembly_state}-{protonation_state}.sdf'
+                    output_filename = f'docked/{prefix}-{fragment}-{assembly_state}-{protonation_state}.sdf'
                     logging.info(f'Writing poses to {output_filename}...')
                     generate_poses(receptor, refmol, target_molecules, output_filename)

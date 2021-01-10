@@ -16,12 +16,15 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     with oechem.oemolistream(microstate_sdf_filename) as ifs:
         microstate_ids = [ mol.GetTitle() for mol in ifs.GetOEGraphMols() ]
 
-    # TODO : Decode assembly and charge states from microstate_sdf_filename prefix
-    protein_pdb_filename = f'../../receptors/monomer/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein.pdb'
+    # Decode assembly and charge states from microstate_sdf_filename prefix
+    assembly_state = 'monomer' if 'monomer' in compound_series.metadata.description else 'dimer'
+    suffix = '-thiolate' if 'charged' in compound_series.metadata.description else ''
+    protein_pdb_filename = f'../../receptors/{assembly_state}/Mpro-{transformation.xchem_fragment_id}_0A_bound-protein{suffix}.pdb'
+    print(protein_pdb_filename)
 
     outputdir = f'RUN{transformation.run_id}'
 
-    print(f'Starting relative calcluation')
+    print(f'Starting relative calculation')
     print(transformation)
     
     # rewrite yaml file
@@ -53,6 +56,7 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
 
     return
 
+
 # work out which ligand pair to run
 
 def load_json(filename):
@@ -75,18 +79,31 @@ def load_json(filename):
 import os
 from glob import glob
 json_filenames = glob('json/*.json')
-json_filenames = ['json/sprint-5-retrospective-x11498-monomer-neutral.json'] # DEBUG
-# TODO : select appropriate  run index from entire set of JSON filenames
+
+# DEBUG: Force order
+json_filenames = [
+    'json/sprint-5-retrospective-x11498-monomer-neutral.json',
+    'json/sprint-5-retrospective-x11498-monomer-charged.json',
+    'json/sprint-5-retrospective-x11498-dimer-neutral.json',
+    'json/sprint-5-retrospective-x11498-dimer-charged.json',
+]
+
+transformation_index = int(sys.argv[1])
+
+# Select appropriate run index from entire set of JSON filenames
 for json_filename in json_filenames:
+    print(json_filename)
     head, tail = os.path.split(json_filename)
     prefix, ext = os.path.splitext(tail)
-    # TODO Fix SDF filename
-    prefix = 'sprint-5-retrospective-microstates-x11498-monomer-neutral'
     microstate_sdf_filename = f'docked/{prefix}.sdf' # TODO: Encapsulate this in JSON file as source_sdf_filename and source_molecule_index?
     json_data = load_json(json_filename)
     from fah_xchem.schema import CompoundSeries
     compound_series = CompoundSeries.parse_obj(json_data)
+    print(prefix)
 
-    # Process 0-indexed transformation index
-    transformation_index = int(sys.argv[1])
-    run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename)
+    if transformation_index < len(compound_series.transformations):
+        break
+    else:
+        transformation_index -= len(compound_series.transformations)
+
+run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename)

@@ -84,6 +84,7 @@ for xchem_fragment_id in ['x11498']:
             )
 
             # Compound series metadata
+            # Encode dict of assembly and charge states?
             from fah_xchem.schema import CompoundSeriesMetadata
             series_metadata = CompoundSeriesMetadata(
                 name=series_name,
