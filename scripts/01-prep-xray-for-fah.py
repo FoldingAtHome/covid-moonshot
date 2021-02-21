@@ -65,7 +65,6 @@ def setup_fah_run(destination_path, protein_pdb_filename, oemol=None, cache=None
     temperature = 300.0 * unit.kelvin
     timestep = 4.0 * unit.femtoseconds
     iterations = 1000 # 1 ns equilibration
-    iterations = 10 # DEBUG
     nsteps_per_iteration = 250
     nsteps_per_snapshot = 250000 # 1 ns
     nsnapshots_per_wu = 20 # number of snapshots per WU
@@ -368,7 +367,7 @@ if __name__ == '__main__':
                 if dyad_state == 'His41(0) Cys145(0)':
                     protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
                 elif dyad_state == 'His41(+) Cys145(-)':
-                    protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein.pdb')
+                    protein_pdb_filename = os.path.join(args.receptors_path, biounit, f'{crystal_name}_bound-protein-thiolate.pdb')
                 else:
                     raise Exception("dyad_state must be one of ['His41(0) Cys145(0)', 'His41(+) Cys145(-)']")
 
@@ -389,13 +388,13 @@ if __name__ == '__main__':
                 traceback.print_exc(file=sys.stdout)
                 print(e)
 
-        prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
+        #prepare_variant('13430', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', None)
         prepare_variant('13431', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', None)
         if oemol is not None: 
-            prepare_variant('13432', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', oemol)
+            #prepare_variant('13432', args.run, crystal_name, 'monomer', 'His41(0) Cys145(0)', oemol)
             prepare_variant('13433', args.run, crystal_name, 'monomer', 'His41(+) Cys145(-)', oemol)
-        prepare_variant('13434', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', None)
+        #prepare_variant('13434', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', None)
         prepare_variant('13435', args.run, crystal_name, 'dimer',   'His41(+) Cys145(-)', None)
         if oemol is not None:
-            prepare_variant('13436', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', oemol)
+            #prepare_variant('13436', args.run, crystal_name, 'dimer',   'His41(0) Cys145(0)', oemol)
             prepare_variant('13437', args.run, crystal_name, 'dimer',   'His41(+) Cys145(-)', oemol)

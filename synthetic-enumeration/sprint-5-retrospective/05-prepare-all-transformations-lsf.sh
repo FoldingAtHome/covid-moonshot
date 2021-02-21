@@ -4,7 +4,7 @@
 #
 
 #BSUB -P "testing"
-#BSUB -J "sprint[136-544]"
+#BSUB -J "sprint[273-544]"
 ##BSUB -J "sprint[1-136]"
 #BSUB -n 1
 #BSUB -R rusage[mem=3]

@@ -4,7 +4,7 @@
 #
 
 #BSUB -P "testing"
-#BSUB -J "sprint[1-3334]" 
+#BSUB -J "monomer[2282,2573]"
 ##BSUB -J "sprint[8001-14189]" 
 #BSUB -n 1
 #BSUB -R rusage[mem=3]

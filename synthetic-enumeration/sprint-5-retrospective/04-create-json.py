@@ -62,7 +62,7 @@ for xchem_fragment_id in ['x11498']:
             description = f"COVID Moonshot Sprint 5 for benzopyran-isoquinoline series retrospective based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1' pocket with Mpro {assembly_state} and {charge_state} Cys145:His41 catalytic dyad"
 
             json_filename = f'json/{series_name}.json' # output filename
-            microstates_sdf_filename = f'docked/{prefix}-microstates-{xchem_fragment_id}-{assembly_state}-{charge_state}.sdf' # microstates with docked geometries
+            microstates_sdf_filename = f'docked/{prefix}-{xchem_fragment_id}-{assembly_state}-{charge_state}.sdf' # microstates with docked geometries
             compounds_smi_filename = f'docked/{prefix}-compounds.smi' # compounds with annotation
             smarts = 'c1cncc2ccccc12' # SMARTS for common core scaffold : isoquinoline
             suffix = 'charged' if charge_state=='charged' else ''
@@ -107,6 +107,7 @@ for xchem_fragment_id in ['x11498']:
             print('Processing compounds...')
             compounds = dict()
             from openeye import oechem
+            # TODO: Use CSV filename instead of SMI, since we need it to retain experimental data
             with oechem.oemolistream(compounds_smi_filename) as ifs:
                 for oemol in ifs.GetOEGraphMols():
                     # Set ID and SMILES
@@ -141,20 +142,32 @@ for xchem_fragment_id in ['x11498']:
             with oechem.oemolistream(microstates_sdf_filename) as ifs:
                 for oemol in ifs.GetOEGraphMols():
                     microstate_id = oemol.GetTitle()
-                    #smiles = Molecule.from_openeye(oemol, allow_undefined_stereo=True).to_smiles()
                     smiles = oechem.OEMolToSmiles(oemol)
-                    # Determine if our molecule has warts
+                    # Identify parent compound
                     compound_id = oechem.OEGetSDData(oemol, 'compound')
-                    # Compile information about the microstate
-                    microstate = Microstate(microstate_id=microstate_id, smiles=smiles)
-                    microstates.append(microstate)
-                    # Add microstate to compound if it already exists
-                    compound_microstates = list() # previous compound microstates
                     if not compound_id in compounds:
                         raise Exception(f'Microstate {microstate_id} supposedly belongs to compound {compound_id}, but compound not found')
                     compound = compounds[compound_id]
+                    # Extract experimental data, if present
+                    # TODO: Extract monomer and dimer IC50?
+                    experimental_data = dict()
+                    if oechem.OEHasSDData(oemol,'f_avg_pIC50'):
+                        pIC50 = oechem.OEGetSDData(oemol, 'f_avg_pIC50')
+                        if pIC50 != '':
+                            pIC50 = float(pIC50)
+                            experimental_data['pIC50'] = pIC50
+                    # Rebuild compound_metadata with experimental data
+                    compound_metadata = CompoundMetadata(
+                        compound_id=compound_id,
+                        smiles=compound.metadata.smiles,
+                        experimental_data=experimental_data,
+                    )
+                    # Compile information about the microstate
+                    microstate = Microstate(microstate_id=microstate_id, smiles=smiles)
+                    microstates.append(microstate)
+                    # Add microstate to compound 
                     compound = Compound(
-                        metadata=compound.metadata,
+                        metadata=compound_metadata,
                         microstates=compound.microstates + [microstate]
                     )
                     # Store compound
@@ -167,6 +180,8 @@ for xchem_fragment_id in ['x11498']:
                 if microstate.microstate_id == reference_microstate_id:
                     reference_microstate = microstate
             if reference_microstate is None:
+                print(compounds)
+                print(microstates)
                 raise Exception(f'Could not find reference microstate id {reference_microstate_id} among microstates')
             print(f'Reference microstate is ligand index {reference_microstate_index}')
             print(reference_microstate)
