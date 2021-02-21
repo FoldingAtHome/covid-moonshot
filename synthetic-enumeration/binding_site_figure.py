@@ -11,22 +11,22 @@ path = "/Users/choderaj/github/foldingathome/covid-moonshot/receptors/monomer/"
 # Aim 1 : 3-aminopyridines (cyan)
 fragments = ['x2646', 'x10201', 'x10387', 'x10789', 'x10019', 'x10236', 'x10237', 'x10959']
 for fragment in fragments:
-  cmd.load(path + f'Mpro-{fragment}_0_bound-ligand.mol2', f'aminopyridines-{fragment}-ligand')
-  cmd.load(path + f'Mpro-{fragment}_0_bound-protein.pdb', f'aminopyridines-{fragment}-protein')
+  cmd.load(path + f'Mpro-{fragment}_0A_bound-ligand.mol2', f'aminopyridines-{fragment}-ligand')
+  cmd.load(path + f'Mpro-{fragment}_0A_bound-protein.pdb', f'aminopyridines-{fragment}-protein')
 util.cbac(f'aminopyridines-*')
 
 # Aim 2 : quinolones (magenta)
 fragments = ['x2910', 'x3080', 'x3303']
 for fragment in fragments:
-  cmd.load(path + f'Mpro-{fragment}_0_bound-ligand.mol2', f'quinolones-{fragment}-ligand')
-  cmd.load(path + f'Mpro-{fragment}_0_bound-protein.pdb', f'quinolones-{fragment}-protein')
+  cmd.load(path + f'Mpro-{fragment}_0A_bound-ligand.mol2', f'quinolones-{fragment}-ligand')
+  cmd.load(path + f'Mpro-{fragment}_0A_bound-protein.pdb', f'quinolones-{fragment}-protein')
 util.cbam(f'quinolones-*')
 
 # Aim 3 : benzotriazoles (green)
 fragments = ['x10820', 'x10871', 'x10876']
 for fragment in fragments:
-  cmd.load(path + f'Mpro-{fragment}_0_bound-ligand.mol2', f'benzotriazoles-{fragment}-ligand')
-  cmd.load(path + f'Mpro-{fragment}_0_bound-protein.pdb', f'benzotriazoles-{fragment}-protein')
+  cmd.load(path + f'Mpro-{fragment}_0A_bound-ligand.mol2', f'benzotriazoles-{fragment}-ligand')
+  cmd.load(path + f'Mpro-{fragment}_0A_bound-protein.pdb', f'benzotriazoles-{fragment}-protein')
 util.cbag(f'benzotriazoles-*')
 
 # N3 ligand (white)

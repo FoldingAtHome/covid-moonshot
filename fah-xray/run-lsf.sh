@@ -1,7 +1,6 @@
 #!/bin/bash
 #BSUB -P "testing"
-##BSUB -J "mpro[1-344]%10"
-#BSUB -J "mpro[1-344]"
+#BSUB -J "mpro[165]"
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
@@ -21,7 +20,7 @@ set -e
 source ~/.bashrc
 
 cd $LS_SUBCWD
-conda activate perses
+conda activate perses-new
 
 # Launch my program.
 module load cuda/10.1
@@ -32,5 +31,5 @@ nvidia-smi
 
 # Launch my program.
 env | sort | grep 'CUDA'
-export RUN=$(expr $LSB_JOBINDEX)
+export RUN=$(expr $LSB_JOBINDEX - 1) # RUN is zero-indexed
 python ../scripts/01-prep-xray-for-fah.py --run $RUN
