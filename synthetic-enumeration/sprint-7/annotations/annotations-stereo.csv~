@@ -1,0 +1,6 @@
+A1AAC(C(=O)Nc2cncc3ccccc23)c2ccccc21,P2-linker-isoquinoline
+#C(=O)Nc2cncc3ccccc23,linker-isoquinoline
+#O1CCCc2ccccc21,benzopyran
+#N1CCCc2ccccc21,benzopyridine
+#O1CCC(C(=O)Nc2cncc3ccccc23)c2ccccc21,benzopyran-linker-isoquinoline
+#N1CCC(C(=O)Nc2cncc3ccccc23)c2ccccc21,benzopyridine-linker-isoquinoline
