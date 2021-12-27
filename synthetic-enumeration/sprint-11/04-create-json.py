@@ -26,6 +26,7 @@ reference_compound_ids = {
 }
 prefix = 'sprint-11-2021-12-26'
 run_id = 0
+description = 'COVID Moonshot Sprint 11 for optimizing spiro compounds'
 
 def get_compound_id(microstate_id):
     """
@@ -61,22 +62,22 @@ rmsd_restraints = ['unrestrained', 'restrained']
 assembly_states = ['dimer']
 charge_states = ['neutral', 'charged']
 
-for xchem_fragment_id in reference_compound_ids.keys():
-    reference_compound_id = reference_compound_ids[xchem_fragment_id]
+for charge_state in charge_states:
     for assembly_state in assembly_states:
-        for charge_state in charge_states:
-            for rmsd_restraint in rmsd_restraints:
+        for rmsd_restraint in rmsd_restraints:
+            for xchem_fragment_id in reference_compound_ids.keys():
+                reference_compound_id = reference_compound_ids[xchem_fragment_id]
                 series_name = f'{prefix}-{xchem_fragment_id}-{assembly_state}-{charge_state}-{rmsd_restraint}'
                 print(f'Generating JSON for {series_name}...')
-                description = f"COVID Moonshot Sprint 9 for P1 pocket replacement based on {xchem_fragment_id} ({reference_compound_id}) to optimize substituents in the P1 pocket with Mpro {assembly_state} and {charge_state} Cys145:His41 catalytic dyad"
+                description = f"{description} based on {xchem_fragment_id} using reference compound {reference_compound_id} with Mpro {assembly_state} and {charge_state} Cys145:His41 catalytic dyad"
 
                 json_filename = f'json/{series_name}.json' # output filename
-                microstates_sdf_filename = f'docked/{prefix}-{xchem_fragment_id}-{assembly_state}-{charge_state}.sdf' # microstates with docked geometries
+                #microstates_sdf_filename = f'docked/{prefix}-{xchem_fragment_id}-{assembly_state}-{charge_state}.sdf' # microstates with docked geometries
+                microstates_sdf_filename = f'docked/{prefix}-{xchem_fragment_id}-{assembly_state}-neutral.sdf' # microstates with docked geometries
                 compounds_smi_filename = f'docked/{prefix}-compounds.smi' # compounds with annotation
-                smarts = 'c1cncc2ccccc12' # SMARTS for common core scaffold : isoquinoline
-                smarts = 'NC(=O)[CH2]c3[cH1][cH1][cH1]c(Cl)c3' # chlorobenzene-linker
+                smarts = 'a1aaa2a(a1)AAAC23*~*~*(c4cncc5ccccc45)~*3' # SMARTS for common core scaffold : tetralinlike-5spiro-isoquinoline
                 suffix = 'charged' if charge_state=='charged' else ''
-                receptors = f'../receptors/{assembly_state}/Mpro-{xchem_fragment_id}_0_bound-protein{suffix}.pdb'
+                receptors = f'../receptors/{assembly_state}/Mpro-{xchem_fragment_id}_bound-protein{suffix}.pdb'
                 if charge_state=='neutral':
                     receptor_variant = {'catalytic-dyad' : 'His41(0) Cys145(0)'}
                 else:
@@ -125,16 +126,8 @@ for xchem_fragment_id in reference_compound_ids.keys():
                         compound_id = oemol.GetTitle()
                         #smiles = Molecule.from_openeye(oemol, allow_undefined_stereo=True).to_smiles()
                         smiles = oechem.OEMolToSmiles(oemol)
-                        # Extract experimental data, if present
+                        # We are migrating experimental data to another file
                         experimental_data = dict()
-                        if oechem.OEHasSDData(oemol,'f_avg_IC50'):
-                            IC50 = oechem.OEGetSDData(oemol, 'f_avg_IC50')
-                            if IC50 != '':
-                                IC50 = float(IC50)
-                                if IC50 < 99: # dynamic range of assay
-                                    IC50 *= 1.0e-6 # convert to uM
-                                    pIC50 = - np.log10(IC50)
-                                    experimental_data['pIC50'] = pIC50
                         # Extract information about the compound
                         compound_metadata = CompoundMetadata(
                             compound_id=compound_id,
@@ -162,17 +155,8 @@ for xchem_fragment_id in reference_compound_ids.keys():
                         if not compound_id in compounds:
                             raise Exception(f'Microstate {microstate_id} supposedly belongs to compound {compound_id}, but compound not found')
                         compound = compounds[compound_id]
-                        # Extract experimental data, if present
-                        # TODO: Extract monomer and dimer IC50?
+                        # No experimental data will be present in compound metadata
                         experimental_data = dict()
-                        if oechem.OEHasSDData(oemol,'f_avg_IC50'):
-                            IC50 = oechem.OEGetSDData(oemol, 'f_avg_IC50')
-                            if IC50 != '':
-                                IC50 = float(IC50)
-                                if IC50 < 99: # dynamic range of assay
-                                    IC50 *= 1.0e-6 # convert to uM
-                                    pIC50 = - np.log10(IC50)
-                                    experimental_data['pIC50'] = pIC50
                         # Rebuild compound_metadata with experimental data
                         compound_metadata = CompoundMetadata(
                             compound_id=compound_id,
