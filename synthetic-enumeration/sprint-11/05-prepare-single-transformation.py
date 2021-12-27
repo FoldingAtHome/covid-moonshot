@@ -4,7 +4,7 @@ import itertools
 import os
 import json
 
-yaml_filename = 'sprint-9.yaml'
+yaml_filename = 'sprint-11.yaml'
 
 def run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename, tidy=True, rmsd_restraint=True):
     """
@@ -20,7 +20,7 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     # Decode assembly and charge states from microstate_sdf_filename prefix
     assembly_state = 'monomer' if 'monomer' in compound_series.metadata.description else 'dimer'
     suffix = '-thiolate' if 'charged' in compound_series.metadata.description else ''
-    protein_pdb_filename = f'receptors/{assembly_state}/Mpro-{transformation.xchem_fragment_id}-protein{suffix}.pdb'
+    protein_pdb_filename = f'receptors/{assembly_state}/Mpro-{transformation.xchem_fragment_id}_bound-protein{suffix}.pdb'
     print(protein_pdb_filename)
 
     outputdir = f'RUN{transformation.run_id}'
@@ -39,7 +39,7 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
     options['use_given_geometries'] = True
     options['rmsd_restraint'] = rmsd_restraint
     options['num_equilibration_iterations'] = 2000 # 2 ns
-    options['num_equilibration_steps_per_iteration'] = 500
+    options['num_equilibration_steps_per_iteration'] = 250
 
     # Metadata
     microstate_smiles = { microstate.microstate_id : microstate.smiles for compound in compound_series.compounds for microstate in compound.microstates } 
@@ -108,8 +108,18 @@ json_filenames = glob('json/*.json')
 
 # DEBUG: Force order
 json_filenames = [
-    'json/sprint-9-2021-06-14-x10959-dimer-neutral-restrained.json',
-    'json/sprint-9-2021-06-14-x10959-dimer-neutral-unrestrained.json',
+    'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-unrestrained.json',
+    'json/sprint-11-2021-12-26-P2113_0B-dimer-neutral-unrestrained.json',
+    'json/sprint-11-2021-12-26-P2222_0A-dimer-neutral-unrestrained.json',
+    'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-restrained.json',
+    'json/sprint-11-2021-12-26-P2113_0B-dimer-neutral-restrained.json',
+    'json/sprint-11-2021-12-26-P2222_0A-dimer-neutral-restrained.json',
+    'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-unrestrained.json',
+    'json/sprint-11-2021-12-26-P2113_0B-dimer-charged-unrestrained.json',
+    'json/sprint-11-2021-12-26-P2222_0A-dimer-charged-unrestrained.json',
+    'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-restrained.json',
+    'json/sprint-11-2021-12-26-P2113_0B-dimer-charged-restrained.json',
+    'json/sprint-11-2021-12-26-P2222_0A-dimer-charged-restrained.json',
 ]
 
 transformation_index = int(sys.argv[1])

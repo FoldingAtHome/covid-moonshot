@@ -484,7 +484,11 @@ def generate_poses(receptor, refmol, target_molecules, output_filename):
         from multiprocessing import Pool
         from tqdm import tqdm
 
-        pool = Pool()
+        import os
+        processes = None
+        if 'LSB_DJOB_NUMPROC' in os.environ:
+            processes = int(os.environ['LSB_DJOB_NUMPROC'])
+        pool = Pool(processes=processes)
         args = [ (receptor, refmol, mol) for mol in target_molecules ]
         for pose in track(pool.imap_unordered(generate_restricted_conformers_star, args), total=len(args), description='Enumerating conformers...'):
             if pose is not None:
