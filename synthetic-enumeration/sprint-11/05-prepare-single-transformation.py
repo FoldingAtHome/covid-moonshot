@@ -109,13 +109,9 @@ json_filenames = glob('json/*.json')
 # DEBUG: Force order
 json_filenames = [
     'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-unrestrained.json',
-    'json/sprint-11-2021-12-26-P2222_0A-dimer-neutral-unrestrained.json',
     'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-restrained.json',
-    'json/sprint-11-2021-12-26-P2222_0A-dimer-neutral-restrained.json',
     'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-unrestrained.json',
-    'json/sprint-11-2021-12-26-P2222_0A-dimer-charged-unrestrained.json',
     'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-restrained.json',
-    'json/sprint-11-2021-12-26-P2222_0A-dimer-charged-restrained.json',
 ]
 
 transformation_index = int(sys.argv[1])
