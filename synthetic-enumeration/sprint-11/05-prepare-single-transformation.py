@@ -109,16 +109,12 @@ json_filenames = glob('json/*.json')
 # DEBUG: Force order
 json_filenames = [
     'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-unrestrained.json',
-    'json/sprint-11-2021-12-26-P2113_0B-dimer-neutral-unrestrained.json',
     'json/sprint-11-2021-12-26-P2222_0A-dimer-neutral-unrestrained.json',
     'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-restrained.json',
-    'json/sprint-11-2021-12-26-P2113_0B-dimer-neutral-restrained.json',
     'json/sprint-11-2021-12-26-P2222_0A-dimer-neutral-restrained.json',
     'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-unrestrained.json',
-    'json/sprint-11-2021-12-26-P2113_0B-dimer-charged-unrestrained.json',
     'json/sprint-11-2021-12-26-P2222_0A-dimer-charged-unrestrained.json',
     'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-restrained.json',
-    'json/sprint-11-2021-12-26-P2113_0B-dimer-charged-restrained.json',
     'json/sprint-11-2021-12-26-P2222_0A-dimer-charged-restrained.json',
 ]
 

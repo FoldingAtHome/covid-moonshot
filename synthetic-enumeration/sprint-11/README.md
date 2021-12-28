@@ -6,8 +6,6 @@ Retrospective and prospective assessment of designs for optimizing sprio compoun
 
 * `P1800_0A` : crystallized with [VLA-UCB-50c39ae8-2](https://covid.postera.ai/covid/submissions/VLA-UCB-50c39ae8-2) (IC50 246 nM) - base for chromane-5spiro-isoquinoline : `O=C1C[C@]2(CCOc3ccc(Cl)cc32)C(=O)N1c1cncc2ccccc12` - conformation 1, site A; reference ligand will be [VLA-UCB-50c39ae8-2](https://covid.postera.ai/covid/submissions/VLA-UCB-50c39ae8-2)
 
-* `P2113_0B` : crystallized with [JOH-MSK-1f2dff76-2](https://covid.postera.ai/covid/submission/JOH-MSK-1f2dff76-2) - base for THIQ-5spiro-isoquinoline : enantiopure [MAT-POS-1bed62cf-3](https://covid.postera.ai/covid/submissions/MAT-POS-1bed62cf-3) - conformation 1, site B; reference ligand will be [JOH-MSK-1f2dff76-4](https://covid.postera.ai/covid/submission/JOH-MSK-1f2dff76-4) to avoid having to truncate the P3/P4 substituent in every transformation
-
 * `P2222_0A` : [`MAT-POS-c7726e07-5`](https://covid.postera.ai/covid/submissions/MAT-POS-c7726e07-5) (IC50 74 nM) - base for THIQ-5spiro-isqoquinolines : enantiopure active form of [`EDJ-MED-8bb691af-4`](https://covid.postera.ai/covid/submissions/EDJ-MED-8bb691af-4) - conformation 2, site A; reference ligand will be [JOH-MSK-1f2dff76-4](https://covid.postera.ai/covid/submission/JOH-MSK-1f2dff76-4) to avoid having to truncate the P3/P4 substituent in every transformation
 
 ## Notes
@@ -67,3 +65,41 @@ Start with P2222
 fix quinoline ring
 build in rest of spiro
 keep protonation states consistent
+
+## Issues
+
+Had to drop this structure because Spruce did not model residues 45-51 in chain B in a simulatable fashion
+
+* `P2113_0B` : crystallized with [JOH-MSK-1f2dff76-2](https://covid.postera.ai/covid/submission/JOH-MSK-1f2dff76-2) - base for THIQ-5spiro-isoquinoline : enantiopure [MAT-POS-1bed62cf-3](https://covid.postera.ai/covid/submissions/MAT-POS-1bed62cf-3) - conformation 1, site B; reference ligand will be [JOH-MSK-1f2dff76-4](https://covid.postera.ai/covid/submission/JOH-MSK-1f2dff76-4) to avoid having to truncate the P3/P4 substituent in every transformation
+
+It produced:
+```
+ATOM   2687  N   CYS B  44      13.574  -9.223  27.323  1.00 57.76           N
+ATOM   2688  CA  CYS B  44      13.544  -8.135  28.304  1.00 60.17           C
+ATOM   2689  C   CYS B  44      12.181  -7.962  28.981  1.00 61.28           C
+ATOM   2690  O   CYS B  44      11.609  -6.862  28.952  0.00 99.99           O
+ATOM   2691  CB  CYS B  44      14.003  -6.831  27.661  1.00 62.48           C
+ATOM   2692  SG  CYS B  44      15.718  -6.853  27.097  1.00 70.92           S
+ATOM   2693  OXT CYS B  44      11.598  -9.015  29.614  0.00 99.99           O
+ATOM   7296  H   CYS B  44      13.281  -9.015  26.390  1.00 20.00           H
+ATOM   7297  HA  CYS B  44      14.268  -8.377  29.096  1.00 20.00           H
+ATOM   7298  HB2 CYS B  44      13.357  -6.626  26.795  1.00 20.00           H
+ATOM   7299  HB3 CYS B  44      13.892  -6.024  28.400  1.00 20.00           H
+ATOM   7300  HG  CYS B  44      16.197  -7.883  27.729  1.00 20.00           H
+ATOM   2694  N   PRO B  52      19.928  -2.973  29.545  1.00 79.97           N
+ATOM   2695  CA  PRO B  52      19.833  -4.438  29.554  1.00 79.99           C
+ATOM   2696  C   PRO B  52      21.116  -5.111  29.091  1.00 79.95           C
+ATOM   2697  O   PRO B  52      21.722  -4.686  28.109  1.00 80.34           O
+ATOM   2698  CB  PRO B  52      18.673  -4.732  28.591  1.00 80.65           C
+ATOM   2699  CG  PRO B  52      18.573  -3.530  27.718  1.00 81.05           C
+ATOM   2700  CD  PRO B  52      19.094  -2.364  28.491  1.00 79.50           C
+ATOM   7301  H2  PRO B  52      19.628  -2.626  30.433  1.00 20.00           H
+ATOM   7302  H3  PRO B  52      20.881  -2.714  29.391  1.00 20.00           H
+ATOM   7303  HA  PRO B  52      19.571  -4.797  30.560  1.00 20.00           H
+ATOM   7304  HB2 PRO B  52      18.889  -5.628  27.990  1.00 20.00           H
+ATOM   7305  HB3 PRO B  52      17.737  -4.882  29.149  1.00 20.00           H
+ATOM   7306  HG2 PRO B  52      19.175  -3.676  26.809  1.00 20.00           H
+ATOM   7307  HG3 PRO B  52      17.523  -3.356  27.439  1.00 20.00           H
+ATOM   7308  HD2 PRO B  52      19.697  -1.707  27.847  1.00 20.00           H
+ATOM   7309  HD3 PRO B  52      18.268  -1.787  28.932  1.00 20.00           H
+```

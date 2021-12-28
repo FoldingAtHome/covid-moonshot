@@ -21,7 +21,7 @@ creation_date = datetime.datetime.now()
 
 reference_compound_ids = {
     'P1800_0A' : 'VLA-UCB-50c39ae8-2', # chromane-5spiro-isoquinoline
-    'P2113_0B' : 'JOH-MSK-1f2dff76-4', # tetrahydroisoquinoline-5spiro-isoquinoline
+    #'P2113_0B' : 'JOH-MSK-1f2dff76-4', # tetrahydroisoquinoline-5spiro-isoquinoline
     'P2222_0A' : 'JOH-MSK-1f2dff76-4', # tetrahydroisoquinoline-5spiro-isoquinoline
 }
 prefix = 'sprint-11-2021-12-26'
