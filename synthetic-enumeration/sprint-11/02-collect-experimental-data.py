@@ -26,22 +26,6 @@ description = 'COVID Moonshot Sprint 11 for optimizing spiro compounds'
 # TODO: Auto-download and timestamp
 submissions_csv_filename = 'submissions/submissions-2021-12-26.csv.gz'
 
-def has_ic50(mol):
-    """Return True if this molecule has fluorescence IC50 data"""
-    from openeye import oechem
-    if not oechem.OEHasSDData(mol, 'f_avg_pIC50'):
-        return False
-
-    try:
-        if oechem.OEHasSDData(mol, 'f_avg_pIC50'):
-            pIC50 = oechem.OEGetSDData(mol, 'f_avg_pIC50')
-            pIC50 = float(pIC50)
-            return True
-        else:
-            return False
-    except Exception as e:
-        return False
-
 # Read all submitted designs: Compounds with the key substructure will be retained
 print('Reading submitted designs...')
 compounds = dict()
