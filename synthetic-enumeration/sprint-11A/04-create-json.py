@@ -60,7 +60,7 @@ os.makedirs('json', exist_ok=True)
 
 rmsd_restraints = ['unrestrained', 'restrained']
 assembly_states = ['dimer']
-charge_states = ['neutral']
+charge_states = ['neutral', 'charged']
 
 for charge_state in charge_states:
     for assembly_state in assembly_states:

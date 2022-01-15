@@ -110,6 +110,8 @@ json_filenames = glob('json/*.json')
 json_filenames = [
     'json/sprint-11A-P1800_0A-dimer-neutral-unrestrained.json',
     'json/sprint-11A-P1800_0A-dimer-neutral-restrained.json',
+    'json/sprint-11A-P1800_0A-dimer-charged-unrestrained.json',
+    'json/sprint-11A-P1800_0A-dimer-charged-restrained.json',
 ]
 
 transformation_index = int(sys.argv[1])

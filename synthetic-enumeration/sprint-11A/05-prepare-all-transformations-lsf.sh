@@ -4,7 +4,7 @@
 #
 
 #BSUB -P "testing"
-#BSUB -J "sprint[1-680]"
+#BSUB -J "sprint[681-1360]"
 #BSUB -n 1
 #BSUB -R rusage[mem=3]
 #BSUB -R span[hosts=1]
