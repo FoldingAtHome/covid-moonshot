@@ -1,0 +1,31 @@
+{
+  "compounds": [
+    {
+      "compound_id": "VLA-UCB-50c39ae8-2",
+      "smiles": "c1ccc2c(c1)cncc2N3C(=O)C[C@@]4(C3=O)CCOc5c4cc(cc5)Cl",
+      "experimental_data": {
+        "pIC50": 6.609064892896621,
+        "pIC50_lower": 6.665546248849069,
+        "pIC50_upper": 6.552841968657781
+      }
+    },
+    {
+      "compound_id": "LUO-POS-868e8996-8",
+      "smiles": "CNC(=O)CN1C[C@]2(CC(=O)N(C2=O)c3cncc4c3cccc4)c5cc(ccc5C1=O)Cl",
+      "experimental_data": {
+        "pIC50": 6.910094888560602,
+        "pIC50_lower": 6.962573502059376,
+        "pIC50_upper": 6.860120913598763
+      }
+    },
+    {
+      "compound_id": "MAT-POS-c7726e07-5",
+      "smiles": "CNC(=O)CN1Cc2ccc(cc2[C@]3(C1)CCN(C3=O)c4cncc5c4cccc5)Cl",
+      "experimental_data": {
+        "pIC50": 7.238072161579471,
+        "pIC50_lower": 7.27083521030723,
+        "pIC50_upper": 7.205511953340831
+      }
+    }
+  ]
+}
