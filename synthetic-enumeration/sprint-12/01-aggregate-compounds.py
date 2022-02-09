@@ -14,7 +14,7 @@ Prepare list of annotated compounds for docking
 mols = list()
 
 # TODO: Auto-download and timestamp
-submissions_csv_filename = 'submissions/submissions-2022-01-17.csv.bz2'
+submissions_csv_filename = 'submissions/submissions-2022-02-07.csv.bz2'
 
 # Read all submitted designs: Compounds with the key substructure will be retained
 print('Reading submitted designs...')

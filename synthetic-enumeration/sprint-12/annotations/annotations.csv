@@ -1,0 +1,13 @@
+A1Ac2ccc(Cl)cc2C2(CCN(c3cncc4ccccc34)C2=O)A1,tetralinlike-5spiro-isoquinoline
+#a1aaa2a(a1)AAAC23*~*~*(c4cncc5ccccc45)~*3,tetralinlike-5spiro-isoquinoline
+#c1ccc2c(c1)OCCC23*~*~*(c4cncc5ccccc45)~*3,chromane-5spiro-isoquinoline
+#c1ccc2c(c1)CNCC23*~*~*(c4cncc5ccccc45)~*3,tetrahydroisoquinoline-5spiro-isoquinoline
+#C(=O)Nc1cncc2ccccc12,linker-isoquinoline
+#C1(CCOc2ccccc12)C(=O)Nc1cncc2ccccc12,benzopyran-isoquinoline-scaffold
+#NC(=O)Cc3[c;H1][c;H1][c;H1]c(Cl)c3,chlorobenzene-linker
+#C3***(c4cncc5ccccc45)*3,5spiro-isoquinoline
+#c4cncc5ccccc45,isoquinoline
+#a4anaa5aaaaa45,P1-biaryl
+#C3***(a4anaa5aaaaa45)*3,5spiro-biaryl
+#a1aaa2a(a1)AAAC23*~*~*~*3,tetralinlike-5spiro
+#c1ccc2c(c1)OCCC23*~*~*~*3,chromane-5spiro

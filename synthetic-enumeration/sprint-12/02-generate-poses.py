@@ -155,7 +155,9 @@ def expand_protonation_states(mols):
     # Expand protonation and tautomeric states
     # TODO: This will create multiple entries with the same ligand name
     logging.info(' Expanding protonation states with epik...')
-    command = f'$SCHRODINGER/epik -WAIT -ms 16 -ph 7.3 -p 0.002 -imae input.mae -omae output.mae'
+    import numpy as np
+    min_population = np.exp(-8)
+    command = f'$SCHRODINGER/epik -WAIT -ms 16 -ph 7.3 -p {min_population} -imae input.mae -omae output.mae'
     os.system(command)
 
     # Convert back to SDF
@@ -415,7 +417,9 @@ def get_series(mol):
     series_SMARTS_dict = {
         "chromane-5spiro-isoquinoline" : "c1ccc2c(c1)OCCC23***(c4cncc5ccccc45)*3",
         "tetrahydroisoquinoline-5spiro-isoquinoline" : "c1ccc2c(c1)CNCC23***(c4cncc5ccccc45)*3",
+        "5spiro-isoquinoline" : "C3***(c4cncc5ccccc45)*3",
         "isoquinoline" : "c4cncc5ccccc45",
+        "P1-biaryl" : "a4anaa5aaaaa45",
         #"chlorobenzene-linker": "NC(=O)Cc3[c;H1][c;H1][c;H1]c(Cl)c3",
         #"3-aminopyridine": "[R1][C,N;R0;!$(NC(=O)CN)]C(=O)[C,N;R0;!$(NC(=O)CN)][c]1cnccc1",
         #"3-aminopyridine-like": "[R1]!@[C,N]C(=O)[C,N]!@[R1]",
@@ -485,9 +489,23 @@ def get_series(mol):
 
 def generate_restricted_conformers_star(args):
     core_smarts_list = [
-        "c1ccc2c(c1)O**C23*~*~*(c4cncc5ccccc45)~*3", # chromane-5spiro-isoquinoline
-        "c1ccc2c(c1)*N*C23*~*~*(c4cncc5ccccc45)~*3", # tetrahydroisoquinoline-5spiro-isoquinoline
-        "a1aaa2a(a1)AAAC23*~*~*(c4cncc5ccccc45)~*3", #tetralinlike-5spiro-isoquinoline
+        "c1c([F,Cl,Br,I])cc2c(c1)OCCC23***(c4cncc5ccccc45)*3", # chloro-chromane-5spiro-isoquinoline
+        "c1c([F,Cl,Br,I])cc2c(c1)CNCC23***(c4cncc5ccccc45)*3", # chloro-tetrahydroisoquinoline-5spiro-isoquinoline
+        "c1c([F,Cl,Br,I])cc2c(c1)OCCC23****3", # chloro-chromane-5spiro
+        "c1c([F,Cl,Br,I])cc2c(c1)CNCC23****3", # chloro-tetrahydroisoquinoline-5spiro
+        #"C3***(c4cncc5ccccc45)*3", # 5spiro-isoquinoline
+        #"*(a4anaa5aaaaa45)", # "P1-biaryl"
+        #"a1a([F,Cl,Br,I])aa2a(a1)AAAC23*~*~*~*3", # chloro-tetralinlike-5spiro
+        #"c1c([F,Cl,Br,I])cc2c(c1)OCCC23*~*~*~*3", # chloro-chromane-5spiro
+        "a1a([F,Cl,Br,I])aa2a(a1)AAAC2", # chloro-tetralinlike
+        "c1c([F,Cl,Br,I])cc2c(c1)OCCC2", # chloro-chromane
+        "c1c([F,Cl,Br,I])cc2c(c1)CNCC2", # chloro-THIQ
+        #"*(c4cncc5ccccc45)", # isoquinoline"
+        ## Recent
+        #"c1ccc2c(c1)O**C23*~*~*(c4cncc5ccccc45)~*3", # chromane-5spiro-isoquinoline
+        #"c1ccc2c(c1)*N*C23*~*~*(c4cncc5ccccc45)~*3", # tetrahydroisoquinoline-5spiro-isoquinoline
+        #"a1aaa2a(a1)AAAC23*~*~*(c4cncc5ccccc45)~*3", #tetralinlike-5spiro-isoquinoline
+        ## Older
         #"a1aaa2a(a1)AAAA23***(c4cncc5ccccc45)*3", # tetralinlike-5spiro-isoquinoline
         #"NC(=O)[CH2]c3[cH1][cH1][cH1]c(Cl)c3", # chlorobenzene-linker
         #'A1AAC(C(=O)Nc2cncc3ccccc23)c2ccccc21', # benzopyranlike-linker-isoquinoline
@@ -517,13 +535,20 @@ def generate_restricted_conformers_star(args):
         return mols[0]
 
     try:
-        # Prefer the second option if strain energy of first option is poor
         from openeye import oechem
         energies = [ float(oechem.OEGetSDData(mol, 'MMFF_internal_energy')) for mol in mols ]
-        if energies[0] > energies[1] + 100:
-            return mols[1]
-        else:
-            return mols[0]
+
+        # Return the best compound
+        import numpy as np
+        index = np.argmin(energies)
+        return mols[index]
+
+        # Prefer the second option if strain energy of first option is poor
+        #if energies[0] > energies[1] + 100:
+        #    return mols[1]
+        #else:
+        #    return mols[0]
+
     except Exception as e:
         logging.warning(e)
         return None
@@ -643,7 +668,7 @@ def load_molecules(filename, append_warts=False):
             target_molecules.append( oechem.OEGraphMol(mol) )
     return target_molecules
 
-def load_fragment(fragid, title=None):
+def load_fragment(fragid, protonation_state, title=None):
     """
     Load the molecule associated with the given fragment
 
@@ -651,6 +676,8 @@ def load_fragment(fragid, title=None):
     ----------
     fragid : str
         The XChem fragment ID to load
+    protonation_state : str
+        The protonation state
     title : str, optional, default=None
         If not None, replace title with specified string.
 
@@ -662,7 +689,7 @@ def load_fragment(fragid, title=None):
     """
     #refmol_filename = f'receptors/dimer/Mpro-P0157-ligand.mol2'
     #refmol_filename = f'receptors/dimer/Mpro-x10959-ligand.mol2'
-    refmol_filename = f'./receptors/dimer/Mpro-{fragid}_bound-ligand.mol2'
+    refmol_filename = f'./receptors/dimer/Mpro-{fragid}_bound-{protonation_state}-ligand.mol2'
     refmol = None
     with oechem.oemolistream(refmol_filename) as ifs:
         for mol in ifs.GetOEGraphMols():
@@ -736,11 +763,7 @@ def read_receptor(fragid, assembly_state, protonation_state):
     """
     from openeye import oechem
     receptor = oechem.OEGraphMol()
-    suffix = '' if protonation_state=='neutral' else '-thiolate'
-    #receptor_filename = f'../../receptors/{assembly_state}/Mpro-{fragment}_0A_bound-receptor{suffix}.oeb.gz'
-    #receptor_filename = f'receptors/dimer/Mpro-P0033-receptor.oeb.gz'
-    #receptor_filename = f'receptors/dimer/Mpro-x10959-receptor.oeb.gz'
-    receptor_filename = f'./receptors/dimer/Mpro-{fragid}_bound-receptor.oeb.gz'
+    receptor_filename = f'./receptors/dimer/Mpro-{fragid}_bound-{protonation_state}-receptor.oeb.gz'
     from openeye import oedocking
     oedocking.OEReadReceptorFile(receptor, receptor_filename)
     logging.info(f'  Receptor has {receptor.NumAtoms()} atoms.')
@@ -761,10 +784,16 @@ if __name__ == '__main__':
     # XChem fragment structures to dock to
     # XChem FragID : PostEra CID
     fragments = {
-        'P1800_0A' : 'VLA-UCB-50c39ae8-2', # chromane-5spiro-isoquinoline
-        #'P2113_0B' : 'JOH-MSK-1f2dff76-2', # tetrahydroisoquinoline-5spiro-isoquinoline
-        #'P2222_0A' : 'MAT-POS-c7726e07-5', # tetrahydroisoquinoline-5spiro-isoquinoline
+        'P2385_0A' : 'MAT-POS-c7726e07-5',
     }
+
+    protonation_states = [
+        'His41(0)-Cys145(0)-His163(0)',
+        'His41(+)-Cys145(-)-His163(0)',
+        'His41(0)-Cys145(0)-His163(+)',
+        'His41(+)-Cys145(-)-His163(+)',
+    ]
+
 
     for prefix in molecule_sets_to_dock:
         # Read molecules to dock
@@ -787,13 +816,13 @@ if __name__ == '__main__':
             #for assembly_state in ['monomer', 'dimer']:
             for assembly_state in ['dimer']:
                 #for protonation_state in ['neutral', 'charged']:
-                for protonation_state in ['neutral']:
+                for protonation_state in protonation_states:
                     # Read receptor
                     logging.info('Reading receptor...')
                     receptor = read_receptor(fragment, assembly_state, protonation_state)
 
                     # Read reference fragment with coordinates
-                    refmol = load_fragment(fragment, title=fragments[fragment])
+                    refmol = load_fragment(fragment, protonation_state, title=fragments[fragment])
 
                     # Generate poses for all molecules
                     output_filename = f'docked/{prefix}-{fragment}-{assembly_state}-{protonation_state}.sdf'

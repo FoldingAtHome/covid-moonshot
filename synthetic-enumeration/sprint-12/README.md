@@ -4,8 +4,7 @@ Retrospective and prospective assessment of designs for optimizing sprio compoun
 
 ## Reference structures used in this sprint
 
-* `P1800_0A` : crystallized with [VLA-UCB-50c39ae8-2](https://covid.postera.ai/covid/submissions/VLA-UCB-50c39ae8-2) (IC50 246 nM) - base for chromane-5spiro-isoquinoline : `O=C1C[C@]2(CCOc3ccc(Cl)cc32)C(=O)N1c1cncc2ccccc12` - conformation 1, site A; reference ligand will be [VLA-UCB-50c39ae8-2](https://covid.postera.ai/covid/submissions/VLA-UCB-50c39ae8-2)
-
+* `P2385_0A` : crystallized with [MAT-POS-c7726e07-5](https://covid.postera.ai/covid/submissions/MAT-POS-c7726e07-5) (IC50 95 [81, 111] nM)
 
 ## Notes
 
