@@ -20,13 +20,19 @@ ff = 'openff-2.0.0'
 creation_date = datetime.datetime.now()
 
 reference_compound_ids = {
-    'P1800_0A' : 'VLA-UCB-50c39ae8-2', # chromane-5spiro-isoquinoline
+    'P2385_0A' : 'MAT-POS-c7726e07-5', # 5spiro-isoquinoline with glycine amide
+    #'P1800_0A' : 'VLA-UCB-50c39ae8-2', # chromane-5spiro-isoquinoline
     #'P2113_0B' : 'JOH-MSK-1f2dff76-4', # tetrahydroisoquinoline-5spiro-isoquinoline
     #'P2222_0A' : 'JOH-MSK-1f2dff76-4', # tetrahydroisoquinoline-5spiro-isoquinoline
 }
-prefix = 'sprint-11-2021-12-26'
+prefix = 'sprint-12'
 run_id = 0
-description = 'COVID Moonshot Sprint 11 for optimizing spiro compounds'
+description = 'COVID Moonshot Sprint 12 for prioritizing synthesis of spiro compounds'
+
+from openmm import unit
+from openmmtools.constants import kB
+temperature = 300 * unit.kelvin
+kT = kB * temperature
 
 def get_compound_id(microstate_id):
     """
@@ -55,34 +61,28 @@ def get_compound_id(microstate_id):
 import os
 os.makedirs('json', exist_ok=True)
 
-#assembly_states = ['monomer', 'dimer']
-#charge_states = ['neutral', 'charged']
-
-rmsd_restraints = ['unrestrained', 'restrained']
+rmsd_restraints = ['restrained']
 assembly_states = ['dimer']
-charge_states = ['neutral', 'charged']
+protonation_states = ['His41(+)-Cys145(-)-His163(0)', 'His41(+)-Cys145(-)-His163(+)', 'His41(0)-Cys145(0)-His163(0)', 'His41(0)-Cys145(0)-His163(+)']
 
-for charge_state in charge_states:
+for protonation_state in protonation_states:
     for assembly_state in assembly_states:
         for rmsd_restraint in rmsd_restraints:
             for xchem_fragment_id in reference_compound_ids.keys():
                 reference_compound_id = reference_compound_ids[xchem_fragment_id]
-                series_name = f'{prefix}-{xchem_fragment_id}-{assembly_state}-{charge_state}-{rmsd_restraint}'
+                series_name = f'{prefix}-{xchem_fragment_id}-{assembly_state}-{protonation_state}'
                 print(f'Generating JSON for {series_name}...')
-                description = f"{description} based on {xchem_fragment_id} using reference compound {reference_compound_id} with Mpro {assembly_state} and {charge_state} Cys145:His41 catalytic dyad"
+                description = f"{description} based on {xchem_fragment_id} using reference compound {reference_compound_id} with Mpro {assembly_state} and {protonation_state}"
 
                 json_filename = f'json/{series_name}.json' # output filename
-                #microstates_sdf_filename = f'docked/{prefix}-{xchem_fragment_id}-{assembly_state}-{charge_state}.sdf' # microstates with docked geometries
-                microstates_sdf_filename = f'docked/{prefix}-{xchem_fragment_id}-{assembly_state}-neutral.sdf' # microstates with docked geometries
+                microstates_sdf_filename = f'docked/{prefix}-{xchem_fragment_id}-{assembly_state}-{protonation_state}.sdf' # microstates with docked geometries
                 compounds_smi_filename = f'docked/{prefix}-compounds.smi' # compounds with annotation
                 smarts = 'a1aaa2a(a1)AAAC23*~*~*(c4cncc5ccccc45)~*3' # SMARTS for common core scaffold : tetralinlike-5spiro-isoquinoline
-                suffix = 'charged' if charge_state=='charged' else ''
-                receptors = f'../receptors/{assembly_state}/Mpro-{xchem_fragment_id}_bound-protein{suffix}.pdb'
-                if charge_state=='neutral':
-                    receptor_variant = {'catalytic-dyad' : 'His41(0) Cys145(0)'}
-                else:
-                    receptor_variant = {'catalytic-dyad' : 'His41(+) Cys145(-)'}
-                receptor_variant['rmsd_restraint'] = rmsd_restraint
+                receptors = f'../receptors/{assembly_state}/Mpro-{xchem_fragment_id}_bound-{protonation_state}-protein.pdb'
+                receptor_variant = {
+                    'protonation_state' : protonation_state,
+                    'rmsd_restraint' : rmsd_restraint,
+                }
                 temperature = 300.0 # kelvin
                 pH = 7.3 # pH (fluorescence assay)
                 ionic_strength_millimolar = 70.0 # millimolar
@@ -96,7 +96,6 @@ for charge_state in charge_states:
                 )
 
                 # Compound series metadata
-                # Encode dict of assembly and charge states?
                 from fah_xchem.schema import CompoundSeriesMetadata
                 series_metadata = CompoundSeriesMetadata(
                     name=series_name,
@@ -144,7 +143,7 @@ for charge_state in charge_states:
 
                 # Microstates
                 print('Processing microstates...')
-                from fah_xchem.schema import CompoundMicrostate, Microstate
+                from fah_xchem.schema import CompoundMicrostate, Microstate, PointEstimate
                 microstates = list()
                 with oechem.oemolistream(microstates_sdf_filename) as ifs:
                     for oemol in ifs.GetOEGraphMols():
@@ -152,8 +151,8 @@ for charge_state in charge_states:
                         smiles = oechem.OEMolToSmiles(oemol)
                         # Identify free energy penalty
                         free_energy_penalty = PointEstimate(point=0.0, stderr=0.0)
-                        if oechem.OEHasSDData('r_epik_State_Penalty'):
-                            r_epik_State_Penalty = float(oechem.OEGetSDData('r_epik_State_Penalty')) / kT
+                        if oechem.OEHasSDData(oemol, 'r_epik_State_Penalty'):
+                            r_epik_State_Penalty = float(oechem.OEGetSDData(oemol, 'r_epik_State_Penalty')) / kT.value_in_unit(unit.kilocalories_per_mole)
                             free_energy_penalty = PointEstimate(point=r_epik_State_Penalty, stderr=0.0) # TODO: More realistic error estimate from Epik
                         # Identify parent compound
                         compound_id = oechem.OEGetSDData(oemol, 'compound')
