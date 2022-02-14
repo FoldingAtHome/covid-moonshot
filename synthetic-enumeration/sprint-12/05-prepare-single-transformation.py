@@ -4,7 +4,7 @@ import itertools
 import os
 import json
 
-yaml_filename = 'sprint-11.yaml'
+yaml_filename = 'sprint-12.yaml'
 
 def run_relative_perturbation(compound_series, transformation_index, microstate_sdf_filename, tidy=True, rmsd_restraint=True):
     """
@@ -19,8 +19,8 @@ def run_relative_perturbation(compound_series, transformation_index, microstate_
 
     # Decode assembly and charge states from microstate_sdf_filename prefix
     assembly_state = 'monomer' if 'monomer' in compound_series.metadata.description else 'dimer'
-    suffix = '-thiolate' if 'charged' in compound_series.metadata.description else ''
-    protein_pdb_filename = f'receptors/{assembly_state}/Mpro-{transformation.xchem_fragment_id}_bound-protein{suffix}.pdb'
+    protonation_state = compound_series.metadata.receptor_variant['protonation_state']
+    protein_pdb_filename = f'receptors/{assembly_state}/Mpro-{transformation.xchem_fragment_id}_bound-{protonation_state}-protein.pdb'
     print(protein_pdb_filename)
 
     outputdir = f'RUN{transformation.run_id}'
@@ -108,10 +108,10 @@ json_filenames = glob('json/*.json')
 
 # DEBUG: Force order
 json_filenames = [
-    'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-unrestrained.json',
-    'json/sprint-11-2021-12-26-P1800_0A-dimer-neutral-restrained.json',
-    'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-unrestrained.json',
-    'json/sprint-11-2021-12-26-P1800_0A-dimer-charged-restrained.json',
+    'json/sprint-12-P2385_0A-dimer-His41(+)-Cys145(-)-His163(0).json',
+    'json/sprint-12-P2385_0A-dimer-His41(+)-Cys145(-)-His163(+).json',  
+    'json/sprint-12-P2385_0A-dimer-His41(0)-Cys145(0)-His163(0).json',
+    'json/sprint-12-P2385_0A-dimer-His41(0)-Cys145(0)-His163(+).json',
 ]
 
 transformation_index = int(sys.argv[1])

@@ -1,9 +1,8 @@
 #!/bin/env python
 
 """
-Create fah-xchem compound set JSON for Sprint 5 file using new schema
+Create JSON file
 
-DO NOT USE - it uses the compounds SDF 2D file which may screw up stereochemistryx
 """
 
 import numpy as np
@@ -89,10 +88,11 @@ for protonation_state in protonation_states:
                 reference_microstate_id = f'{reference_compound_id}_1' # microstate id for reference for transformations
 
                 # Project pair
+                # TODO: Automatically set these from sprint-12.yaml
                 from fah_xchem.schema import ProjectPair
                 fah_projects = ProjectPair(
-                    complex_phase=13458, # complex
-                    solvent_phase=13459 # solvent
+                    complex_phase=13462, # complex
+                    solvent_phase=13463 # solvent
                 )
 
                 # Compound series metadata

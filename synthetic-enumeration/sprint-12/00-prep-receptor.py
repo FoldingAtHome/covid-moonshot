@@ -7,8 +7,9 @@ This should be run from the covid-moonshot/scripts directory
 import rich
 import openeye
 
-structures_path = '../../structures/Mpro'
+structures_path = '../../structures/'
 output_basepath = 'receptors'
+loop_database = '/data/chodera/shallerd/rcsb_spruce.loop_db'
 
 def read_pdb_file(pdb_file):
     #print(f'Reading receptor from {pdb_file}...')
@@ -89,10 +90,34 @@ SEQRES  21 A  306  VAL LEU ASP MET CYS ALA SER LEU LYS GLU LEU LEU GLN
 SEQRES  22 A  306  ASN GLY MET ASN GLY ARG THR ILE LEU GLY SER ALA LEU
 SEQRES  23 A  306  LEU GLU ASP GLU PHE THR PRO PHE ASP VAL VAL ARG GLN
 SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
+SEQRES   1 B  306  SER GLY PHE ARG LYS MET ALA PHE PRO SER GLY LYS VAL
+SEQRES   2 B  306  GLU GLY CYS MET VAL GLN VAL THR CYS GLY THR THR THR
+SEQRES   3 B  306  LEU ASN GLY LEU TRP LEU ASP ASP VAL VAL TYR CYS PRO
+SEQRES   4 B  306  ARG HIS VAL ILE CYS THR SER GLU ASP MET LEU ASN PRO
+SEQRES   5 B  306  ASN TYR GLU ASP LEU LEU ILE ARG LYS SER ASN HIS ASN
+SEQRES   6 B  306  PHE LEU VAL GLN ALA GLY ASN VAL GLN LEU ARG VAL ILE
+SEQRES   7 B  306  GLY HIS SER MET GLN ASN CYS VAL LEU LYS LEU LYS VAL
+SEQRES   8 B  306  ASP THR ALA ASN PRO LYS THR PRO LYS TYR LYS PHE VAL
+SEQRES   9 B  306  ARG ILE GLN PRO GLY GLN THR PHE SER VAL LEU ALA CYS
+SEQRES  10 B  306  TYR ASN GLY SER PRO SER GLY VAL TYR GLN CYS ALA MET
+SEQRES  11 B  306  ARG PRO ASN PHE THR ILE LYS GLY SER PHE LEU ASN GLY
+SEQRES  12 B  306  SER CYS GLY SER VAL GLY PHE ASN ILE ASP TYR ASP CYS
+SEQRES  13 B  306  VAL SER PHE CYS TYR MET HIS HIS MET GLU LEU PRO THR
+SEQRES  14 B  306  GLY VAL HIS ALA GLY THR ASP LEU GLU GLY ASN PHE TYR
+SEQRES  15 B  306  GLY PRO PHE VAL ASP ARG GLN THR ALA GLN ALA ALA GLY
+SEQRES  16 B  306  THR ASP THR THR ILE THR VAL ASN VAL LEU ALA TRP LEU
+SEQRES  17 B  306  TYR ALA ALA VAL ILE ASN GLY ASP ARG TRP PHE LEU ASN
+SEQRES  18 B  306  ARG PHE THR THR THR LEU ASN ASP PHE ASN LEU VAL ALA
+SEQRES  19 B  306  MET LYS TYR ASN TYR GLU PRO LEU THR GLN ASP HIS VAL
+SEQRES  20 B  306  ASP ILE LEU GLY PRO LEU SER ALA GLN THR GLY ILE ALA
+SEQRES  21 B  306  VAL LEU ASP MET CYS ALA SER LEU LYS GLU LEU LEU GLN
+SEQRES  22 B  306  ASN GLY MET ASN GLY ARG THR ILE LEU GLY SER ALA LEU
+SEQRES  23 B  306  LEU GLU ASP GLU PHE THR PRO PHE ASP VAL VAL ARG GLN
+SEQRES  24 B  306  CYS SER GLY VAL THR PHE GLN
 """
     has_seqres = 'SEQRES' in pdbfile_contents
     if not has_seqres:
-        #print('Adding SEQRES')
+        print('Adding SEQRES')
         pdbfile_contents = seqres + pdbfile_contents
 
     # Read the receptor and identify design units
@@ -145,6 +170,24 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
     mdata = oespruce.OEStructureMetadata();
     opts.GetPrepOptions().SetStrictProtonationMode(True);
 
+    # turn off superposition
+    opts.SetSuperpose(False)
+    # set minimal number of ligand atoms to 5, e.g. a 5-membered ring fragment
+    opts.GetSplitOptions().SetMinLigAtoms(5)
+    # also consider alternate locations outside binding pocket, important for later filtering
+    opts.GetPrepOptions().GetEnumerateSitesOptions().SetCollapseNonSiteAlts(False)
+
+    # alignment options, only matches are important
+    opts.GetPrepOptions().GetBuildOptions().GetLoopBuilderOptions().SetSeqAlignMethod(
+        oechem.OESeqAlignmentMethod_Identity
+    )
+    opts.GetPrepOptions().GetBuildOptions().GetLoopBuilderOptions().SetSeqAlignGapPenalty(-1)
+    opts.GetPrepOptions().GetBuildOptions().GetLoopBuilderOptions().SetSeqAlignExtendPenalty(0)
+    
+    from pathlib import Path
+    loop_db = str(Path(loop_database).expanduser().resolve())
+    opts.GetPrepOptions().GetBuildOptions().GetLoopBuilderOptions().SetLoopDBFilename(loop_db)
+
     # Set ligand name and SMILES
     smiles = 'CNC(=O)CN1CC=2C=CC(Cl)=CC2[C@@]3(CCN(C3=O)C=4C=NC=C5C=CC=CC45)C1'
     het = oespruce.OEHeterogenMetadata()
@@ -153,7 +196,6 @@ SEQRES  24 A  306  CYS SER GLY VAL THR PHE GLN
     het.SetSmiles(smiles)
     het.SetType(oespruce.OEHeterogenType_Ligand)
     mdata.AddHeterogenMetadata(het)
-
 
     # Both N- and C-termini should be zwitterionic
     # Mpro cleaves its own N- and C-termini
