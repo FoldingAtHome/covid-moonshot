@@ -86,6 +86,30 @@ def GetFragmentScore(mol):
 
     return score
 
+def expand_stereochemistry_star(mol):
+    from openeye import oechem, oeomega
+    omegaOpts = oeomega.OEOmegaOptions()
+    omega = oeomega.OEOmega(omegaOpts)
+    maxcenters = 12
+    forceFlip = False
+    enumNitrogen = False # WARNING: This creates multiple microstates with same SMILES if True
+    warts = True # add suffix for stereoisomers
+
+    compound_title = mol.GetTitle()
+    compound_smiles = oechem.OEMolToSmiles(mol)
+
+    enantiomers = list()
+    for enantiomer in oeomega.OEFlipper(mol, maxcenters, forceFlip, enumNitrogen, warts):
+        enantiomer = oechem.OEMol(enantiomer)
+        omega.Build(enantiomer) # a single conformer needs to be built to fully define stereochemistry
+        enantiomer_smiles =  oechem.OEMolToSmiles(enantiomer)
+        oechem.OESetSDData(enantiomer, 'compound', compound_title)
+        oechem.OESetSDData(enantiomer, 'compound_smiles', compound_smiles)
+        oechem.OESetSDData(enantiomer, 'enantiomer_smiles', enantiomer_smiles)
+        enantiomers.append(enantiomer)
+
+    return enantiomers
+
 def expand_stereochemistry(mols):
     """Expand stereochemistry when uncertain
 
@@ -101,28 +125,19 @@ def expand_stereochemistry(mols):
     """
     expanded_mols = list()
 
-    from openeye import oechem, oeomega
-    omegaOpts = oeomega.OEOmegaOptions()
-    omega = oeomega.OEOmega(omegaOpts)
-    maxcenters = 12
-    forceFlip = False
-    enumNitrogen = False # WARNING: This creates multiple microstates with same SMILES if True
-    warts = True # add suffix for stereoisomers
-    for mol in mols:
-        compound_title = mol.GetTitle()
-        compound_smiles = oechem.OEMolToSmiles(mol)
 
-        enantiomers = list()
-        for enantiomer in oeomega.OEFlipper(mol, maxcenters, forceFlip, enumNitrogen, warts):
-            enantiomer = oechem.OEMol(enantiomer)
-            omega.Build(enantiomer) # a single conformer needs to be built to fully define stereochemistry
-            enantiomer_smiles =  oechem.OEMolToSmiles(enantiomer)
-            oechem.OESetSDData(enantiomer, 'compound', compound_title)
-            oechem.OESetSDData(enantiomer, 'compound_smiles', compound_smiles)
-            oechem.OESetSDData(enantiomer, 'enantiomer_smiles', enantiomer_smiles)
-            enantiomers.append(enantiomer)
-
+    from rich.progress import track
+    from multiprocessing import Pool
+    from tqdm import tqdm
+    import os
+    processes = None
+    if 'LSB_DJOB_NUMPROC' in os.environ:
+        processes = int(os.environ['LSB_DJOB_NUMPROC'])
+    pool = Pool(processes=processes)
+    for enantiomers in track(pool.imap_unordered(expand_stereochemistry_star, mols), total=len(mols), description='Enumerating stereocenters...'):
         expanded_mols += enantiomers
+    pool.close()
+    pool.join()
 
     return expanded_mols
 
@@ -158,12 +173,12 @@ def expand_protonation_states(mols):
     import numpy as np
     min_population = np.exp(-6)
     command = f'$SCHRODINGER/epik -WAIT -ms 16 -ph 7.3 -p {min_population} -imae input.mae -omae output.mae'
-    os.system(command)
+    os.system(command) # DEBUG
 
     # Convert back to SDF
     logging.info(' Converting back to sdf...')
     command = f'$SCHRODINGER/utilities/structconvert output.mae output.sdf'
-    os.system(command)
+    #os.system(command)
 
     # Read files
     # TODO: Fix this, since openeye seems to skip over molecules with the same name
@@ -414,7 +429,7 @@ def get_series(mol):
     from rdkit import Chem
     from rdkit.Chem import AllChem
     from rdkit.Chem import Descriptors
-    series_SMARTS_dict = {
+    series_SMARTS_dict = {        
         "chromane-5spiro-isoquinoline" : "c1ccc2c(c1)OCCC23***(c4cncc5ccccc45)*3",
         "tetrahydroisoquinoline-5spiro-isoquinoline" : "c1ccc2c(c1)CNCC23***(c4cncc5ccccc45)*3",
         "5spiro-isoquinoline" : "C3***(c4cncc5ccccc45)*3",
@@ -489,33 +504,7 @@ def get_series(mol):
 
 def generate_restricted_conformers_star(args):
     core_smarts_list = [
-        "c1c([F,Cl,Br,I])cc2c(c1)OCCC23***(c4cncc5ccccc45)*3", # chloro-chromane-5spiro-isoquinoline
-        "c1c([F,Cl,Br,I])cc2c(c1)CNCC23***(c4cncc5ccccc45)*3", # chloro-tetrahydroisoquinoline-5spiro-isoquinoline
-        "c1c([F,Cl,Br,I])cc2c(c1)OCCC23****3", # chloro-chromane-5spiro
-        "c1c([F,Cl,Br,I])cc2c(c1)CNCC23****3", # chloro-tetrahydroisoquinoline-5spiro
-        #"C3***(c4cncc5ccccc45)*3", # 5spiro-isoquinoline
-        #"*(a4anaa5aaaaa45)", # "P1-biaryl"
-        #"a1a([F,Cl,Br,I])aa2a(a1)AAAC23*~*~*~*3", # chloro-tetralinlike-5spiro
-        #"c1c([F,Cl,Br,I])cc2c(c1)OCCC23*~*~*~*3", # chloro-chromane-5spiro
-        "a1a([F,Cl,Br,I])aa2a(a1)AAAC2", # chloro-tetralinlike
-        "c1c([F,Cl,Br,I])cc2c(c1)OCCC2", # chloro-chromane
-        "c1c([F,Cl,Br,I])cc2c(c1)CNCC2", # chloro-THIQ
-        #"*(c4cncc5ccccc45)", # isoquinoline"
-        ## Recent
-        #"c1ccc2c(c1)O**C23*~*~*(c4cncc5ccccc45)~*3", # chromane-5spiro-isoquinoline
-        #"c1ccc2c(c1)*N*C23*~*~*(c4cncc5ccccc45)~*3", # tetrahydroisoquinoline-5spiro-isoquinoline
-        #"a1aaa2a(a1)AAAC23*~*~*(c4cncc5ccccc45)~*3", #tetralinlike-5spiro-isoquinoline
-        ## Older
-        #"a1aaa2a(a1)AAAA23***(c4cncc5ccccc45)*3", # tetralinlike-5spiro-isoquinoline
-        #"NC(=O)[CH2]c3[cH1][cH1][cH1]c(Cl)c3", # chlorobenzene-linker
-        #'A1AAC(C(=O)Nc2cncc3ccccc23)c2ccccc21', # benzopyranlike-linker-isoquinoline
-        ##'C1(CCOc2ccccc12)C(=O)Nc1cncc2ccccc12', # benzopyran-linker-isoquinoline
-        ##'CNc1cncc2ccccc12', # linker-isoquinoline
-        ##'c1cncc2ccccc12', # isoquinoline
-        #'Cc1ccncc1NC(=O)Cc1cc(Cl)ccc', # linker
-        ##'Cc1ccncc1NC(=O)Cc1cc(Cl)cc(OC2CC(=O)N2)c1', # TRY-UNI-2eddb1ff-7
-        ##'Cc1ccncc1NC(=O)Cc1cc(Cl)ccc1', #
-        #'[N&R0][C&R0](=O)', # linker
+        "2cc(Cl)cc(OCCNC(=O)c3cc(=O)[n]c4ccccc34)c2", # quinolone-and-linker
     ]
 
     # Build with all core_smarts options
@@ -571,7 +560,7 @@ def generate_poses(receptor, refmol, target_molecules, output_filename):
 
     # Expand protonation states
     logging.info('Expanding protonation states...')
-    target_molecules = expand_protonation_states(target_molecules)
+    target_molecules = expand_protonation_states(target_molecules) 
     logging.info(f'  There are {len(target_molecules)} target molecules after expanding protonation states')
 
     # Expand uncertain stereochemistry
