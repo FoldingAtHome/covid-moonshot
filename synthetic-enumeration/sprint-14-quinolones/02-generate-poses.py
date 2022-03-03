@@ -173,7 +173,7 @@ def expand_protonation_states(mols):
     import numpy as np
     min_population = np.exp(-6)
     command = f'$SCHRODINGER/epik -WAIT -ms 16 -ph 7.3 -p {min_population} -imae input.mae -omae output.mae'
-    os.system(command) # DEBUG
+    os.system(command)
 
     # Convert back to SDF
     logging.info(' Converting back to sdf...')
@@ -429,7 +429,7 @@ def get_series(mol):
     from rdkit import Chem
     from rdkit.Chem import AllChem
     from rdkit.Chem import Descriptors
-    series_SMARTS_dict = {        
+    series_SMARTS_dict = {
         "chromane-5spiro-isoquinoline" : "c1ccc2c(c1)OCCC23***(c4cncc5ccccc45)*3",
         "tetrahydroisoquinoline-5spiro-isoquinoline" : "c1ccc2c(c1)CNCC23***(c4cncc5ccccc45)*3",
         "5spiro-isoquinoline" : "C3***(c4cncc5ccccc45)*3",
@@ -504,7 +504,7 @@ def get_series(mol):
 
 def generate_restricted_conformers_star(args):
     core_smarts_list = [
-        "2cc(Cl)cc(OCCNC(=O)c3cc(=O)[n]c4ccccc34)c2", # quinolone-and-linker
+        "O=C(NCCOc1ccccc1)c1cc(=O)[nH]c2ccccc12", # quinolone scaffold
     ]
 
     # Build with all core_smarts options
@@ -558,15 +558,15 @@ def generate_poses(receptor, refmol, target_molecules, output_filename):
     """
     logging.info(f'Generating poses for {len(target_molecules)} molecules...')
 
-    # Expand protonation states
-    logging.info('Expanding protonation states...')
-    target_molecules = expand_protonation_states(target_molecules) 
-    logging.info(f'  There are {len(target_molecules)} target molecules after expanding protonation states')
+    # Expand protonation states # DEBUG
+    #logging.info('Expanding protonation states...')
+    #target_molecules = expand_protonation_states(target_molecules)
+    #logging.info(f'  There are {len(target_molecules)} target molecules after expanding protonation states')
 
-    # Expand uncertain stereochemistry
-    logging.info('Expanding uncertain stereochemistry...')
-    target_molecules = expand_stereochemistry(target_molecules)
-    logging.info(f'  There are {len(target_molecules)} target molecules after expanding uncertain stereochemistry')
+    # Expand uncertain stereochemistry # DEBUG
+    #logging.info('Expanding uncertain stereochemistry...')
+    #target_molecules = expand_stereochemistry(target_molecules)
+    #logging.info(f'  There are {len(target_molecules)} target molecules after expanding uncertain stereochemistry')
 
     # Identify optimal conformer for each molecule
     n_poses = 0
